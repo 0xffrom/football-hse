@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace 'goshka133.football'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "goshka133.football"
         minSdk 26
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
