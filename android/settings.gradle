@@ -1,4 +1,5 @@
 pluginManagement {
+    includeBuild("gradle/plugins/modules")
     repositories {
         gradlePluginPortal()
         google()
@@ -8,9 +9,14 @@ pluginManagement {
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
+        gradlePluginPortal()
         google()
         mavenCentral()
     }
 }
+
+
+apply from: "gradle/project_configuration.groovy"
+
 rootProject.name = "HSE Football"
 include ':app'
