@@ -1,9 +1,9 @@
 [versions]
-compose = "1.4.0-alpha3"
+compose = "1.4.0-alpha03"
 compose-compiler = "1.4.0-alpha02"
 lifecycle = "2.5.1"
-kotlin = "1.7.20"
-ksp = "1.7.20-1.0.8"
+kotlin = "1.7.21"
+ksp = "1.7.21-1.0.8"
 agp = "7.4"
 
 [libraries]
@@ -11,7 +11,7 @@ compose-animation = { module = "androidx.compose.animation:animation", version.r
 compose-activity = { module = "androidx.activity:activity-compose", version = "1.7.0-alpha02" }
 compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
 compose-layout = { module = "androidx.compose.foundation:foundation-layout", version.ref = "compose" }
-compose-material = { module = "androidx.compose.material:material", version = "compose" }
+compose-material = { module = "androidx.compose.material:material", version.ref = "compose" }
 compose-runtime = { module = "androidx.compose.runtime:runtime", version.ref = "compose" }
 compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
 compose-ui-fonts = { module = "androidx.compose.ui:ui-text-google-fonts", version.ref = "compose" }
@@ -33,17 +33,14 @@ modo = { module = "com.github.terrakok:modo-compose", version = "0.7.1" }
 [bundles]
 compose = [
     "compose-animation",
-    "compose-activity",
     "compose-foundation",
     "compose-layout",
     "compose-material",
     "compose-runtime",
     "compose-ui",
-    "compose-ui-fonts",
     "compose-ui-tooling",
     "compose-ui-tooling-preview",
     "compose-ui-util",
-    "compose-ui-viewbinding"
 ]
 
 [plugins]
