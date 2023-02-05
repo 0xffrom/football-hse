@@ -1,10 +1,13 @@
 [versions]
-compose = "1.4.0-alpha03"
-compose-compiler = "1.4.0-alpha02"
-lifecycle = "2.5.1"
-kotlin = "1.7.21"
-ksp = "1.7.21-1.0.8"
 agp = "7.4"
+compose = "1.4.0-alpha04"
+compose-compiler = "1.4.0"
+dagger = "2.44.2"
+lifecycle = "2.5.1"
+moshi = "1.14.0"
+kotlin = "1.8.0"
+ksp = "1.8.0-1.0.8"
+okhttp = "4.10.0"
 
 [libraries]
 compose-animation = { module = "androidx.compose.animation:animation", version.ref = "compose" }
@@ -22,13 +25,26 @@ compose-ui-viewbinding = { module = "androidx.compose.ui:ui-viewbinding", versio
 
 coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version = "1.6.4" }
 
+dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
+dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }
 datastore = { module = "androidx.datastore:datastore-preferences", version = "1.0.0" }
 
 lifecycle-compiler = { module = "androidx.lifecycle:lifecycle-compiler", version.ref = "lifecycle" }
 lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
 
+kotlin-parcelize = { module = "org.jetbrains.kotlin:kotlin-parcelize-runtime", version.ref = "kotlin" }
+
 modo = { module = "com.github.terrakok:modo-compose", version = "0.7.1" }
+moshi = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshi" }
+moshi-compiler = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshi" }
+
+okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
+okhttp-logging = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp" }
+
+timber = { module = "com.jakewharton.timber:timber", version = "5.0.1" }
+retrofit = { module = "com.squareup.retrofit2:retrofit", version = "2.9.0" }
+retrofit-moshi = { module = "com.squareup.retrofit2:converter-moshi", version = "2.9.0" }
 
 [bundles]
 compose = [
