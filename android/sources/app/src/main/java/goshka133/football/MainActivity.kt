@@ -3,41 +3,40 @@ package goshka133.football
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import goshka133.football.ui.theme.HSEFootballTheme
+import com.github.terrakok.modo.Modo
+import com.github.terrakok.modo.Screen
+import com.github.terrakok.modo.stack.StackNavModel
+import com.github.terrakok.modo.stack.StackScreen
+import goshka133.football.core_di.getComponent
+import goshka133.football.di.MainDependencies
+import goshka133.football.ui_kit.FootballTheme
+import kotlinx.parcelize.Parcelize
 
 class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            HSEFootballTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    Greeting("Android")
-                }
-            }
-        }
-    }
+  private var rootScreen: StackScreen? = null
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+
+    val dependencies: MainDependencies = getComponent(this)
+
+    rootScreen =
+      Modo.init(savedInstanceState, rootScreen) {
+        RootStackView(rootScreen = dependencies.authFeatureApi.getScreen())
+      }
+
+    setContent { FootballTheme { rootScreen?.Content() } }
+  }
 }
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
+@Parcelize
+class RootStackView(private val stackNavModel: StackNavModel) : StackScreen(stackNavModel) {
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    HSEFootballTheme {
-        Greeting("Android")
-    }
+  constructor(rootScreen: Screen) : this(StackNavModel(rootScreen))
+
+  @Composable
+  override fun Content() {
+    TopScreenContent { screen.Content() }
+  }
 }

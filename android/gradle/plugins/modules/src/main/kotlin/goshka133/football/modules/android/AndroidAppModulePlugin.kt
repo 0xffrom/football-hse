@@ -6,7 +6,7 @@ import com.android.build.api.dsl.ApplicationExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
-class AndroidAppModulePlugin : Plugin<Project> {
+internal class AndroidAppModulePlugin : Plugin<Project> {
 
   override fun apply(project: Project) {
     with(project.plugins) {

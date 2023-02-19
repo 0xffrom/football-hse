@@ -10,23 +10,25 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-class AndroidBaseModulePlugin : Plugin<Project> {
+internal class AndroidBaseModulePlugin : Plugin<Project> {
 
   override fun apply(project: Project) {
     with(project.plugins) {
       apply("kotlin-android")
       apply("kotlin-parcelize")
+      apply("com.stepango.aar2jar")
+      apply("org.jetbrains.kotlin.kapt")
     }
     project.extensions.configure(BaseExtension::class.java) {
       configure(
-          minSdk = 26,
-          targetSdk = 33,
-          buildToolsVersion = "33.0.0",
-          targetJvm = ProjectDefaults.JavaVersion,
+        minSdk = 26,
+        targetSdk = 33,
+        buildToolsVersion = "33.0.0",
+        targetJvm = ProjectDefaults.JavaVersion,
       )
 
       val composeCompilerVersion =
-          project.getVersionCatalog().findVersion("compose.compiler").get().requiredVersion
+        project.getVersionCatalog().findVersion("compose.compiler").get().requiredVersion
 
       composeOptions { kotlinCompilerExtensionVersion = composeCompilerVersion }
     }
@@ -38,10 +40,10 @@ class AndroidBaseModulePlugin : Plugin<Project> {
   }
 
   private fun BaseExtension.configure(
-      minSdk: Int,
-      targetSdk: Int,
-      buildToolsVersion: String,
-      targetJvm: JavaVersion,
+    minSdk: Int,
+    targetSdk: Int,
+    buildToolsVersion: String,
+    targetJvm: JavaVersion,
   ) {
     compileSdkVersion(targetSdk)
     buildToolsVersion(buildToolsVersion)
@@ -63,20 +65,20 @@ class AndroidBaseModulePlugin : Plugin<Project> {
 
     tasks.withType(KotlinCompile::class.java) {
       kotlinOptions.freeCompilerArgs +=
-          listOf(
-              "-P",
-              "plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=" +
+        listOf(
+          "-P",
+          "plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=" +
                   project.buildDir.absolutePath +
                   "/compose_metrics",
-          )
+        )
 
       kotlinOptions.freeCompilerArgs +=
-          listOf(
-              "-P",
-              "plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination=" +
+        listOf(
+          "-P",
+          "plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination=" +
                   project.buildDir.absolutePath +
                   "/compose_metrics",
-          )
+        )
     }
   }
 }
