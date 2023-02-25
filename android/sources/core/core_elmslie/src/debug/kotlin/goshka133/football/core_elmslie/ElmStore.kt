@@ -14,34 +14,29 @@ import vivid.money.elmslie.core.store.Store
 
 @Composable
 fun <SF : StoreFactory, Event : Any, Effect : Any, State : Any> rememberStore(
-    storeFactoryClass: Class<SF>,
-    storeProvider: (SF, SavedStateHandle) -> Store<Event, Effect, State>,
+  storeFactoryClass: Class<SF>,
+  storeProvider: (SF, SavedStateHandle) -> Store<Event, Effect, State>,
 ): Store<Event, Effect, State> {
-    val savedStateRegistryOwner = LocalSavedStateRegistryOwner.current
-    val vmStoreOwner = LocalViewModelStoreOwner.current!!
+  val savedStateRegistryOwner = LocalSavedStateRegistryOwner.current
+  val vmStoreOwner = LocalViewModelStoreOwner.current!!
 
-    val elmDependencies: ElmDependencies = rememberDependencies()
-    val storeFactory = remember { elmDependencies.storeFactoryProvider.get(storeFactoryClass) }
+  val elmDependencies: ElmDependencies = rememberDependencies()
+  val storeFactory = remember { elmDependencies.storeFactoryProvider.get(storeFactoryClass) }
 
-    return remember(
-        key1 = vmStoreOwner,
-        key2 = savedStateRegistryOwner,
-    ) {
-        val factory =
-            RetainedElmStoreFactory(
-                stateRegistryOwner = savedStateRegistryOwner,
-                storeFactory = { savedStateHandle ->
-                    storeProvider.invoke(
-                        storeFactory,
-                        savedStateHandle
-                    )
-                },
-                defaultArgs = Bundle(),
-            )
-        val provider = ViewModelProvider(vmStoreOwner, factory)
+  return remember(
+    key1 = vmStoreOwner,
+    key2 = savedStateRegistryOwner,
+  ) {
+    val factory =
+      RetainedElmStoreFactory(
+        stateRegistryOwner = savedStateRegistryOwner,
+        storeFactory = { savedStateHandle -> storeProvider.invoke(storeFactory, savedStateHandle) },
+        defaultArgs = Bundle(),
+      )
+    val provider = ViewModelProvider(vmStoreOwner, factory)
 
-        @Suppress("UNCHECKED_CAST")
-        provider[storeFactoryClass.name, RetainedElmStore::class.java].store
-                as Store<Event, Effect, State>
-    }
+    @Suppress("UNCHECKED_CAST")
+    provider[storeFactoryClass.name, RetainedElmStore::class.java].store
+      as Store<Event, Effect, State>
+  }
 }

@@ -74,16 +74,16 @@ internal class AndroidBaseModulePlugin : Plugin<Project> {
         listOf(
           "-P",
           "plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=" +
-                  project.buildDir.absolutePath +
-                  "/compose_metrics",
+            project.buildDir.absolutePath +
+            "/compose_metrics",
         )
 
       kotlinOptions.freeCompilerArgs +=
         listOf(
           "-P",
           "plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination=" +
-                  project.buildDir.absolutePath +
-                  "/compose_metrics",
+            project.buildDir.absolutePath +
+            "/compose_metrics",
         )
     }
   }

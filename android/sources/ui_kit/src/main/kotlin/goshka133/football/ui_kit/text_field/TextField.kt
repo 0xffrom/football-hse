@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Text
+import androidx.compose.material.TextField as MaterialTextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -17,7 +18,6 @@ import androidx.compose.ui.unit.dp
 import goshka133.football.ui_kit.theme.BodyRegular
 import goshka133.football.ui_kit.theme.DefaultShapes
 import goshka133.football.ui_kit.theme.FootballColors
-import androidx.compose.material.TextField as MaterialTextField
 
 @Composable
 fun FTextField(
@@ -36,33 +36,33 @@ fun FTextField(
 
   MaterialTextField(
     modifier =
-    modifier
-      .heightIn(min = 54.dp)
-      .onFocusChanged { focusState -> isFocused = focusState.isFocused }
-      .then(
-        if (isFocused) {
-          borderModifier
-        } else {
-          Modifier
-        }
-      ),
+      modifier
+        .heightIn(min = 54.dp)
+        .onFocusChanged { focusState -> isFocused = focusState.isFocused }
+        .then(
+          if (isFocused) {
+            borderModifier
+          } else {
+            Modifier
+          }
+        ),
     value = value,
     onValueChange = onValueChange,
     textStyle = BodyRegular,
     placeholder = placeholder?.let { placeholderText -> { Placeholder(placeholderText) } },
     colors =
-    TextFieldDefaults.textFieldColors(
-      textColor = FootballColors.Text.Primary,
-      backgroundColor = FootballColors.Surface1,
-      placeholderColor = FootballColors.Text.Tertiary,
-      cursorColor = FootballColors.Text.Primary,
-      errorCursorColor = FootballColors.Text.Primary,
-      // Indicators ↴
-      focusedIndicatorColor = Color.Transparent,
-      disabledIndicatorColor = Color.Transparent,
-      errorIndicatorColor = Color.Transparent,
-      unfocusedIndicatorColor = Color.Transparent,
-    ),
+      TextFieldDefaults.textFieldColors(
+        textColor = FootballColors.Text.Primary,
+        backgroundColor = FootballColors.Surface1,
+        placeholderColor = FootballColors.Text.Tertiary,
+        cursorColor = FootballColors.Text.Primary,
+        errorCursorColor = FootballColors.Text.Primary,
+        // Indicators ↴
+        focusedIndicatorColor = Color.Transparent,
+        disabledIndicatorColor = Color.Transparent,
+        errorIndicatorColor = Color.Transparent,
+        unfocusedIndicatorColor = Color.Transparent,
+      ),
     shape = DefaultShapes.large,
     keyboardOptions = keyboardOptions,
     keyboardActions = keyboardActions,

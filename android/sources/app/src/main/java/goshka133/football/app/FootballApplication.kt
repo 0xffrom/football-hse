@@ -7,16 +7,16 @@ import goshka133.football.di.DaggerApplicationComponent
 
 internal class FootballApplication : Application(), DependenciesProvider {
 
-    private lateinit var applicationComponent: ApplicationComponent
+  private lateinit var applicationComponent: ApplicationComponent
 
-    override fun onCreate() {
-        super.onCreate()
+  override fun onCreate() {
+    super.onCreate()
 
-        applicationComponent =
-            DaggerApplicationComponent.factory().create(applicationContext = applicationContext)
-    }
+    applicationComponent =
+      DaggerApplicationComponent.factory().create(applicationContext = applicationContext)
+  }
 
-    override fun <T> provide(): T {
-        @Suppress("UNCHECKED_CAST") return applicationComponent as T
-    }
+  override fun <T> provide(): T {
+    @Suppress("UNCHECKED_CAST") return applicationComponent as T
+  }
 }

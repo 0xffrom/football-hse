@@ -8,17 +8,17 @@ import goshka133.football.feature_auth.di.AuthFeatureModule
 import javax.inject.Singleton
 
 @Component(
-    modules =
+  modules =
     [
-        CoreModule::class,
-        AuthFeatureModule::class,
+      CoreModule::class,
+      AuthFeatureModule::class,
     ]
 )
 @Singleton
 interface ApplicationComponent : MainDependencies, ElmDependencies {
 
-    @Component.Factory
-    interface Factory {
-        fun create(@BindsInstance applicationContext: Context): ApplicationComponent
-    }
+  @Component.Factory
+  interface Factory {
+    fun create(@BindsInstance applicationContext: Context): ApplicationComponent
+  }
 }

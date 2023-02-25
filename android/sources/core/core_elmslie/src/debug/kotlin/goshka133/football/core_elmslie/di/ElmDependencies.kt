@@ -4,5 +4,5 @@ import goshka133.football.core_elmslie.StoreFactoryProvider
 
 interface ElmDependencies {
 
-    val storeFactoryProvider: StoreFactoryProvider
+  val storeFactoryProvider: StoreFactoryProvider
 }

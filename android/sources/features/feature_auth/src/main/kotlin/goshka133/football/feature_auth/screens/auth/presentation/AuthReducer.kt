@@ -1,12 +1,12 @@
 package goshka133.football.feature_auth.screens.auth.presentation
 
-import goshka133.football.feature_auth.screens.auth.presentation.AuthEvent.Internal
-import goshka133.football.feature_auth.screens.auth.presentation.AuthEvent.Ui
-import vivid.money.elmslie.core.store.dsl_reducer.ScreenDslReducer
 import goshka133.football.feature_auth.screens.auth.presentation.AuthCommand as Command
 import goshka133.football.feature_auth.screens.auth.presentation.AuthEffect as Effect
 import goshka133.football.feature_auth.screens.auth.presentation.AuthEvent as Event
+import goshka133.football.feature_auth.screens.auth.presentation.AuthEvent.Internal
+import goshka133.football.feature_auth.screens.auth.presentation.AuthEvent.Ui
 import goshka133.football.feature_auth.screens.auth.presentation.AuthState as State
+import vivid.money.elmslie.core.store.dsl_reducer.ScreenDslReducer
 
 internal object AuthReducer :
   ScreenDslReducer<Event, Ui, Internal, State, Effect, Command>(Ui::class, Internal::class) {
@@ -42,9 +42,9 @@ internal object AuthReducer :
         state {
           copy(
             phoneNumberPage =
-            state.phoneNumberPage.copy(
-              numberTextFieldValue = event.textFieldValue,
-            )
+              state.phoneNumberPage.copy(
+                numberTextFieldValue = event.textFieldValue,
+              )
           )
         }
       }
@@ -52,9 +52,9 @@ internal object AuthReducer :
         state {
           copy(
             smsCodePage =
-            state.smsCodePage.copy(
-              smsTextFieldValue = event.textFieldValue,
-            )
+              state.smsCodePage.copy(
+                smsTextFieldValue = event.textFieldValue,
+              )
           )
         }
       }

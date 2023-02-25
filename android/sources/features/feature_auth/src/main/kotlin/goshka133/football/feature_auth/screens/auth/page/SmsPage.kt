@@ -31,9 +31,7 @@ internal fun SmsPage(
   eventReceiver: EventReceiver,
 ) {
   Column(
-    modifier = Modifier
-      .fillMaxSize()
-      .verticalScroll(rememberScrollState()),
+    modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
     verticalArrangement = Arrangement.Center,
     horizontalAlignment = Alignment.CenterHorizontally,
   ) {
@@ -65,14 +63,14 @@ internal fun SmsPage(
         eventReceiver.invoke(AuthEvent.Ui.Action.OnSmsTextFieldChange(textFieldValue))
       },
       keyboardOptions =
-      remember {
-        KeyboardOptions(
-          keyboardType = KeyboardType.Number,
-          autoCorrect = false,
-          capitalization = KeyboardCapitalization.None,
-          imeAction = ImeAction.Next,
-        )
-      },
+        remember {
+          KeyboardOptions(
+            keyboardType = KeyboardType.Number,
+            autoCorrect = false,
+            capitalization = KeyboardCapitalization.None,
+            imeAction = ImeAction.Next,
+          )
+        },
       placeholder = "СМС КОД",
     )
   }

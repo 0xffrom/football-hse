@@ -12,8 +12,7 @@ import goshka133.football.feature_auth.screens.auth.presentation.AuthStoreFactor
 @Module
 abstract class AuthFeatureModule {
 
-  @Binds
-  internal abstract fun AuthFeatureApiImpl.bindAuthFeatureApi(): AuthFeatureApi
+  @Binds internal abstract fun AuthFeatureApiImpl.bindAuthFeatureApi(): AuthFeatureApi
 
   @Binds
   @IntoMap

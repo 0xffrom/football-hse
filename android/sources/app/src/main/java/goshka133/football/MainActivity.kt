@@ -19,19 +19,19 @@ class MainActivity : ComponentActivity() {
   private var rootScreen: StackScreen? = null
 
   override fun onCreate(savedInstanceState: Bundle?) {
-      super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
 
-      val dependencies: MainDependencies = getComponent(this)
+    val dependencies: MainDependencies = getComponent(this)
 
-      val rootStackView = RootStackView(rootScreen = dependencies.authFeatureApi.getScreen())
+    val rootStackView = RootStackView(rootScreen = dependencies.authFeatureApi.getScreen())
 
-      rootScreen = Modo.init(savedInstanceState, rootScreen) { rootStackView }
+    rootScreen = Modo.init(savedInstanceState, rootScreen) { rootStackView }
 
-      setContent {
-          CompositionLocalProvider(LocalRouter provides rootScreen!!) {
-              FootballTheme { rootScreen?.Content() }
-          }
+    setContent {
+      CompositionLocalProvider(LocalRouter provides rootScreen!!) {
+        FootballTheme { rootScreen?.Content() }
       }
+    }
   }
 }
 

@@ -59,10 +59,7 @@ internal class AuthScreen : BaseScreen() {
     Scaffold(
       topBar = {
         Box(
-          modifier = Modifier
-            .statusBarsPadding()
-            .fillMaxWidth()
-            .height(56.dp),
+          modifier = Modifier.statusBarsPadding().fillMaxWidth().height(56.dp),
           contentAlignment = Alignment.Center,
         ) {
           val stepperState = remember { StepperState(stepsCount = PageNumbers) }
@@ -87,16 +84,13 @@ internal class AuthScreen : BaseScreen() {
     ) { contentPadding ->
       @OptIn(ExperimentalAnimationApi::class)
       AnimatedContent(
-        modifier = Modifier
-          .padding(contentPadding)
-          .padding(horizontal = 16.dp)
-          .fillMaxSize(),
+        modifier = Modifier.padding(contentPadding).padding(horizontal = 16.dp).fillMaxSize(),
         targetState = state.currentNumberPage,
         contentAlignment = Alignment.Center,
         transitionSpec =
-        pageTransitionSpec(
-          isLeftToRightSlideProvider = { state.currentNumberPage < state.previousNumberPage },
-        )
+          pageTransitionSpec(
+            isLeftToRightSlideProvider = { state.currentNumberPage < state.previousNumberPage },
+          )
       ) { number ->
         when (state.getPageByNumber(number)) {
           is AuthState.Page.PhoneNumber -> {

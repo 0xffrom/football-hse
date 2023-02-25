@@ -4,5 +4,5 @@ import com.github.terrakok.modo.Screen
 
 interface AuthFeatureApi {
 
-    fun getScreen(): Screen
+  fun getScreen(): Screen
 }

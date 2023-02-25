@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.Button as MaterialButton
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
@@ -17,7 +18,6 @@ import androidx.compose.ui.unit.dp
 import goshka133.football.ui_kit.theme.BodySemibold
 import goshka133.football.ui_kit.theme.DefaultShapes
 import goshka133.football.ui_kit.theme.FootballColors
-import androidx.compose.material.Button as MaterialButton
 
 @Immutable
 sealed interface ButtonStyle {
@@ -52,21 +52,19 @@ fun FButton(
   onClick: () -> Unit,
 ) {
   MaterialButton(
-    modifier = modifier
-      .fillMaxWidth()
-      .height(buttonStyle.height),
+    modifier = modifier.fillMaxWidth().height(buttonStyle.height),
     onClick = onClick,
     colors =
-    ButtonDefaults.buttonColors(
-      backgroundColor = FootballColors.Primary,
-      contentColor = FootballColors.Text.White,
-    ),
+      ButtonDefaults.buttonColors(
+        backgroundColor = FootballColors.Primary,
+        contentColor = FootballColors.Text.White,
+      ),
     shape = DefaultShapes.large,
     contentPadding =
-    PaddingValues(
-      horizontal = 24.dp,
-      vertical = 16.dp,
-    )
+      PaddingValues(
+        horizontal = 24.dp,
+        vertical = 16.dp,
+      )
   ) {
     if (isLoading) {
       CircularProgressIndicator(

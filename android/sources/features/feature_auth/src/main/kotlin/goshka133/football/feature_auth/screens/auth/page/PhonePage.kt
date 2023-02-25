@@ -31,9 +31,7 @@ internal fun PhonePage(
   eventReceiver: EventReceiver,
 ) {
   Column(
-    modifier = Modifier
-      .fillMaxSize()
-      .verticalScroll(rememberScrollState()),
+    modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
     verticalArrangement = Arrangement.Center,
     horizontalAlignment = Alignment.CenterHorizontally,
   ) {
@@ -65,14 +63,14 @@ internal fun PhonePage(
         eventReceiver.invoke(Action.OnPhoneNumberTextFieldChange(textFieldValue))
       },
       keyboardOptions =
-      remember {
-        KeyboardOptions(
-          keyboardType = KeyboardType.Number,
-          autoCorrect = false,
-          capitalization = KeyboardCapitalization.None,
-          imeAction = ImeAction.Next,
-        )
-      },
+        remember {
+          KeyboardOptions(
+            keyboardType = KeyboardType.Number,
+            autoCorrect = false,
+            capitalization = KeyboardCapitalization.None,
+            imeAction = ImeAction.Next,
+          )
+        },
       placeholder = "Номер телефона",
     )
   }

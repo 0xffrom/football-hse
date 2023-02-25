@@ -11,28 +11,28 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun FootballTheme(content: @Composable () -> Unit) {
-    CompositionLocalProvider(
-        LocalFootballColors provides FootballColors,
+  CompositionLocalProvider(
+    LocalFootballColors provides FootballColors,
+  ) {
+    MaterialTheme(
+      colors =
+        lightColors(
+          primary = FootballColors.Primary,
+          background = FootballColors.Background,
+          error = FootballColors.Accent.Red,
+        ),
+      shapes = DefaultShapes,
+      typography = FootballTypography,
     ) {
-        MaterialTheme(
-            colors =
-            lightColors(
-                primary = FootballColors.Primary,
-                background = FootballColors.Background,
-                error = FootballColors.Accent.Red,
-            ),
-            shapes = DefaultShapes,
-            typography = FootballTypography,
-        ) {
-            content.invoke()
-        }
+      content.invoke()
     }
+  }
 }
 
 val DefaultShapes =
-    Shapes(
-        small = RoundedCornerShape(4.dp),
-        medium = RoundedCornerShape(8.dp),
-        large = RoundedCornerShape(12.dp),
-    )
+  Shapes(
+    small = RoundedCornerShape(4.dp),
+    medium = RoundedCornerShape(8.dp),
+    large = RoundedCornerShape(12.dp),
+  )
 val LocalFootballColors = staticCompositionLocalOf { FootballColors }

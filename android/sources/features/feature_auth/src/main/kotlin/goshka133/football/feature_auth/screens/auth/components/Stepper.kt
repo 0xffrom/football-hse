@@ -14,44 +14,43 @@ import goshka133.football.ui_kit.theme.FootballColors
 
 @Composable
 fun Stepper(modifier: Modifier = Modifier, state: StepperState) {
-    Row(
-        modifier = modifier,
-        horizontalArrangement = Arrangement.spacedBy(12.dp),
-    ) {
-        val iterator = remember(state.stepsCount) { 0 until state.stepsCount }
+  Row(
+    modifier = modifier,
+    horizontalArrangement = Arrangement.spacedBy(12.dp),
+  ) {
+    val iterator = remember(state.stepsCount) { 0 until state.stepsCount }
 
-        val currentStepIndex = state.currentStep - 1
+    val currentStepIndex = state.currentStep - 1
 
-        val color =
-            iterator.map { stepIndex ->
-                animateColorAsState(
-                    targetValue =
-                    if (stepIndex == currentStepIndex) {
-                        FootballColors.Primary
-                    } else {
-                        FootballColors.Surface2
-                    },
-                )
-            }
+    val color =
+      iterator.map { stepIndex ->
+        animateColorAsState(
+          targetValue =
+            if (stepIndex == currentStepIndex) {
+              FootballColors.Primary
+            } else {
+              FootballColors.Surface2
+            },
+        )
+      }
 
-        for (step in iterator) {
-            Box(
-                modifier =
-                Modifier
-                    .size(width = 32.dp, height = 4.dp)
-                    .background(
-                        color[step].value,
-                        shape = RoundedCornerShape(2.dp),
-                    )
+    for (step in iterator) {
+      Box(
+        modifier =
+          Modifier.size(width = 32.dp, height = 4.dp)
+            .background(
+              color[step].value,
+              shape = RoundedCornerShape(2.dp),
             )
-        }
+      )
     }
+  }
 }
 
 @Stable
 data class StepperState(
-    val stepsCount: Int,
+  val stepsCount: Int,
 ) {
 
-    var currentStep by mutableStateOf(1)
+  var currentStep by mutableStateOf(1)
 }

@@ -5,4 +5,4 @@ import com.github.terrakok.modo.NavigationContainer
 import com.github.terrakok.modo.stack.StackState
 
 val LocalRouter =
-    compositionLocalOf<NavigationContainer<StackState>> { error("StackNavModel wasn't provided") }
+  compositionLocalOf<NavigationContainer<StackState>> { error("StackNavModel wasn't provided") }
