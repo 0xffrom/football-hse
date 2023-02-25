@@ -3,6 +3,7 @@ agp = "7.4"
 compose = "1.4.0-alpha04"
 compose-compiler = "1.4.0"
 dagger = "2.44.2"
+elmslie = "3.0.0-alpha06"
 lifecycle = "2.5.1"
 moshi = "1.14.0"
 kotlin = "1.8.0"
@@ -29,13 +30,17 @@ dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
 dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }
 datastore = { module = "androidx.datastore:datastore-preferences", version = "1.0.0" }
 
+elmslie-android = { module = "com.github.vivid-money.elmslie:elmslie-android", version.ref = "elmslie" }
+elmslie-core = { module = "com.github.vivid-money.elmslie:elmslie-core", version.ref = "elmslie" }
+elmslie-coroutines = { module = "com.github.vivid-money.elmslie:elmslie-coroutines", version.ref = "elmslie" }
+
 lifecycle-compiler = { module = "androidx.lifecycle:lifecycle-compiler", version.ref = "lifecycle" }
 lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
 
 kotlin-parcelize = { module = "org.jetbrains.kotlin:kotlin-parcelize-runtime", version.ref = "kotlin" }
 
-modo = { module = "com.github.terrakok:modo-compose", version = "0.7.1" }
+modo = { module = "com.github.andreyromanyuk:Modo", version = "0.0.1" }
 moshi = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshi" }
 moshi-compiler = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshi" }
 
@@ -57,6 +62,11 @@ compose = [
     "compose-ui-tooling",
     "compose-ui-tooling-preview",
     "compose-ui-util",
+]
+elmslie = [
+    "elmslie-core",
+    "elmslie-android",
+    "elmslie-coroutines",
 ]
 
 [plugins]
