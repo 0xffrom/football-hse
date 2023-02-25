@@ -1,4 +1,4 @@
-package goshka133.football.ui_kit
+package goshka133.football.ui_kit.theme
 
 import androidx.compose.ui.graphics.Color
 
@@ -20,6 +20,8 @@ object FootballColors {
         val Secondary = Color(0xFF61677D)
         val Tertiary = Color(0xFF7C8BA0)
         val White = Color(0xFFFFFFFF)
+
+        val Brand = Color(0xFF3461FD)
     }
 
     object Icons {

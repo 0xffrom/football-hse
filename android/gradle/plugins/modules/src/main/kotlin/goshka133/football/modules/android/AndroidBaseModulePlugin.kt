@@ -8,6 +8,7 @@ import goshka133.football.modules.getVersionCatalog
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.tasks.compile.JavaCompile
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 internal class AndroidBaseModulePlugin : Plugin<Project> {
@@ -36,6 +37,11 @@ internal class AndroidBaseModulePlugin : Plugin<Project> {
       kotlinOptions.jvmTarget = ProjectDefaults.JavaVersion.toString()
       kotlinOptions.freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
     }
+    project.tasks.withType(JavaCompile::class.java).configureEach {
+      sourceCompatibility = ProjectDefaults.JavaVersion.toString()
+      targetCompatibility = ProjectDefaults.JavaVersion.toString()
+    }
+
     project.applyComposeMetricCompilerFlags()
   }
 
