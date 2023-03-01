@@ -2,6 +2,7 @@ package goshka133.football.feature_auth.screens.auth.presentation
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.text.input.TextFieldValue
+import goshka133.football.feature_auth.screens.auth.models.CodeDigit
 
 internal const val PageNumbers = 2
 
@@ -30,18 +31,55 @@ internal data class AuthState(
 
   sealed interface Page {
     val number: Int
+    val isError: Boolean
+
+    fun validate(): Boolean
 
     @Immutable
     data class PhoneNumber(
       override val number: Int = 1,
+      override val isError: Boolean = false,
       val numberTextFieldValue: TextFieldValue = TextFieldValue(),
-    ) : Page
+    ) : Page {
+
+      override fun validate(): Boolean {
+        return numberTextFieldValue.text.length == 12
+      }
+    }
 
     @Immutable
     data class SmsCode(
       override val number: Int = 2,
+      override val isError: Boolean = false,
       val smsTextFieldValue: TextFieldValue = TextFieldValue(),
-    ) : Page
+    ) : Page {
+
+      val digits = buildList {
+        var previousSelected = false
+
+        addAll(
+          (0..3).map { index ->
+            val value = smsTextFieldValue.text.getOrNull(index)?.toString() ?: ""
+
+            val isSelected = value == "" && !previousSelected
+            CodeDigit(
+                number = value,
+                isEmpty = value == "",
+                isSelected = isSelected,
+              )
+              .also {
+                if (isSelected) {
+                  previousSelected = true
+                }
+              }
+          }
+        )
+      }
+
+      override fun validate(): Boolean {
+        return smsTextFieldValue.text.length == 4
+      }
+    }
   }
 }
 

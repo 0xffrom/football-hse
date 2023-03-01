@@ -1,5 +1,6 @@
 package goshka133.football.feature_auth.screens.auth.presentation
 
+import androidx.compose.ui.text.input.TextFieldValue
 import goshka133.football.feature_auth.screens.auth.presentation.AuthCommand as Command
 import goshka133.football.feature_auth.screens.auth.presentation.AuthEffect as Effect
 import goshka133.football.feature_auth.screens.auth.presentation.AuthEvent as Event
@@ -39,6 +40,7 @@ internal object AuthReducer :
         }
       }
       is Ui.Action.OnPhoneNumberTextFieldChange -> {
+        if (state.isLoading) return
         state {
           copy(
             phoneNumberPage =
@@ -49,13 +51,24 @@ internal object AuthReducer :
         }
       }
       is Ui.Action.OnSmsTextFieldChange -> {
-        state {
-          copy(
-            smsCodePage =
-              state.smsCodePage.copy(
-                smsTextFieldValue = event.textFieldValue,
-              )
-          )
+        if (state.isLoading) return
+
+        val formattedText = event.textFieldValue.text.filter(Char::isDigit)
+
+        if (formattedText != state.smsCodePage.smsTextFieldValue.text) {
+          state {
+            copy(
+              smsCodePage =
+                state.smsCodePage.copy(
+                  smsTextFieldValue = TextFieldValue(formattedText),
+                )
+            )
+          }
+
+          if (state.smsCodePage.smsTextFieldValue.text.length == 4) {
+            state { copy(isLoading = true) }
+            effects { +Effect.OpenMoreInfo }
+          }
         }
       }
     }

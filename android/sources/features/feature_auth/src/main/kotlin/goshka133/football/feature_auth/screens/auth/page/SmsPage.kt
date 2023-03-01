@@ -1,10 +1,9 @@
 package goshka133.football.feature_auth.screens.auth.page
 
-import androidx.compose.foundation.Image
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -16,14 +15,13 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.util.fastForEach
 import goshka133.football.feature_auth.R
 import goshka133.football.feature_auth.screens.auth.EventReceiver
+import goshka133.football.feature_auth.screens.auth.models.CodeDigit
 import goshka133.football.feature_auth.screens.auth.presentation.AuthEvent
 import goshka133.football.feature_auth.screens.auth.presentation.AuthState
-import goshka133.football.ui_kit.text_field.FTextField
-import goshka133.football.ui_kit.theme.CaptionRegular
-import goshka133.football.ui_kit.theme.FootballColors
-import goshka133.football.ui_kit.theme.Large
+import goshka133.football.ui_kit.theme.*
 
 @Composable
 internal fun SmsPage(
@@ -57,7 +55,7 @@ internal fun SmsPage(
       style = CaptionRegular,
     )
     Spacer(modifier = Modifier.height(36.dp))
-    FTextField(
+    BasicTextField(
       value = page.smsTextFieldValue,
       onValueChange = { textFieldValue ->
         eventReceiver.invoke(AuthEvent.Ui.Action.OnSmsTextFieldChange(textFieldValue))
@@ -71,7 +69,44 @@ internal fun SmsPage(
             imeAction = ImeAction.Next,
           )
         },
-      placeholder = "СМС КОД",
+      decorationBox = {
+        Row(
+          horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
+        ) {
+          page.digits.fastForEach { digit -> Digit(digit) }
+        }
+      },
     )
+    Spacer(modifier = Modifier.height(20.dp))
   }
+}
+
+@Composable
+private fun Digit(codeDigit: CodeDigit) {
+  val selectedModifier =
+    remember(codeDigit.isSelected) {
+      if (codeDigit.isSelected) {
+        Modifier.border(width = 1.dp, color = FootballColors.Primary, shape = DefaultShapes.large)
+      } else {
+        Modifier
+      }
+    }
+
+  Text(
+    text = codeDigit.number,
+    modifier =
+      Modifier.size(
+          width = 56.dp,
+          height = 60.dp,
+        )
+        .background(
+          color = FootballColors.Surface1,
+          shape = DefaultShapes.large,
+        )
+        .then(selectedModifier)
+        .wrapContentHeight(),
+    textAlign = TextAlign.Center,
+    style = SmsCode,
+    color = FootballColors.Primary,
+  )
 }

@@ -6,6 +6,14 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
+val SmsCode =
+  TextStyle(
+    fontFamily = FontFamily.Default,
+    fontWeight = FontWeight.W500,
+    fontSize = 30.sp,
+    lineHeight = 32.sp,
+  )
+
 val Large =
   TextStyle(
     fontFamily = FontFamily.Default,

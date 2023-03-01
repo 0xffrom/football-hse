@@ -73,5 +73,6 @@ internal fun PhonePage(
         },
       placeholder = "Номер телефона",
     )
+    Spacer(modifier = Modifier.height(20.dp))
   }
 }

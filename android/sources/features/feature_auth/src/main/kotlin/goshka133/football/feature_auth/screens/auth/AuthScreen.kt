@@ -9,6 +9,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.core.view.WindowInsetsControllerCompat
 import com.github.terrakok.modo.stack.back
 import goshka133.football.core_elmslie.rememberStore
 import goshka133.football.core_navigation.LocalRouter
@@ -72,6 +73,8 @@ internal class AuthScreen : BaseScreen() {
         }
       },
       bottomBar = {
+        WindowInsetsControllerCompat
+        WindowInsets.navigationBars
         BottomBarStack {
           FButton(
             text = "Продолжить",
