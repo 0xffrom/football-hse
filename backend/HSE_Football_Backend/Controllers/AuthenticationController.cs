@@ -48,9 +48,9 @@ namespace HSE_Football_Backend.Controllers
         /// <param name="number">Номер телефона</param>
         /// <param name="code">Код</param>
         /// <response code="200">ОК</response>
-        /// <response code="403">Нет пользователя или Токен обновления устарел</response>
+        /// <response code="401">Нет пользователя или Токен обновления устарел</response>
         [ProducesResponseType(200)]
-        [ProducesResponseType(403)]
+        [ProducesResponseType(401)]
         [HttpPost("refresh/{number}/{code}")]
         // POST: api/Authentication/refresh/89169307114/1234
         public async Task<IActionResult> GetRefreshToken(string number, string code)
@@ -85,9 +85,9 @@ namespace HSE_Football_Backend.Controllers
         /// </summary>
         /// <param name="data">Предыдущий полученный токен. Включает в себя сам токен, токен обновления, номер телефона, является ли капитаном</param>
         /// <response code="200">ОК</response>
-        /// <response code="403">Нет пользователя или Токен обновления устарел</response>
+        /// <response code="401">Нет пользователя или Токен обновления устарел</response>
         [ProducesResponseType(200)]
-        [ProducesResponseType(403)]
+        [ProducesResponseType(401)]
         [HttpPost("access")]
         // POST: api/Authentication/access
         public IActionResult GetAccessToken(Tokens data)
@@ -121,18 +121,19 @@ namespace HSE_Football_Backend.Controllers
             }
 
             // Генерация кода подтверждения
-            playerData.Code = rnd.Next(1000, 10000).ToString();
+            //playerData.Code = rnd.Next(1000, 10000).ToString();
 
-            // Отправка смс с кодом
-            SmsAero smsc = new SmsAero("ckd001@mail.ru", "foR-O2fmlGrCjzzD-dF-x3cBLIbNmqAF");
-            await smsc.SmsSend($"Ваш код подтверждения для футбола ВШЭ: {playerData.Code}", number);
+            //// Отправка смс с кодом
+            //SmsAero smsc = new SmsAero("ckd001@mail.ru", "foR-O2fmlGrCjzzD-dF-x3cBLIbNmqAF");
+            //await smsc.SmsSend($"Ваш код подтверждения для футбола ВШЭ: {playerData.Code}", number);
+
+            playerData.Code = "1111";
 
             // Генерация добавки для хеширования кода
             GenerateSalt(ref playerData);
             // Хеширование кода
             playerData.Code = Hash(playerData.SaltForCode, playerData.Code);
 
-            _context.Entry(playerData).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return Ok();
         }
