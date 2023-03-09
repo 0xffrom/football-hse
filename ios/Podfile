@@ -1,0 +1,24 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'FootballHSE' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for FootballHSE
+
+  pod 'Swinject'
+  pod 'SwiftGen'
+  pod 'InputMask'
+  pod 'SnapKit', '~> 5.6.0'
+
+  target 'FootballHSETests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'FootballHSEUITests' do
+    # Pods for testing
+  end
+
+end
