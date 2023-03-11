@@ -42,6 +42,33 @@ final class HSESmartTextFieldView: UIView {
         }
     }
 
+    var textContentType: UITextContentType {
+        get {
+            return textField.textContentType
+        }
+        set {
+            textField.textContentType = newValue
+        }
+    }
+
+    var autocapitalizationType: UITextAutocapitalizationType {
+        get {
+            return textField.autocapitalizationType
+        }
+        set {
+            textField.autocapitalizationType = newValue
+        }
+    }
+
+    var autocorrectionType: UITextAutocorrectionType {
+        get {
+            return textField.autocorrectionType
+        }
+        set {
+            textField.autocorrectionType = newValue
+        }
+    }
+
     var textColor: UIColor? {
         get {
             return textField.textColor

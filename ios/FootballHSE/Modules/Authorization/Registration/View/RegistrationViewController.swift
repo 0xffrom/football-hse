@@ -67,14 +67,19 @@ final class RegistrationViewController: UIViewController {
         nameTextField.horizontalInset = 16
         nameTextField.verticalInset = 12
         nameTextField.hightOfTextField = 48
-        nameTextField.keyboardType = .namePhonePad
+
+        nameTextField.textContentType = .name
+        nameTextField.autocapitalizationType = .words
+        nameTextField.autocorrectionType = .no
+
         nameTextField.descriptionLabelText = "ФИО"
         nameTextField.placeholder = "Введите ФИО"
         nameTextField.errorMessage = "Некорректное ФИО"
+
         nameTextField.configureRestrictions(
             minLength: 2,
             maxLength: 41,
-            predicteFormat: "[А-Яа-яЁёa-zA-Z]+$"
+            predicteFormat: "[А-Яа-яЁёa-zA-Z]+$" // TODO: поменять
         )
     }
 
