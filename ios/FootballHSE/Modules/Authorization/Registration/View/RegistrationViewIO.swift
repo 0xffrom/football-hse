@@ -10,6 +10,8 @@ import Foundation
 protocol RegistrationViewInput: AnyObject {
     func validate() -> Bool
 
+    func getName() -> String?
+
     func setNameNormalState()
     func setNameErrorState()
 

@@ -168,6 +168,10 @@ extension RegistrationViewController: RegistrationViewInput {
         nameTextField.validate()
     }
 
+    func getName() -> String? {
+        nameTextField.text
+    }
+
     func setNameNormalState() {
         nameTextField.validationState = .normal
     }

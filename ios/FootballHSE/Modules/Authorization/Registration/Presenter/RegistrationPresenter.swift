@@ -17,7 +17,8 @@ final class RegistrationPresenter {
 
     private let interactor: RegistrationInteractorInput
 
-    private var phoneNumberIsValid: Bool = false
+    private var nameIsValid: Bool = false
+    private var name: String? = nil
     private var selectedRole: PlayerRole? = nil
 
     // MARK: Lifecycle
@@ -57,11 +58,12 @@ extension RegistrationPresenter: RegistrationViewOutput {
 
     func viewDidEndEditing() {
         guard let view = view else { return } // TODO: Log error
-        phoneNumberIsValid = view.validate()
+        nameIsValid = view.validate()
+        name = view.getName()
     }
 
     func viewDidTapActionButton(with input: String?) {
-        if !phoneNumberIsValid {
+        if !nameIsValid {
             view?.setNameErrorState()
         }
 
@@ -69,7 +71,7 @@ extension RegistrationPresenter: RegistrationViewOutput {
             view?.setNoRoleErrorState()
         }
 
-        guard phoneNumberIsValid && selectedRole != nil else { return }
+        guard nameIsValid && selectedRole != nil else { return }
 
         moduleOutput?.moduleWantsToGoToTheNextStep(self)
     }
