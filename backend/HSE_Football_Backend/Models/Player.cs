@@ -8,10 +8,12 @@ namespace HSE_Football_Backend.Models
     public class Player
     {
         /// <summary>
-        /// ID игрока
+        /// Номер телефона
         /// </summary>
+        [Required]
+        [RegularExpression(@"^([8]{1}[0-9]{10})?$", ErrorMessage = "Некорректный формат номера телефона")]
         [Key]
-        public long Id { get; set; }
+        public string? PhoneNumber { get; set; }
 
         /// <summary>
         /// Имя
@@ -50,13 +52,6 @@ namespace HSE_Football_Backend.Models
         /// </summary>
         [RegularExpression(@"(vk.com/|t.me/)+[-A-Za-z_.0-9]+$", ErrorMessage = "Некорректный формат ссылки")]
         public string? Contact { get; set; }
-
-        /// <summary>
-        /// Номер телефона
-        /// </summary>
-        [Required]
-        [RegularExpression(@"^([9]{1}[0-9]{9})?$", ErrorMessage = "Некорректный формат номера телефона")]
-        public string? PhoneNumber { get; set; }
 
         /// <summary>
         /// Футбольный опыт

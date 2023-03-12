@@ -21,9 +21,9 @@ namespace HSE_Football_Backend.Models
         public string? Name { get; set; }
 
         /// <summary>
-        /// ID капитана
+        /// Номер телефона капитана
         /// </summary>
-        public long CaptainId { get; set; }
+        public string? CaptainPhoneNumber { get; set; }
 
         /// <summary>
         /// URL логотипа
