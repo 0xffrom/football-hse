@@ -1,6 +1,10 @@
 plugins { id("goshka133.football.lib") }
 
-android { namespace = "goshka133.football.feature_auth" }
+android {
+  namespace = "goshka133.football.feature_auth"
+
+  testOptions { unitTests.all { it.useJUnitPlatform() } }
+}
 
 dependencies {
   implementation(libs.modo)
@@ -19,4 +23,6 @@ dependencies {
   implementation(project(":core_navigation"))
 
   implementation(project(":domain_auth"))
+
+  testImplementation(libs.bundles.kotest)
 }

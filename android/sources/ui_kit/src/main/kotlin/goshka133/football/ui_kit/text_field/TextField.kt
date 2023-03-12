@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import goshka133.football.ui_kit.theme.BodyRegular
@@ -25,14 +26,23 @@ fun FTextField(
   onValueChange: (TextFieldValue) -> Unit,
   modifier: Modifier = Modifier,
   placeholder: String? = null,
+  visualTransformation: VisualTransformation = VisualTransformation.None,
   keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
   keyboardActions: KeyboardActions = KeyboardActions.Default,
+  isError: Boolean = false,
 ) {
   var isFocused by remember { mutableStateOf(false) }
 
-  val borderModifier = remember {
-    Modifier.border(width = 1.dp, color = FootballColors.Primary, shape = DefaultShapes.large)
-  }
+  val borderModifier =
+    remember(isError) {
+      val color =
+        if (isError) {
+          FootballColors.Accent.Red
+        } else {
+          FootballColors.Primary
+        }
+      Modifier.border(width = 1.dp, color = color, shape = DefaultShapes.large)
+    }
 
   MaterialTextField(
     modifier =
@@ -48,6 +58,7 @@ fun FTextField(
         ),
     value = value,
     onValueChange = onValueChange,
+    visualTransformation = visualTransformation,
     textStyle = BodyRegular,
     placeholder = placeholder?.let { placeholderText -> { Placeholder(placeholderText) } },
     colors =
@@ -56,7 +67,7 @@ fun FTextField(
         backgroundColor = FootballColors.Surface1,
         placeholderColor = FootballColors.Text.Tertiary,
         cursorColor = FootballColors.Text.Primary,
-        errorCursorColor = FootballColors.Text.Primary,
+        errorCursorColor = FootballColors.Accent.Red,
         // Indicators ↴
         focusedIndicatorColor = Color.Transparent,
         disabledIndicatorColor = Color.Transparent,

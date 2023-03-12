@@ -9,6 +9,8 @@ moshi = "1.14.0"
 kotlin = "1.8.0"
 ksp = "1.8.0-1.0.8"
 okhttp = "4.10.0"
+kotest = "5.5.5"
+junit = "5.9.2"
 
 [libraries]
 compose-animation = { module = "androidx.compose.animation:animation", version.ref = "compose" }
@@ -51,6 +53,13 @@ timber = { module = "com.jakewharton.timber:timber", version = "5.0.1" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version = "2.9.0" }
 retrofit-moshi = { module = "com.squareup.retrofit2:converter-moshi", version = "2.9.0" }
 
+# Tests
+kotest-assertions = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
+kotest-junit-runner = { module = "io.kotest:kotest-runner-junit5-jvm", version.ref = "kotest" }
+kotest-property = { module = "io.kotest:kotest-property", version.ref = "kotest" }
+junit = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
+mockk = { module = "io.mockk:mockk", version = "1.13.4" }
+
 [bundles]
 compose = [
     "compose-animation",
@@ -68,9 +77,15 @@ elmslie = [
     "elmslie-android",
     "elmslie-coroutines",
 ]
+kotest = [
+    "kotest-assertions",
+    "kotest-junit-runner",
+    "kotest-property",
+]
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+

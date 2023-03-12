@@ -13,6 +13,7 @@ internal data class AuthState(
   val smsCodePage: Page.SmsCode = Page.SmsCode(),
   val currentNumberPage: Int = 1,
   val previousNumberPage: Int = currentNumberPage,
+  val isErrorPageValidationState: Boolean = false,
 ) {
 
   val canGoBack = currentNumberPage > 1
@@ -43,7 +44,7 @@ internal data class AuthState(
     ) : Page {
 
       override fun validate(): Boolean {
-        return numberTextFieldValue.text.length == 12
+        return numberTextFieldValue.text.length == 10
       }
     }
 
@@ -115,6 +116,7 @@ internal sealed interface AuthCommand {
 @Immutable
 internal sealed interface AuthEffect {
 
+  data class ShowError(val error: Throwable) : AuthEffect
   object Close : AuthEffect
-  object OpenMoreInfo : AuthEffect
+  object OpenOriginationScreen : AuthEffect
 }

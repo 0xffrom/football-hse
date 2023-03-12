@@ -9,8 +9,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.core.view.WindowInsetsControllerCompat
 import com.github.terrakok.modo.stack.back
+import com.github.terrakok.modo.stack.forward
 import goshka133.football.core_elmslie.rememberStore
 import goshka133.football.core_navigation.LocalRouter
 import goshka133.football.feature_auth.screens.auth.components.Stepper
@@ -19,9 +19,11 @@ import goshka133.football.feature_auth.screens.auth.components.pageTransitionSpe
 import goshka133.football.feature_auth.screens.auth.page.PhonePage
 import goshka133.football.feature_auth.screens.auth.page.SmsPage
 import goshka133.football.feature_auth.screens.auth.presentation.*
+import goshka133.football.feature_auth.screens.origination.OriginationScreen
 import goshka133.football.ui_kit.BaseScreen
 import goshka133.football.ui_kit.button.BottomBarStack
 import goshka133.football.ui_kit.button.FButton
+import goshka133.football.ui_kit.snack_bar.LocalSnackBarHostState
 import kotlinx.parcelize.Parcelize
 import vivid.money.elmslie.coroutines.states
 
@@ -39,13 +41,15 @@ internal class AuthScreen : BaseScreen() {
       )
 
     val router = LocalRouter.current
+    val snackbarHostState = LocalSnackBarHostState.current
 
     LaunchedEffect(Unit) {
       store.effects().collect { effect ->
         when (effect) {
           is AuthEffect.Close -> router.back()
-          is AuthEffect.OpenMoreInfo -> {
-            // TODO
+          is AuthEffect.OpenOriginationScreen -> router.forward(OriginationScreen())
+          is AuthEffect.ShowError -> {
+            effect.error.message?.let { snackbarHostState.showSnackbar(it) }
           }
         }
       }
@@ -73,8 +77,6 @@ internal class AuthScreen : BaseScreen() {
         }
       },
       bottomBar = {
-        WindowInsetsControllerCompat
-        WindowInsets.navigationBars
         BottomBarStack {
           FButton(
             text = "Продолжить",
@@ -87,7 +89,7 @@ internal class AuthScreen : BaseScreen() {
     ) { contentPadding ->
       @OptIn(ExperimentalAnimationApi::class)
       AnimatedContent(
-        modifier = Modifier.padding(contentPadding).padding(horizontal = 16.dp).fillMaxSize(),
+        modifier = Modifier.padding(horizontal = 16.dp).fillMaxSize(),
         targetState = state.currentNumberPage,
         contentAlignment = Alignment.Center,
         transitionSpec =
@@ -97,10 +99,20 @@ internal class AuthScreen : BaseScreen() {
       ) { number ->
         when (state.getPageByNumber(number)) {
           is AuthState.Page.PhoneNumber -> {
-            PhonePage(page = state.phoneNumberPage, eventReceiver = eventReceiver)
+            PhonePage(
+              state = state,
+              page = state.phoneNumberPage,
+              contentPadding = contentPadding,
+              eventReceiver = eventReceiver,
+            )
           }
           is AuthState.Page.SmsCode -> {
-            SmsPage(page = state.smsCodePage, eventReceiver = eventReceiver)
+            SmsPage(
+              state = state,
+              page = state.smsCodePage,
+              contentPadding = contentPadding,
+              eventReceiver = eventReceiver,
+            )
           }
         }
       }

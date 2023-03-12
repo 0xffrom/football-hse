@@ -1,5 +1,6 @@
 package goshka133.football.feature_auth.screens.auth.presentation
 
+import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
 import goshka133.football.feature_auth.screens.auth.presentation.AuthCommand as Command
 import goshka133.football.feature_auth.screens.auth.presentation.AuthEffect as Effect
@@ -16,15 +17,27 @@ internal object AuthReducer :
     when (event) {
       is Ui.System.Start -> Unit
       is Ui.Click.Continue -> {
-        if (state.canGoNext) {
-          state {
-            copy(
-              currentNumberPage = state.currentNumberPage + 1,
-              previousNumberPage = state.currentNumberPage,
-            )
+        val isPageValid = state.currentPage.validate()
+        state {
+          copy(
+            isErrorPageValidationState = !isPageValid,
+          )
+        }
+        when {
+          !isPageValid -> {
+            effects { +Effect.ShowError(IllegalStateException("Необходимо заполнить данные")) }
           }
-        } else {
-          effects { +Effect.OpenMoreInfo }
+          state.canGoNext -> {
+            state {
+              copy(
+                currentNumberPage = state.currentNumberPage + 1,
+                previousNumberPage = state.currentNumberPage,
+              )
+            }
+          }
+          else -> {
+            effects { +Effect.OpenOriginationScreen }
+          }
         }
       }
       is Ui.Click.Back -> {
@@ -45,8 +58,12 @@ internal object AuthReducer :
           copy(
             phoneNumberPage =
               state.phoneNumberPage.copy(
-                numberTextFieldValue = event.textFieldValue,
-              )
+                numberTextFieldValue =
+                  event.textFieldValue.copy(
+                    event.textFieldValue.text.filter(Char::isDigit).take(10)
+                  ),
+              ),
+            isErrorPageValidationState = false,
           )
         }
       }
@@ -60,14 +77,19 @@ internal object AuthReducer :
             copy(
               smsCodePage =
                 state.smsCodePage.copy(
-                  smsTextFieldValue = TextFieldValue(formattedText),
-                )
+                  smsTextFieldValue =
+                    TextFieldValue(
+                      text = formattedText,
+                      selection = TextRange(formattedText.length),
+                    ),
+                ),
+              isErrorPageValidationState = false,
             )
           }
 
           if (state.smsCodePage.smsTextFieldValue.text.length == 4) {
             state { copy(isLoading = true) }
-            effects { +Effect.OpenMoreInfo }
+            effects { +Effect.OpenOriginationScreen }
           }
         }
       }

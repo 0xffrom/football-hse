@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import goshka133.football.ui_kit.snack_bar.LocalSnackBarHostState
 
 @Composable
 fun BottomBarStack(content: @Composable ColumnScope.() -> Unit) {

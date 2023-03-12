@@ -3,8 +3,11 @@ package goshka133.football
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.SnackbarHost
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.Modifier
 import com.github.terrakok.modo.Modo
 import com.github.terrakok.modo.Screen
 import com.github.terrakok.modo.stack.StackNavModel
@@ -12,6 +15,8 @@ import com.github.terrakok.modo.stack.StackScreen
 import goshka133.football.core_di.getComponent
 import goshka133.football.core_navigation.LocalRouter
 import goshka133.football.di.MainDependencies
+import goshka133.football.ui_kit.snack_bar.LocalSnackBarHostState
+import goshka133.football.ui_kit.snack_bar.rememberSnackBarHostState
 import goshka133.football.ui_kit.theme.FootballTheme
 import kotlinx.parcelize.Parcelize
 
@@ -28,8 +33,21 @@ class MainActivity : ComponentActivity() {
     rootScreen = Modo.init(savedInstanceState, rootScreen) { rootStackView }
 
     setContent {
-      CompositionLocalProvider(LocalRouter provides rootScreen!!) {
-        FootballTheme { rootScreen?.Content() }
+      CompositionLocalProvider(
+        LocalRouter provides rootScreen!!,
+        LocalSnackBarHostState provides rememberSnackBarHostState(),
+      ) {
+        FootballTheme {
+          Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Bottom,
+          ) {
+            Box(modifier = Modifier.fillMaxSize().weight(1f)) { rootScreen?.Content() }
+            Box(modifier = Modifier.fillMaxWidth()) {
+              SnackbarHost(hostState = LocalSnackBarHostState.current)
+            }
+          }
+        }
       }
     }
   }

@@ -38,7 +38,7 @@ val BodyRegular =
     lineHeight = 20.sp,
   )
 
-val CaptionMedium =
+val CaptionMMedium =
   TextStyle(
     fontFamily = FontFamily.Default,
     fontWeight = FontWeight.W500,
@@ -46,11 +46,19 @@ val CaptionMedium =
     lineHeight = 16.sp,
   )
 
-val CaptionRegular =
+val CaptionMRegular =
   TextStyle(
     fontFamily = FontFamily.Default,
     fontWeight = FontWeight.W400,
     fontSize = 14.sp,
+    lineHeight = 16.sp,
+  )
+
+val CaptionSRegular =
+  TextStyle(
+    fontFamily = FontFamily.Default,
+    fontWeight = FontWeight.W400,
+    fontSize = 12.sp,
     lineHeight = 16.sp,
   )
 
