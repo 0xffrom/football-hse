@@ -1,0 +1,28 @@
+PODS:
+  - InputMask (6.1.0)
+  - SnapKit (5.6.0)
+  - SwiftGen (6.6.2)
+  - Swinject (2.8.2)
+
+DEPENDENCIES:
+  - InputMask
+  - SnapKit (~> 5.6.0)
+  - SwiftGen
+  - Swinject
+
+SPEC REPOS:
+  trunk:
+    - InputMask
+    - SnapKit
+    - SwiftGen
+    - Swinject
+
+SPEC CHECKSUMS:
+  InputMask: 71d291dc54d2deaeac6512afb6ec2304228c0bb7
+  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  SwiftGen: 1366a7f71aeef49954ca5a63ba4bef6b0f24138c
+  Swinject: b4a11b31992e8668308dc594ba1cb9b3164a37ab
+
+PODFILE CHECKSUM: 95d99741f04a3287920dd9c3c83842c3e117bdba
+
+COCOAPODS: 1.11.3
