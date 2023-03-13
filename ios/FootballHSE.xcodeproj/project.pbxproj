@@ -7,15 +7,50 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		001A7A4D29B8F3FC00152098 /* HSESelectableViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001A7A4C29B8F3FC00152098 /* HSESelectableViewButton.swift */; };
+		001A7A5029B92ECD00152098 /* PlayerRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001A7A4F29B92ECD00152098 /* PlayerRole.swift */; };
+		006B06D2298FD35400A2C8A2 /* AuthorizationPhoneEnteringModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B06C8298FD35400A2C8A2 /* AuthorizationPhoneEnteringModuleBuilder.swift */; };
+		006B06D3298FD35400A2C8A2 /* AuthorizationPhoneEnteringInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B06CA298FD35400A2C8A2 /* AuthorizationPhoneEnteringInteractor.swift */; };
+		006B06D4298FD35400A2C8A2 /* AuthorizationPhoneEnteringInteractorIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B06CB298FD35400A2C8A2 /* AuthorizationPhoneEnteringInteractorIO.swift */; };
+		006B06D5298FD35400A2C8A2 /* AuthorizationPhoneEnteringModuleIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B06CD298FD35400A2C8A2 /* AuthorizationPhoneEnteringModuleIO.swift */; };
+		006B06D6298FD35400A2C8A2 /* AuthorizationPhoneEnteringPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B06CE298FD35400A2C8A2 /* AuthorizationPhoneEnteringPresenter.swift */; };
+		006B06D7298FD35400A2C8A2 /* AuthorizationPhoneEnteringViewIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B06D0298FD35400A2C8A2 /* AuthorizationPhoneEnteringViewIO.swift */; };
+		006B06D8298FD35400A2C8A2 /* AuthorizationPhoneEnteringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B06D1298FD35400A2C8A2 /* AuthorizationPhoneEnteringViewController.swift */; };
+		006B06DB298FD76A00A2C8A2 /* Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B06DA298FD76A00A2C8A2 /* Coordinatable.swift */; };
+		006B06DD298FD83700A2C8A2 /* AuthorizationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B06DC298FD83600A2C8A2 /* AuthorizationCoordinator.swift */; };
+		006B06DF298FEAE300A2C8A2 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B06DE298FEAE300A2C8A2 /* RootCoordinator.swift */; };
+		006B06E12990190800A2C8A2 /* AuthorizationPhoneEntering.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 006B06E02990190800A2C8A2 /* AuthorizationPhoneEntering.storyboard */; };
+		00C4735929B489CC00EFFB6C /* UIViewController + Keyboard Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C4735829B489CC00EFFB6C /* UIViewController + Keyboard Extension.swift */; };
+		00C4735C29B4DC6C00EFFB6C /* HSETextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C4735B29B4DC6C00EFFB6C /* HSETextField.swift */; };
+		00C4735E29B4DC9200EFFB6C /* HSESmartTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C4735D29B4DC9200EFFB6C /* HSESmartTextFieldView.swift */; };
+		00C4736029B4E2F700EFFB6C /* HSETextFieldValidationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C4735F29B4E2F700EFFB6C /* HSETextFieldValidationState.swift */; };
+		00C4736329B4EAF900EFFB6C /* HSEMainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C4736229B4EAF900EFFB6C /* HSEMainButton.swift */; };
+		00C4737129B5E2BF00EFFB6C /* AuthorizationCodeEnteringInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C4736729B5E2BF00EFFB6C /* AuthorizationCodeEnteringInteractor.swift */; };
+		00C4737229B5E2BF00EFFB6C /* AuthorizationCodeEnteringInteractorIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C4736829B5E2BF00EFFB6C /* AuthorizationCodeEnteringInteractorIO.swift */; };
+		00C4737329B5E2BF00EFFB6C /* AuthorizationCodeEnteringPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C4736A29B5E2BF00EFFB6C /* AuthorizationCodeEnteringPresenter.swift */; };
+		00C4737429B5E2BF00EFFB6C /* AuthorizationCodeEnteringModuleIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C4736B29B5E2BF00EFFB6C /* AuthorizationCodeEnteringModuleIO.swift */; };
+		00C4737529B5E2BF00EFFB6C /* AuthorizationCodeEntering.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00C4736D29B5E2BF00EFFB6C /* AuthorizationCodeEntering.storyboard */; };
+		00C4737629B5E2BF00EFFB6C /* AuthorizationCodeEnteringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C4736E29B5E2BF00EFFB6C /* AuthorizationCodeEnteringViewController.swift */; };
+		00C4737729B5E2BF00EFFB6C /* AuthorizationCodeEnteringViewIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C4736F29B5E2BF00EFFB6C /* AuthorizationCodeEnteringViewIO.swift */; };
+		00C4737829B5E2BF00EFFB6C /* AuthorizationCodeEnteringModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C4737029B5E2BF00EFFB6C /* AuthorizationCodeEnteringModuleBuilder.swift */; };
+		00C4737A29B5EE3B00EFFB6C /* UIViewController + NavigationItem Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C4737929B5EE3B00EFFB6C /* UIViewController + NavigationItem Extension.swift */; };
+		00C4738729B89C0C00EFFB6C /* RegistrationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C4737D29B89C0B00EFFB6C /* RegistrationInteractor.swift */; };
+		00C4738829B89C0C00EFFB6C /* RegistrationInteractorIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C4737E29B89C0B00EFFB6C /* RegistrationInteractorIO.swift */; };
+		00C4738929B89C0C00EFFB6C /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00C4738029B89C0B00EFFB6C /* Registration.storyboard */; };
+		00C4738A29B89C0C00EFFB6C /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C4738129B89C0B00EFFB6C /* RegistrationViewController.swift */; };
+		00C4738B29B89C0C00EFFB6C /* RegistrationViewIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C4738229B89C0B00EFFB6C /* RegistrationViewIO.swift */; };
+		00C4738C29B89C0C00EFFB6C /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C4738429B89C0B00EFFB6C /* RegistrationPresenter.swift */; };
+		00C4738D29B89C0C00EFFB6C /* RegistrationModuleIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C4738529B89C0B00EFFB6C /* RegistrationModuleIO.swift */; };
+		00C4738E29B89C0C00EFFB6C /* RegistrationModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C4738629B89C0C00EFFB6C /* RegistrationModuleBuilder.swift */; };
 		34B6BF29296F3D3B006E9882 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B6BF28296F3D3B006E9882 /* AppDelegate.swift */; };
-		34B6BF2B296F3D3B006E9882 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B6BF2A296F3D3B006E9882 /* SceneDelegate.swift */; };
-		34B6BF2D296F3D3B006E9882 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B6BF2C296F3D3B006E9882 /* ViewController.swift */; };
-		34B6BF30296F3D3B006E9882 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34B6BF2E296F3D3B006E9882 /* Main.storyboard */; };
 		34B6BF32296F3D3D006E9882 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34B6BF31296F3D3D006E9882 /* Assets.xcassets */; };
 		34B6BF35296F3D3D006E9882 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34B6BF33296F3D3D006E9882 /* LaunchScreen.storyboard */; };
 		34B6BF40296F3D3E006E9882 /* FootballHSETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B6BF3F296F3D3E006E9882 /* FootballHSETests.swift */; };
 		34B6BF4A296F3D3E006E9882 /* FootballHSEUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B6BF49296F3D3E006E9882 /* FootballHSEUITests.swift */; };
 		34B6BF4C296F3D3E006E9882 /* FootballHSEUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B6BF4B296F3D3E006E9882 /* FootballHSEUITestsLaunchTests.swift */; };
+		526C5E404AD015BEFEAB06AC /* Pods_FootballHSE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F8C5C8A4C5CCCF0267BD962 /* Pods_FootballHSE.framework */; };
+		DED6A737E1E16256B0EA9B4E /* Pods_FootballHSE_FootballHSEUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3394C19D580923A364EF2213 /* Pods_FootballHSE_FootballHSEUITests.framework */; };
+		EE915AB147EC35C931F9F13A /* Pods_FootballHSETests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E42FD6563D4B02031D2A7B13 /* Pods_FootballHSETests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,11 +71,46 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		001A7A4C29B8F3FC00152098 /* HSESelectableViewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSESelectableViewButton.swift; sourceTree = "<group>"; };
+		001A7A4F29B92ECD00152098 /* PlayerRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerRole.swift; sourceTree = "<group>"; };
+		006B06C8298FD35400A2C8A2 /* AuthorizationPhoneEnteringModuleBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationPhoneEnteringModuleBuilder.swift; sourceTree = "<group>"; };
+		006B06CA298FD35400A2C8A2 /* AuthorizationPhoneEnteringInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationPhoneEnteringInteractor.swift; sourceTree = "<group>"; };
+		006B06CB298FD35400A2C8A2 /* AuthorizationPhoneEnteringInteractorIO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationPhoneEnteringInteractorIO.swift; sourceTree = "<group>"; };
+		006B06CD298FD35400A2C8A2 /* AuthorizationPhoneEnteringModuleIO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationPhoneEnteringModuleIO.swift; sourceTree = "<group>"; };
+		006B06CE298FD35400A2C8A2 /* AuthorizationPhoneEnteringPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationPhoneEnteringPresenter.swift; sourceTree = "<group>"; };
+		006B06D0298FD35400A2C8A2 /* AuthorizationPhoneEnteringViewIO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationPhoneEnteringViewIO.swift; sourceTree = "<group>"; };
+		006B06D1298FD35400A2C8A2 /* AuthorizationPhoneEnteringViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationPhoneEnteringViewController.swift; sourceTree = "<group>"; };
+		006B06DA298FD76A00A2C8A2 /* Coordinatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinatable.swift; sourceTree = "<group>"; };
+		006B06DC298FD83600A2C8A2 /* AuthorizationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationCoordinator.swift; sourceTree = "<group>"; };
+		006B06DE298FEAE300A2C8A2 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
+		006B06E02990190800A2C8A2 /* AuthorizationPhoneEntering.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AuthorizationPhoneEntering.storyboard; sourceTree = "<group>"; };
+		00C4735829B489CC00EFFB6C /* UIViewController + Keyboard Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Keyboard Extension.swift"; sourceTree = "<group>"; };
+		00C4735B29B4DC6C00EFFB6C /* HSETextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSETextField.swift; sourceTree = "<group>"; };
+		00C4735D29B4DC9200EFFB6C /* HSESmartTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSESmartTextFieldView.swift; sourceTree = "<group>"; };
+		00C4735F29B4E2F700EFFB6C /* HSETextFieldValidationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSETextFieldValidationState.swift; sourceTree = "<group>"; };
+		00C4736229B4EAF900EFFB6C /* HSEMainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSEMainButton.swift; sourceTree = "<group>"; };
+		00C4736729B5E2BF00EFFB6C /* AuthorizationCodeEnteringInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationCodeEnteringInteractor.swift; sourceTree = "<group>"; };
+		00C4736829B5E2BF00EFFB6C /* AuthorizationCodeEnteringInteractorIO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationCodeEnteringInteractorIO.swift; sourceTree = "<group>"; };
+		00C4736A29B5E2BF00EFFB6C /* AuthorizationCodeEnteringPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationCodeEnteringPresenter.swift; sourceTree = "<group>"; };
+		00C4736B29B5E2BF00EFFB6C /* AuthorizationCodeEnteringModuleIO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationCodeEnteringModuleIO.swift; sourceTree = "<group>"; };
+		00C4736D29B5E2BF00EFFB6C /* AuthorizationCodeEntering.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AuthorizationCodeEntering.storyboard; sourceTree = "<group>"; };
+		00C4736E29B5E2BF00EFFB6C /* AuthorizationCodeEnteringViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationCodeEnteringViewController.swift; sourceTree = "<group>"; };
+		00C4736F29B5E2BF00EFFB6C /* AuthorizationCodeEnteringViewIO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationCodeEnteringViewIO.swift; sourceTree = "<group>"; };
+		00C4737029B5E2BF00EFFB6C /* AuthorizationCodeEnteringModuleBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationCodeEnteringModuleBuilder.swift; sourceTree = "<group>"; };
+		00C4737929B5EE3B00EFFB6C /* UIViewController + NavigationItem Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + NavigationItem Extension.swift"; sourceTree = "<group>"; };
+		00C4737D29B89C0B00EFFB6C /* RegistrationInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationInteractor.swift; sourceTree = "<group>"; };
+		00C4737E29B89C0B00EFFB6C /* RegistrationInteractorIO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationInteractorIO.swift; sourceTree = "<group>"; };
+		00C4738029B89C0B00EFFB6C /* Registration.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
+		00C4738129B89C0B00EFFB6C /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		00C4738229B89C0B00EFFB6C /* RegistrationViewIO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewIO.swift; sourceTree = "<group>"; };
+		00C4738429B89C0B00EFFB6C /* RegistrationPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
+		00C4738529B89C0B00EFFB6C /* RegistrationModuleIO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationModuleIO.swift; sourceTree = "<group>"; };
+		00C4738629B89C0C00EFFB6C /* RegistrationModuleBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationModuleBuilder.swift; sourceTree = "<group>"; };
+		11EB685CC5DC4026965F7B30 /* Pods-FootballHSETests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FootballHSETests.release.xcconfig"; path = "Target Support Files/Pods-FootballHSETests/Pods-FootballHSETests.release.xcconfig"; sourceTree = "<group>"; };
+		1E0880FA34599A032DCC2D84 /* Pods-FootballHSE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FootballHSE.release.xcconfig"; path = "Target Support Files/Pods-FootballHSE/Pods-FootballHSE.release.xcconfig"; sourceTree = "<group>"; };
+		3394C19D580923A364EF2213 /* Pods_FootballHSE_FootballHSEUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FootballHSE_FootballHSEUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		34B6BF25296F3D3B006E9882 /* FootballHSE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FootballHSE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34B6BF28296F3D3B006E9882 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		34B6BF2A296F3D3B006E9882 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		34B6BF2C296F3D3B006E9882 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		34B6BF2F296F3D3B006E9882 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		34B6BF31296F3D3D006E9882 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		34B6BF34296F3D3D006E9882 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		34B6BF36296F3D3D006E9882 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +119,12 @@
 		34B6BF45296F3D3E006E9882 /* FootballHSEUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FootballHSEUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		34B6BF49296F3D3E006E9882 /* FootballHSEUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootballHSEUITests.swift; sourceTree = "<group>"; };
 		34B6BF4B296F3D3E006E9882 /* FootballHSEUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootballHSEUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		4D6F37B6070A75B3D6DBAF63 /* Pods-FootballHSETests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FootballHSETests.debug.xcconfig"; path = "Target Support Files/Pods-FootballHSETests/Pods-FootballHSETests.debug.xcconfig"; sourceTree = "<group>"; };
+		4F8C5C8A4C5CCCF0267BD962 /* Pods_FootballHSE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FootballHSE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6CF8CE72E649912D1DA00F0 /* Pods-FootballHSE-FootballHSEUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FootballHSE-FootballHSEUITests.release.xcconfig"; path = "Target Support Files/Pods-FootballHSE-FootballHSEUITests/Pods-FootballHSE-FootballHSEUITests.release.xcconfig"; sourceTree = "<group>"; };
+		E0FA0BC3B25270790DDB31E8 /* Pods-FootballHSE-FootballHSEUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FootballHSE-FootballHSEUITests.debug.xcconfig"; path = "Target Support Files/Pods-FootballHSE-FootballHSEUITests/Pods-FootballHSE-FootballHSEUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		E42FD6563D4B02031D2A7B13 /* Pods_FootballHSETests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FootballHSETests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F65DD22C41580BFA64CFAD1B /* Pods-FootballHSE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FootballHSE.debug.xcconfig"; path = "Target Support Files/Pods-FootballHSE/Pods-FootballHSE.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				526C5E404AD015BEFEAB06AC /* Pods_FootballHSE.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE915AB147EC35C931F9F13A /* Pods_FootballHSETests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +148,228 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DED6A737E1E16256B0EA9B4E /* Pods_FootballHSE_FootballHSEUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0013E6F32984066A00BD93EF /* UI Resources */ = {
+			isa = PBXGroup;
+			children = (
+				34B6BF33296F3D3D006E9882 /* LaunchScreen.storyboard */,
+				34B6BF31296F3D3D006E9882 /* Assets.xcassets */,
+			);
+			path = "UI Resources";
+			sourceTree = "<group>";
+		};
+		0013E6F4298406A100BD93EF /* Design System */ = {
+			isa = PBXGroup;
+			children = (
+				00C4736129B4EAE800EFFB6C /* Buttons */,
+				00C4735A29B4DC5700EFFB6C /* UITextFields */,
+			);
+			path = "Design System";
+			sourceTree = "<group>";
+		};
+		0013E6F529841C4A00BD93EF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				34B6BF36296F3D3D006E9882 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0013E6F629841C7F00BD93EF /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				34B6BF28296F3D3B006E9882 /* AppDelegate.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		0013E6F72984203400BD93EF /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				00C4736429B5E24C00EFFB6C /* Authorization */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		0013E6F82984204100BD93EF /* AuthorizationPhoneEntering */ = {
+			isa = PBXGroup;
+			children = (
+				006B06C8298FD35400A2C8A2 /* AuthorizationPhoneEnteringModuleBuilder.swift */,
+				006B06C9298FD35400A2C8A2 /* Interactor */,
+				006B06CC298FD35400A2C8A2 /* Presenter */,
+				006B06CF298FD35400A2C8A2 /* View */,
+			);
+			path = AuthorizationPhoneEntering;
+			sourceTree = "<group>";
+		};
+		001A7A4E29B92E9600152098 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				001A7A4F29B92ECD00152098 /* PlayerRole.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		006B06C9298FD35400A2C8A2 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				006B06CA298FD35400A2C8A2 /* AuthorizationPhoneEnteringInteractor.swift */,
+				006B06CB298FD35400A2C8A2 /* AuthorizationPhoneEnteringInteractorIO.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		006B06CC298FD35400A2C8A2 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				006B06CD298FD35400A2C8A2 /* AuthorizationPhoneEnteringModuleIO.swift */,
+				006B06CE298FD35400A2C8A2 /* AuthorizationPhoneEnteringPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		006B06CF298FD35400A2C8A2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				006B06D0298FD35400A2C8A2 /* AuthorizationPhoneEnteringViewIO.swift */,
+				006B06D1298FD35400A2C8A2 /* AuthorizationPhoneEnteringViewController.swift */,
+				006B06E02990190800A2C8A2 /* AuthorizationPhoneEntering.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		006B06D9298FD70600A2C8A2 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				006B06DA298FD76A00A2C8A2 /* Coordinatable.swift */,
+				006B06DE298FEAE300A2C8A2 /* RootCoordinator.swift */,
+				006B06DC298FD83600A2C8A2 /* AuthorizationCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		00C4735729B4898F00EFFB6C /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				00C4735829B489CC00EFFB6C /* UIViewController + Keyboard Extension.swift */,
+				00C4737929B5EE3B00EFFB6C /* UIViewController + NavigationItem Extension.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		00C4735A29B4DC5700EFFB6C /* UITextFields */ = {
+			isa = PBXGroup;
+			children = (
+				00C4735F29B4E2F700EFFB6C /* HSETextFieldValidationState.swift */,
+				00C4735B29B4DC6C00EFFB6C /* HSETextField.swift */,
+				00C4735D29B4DC9200EFFB6C /* HSESmartTextFieldView.swift */,
+			);
+			path = UITextFields;
+			sourceTree = "<group>";
+		};
+		00C4736129B4EAE800EFFB6C /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				001A7A4C29B8F3FC00152098 /* HSESelectableViewButton.swift */,
+				00C4736229B4EAF900EFFB6C /* HSEMainButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		00C4736429B5E24C00EFFB6C /* Authorization */ = {
+			isa = PBXGroup;
+			children = (
+				0013E6F82984204100BD93EF /* AuthorizationPhoneEntering */,
+				00C4736529B5E26600EFFB6C /* AuthorizationCodeEntering */,
+				00C4737B29B89BCB00EFFB6C /* Registration */,
+			);
+			path = Authorization;
+			sourceTree = "<group>";
+		};
+		00C4736529B5E26600EFFB6C /* AuthorizationCodeEntering */ = {
+			isa = PBXGroup;
+			children = (
+				00C4737029B5E2BF00EFFB6C /* AuthorizationCodeEnteringModuleBuilder.swift */,
+				00C4736629B5E2BF00EFFB6C /* Interactor */,
+				00C4736929B5E2BF00EFFB6C /* Presenter */,
+				00C4736C29B5E2BF00EFFB6C /* View */,
+			);
+			path = AuthorizationCodeEntering;
+			sourceTree = "<group>";
+		};
+		00C4736629B5E2BF00EFFB6C /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				00C4736729B5E2BF00EFFB6C /* AuthorizationCodeEnteringInteractor.swift */,
+				00C4736829B5E2BF00EFFB6C /* AuthorizationCodeEnteringInteractorIO.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		00C4736929B5E2BF00EFFB6C /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				00C4736A29B5E2BF00EFFB6C /* AuthorizationCodeEnteringPresenter.swift */,
+				00C4736B29B5E2BF00EFFB6C /* AuthorizationCodeEnteringModuleIO.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		00C4736C29B5E2BF00EFFB6C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				00C4736D29B5E2BF00EFFB6C /* AuthorizationCodeEntering.storyboard */,
+				00C4736E29B5E2BF00EFFB6C /* AuthorizationCodeEnteringViewController.swift */,
+				00C4736F29B5E2BF00EFFB6C /* AuthorizationCodeEnteringViewIO.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		00C4737B29B89BCB00EFFB6C /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				00C4738629B89C0C00EFFB6C /* RegistrationModuleBuilder.swift */,
+				00C4737C29B89C0B00EFFB6C /* Interactor */,
+				00C4738329B89C0B00EFFB6C /* Presenter */,
+				00C4737F29B89C0B00EFFB6C /* View */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		00C4737C29B89C0B00EFFB6C /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				00C4737D29B89C0B00EFFB6C /* RegistrationInteractor.swift */,
+				00C4737E29B89C0B00EFFB6C /* RegistrationInteractorIO.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		00C4737F29B89C0B00EFFB6C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				00C4738029B89C0B00EFFB6C /* Registration.storyboard */,
+				00C4738129B89C0B00EFFB6C /* RegistrationViewController.swift */,
+				00C4738229B89C0B00EFFB6C /* RegistrationViewIO.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		00C4738329B89C0B00EFFB6C /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				00C4738429B89C0B00EFFB6C /* RegistrationPresenter.swift */,
+				00C4738529B89C0B00EFFB6C /* RegistrationModuleIO.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		34B6BF1C296F3D3B006E9882 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +377,8 @@
 				34B6BF3E296F3D3E006E9882 /* FootballHSETests */,
 				34B6BF48296F3D3E006E9882 /* FootballHSEUITests */,
 				34B6BF26296F3D3B006E9882 /* Products */,
+				F15F6BCDB8F08F6E0576D8F4 /* Pods */,
+				7C172C67E0792A3A5E3CE79B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,13 +395,14 @@
 		34B6BF27296F3D3B006E9882 /* FootballHSE */ = {
 			isa = PBXGroup;
 			children = (
-				34B6BF28296F3D3B006E9882 /* AppDelegate.swift */,
-				34B6BF2A296F3D3B006E9882 /* SceneDelegate.swift */,
-				34B6BF2C296F3D3B006E9882 /* ViewController.swift */,
-				34B6BF2E296F3D3B006E9882 /* Main.storyboard */,
-				34B6BF31296F3D3D006E9882 /* Assets.xcassets */,
-				34B6BF33296F3D3D006E9882 /* LaunchScreen.storyboard */,
-				34B6BF36296F3D3D006E9882 /* Info.plist */,
+				001A7A4E29B92E9600152098 /* Models */,
+				006B06D9298FD70600A2C8A2 /* Coordinators */,
+				0013E6F72984203400BD93EF /* Modules */,
+				0013E6F629841C7F00BD93EF /* AppDelegate */,
+				0013E6F529841C4A00BD93EF /* Supporting Files */,
+				0013E6F4298406A100BD93EF /* Design System */,
+				0013E6F32984066A00BD93EF /* UI Resources */,
+				00C4735729B4898F00EFFB6C /* Utils */,
 			);
 			path = FootballHSE;
 			sourceTree = "<group>";
@@ -127,6 +424,29 @@
 			path = FootballHSEUITests;
 			sourceTree = "<group>";
 		};
+		7C172C67E0792A3A5E3CE79B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4F8C5C8A4C5CCCF0267BD962 /* Pods_FootballHSE.framework */,
+				3394C19D580923A364EF2213 /* Pods_FootballHSE_FootballHSEUITests.framework */,
+				E42FD6563D4B02031D2A7B13 /* Pods_FootballHSETests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F15F6BCDB8F08F6E0576D8F4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F65DD22C41580BFA64CFAD1B /* Pods-FootballHSE.debug.xcconfig */,
+				1E0880FA34599A032DCC2D84 /* Pods-FootballHSE.release.xcconfig */,
+				E0FA0BC3B25270790DDB31E8 /* Pods-FootballHSE-FootballHSEUITests.debug.xcconfig */,
+				B6CF8CE72E649912D1DA00F0 /* Pods-FootballHSE-FootballHSEUITests.release.xcconfig */,
+				4D6F37B6070A75B3D6DBAF63 /* Pods-FootballHSETests.debug.xcconfig */,
+				11EB685CC5DC4026965F7B30 /* Pods-FootballHSETests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -134,9 +454,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 34B6BF4F296F3D3E006E9882 /* Build configuration list for PBXNativeTarget "FootballHSE" */;
 			buildPhases = (
+				52EE4D16FB7F9239A78FEC00 /* [CP] Check Pods Manifest.lock */,
 				34B6BF21296F3D3B006E9882 /* Sources */,
 				34B6BF22296F3D3B006E9882 /* Frameworks */,
 				34B6BF23296F3D3B006E9882 /* Resources */,
+				AC4D52518FE8A122D206FB2A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -151,6 +473,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 34B6BF52296F3D3E006E9882 /* Build configuration list for PBXNativeTarget "FootballHSETests" */;
 			buildPhases = (
+				02DC43E7F5569CF148D73816 /* [CP] Check Pods Manifest.lock */,
 				34B6BF37296F3D3E006E9882 /* Sources */,
 				34B6BF38296F3D3E006E9882 /* Frameworks */,
 				34B6BF39296F3D3E006E9882 /* Resources */,
@@ -169,9 +492,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 34B6BF55296F3D3E006E9882 /* Build configuration list for PBXNativeTarget "FootballHSEUITests" */;
 			buildPhases = (
+				DBBD93C283730A76DC134843 /* [CP] Check Pods Manifest.lock */,
 				34B6BF41296F3D3E006E9882 /* Sources */,
 				34B6BF42296F3D3E006E9882 /* Frameworks */,
 				34B6BF43296F3D3E006E9882 /* Resources */,
+				EE0ED1601F24E390C2E6AE61 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -231,9 +556,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				006B06E12990190800A2C8A2 /* AuthorizationPhoneEntering.storyboard in Resources */,
 				34B6BF35296F3D3D006E9882 /* LaunchScreen.storyboard in Resources */,
+				00C4738929B89C0C00EFFB6C /* Registration.storyboard in Resources */,
 				34B6BF32296F3D3D006E9882 /* Assets.xcassets in Resources */,
-				34B6BF30296F3D3B006E9882 /* Main.storyboard in Resources */,
+				00C4737529B5E2BF00EFFB6C /* AuthorizationCodeEntering.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,14 +580,147 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		02DC43E7F5569CF148D73816 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FootballHSETests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		52EE4D16FB7F9239A78FEC00 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FootballHSE-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AC4D52518FE8A122D206FB2A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FootballHSE/Pods-FootballHSE-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FootballHSE/Pods-FootballHSE-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FootballHSE/Pods-FootballHSE-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DBBD93C283730A76DC134843 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FootballHSE-FootballHSEUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EE0ED1601F24E390C2E6AE61 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FootballHSE-FootballHSEUITests/Pods-FootballHSE-FootballHSEUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FootballHSE-FootballHSEUITests/Pods-FootballHSE-FootballHSEUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FootballHSE-FootballHSEUITests/Pods-FootballHSE-FootballHSEUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		34B6BF21296F3D3B006E9882 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34B6BF2D296F3D3B006E9882 /* ViewController.swift in Sources */,
+				001A7A4D29B8F3FC00152098 /* HSESelectableViewButton.swift in Sources */,
+				006B06D6298FD35400A2C8A2 /* AuthorizationPhoneEnteringPresenter.swift in Sources */,
+				006B06D5298FD35400A2C8A2 /* AuthorizationPhoneEnteringModuleIO.swift in Sources */,
+				006B06D2298FD35400A2C8A2 /* AuthorizationPhoneEnteringModuleBuilder.swift in Sources */,
+				006B06DB298FD76A00A2C8A2 /* Coordinatable.swift in Sources */,
+				006B06D7298FD35400A2C8A2 /* AuthorizationPhoneEnteringViewIO.swift in Sources */,
+				00C4737729B5E2BF00EFFB6C /* AuthorizationCodeEnteringViewIO.swift in Sources */,
+				006B06D8298FD35400A2C8A2 /* AuthorizationPhoneEnteringViewController.swift in Sources */,
+				00C4738B29B89C0C00EFFB6C /* RegistrationViewIO.swift in Sources */,
+				00C4736329B4EAF900EFFB6C /* HSEMainButton.swift in Sources */,
+				00C4737629B5E2BF00EFFB6C /* AuthorizationCodeEnteringViewController.swift in Sources */,
+				00C4738C29B89C0C00EFFB6C /* RegistrationPresenter.swift in Sources */,
 				34B6BF29296F3D3B006E9882 /* AppDelegate.swift in Sources */,
-				34B6BF2B296F3D3B006E9882 /* SceneDelegate.swift in Sources */,
+				00C4735929B489CC00EFFB6C /* UIViewController + Keyboard Extension.swift in Sources */,
+				006B06D4298FD35400A2C8A2 /* AuthorizationPhoneEnteringInteractorIO.swift in Sources */,
+				00C4737829B5E2BF00EFFB6C /* AuthorizationCodeEnteringModuleBuilder.swift in Sources */,
+				006B06D3298FD35400A2C8A2 /* AuthorizationPhoneEnteringInteractor.swift in Sources */,
+				00C4737329B5E2BF00EFFB6C /* AuthorizationCodeEnteringPresenter.swift in Sources */,
+				00C4737429B5E2BF00EFFB6C /* AuthorizationCodeEnteringModuleIO.swift in Sources */,
+				00C4738729B89C0C00EFFB6C /* RegistrationInteractor.swift in Sources */,
+				00C4737A29B5EE3B00EFFB6C /* UIViewController + NavigationItem Extension.swift in Sources */,
+				00C4737129B5E2BF00EFFB6C /* AuthorizationCodeEnteringInteractor.swift in Sources */,
+				001A7A5029B92ECD00152098 /* PlayerRole.swift in Sources */,
+				00C4735E29B4DC9200EFFB6C /* HSESmartTextFieldView.swift in Sources */,
+				00C4738D29B89C0C00EFFB6C /* RegistrationModuleIO.swift in Sources */,
+				00C4737229B5E2BF00EFFB6C /* AuthorizationCodeEnteringInteractorIO.swift in Sources */,
+				00C4735C29B4DC6C00EFFB6C /* HSETextField.swift in Sources */,
+				00C4738A29B89C0C00EFFB6C /* RegistrationViewController.swift in Sources */,
+				006B06DF298FEAE300A2C8A2 /* RootCoordinator.swift in Sources */,
+				00C4738829B89C0C00EFFB6C /* RegistrationInteractorIO.swift in Sources */,
+				006B06DD298FD83700A2C8A2 /* AuthorizationCoordinator.swift in Sources */,
+				00C4738E29B89C0C00EFFB6C /* RegistrationModuleBuilder.swift in Sources */,
+				00C4736029B4E2F700EFFB6C /* HSETextFieldValidationState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,14 +757,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		34B6BF2E296F3D3B006E9882 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				34B6BF2F296F3D3B006E9882 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		34B6BF33296F3D3D006E9882 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -366,7 +818,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -420,7 +872,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -432,18 +884,20 @@
 		};
 		34B6BF50296F3D3E006E9882 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F65DD22C41580BFA64CFAD1B /* Pods-FootballHSE.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = FootballHSE/Info.plist;
+				INFOPLIST_FILE = "FootballHSE/Supporting Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -453,24 +907,26 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		34B6BF51296F3D3E006E9882 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E0880FA34599A032DCC2D84 /* Pods-FootballHSE.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = FootballHSE/Info.plist;
+				INFOPLIST_FILE = "FootballHSE/Supporting Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -480,12 +936,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 		34B6BF53296F3D3E006E9882 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4D6F37B6070A75B3D6DBAF63 /* Pods-FootballHSETests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -505,6 +962,7 @@
 		};
 		34B6BF54296F3D3E006E9882 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 11EB685CC5DC4026965F7B30 /* Pods-FootballHSETests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -524,6 +982,7 @@
 		};
 		34B6BF56296F3D3E006E9882 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E0FA0BC3B25270790DDB31E8 /* Pods-FootballHSE-FootballHSEUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -541,6 +1000,7 @@
 		};
 		34B6BF57296F3D3E006E9882 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6CF8CE72E649912D1DA00F0 /* Pods-FootballHSE-FootballHSEUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
