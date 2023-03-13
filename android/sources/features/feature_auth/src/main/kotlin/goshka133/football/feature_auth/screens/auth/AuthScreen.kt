@@ -10,14 +10,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.github.terrakok.modo.stack.back
-import com.github.terrakok.modo.stack.forward
+import com.github.terrakok.modo.stack.newStack
 import goshka133.football.core_elmslie.rememberStore
 import goshka133.football.core_navigation.LocalRouter
 import goshka133.football.feature_auth.screens.auth.components.Stepper
 import goshka133.football.feature_auth.screens.auth.components.StepperState
 import goshka133.football.feature_auth.screens.auth.components.pageTransitionSpec
-import goshka133.football.feature_auth.screens.auth.page.PhonePage
-import goshka133.football.feature_auth.screens.auth.page.SmsPage
+import goshka133.football.feature_auth.screens.auth.page.phone.PhonePage
+import goshka133.football.feature_auth.screens.auth.page.sms.SmsPage
 import goshka133.football.feature_auth.screens.auth.presentation.*
 import goshka133.football.feature_auth.screens.origination.OriginationScreen
 import goshka133.football.ui_kit.BaseScreen
@@ -47,7 +47,7 @@ internal class AuthScreen : BaseScreen() {
       store.effects().collect { effect ->
         when (effect) {
           is AuthEffect.Close -> router.back()
-          is AuthEffect.OpenOriginationScreen -> router.forward(OriginationScreen())
+          is AuthEffect.OpenOriginationScreen -> router.newStack(OriginationScreen())
           is AuthEffect.ShowError -> {
             effect.error.message?.let { snackbarHostState.showSnackbar(it) }
           }

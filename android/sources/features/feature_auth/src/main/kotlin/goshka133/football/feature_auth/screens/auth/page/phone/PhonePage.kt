@@ -1,4 +1,4 @@
-package goshka133.football.feature_auth.screens.auth.page
+package goshka133.football.feature_auth.screens.auth.page.phone
 
 import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.Image
@@ -71,9 +71,7 @@ internal fun PhonePage(
     item {
       val focusRequester = remember { FocusRequester() }
 
-      LaunchedEffect(Unit) {
-        focusRequester.requestFocus()
-      }
+      LaunchedEffect(Unit) { focusRequester.requestFocus() }
 
       FTextField(
         modifier = Modifier.focusRequester(focusRequester),
@@ -94,39 +92,14 @@ internal fun PhonePage(
         placeholder = "Номер телефона",
         visualTransformation =
           remember {
-            object : VisualTransformation {
-              override fun filter(text: AnnotatedString): TransformedText {
-                return TransformedText(
-                  text =
-                    AnnotatedString(
-                      text = "+7" + text.text.phoneFormat(),
-                    ),
-                  offsetMapping =
-                    object : OffsetMapping {
-                      override fun originalToTransformed(offset: Int): Int {
-                        return when {
-                          offset == 0 -> offset + 2
-                          offset < 4 -> offset + 3
-                          offset < 7 -> offset + 4
-                          offset < 9 -> offset + 5
-                          offset < 11 -> offset + 6
-                          else -> offset
-                        }
-                      }
-
-                      override fun transformedToOriginal(offset: Int): Int {
-                        return when {
-                          offset < 3 -> 0
-                          offset < 8 -> offset - 3
-                          offset < 12 -> offset - 4
-                          offset < 14 -> offset - 5
-                          offset < 16 -> offset - 6
-                          else -> offset
-                        }
-                      }
-                    },
-                )
-              }
+            VisualTransformation { text ->
+              TransformedText(
+                text =
+                  AnnotatedString(
+                    text = "+7" + text.text.phoneFormat(),
+                  ),
+                offsetMapping = PhoneOffsetMapping()
+              )
             }
           },
       )
@@ -144,16 +117,11 @@ internal fun String.phoneFormat(): String {
   ): String {
     return "${str.take(take).phoneFormat()}-${str.substring(take)}"
   }
-  return when (this.length) {
-    0 -> this
-    1,
-    2,
-    3 -> "-$this"
-    4,
-    5,
-    6 -> takePreviousParts(this, 3)
-    7,
-    8 -> takePreviousParts(this, 6)
+  return when {
+    isEmpty() -> this
+    length in 1..3 -> "-$this"
+    length in 4..6 -> takePreviousParts(this, 3)
+    length in 7..8 -> takePreviousParts(this, 6)
     else -> takePreviousParts(take(10), 8)
   }
 }

@@ -1,5 +1,6 @@
 package goshka133.football.feature_auth.screens.auth.page
 
+import goshka133.football.feature_auth.screens.auth.page.phone.phoneFormat
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldBeEmpty

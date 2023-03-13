@@ -1,4 +1,4 @@
-package goshka133.football.feature_auth.screens.auth.page
+package goshka133.football.feature_auth.screens.auth.page.sms
 
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*

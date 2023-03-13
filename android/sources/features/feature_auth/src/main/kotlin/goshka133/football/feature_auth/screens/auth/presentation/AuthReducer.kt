@@ -88,7 +88,7 @@ internal object AuthReducer :
           }
 
           if (state.smsCodePage.smsTextFieldValue.text.length == 4) {
-            state { copy(isLoading = true) }
+            state { copy(isLoading = false) }
             effects { +Effect.OpenOriginationScreen }
           }
         }
