@@ -5,6 +5,7 @@ import dagger.BindsInstance
 import dagger.Component
 import goshka133.football.core_elmslie.di.ElmDependencies
 import goshka133.football.feature_auth.di.AuthFeatureModule
+import goshka133.football.feature_main.di.MainFeatureModule
 import javax.inject.Singleton
 
 @Component(
@@ -12,10 +13,11 @@ import javax.inject.Singleton
     [
       CoreModule::class,
       AuthFeatureModule::class,
+      MainFeatureModule::class,
     ]
 )
 @Singleton
-interface ApplicationComponent : MainDependencies, ElmDependencies {
+interface ApplicationComponent : RootDependencies, ElmDependencies {
 
   @Component.Factory
   interface Factory {

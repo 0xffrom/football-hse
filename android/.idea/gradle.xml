@@ -18,7 +18,7 @@
         <option name="testRunner" value="GRADLE" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleJvm" value="11" />
+        <option name="gradleJvm" value="azul-17" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
@@ -29,7 +29,9 @@
             <option value="$PROJECT_DIR$/sources/core/core_navigation" />
             <option value="$PROJECT_DIR$/sources/core/core_network" />
             <option value="$PROJECT_DIR$/sources/features/domain_auth" />
+            <option value="$PROJECT_DIR$/sources/features/domain_main" />
             <option value="$PROJECT_DIR$/sources/features/feature_auth" />
+            <option value="$PROJECT_DIR$/sources/features/feature_main" />
             <option value="$PROJECT_DIR$/sources/ui_kit" />
           </set>
         </option>

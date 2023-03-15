@@ -22,6 +22,9 @@ internal class PureKotlinModulePlugin : Plugin<Project> {
     libs.findLibrary("compose-runtime").ifPresent { library ->
       project.dependencies.add("implementationAar", library)
     }
+    libs.findLibrary("kotlin-immutable").ifPresent { library ->
+      project.dependencies.add("implementation", library)
+    }
 
     project.tasks.withType(JavaCompile::class.java) {
       sourceCompatibility = ProjectDefaults.JavaVersion.toString()

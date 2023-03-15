@@ -2,7 +2,7 @@ package goshka133.football.feature_auth.screens.origination.presentation
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.text.input.TextFieldValue
-import goshka133.football.dto.RoleType
+import goshka133.football.domain_auth.dto.RoleType
 import goshka133.football.feature_auth.screens.origination.models.RoleCard
 
 @Immutable

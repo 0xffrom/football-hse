@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import goshka133.football.dto.RoleType
+import goshka133.football.domain_auth.dto.RoleType
 import goshka133.football.feature_auth.screens.origination.models.RoleCard
 import goshka133.football.ui_kit.borders.SelectedBorderModifier
 import goshka133.football.ui_kit.theme.BodyRegular
@@ -17,11 +17,11 @@ import goshka133.football.ui_kit.theme.FootballColors
 
 @Composable
 internal fun RoleCard(
-  card: RoleCard,
-  isSelected: Boolean,
-  onClick: (roleType: RoleType) -> Unit,
-  modifier: Modifier = Modifier,
-  contentPadding: PaddingValues = PaddingValues(24.dp),
+    card: RoleCard,
+    isSelected: Boolean,
+    onClick: (roleType: RoleType) -> Unit,
+    modifier: Modifier = Modifier,
+    contentPadding: PaddingValues = PaddingValues(24.dp),
 ) {
   val borderModifier = if (isSelected) SelectedBorderModifier else Modifier
 

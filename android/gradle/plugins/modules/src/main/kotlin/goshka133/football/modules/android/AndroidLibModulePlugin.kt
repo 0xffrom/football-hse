@@ -15,8 +15,13 @@ internal class AndroidLibModulePlugin : Plugin<Project> {
       apply("goshka133.football.base")
     }
     project.extensions.configure(LibraryExtension::class.java) { buildFeatures { compose = true } }
-    project.getVersionCatalog().findBundle("compose").ifPresent { bundle ->
+
+    val libs = project.getVersionCatalog()
+    libs.findBundle("compose").ifPresent { bundle ->
       project.dependencies.add("implementation", bundle)
+    }
+    libs.findLibrary("kotlin-immutable").ifPresent { library ->
+      project.dependencies.add("implementation", library)
     }
   }
 }

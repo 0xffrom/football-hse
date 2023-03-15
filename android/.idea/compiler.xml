@@ -2,6 +2,8 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="17">
+      <module name="HSE_Football.feature_domain.main" target="11" />
+      <module name="HSE_Football.feature_domain.test" target="11" />
       <module name="HSE_Football.network.main" target="17" />
       <module name="HSE_Football.network.test" target="17" />
     </bytecodeTargetLevel>

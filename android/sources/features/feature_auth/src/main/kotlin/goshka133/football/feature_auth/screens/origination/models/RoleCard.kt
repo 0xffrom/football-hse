@@ -1,13 +1,13 @@
 package goshka133.football.feature_auth.screens.origination.models
 
 import android.os.Parcelable
-import goshka133.football.dto.RoleType
+import goshka133.football.domain_auth.dto.RoleType
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 internal data class RoleCard(
-  val type: RoleType,
-  val title: String,
+    val type: RoleType,
+    val title: String,
 ) : Parcelable {
 
   companion object {

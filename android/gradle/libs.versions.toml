@@ -41,6 +41,7 @@ lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", v
 lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
 
 kotlin-parcelize = { module = "org.jetbrains.kotlin:kotlin-parcelize-runtime", version.ref = "kotlin" }
+kotlin-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version = "0.3.5" }
 
 modo = { module = "com.github.andreyromanyuk:Modo", version = "0.0.1" }
 moshi = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshi" }

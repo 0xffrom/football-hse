@@ -22,8 +22,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastForEachIndexed
 import com.github.terrakok.modo.stack.back
+import com.github.terrakok.modo.stack.newStack
+import goshka133.football.core_di.rememberDependencies
 import goshka133.football.core_elmslie.rememberStore
 import goshka133.football.core_navigation.LocalRouter
+import goshka133.football.feature_auth.di.AuthDependencies
 import goshka133.football.feature_auth.screens.origination.components.RoleCard
 import goshka133.football.feature_auth.screens.origination.presentation.OriginationEffect
 import goshka133.football.feature_auth.screens.origination.presentation.OriginationEvent
@@ -58,6 +61,7 @@ internal class OriginationScreen : BaseScreen() {
     val router = LocalRouter.current
     val snackbarHostState = LocalSnackBarHostState.current
 
+    val dependencies: AuthDependencies = rememberDependencies()
     LaunchedEffect(Unit) {
       store.effects().collect { effect ->
         when (effect) {
@@ -66,7 +70,7 @@ internal class OriginationScreen : BaseScreen() {
             effect.error.message?.let { snackbarHostState.showSnackbar(it) }
           }
           is OriginationEffect.OpenMain -> {
-            /* TODO: open Main Screen*/
+            router.newStack(dependencies.mainFeatureApi.getScreen())
           }
         }
       }

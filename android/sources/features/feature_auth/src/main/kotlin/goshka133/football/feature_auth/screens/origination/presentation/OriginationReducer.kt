@@ -32,6 +32,7 @@ internal object OriginationReducer :
           state {
             copy(
               isNameTextFieldError = false,
+              isLoading = false,
             )
           }
           effects { +Effect.OpenMain }

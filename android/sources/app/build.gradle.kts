@@ -11,6 +11,7 @@ dependencies {
   kapt(libs.dagger.compiler)
 
   implementation(libs.modo)
+  implementation(libs.kotlin.immutable)
   implementation(project(":ui_kit"))
 
   // #region Di Dependencies
@@ -24,4 +25,7 @@ dependencies {
 
   implementation(project(":domain_auth"))
   implementation(project(":feature_auth"))
+
+  implementation(project(":domain_main"))
+  implementation(project(":feature_main"))
 }

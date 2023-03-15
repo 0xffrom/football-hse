@@ -14,7 +14,7 @@ import com.github.terrakok.modo.stack.StackNavModel
 import com.github.terrakok.modo.stack.StackScreen
 import goshka133.football.core_di.getComponent
 import goshka133.football.core_navigation.LocalRouter
-import goshka133.football.di.MainDependencies
+import goshka133.football.di.RootDependencies
 import goshka133.football.ui_kit.snack_bar.LocalSnackBarHostState
 import goshka133.football.ui_kit.snack_bar.rememberSnackBarHostState
 import goshka133.football.ui_kit.theme.FootballTheme
@@ -26,9 +26,10 @@ class MainActivity : ComponentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    val dependencies: MainDependencies = getComponent(this)
+    val dependencies: RootDependencies = getComponent(this)
 
-    val rootStackView = RootStackView(rootScreen = dependencies.authFeatureApi.getScreen())
+    // TODO: a temporary solution instead of 'rootScreen = dependencies.authFeatureApi.getScreen()'
+    val rootStackView = RootStackView(rootScreen = dependencies.mainFeatureApi.getScreen())
 
     rootScreen = Modo.init(savedInstanceState, rootScreen) { rootStackView }
 
