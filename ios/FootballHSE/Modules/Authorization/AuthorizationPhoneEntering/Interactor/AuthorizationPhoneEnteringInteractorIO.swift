@@ -9,9 +9,7 @@ import Foundation
 
 
 protocol AuthorizationPhoneEnteringInteractorInput: AnyObject {
-    
+    func authorize(with phoneNumber: String, completion: @escaping (Result<Data?, Error>) -> Void)
 }
 
-protocol AuthorizationPhoneEnteringInteractorOutput: AnyObject {
-    
-}
+protocol AuthorizationPhoneEnteringInteractorOutput: AnyObject {}

@@ -7,9 +7,7 @@
 
 import Foundation
 
-public protocol AuthorizationPhoneEnteringModuleInput: AnyObject {
-    
-}
+public protocol AuthorizationPhoneEnteringModuleInput: AnyObject {}
 
 public protocol AuthorizationPhoneEnteringModuleOutput: AnyObject {
     func moduleWantsToGoToTheNextStep(_ module: AuthorizationPhoneEnteringModuleInput)

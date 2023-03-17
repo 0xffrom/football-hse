@@ -7,30 +7,28 @@
 
 
 final class RegistrationInteractor {
-    
-    // MARK: Private Data Structures
 
-    private enum Constants {
-
-    }
-    
-    
     // MARK: Public Properties
     
     weak var output: RegistrationInteractorOutput?
-    
-    
+
     // MARK: Private Properties
 
+    private let networkService: INetworkService
+    private let currentUserConfig: CurrentUserConfig
 
     // MARK: Lifecycle
-    
+
+    init(
+        networkService: INetworkService,
+        currentUserConfig: CurrentUserConfig
+    ) {
+        self.networkService = networkService
+        self.currentUserConfig = currentUserConfig
+    }
     
     // MARK: Public
-    
-    
-    // MARK: Private
-    
+
 }
 
 
@@ -38,6 +36,4 @@ final class RegistrationInteractor {
 
 // MARK: - RegistrationInteractorInput
 
-extension RegistrationInteractor: RegistrationInteractorInput {
-    
-}
+extension RegistrationInteractor: RegistrationInteractorInput {}

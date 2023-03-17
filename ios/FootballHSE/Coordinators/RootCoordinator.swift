@@ -12,28 +12,35 @@ final class RootCoordinator {
 
     // MARK: Private Properties
 
+    private unowned let window: UIWindow
+
     private var childCoordinators: [Coordinatable] = []
     private var finishHandlers: [(() -> Void)?] = []
 
     private weak var rootViewController: UIViewController?
     private weak var parentNavigationController: UINavigationController?
 
+    private let networkService: INetworkService = NetworkService()
+
+    private let currentUserConfig: CurrentUserConfig
+
     // MARK: Lifecycle
 
     init(
         parentNavigationController: UINavigationController,
+        window: UIWindow,
+        currentUserConfig: CurrentUserConfig,
         finishHandler: (() -> Void)?
     ) {
         self.parentNavigationController = parentNavigationController
+        self.window = window
+        self.currentUserConfig = currentUserConfig
         finishHandlers.append(finishHandler)
     }
-}
 
-// MARK: Coordinatable
+    // MARK: Private
 
-extension RootCoordinator: Coordinatable {
-
-    func start(animated: Bool) {
+    private func startAuthorizationFlow() {
         guard let parentNavigationController = parentNavigationController else { return }
 
         let finishHandler: () -> Void = { [weak self] in
@@ -43,10 +50,32 @@ extension RootCoordinator: Coordinatable {
 
         let coordinator = AuthorizationCoordinator(
             parentNavigationController: parentNavigationController,
+            window: window,
+            networkService: networkService,
+            currentUserConfig: currentUserConfig,
             finishHandler: finishHandler
         )
         coordinator.start(animated: true)
         childCoordinators.append(coordinator)
+    }
+
+    private func finishAuthorizationFlow() {
+        guard let authCoordinator = childCoordinators.getCoordinator(ofType: AuthorizationCoordinator.self) else {
+            return
+        }
+        authCoordinator.finish(animated: true) { [weak self] in
+            guard let self = self else { return }
+            self.childCoordinators.removeCoordinator(ofType: AuthorizationCoordinator.self)
+        }
+    }
+}
+
+// MARK: Coordinatable
+
+extension RootCoordinator: Coordinatable {
+
+    func start(animated: Bool) {
+        startAuthorizationFlow()
     }
 
     func finish(animated: Bool, completion: (() -> Void)?) {

@@ -10,7 +10,7 @@ final class RegistrationPresenter {
     // MARK: Public Properties
 
     weak var view: RegistrationViewInput?
-    var moduleOutput: RegistrationModuleOutput?
+    weak var moduleOutput: RegistrationModuleOutput?
     
     
     // MARK: Private Properties

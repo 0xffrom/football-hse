@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -15,39 +15,39 @@
             <objects>
                 <viewController storyboardIdentifier="RegistrationViewController" id="rmA-wI-mRy" customClass="RegistrationViewController" customModule="FootballHSE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zmw-b3-tOR">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rcn-xp-ElM">
-                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
+                                <rect key="frame" x="0.0" y="48" width="320" height="814"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LSQ-te-EkF">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="650"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="650"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Последний шаг" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nzB-YF-OEo">
-                                                <rect key="frame" x="16" y="16" width="170.5" height="27.5"/>
+                                                <rect key="frame" x="16" y="25" width="170.5" height="27.5"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="23"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Заполните данные, чтобы мы могли определить вашу роль в команде или подобрать вам подходящую команду " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="04E-cR-UtV">
-                                                <rect key="frame" x="16" y="55.5" width="382" height="57.5"/>
+                                                <rect key="frame" x="16" y="64.5" width="288" height="57.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" name="TextAndIconsSecondary"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gzm-MH-6CL" customClass="HSESmartTextFieldView" customModule="FootballHSE" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="137" width="382" height="109.5"/>
+                                                <rect key="frame" x="16" y="137" width="288" height="109.5"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Выберите вашу роль в НИУ ВШЭ" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="leT-hd-5bO">
-                                                <rect key="frame" x="16" y="258.5" width="382" height="19.5"/>
+                                                <rect key="frame" x="16" y="258.5" width="288" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" name="TextAndIconsSecondary"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KCz-ir-zo6" customClass="HSEMainButton" customModule="FootballHSE" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="503" width="382" height="60"/>
+                                                <rect key="frame" x="16" y="503" width="288" height="60"/>
                                                 <color key="backgroundColor" name="BasePrimary"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="60" id="A9c-RK-IA7"/>
@@ -57,13 +57,13 @@
                                                 <state key="normal" title="Далее"/>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Нажимая кнопку Далее, я даю согласие на хранение и обработку персональных данных" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vd1-ZN-K5m">
-                                                <rect key="frame" x="16" y="575" width="382" height="29"/>
+                                                <rect key="frame" x="16" y="575" width="288" height="29"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" name="TextAndIconsSecondary"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ST9-eg-cEM" customClass="HSESelectableViewButton" customModule="FootballHSE" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="296" width="183.5" height="68"/>
+                                                <rect key="frame" x="16" y="296" width="136.5" height="68"/>
                                                 <color key="backgroundColor" name="BaseSurface1"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="68" id="0cY-mb-gDa"/>
@@ -73,21 +73,21 @@
                                                 <buttonConfiguration key="configuration" style="plain" title="Студент"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bwg-0Y-CQL" customClass="HSESelectableViewButton" customModule="FootballHSE" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="376" width="183.5" height="68"/>
+                                                <rect key="frame" x="16" y="376" width="136.5" height="68"/>
                                                 <color key="backgroundColor" name="BaseSurface1"/>
                                                 <color key="tintColor" name="TextAndIconsSecondary"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Сотрудник"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q5X-Cl-nZ3" customClass="HSESelectableViewButton" customModule="FootballHSE" customModuleProvider="target">
-                                                <rect key="frame" x="212.5" y="296" width="183.5" height="68"/>
+                                                <rect key="frame" x="165.5" y="296" width="136.5" height="68"/>
                                                 <color key="backgroundColor" name="BaseSurface1"/>
                                                 <color key="tintColor" name="TextAndIconsSecondary"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Выпускник"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1xv-Ic-V5n" customClass="HSESelectableViewButton" customModule="FootballHSE" customModuleProvider="target">
-                                                <rect key="frame" x="212.5" y="376" width="183.5" height="68"/>
+                                                <rect key="frame" x="165.5" y="376" width="136.5" height="68"/>
                                                 <color key="backgroundColor" name="BaseSurface1"/>
                                                 <color key="tintColor" name="TextAndIconsSecondary"/>
                                                 <state key="normal" title="Button"/>
@@ -108,7 +108,7 @@
                                             <constraint firstItem="gzm-MH-6CL" firstAttribute="top" secondItem="04E-cR-UtV" secondAttribute="bottom" constant="24" id="7hD-gi-eA8"/>
                                             <constraint firstItem="Q5X-Cl-nZ3" firstAttribute="leading" secondItem="ST9-eg-cEM" secondAttribute="trailing" constant="13" id="7rv-IM-5EC"/>
                                             <constraint firstItem="KCz-ir-zo6" firstAttribute="leading" secondItem="LSQ-te-EkF" secondAttribute="leading" constant="16" id="9y4-wU-2qC"/>
-                                            <constraint firstItem="nzB-YF-OEo" firstAttribute="top" secondItem="LSQ-te-EkF" secondAttribute="top" constant="16" id="A5w-G4-i94"/>
+                                            <constraint firstItem="nzB-YF-OEo" firstAttribute="top" secondItem="LSQ-te-EkF" secondAttribute="top" constant="25" id="A5w-G4-i94"/>
                                             <constraint firstAttribute="trailing" secondItem="04E-cR-UtV" secondAttribute="trailing" constant="16" id="FqU-D4-qbx"/>
                                             <constraint firstAttribute="trailing" secondItem="Q5X-Cl-nZ3" secondAttribute="trailing" constant="18" id="HOP-QF-iER"/>
                                             <constraint firstItem="1xv-Ic-V5n" firstAttribute="width" secondItem="Q5X-Cl-nZ3" secondAttribute="width" id="J9N-au-Huh"/>
