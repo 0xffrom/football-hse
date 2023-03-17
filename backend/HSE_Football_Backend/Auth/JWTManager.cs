@@ -51,7 +51,7 @@ namespace HSE_Football_Backend.Auth
                     expires: DateTime.UtcNow.AddMinutes(AuthOptions.LIFETIME),
                     signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
-            return new Tokens { Token = encodedJwt, PhoneNumber = player.PhoneNumber, IsCaptain = player.IsCaptain };
+            return new Tokens { Token = encodedJwt, PhoneNumber = player.PhoneNumber, IsCaptain = player.IsCaptain, IsRegistered = player.IsRegistered };
         }
 
         /// <summary>

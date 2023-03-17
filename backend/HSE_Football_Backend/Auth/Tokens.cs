@@ -24,5 +24,10 @@
         /// Является ли игрок капитаном
         /// </summary>
         public bool IsCaptain { get; set; }
+
+        /// <summary>
+        /// Прошел ли игрок первичную регистрацию
+        /// </summary>
+        public bool IsRegistered { get; set; }
     }
 }

@@ -48,7 +48,7 @@ namespace HSE_Football_Backend.Controllers
         /// <param name="number">Номер телефона</param>
         /// <param name="code">Код</param>
         /// <response code="200">ОК</response>
-        /// <response code="401">Нет пользователя или Токен обновления устарел</response>
+        /// <response code="401">Токен обновления устарел</response>
         [ProducesResponseType(200)]
         [ProducesResponseType(401)]
         [HttpPost("refresh/{number}/{code}")]
@@ -83,9 +83,9 @@ namespace HSE_Football_Backend.Controllers
         /// <summary>
         /// Получение токена доступа
         /// </summary>
-        /// <param name="data">Предыдущий полученный токен. Включает в себя сам токен, токен обновления, номер телефона, является ли капитаном</param>
+        /// <param name="data">Предыдущий полученный токен. Включает в себя сам токен, токен обновления, номер телефона, является ли капитаном, зарегистрирован ли</param>
         /// <response code="200">ОК</response>
-        /// <response code="401">Нет пользователя или Токен обновления устарел</response>
+        /// <response code="401">Токен обновления устарел</response>
         [ProducesResponseType(200)]
         [ProducesResponseType(401)]
         [HttpPost("access")]

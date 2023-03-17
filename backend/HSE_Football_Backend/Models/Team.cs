@@ -23,12 +23,20 @@ namespace HSE_Football_Backend.Models
         /// <summary>
         /// Номер телефона капитана
         /// </summary>
+        [RegularExpression(@"^([8]{1}[0-9]{10})?$", ErrorMessage = "Некорректный формат номера телефона")]
         public string? CaptainPhoneNumber { get; set; }
 
         /// <summary>
-        /// URL логотипа
+        /// ФИО капитана
         /// </summary>
-        public string? LogoURL { get; set; }
+        [StringLength(61, MinimumLength = 3, ErrorMessage = "ФИО должно быть от 3 до 60 символов")]
+        [RegularExpression(@"[ А-Яа-яЁёA-Za-z]+$", ErrorMessage = "В ФИО могут присутствовать только буквы и пробелы")]
+        public string? CaptainName { get; set; }
+
+        /// <summary>
+        /// Логотип
+        /// </summary>
+        public string? Logo { get; set; }
 
         /// <summary>
         /// О команде

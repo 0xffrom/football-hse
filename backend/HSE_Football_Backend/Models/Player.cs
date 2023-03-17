@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace HSE_Football_Backend.Models
 {
@@ -16,30 +17,21 @@ namespace HSE_Football_Backend.Models
         public string? PhoneNumber { get; set; }
 
         /// <summary>
-        /// Имя
+        /// ФИО
         /// </summary>
-        [StringLength(41, MinimumLength = 2, ErrorMessage = "Имя должно быть от 2 до 40 символов")]
-        [RegularExpression(@"[А-Яа-яЁёA-Za-z]+$", ErrorMessage = "В имени могут присутствовать только буквы")]
+        [StringLength(61, MinimumLength = 3, ErrorMessage = "ФИО должно быть от 3 до 60 символов")]
+        [RegularExpression(@"[ А-Яа-яЁёA-Za-z]+$", ErrorMessage = "В ФИО могут присутствовать только буквы и пробелы")]
         public string? Name { get; set; }
-
-        /// <summary>
-        /// Фамилия
-        /// </summary>
-        [StringLength(41, MinimumLength = 2, ErrorMessage = "Фамилия должна быть от 2 до 40 символов")]
-        [RegularExpression(@"[А-Яа-яЁёA-Za-z]+$", ErrorMessage = "В фамилии могут присутствовать только буквы")]
-        public string? Surname { get; set; }
-
-        /// <summary>
-        /// Отчество
-        /// </summary>
-        [StringLength(41, MinimumLength = 2, ErrorMessage = "Отчество должно быть от 2 до 40 символов")]
-        [RegularExpression(@"[А-Яа-яЁёA-Za-z]+$", ErrorMessage = "В отчестве могут присутствовать только буквы")]
-        public string? SecondName { get; set; }
 
         /// <summary>
         /// Является ли игрок капитаном
         /// </summary>
         public bool IsCaptain { get; set; } = false;
+
+        /// <summary>
+        /// Прошел ли игрок первичную регистрацию
+        /// </summary>
+        public bool IsRegistered { get; set; } = false;
 
         /// <summary>
         /// О себе
@@ -48,9 +40,9 @@ namespace HSE_Football_Backend.Models
         public string? About { get; set; }
 
         /// <summary>
-        /// Ссылка на мессенджер (telegram или vk)
+        /// Контактная информация
         /// </summary>
-        [RegularExpression(@"(vk.com/|t.me/)+[-A-Za-z_.0-9]+$", ErrorMessage = "Некорректный формат ссылки")]
+        [StringLength(41, MinimumLength = 2, ErrorMessage = "Контактная информация должна быть от 2 до 40 символов")]
         public string? Contact { get; set; }
 
         /// <summary>
@@ -66,9 +58,9 @@ namespace HSE_Football_Backend.Models
         public string? TournamentExperience { get; set; }
 
         /// <summary>
-        /// URL фото профиля
+        /// Фото профиля
         /// </summary>
-        public string? PhotoURL { get; set; }
+        public string? Photo { get; set; }
 
         /// <summary>
         /// Роль в ВШЭ
@@ -88,22 +80,26 @@ namespace HSE_Football_Backend.Models
         /// <summary>
         /// Токен обновления токена доступа для учетной записи пользователя
         /// </summary>
+        [JsonIgnore]
         public string? RefreshToken { get; set; }
 
         /// <summary>
         /// Время до которого будет существовать указанный токен обновления
         /// </summary>
+        [JsonIgnore]
         public DateTime RefreshTokenExpiryTime { get; set; }
 
         /// <summary>
         /// Код
         /// </summary>
         [StringLength(129, MinimumLength = 4, ErrorMessage = "код должен быть от 4 до 128 символов")]
+        [JsonIgnore]
         public string? Code { get; set; }
 
         /// <summary>
         /// Дополнительная секьюрность для хранения кода
         /// </summary>
+        [JsonIgnore]
         public byte[]? SaltForCode { get; set; }
     }
 }

@@ -58,5 +58,35 @@ namespace HSE_Football_Backend.Models
         /// </summary>
         [StringLength(101, ErrorMessage = "Слишком много символов")]
         public string? Faculty { get; set; }
+
+        /// <summary>
+        /// Футбольный опыт
+        /// </summary>
+        [StringLength(201, ErrorMessage = "Слишком много символов")]
+        public string? FootballExperience { get; set; }
+
+        /// <summary>
+        /// Опыт в турнирах ВШЭ
+        /// </summary>
+        [StringLength(201, ErrorMessage = "Слишком много символов")]
+        public string? TournamentExperience { get; set; }
+
+        /// <summary>
+        /// Контактная информация
+        /// </summary>
+        [StringLength(41, MinimumLength = 2, ErrorMessage = "Контактная информация должна быть от 2 до 40 символов")]
+        public string? Contact { get; set; }
+
+        /// <summary>
+        /// ФИО
+        /// </summary>
+        [StringLength(61, MinimumLength = 3, ErrorMessage = "ФИО должно быть от 3 до 60 символов")]
+        [RegularExpression(@"[ А-Яа-яЁёA-Za-z]+$", ErrorMessage = "В ФИО могут присутствовать только буквы и пробелы")]
+        public string? Name { get; set; }
+
+        /// <summary>
+        /// Фото профиля
+        /// </summary>
+        public string? Photo { get; set; }
     }
 }
