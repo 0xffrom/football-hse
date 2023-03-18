@@ -1,8 +1,10 @@
 package goshka133.football.feature_main.screens.main
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.*
@@ -10,10 +12,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastForEach
 import com.github.terrakok.modo.stack.back
+import goshka133.football.core_di.rememberDependencies
 import goshka133.football.core_elmslie.rememberEventReceiver
 import goshka133.football.core_elmslie.rememberStore
 import goshka133.football.core_navigation.LocalRouter
+import goshka133.football.feature_main.di.MainFeatureDependencies
 import goshka133.football.feature_main.screens.main.models.BottomBarTab
+import goshka133.football.feature_main.screens.main.models.BottomBarTabType
 import goshka133.football.feature_main.screens.main.presentation.MainEffect
 import goshka133.football.feature_main.screens.main.presentation.MainEvent
 import goshka133.football.feature_main.screens.main.presentation.MainStoreFactory
@@ -53,7 +58,6 @@ internal class MainScreen : BaseScreen() {
     BackHandler { eventReceiver.invoke(MainEvent.Ui.Click.Back) }
 
     val state by store.states.collectAsState(store.currentState)
-
     Scaffold(
       bottomBar = {
         BottomNavigation(
@@ -65,13 +69,26 @@ internal class MainScreen : BaseScreen() {
             BottomBarTab(
               type = type,
               selectedType = state.selectedTab,
-              onClick = { bottomBarType -> eventReceiver.invoke(MainEvent.Ui.Click.BottomBarTab(bottomBarType)) }
+              onClick = { bottomBarType ->
+                eventReceiver.invoke(MainEvent.Ui.Click.BottomBarTab(bottomBarType))
+              }
             )
           }
         }
       }
-    ) {paddingValues: PaddingValues ->
-      //
+    ) { paddingValues: PaddingValues ->
+      val dependencies: MainFeatureDependencies = rememberDependencies()
+      val searchScreen = remember { dependencies.searchFeatureApi.getScreen() }
+      val chatScreen = remember { dependencies.chatFeatureApi.getScreen() }
+      val profileScreen = remember { dependencies.profileFeatureApi.getScreen() }
+
+      Box(modifier = Modifier.padding(paddingValues)) {
+        when (state.selectedTab) {
+          BottomBarTabType.Search -> searchScreen.Content()
+          BottomBarTabType.Chat -> chatScreen.Content()
+          BottomBarTabType.Profile -> profileScreen.Content()
+        }
+      }
     }
   }
 }

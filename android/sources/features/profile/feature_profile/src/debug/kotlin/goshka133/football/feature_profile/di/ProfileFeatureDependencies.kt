@@ -1,3 +1,3 @@
 package goshka133.football.feature_profile.di
 
-interface ProfileDependencies
+interface ProfileFeatureDependencies

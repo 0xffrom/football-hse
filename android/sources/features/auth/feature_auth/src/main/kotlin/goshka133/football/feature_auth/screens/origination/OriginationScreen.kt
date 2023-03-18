@@ -26,7 +26,7 @@ import com.github.terrakok.modo.stack.newStack
 import goshka133.football.core_di.rememberDependencies
 import goshka133.football.core_elmslie.rememberStore
 import goshka133.football.core_navigation.LocalRouter
-import goshka133.football.feature_auth.di.AuthDependencies
+import goshka133.football.feature_auth.di.AuthFeatureDependencies
 import goshka133.football.feature_auth.screens.origination.components.RoleCard
 import goshka133.football.feature_auth.screens.origination.presentation.OriginationEffect
 import goshka133.football.feature_auth.screens.origination.presentation.OriginationEvent
@@ -61,7 +61,7 @@ internal class OriginationScreen : BaseScreen() {
     val router = LocalRouter.current
     val snackbarHostState = LocalSnackBarHostState.current
 
-    val dependencies: AuthDependencies = rememberDependencies()
+    val dependencies: AuthFeatureDependencies = rememberDependencies()
     LaunchedEffect(Unit) {
       store.effects().collect { effect ->
         when (effect) {

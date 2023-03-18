@@ -21,9 +21,13 @@ dependencies {
   implementation(project(":ui_kit"))
 
   implementation(project(":core_elmslie"))
+  implementation(project(":core_di"))
   implementation(project(":core_navigation"))
 
   implementation(project(":domain_main"))
+  implementation(project(":domain_search"))
+  implementation(project(":domain_profile"))
+  implementation(project(":domain_chat"))
 
   testImplementation(libs.bundles.kotest)
 }
