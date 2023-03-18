@@ -18,22 +18,40 @@ namespace HSE_Football_Backend.Models
 		/// </summary>
 		public long TeamId { get; set; }
 
-		/// <summary>
-		/// Игровое амплуа
-		/// Ниже представлены степени двойки, то есть значение для ЦФРВ - 2^0 = 1
-		/// 0 - ЦФРВ
-		/// 1 - ЛФРВ
-		/// 2 - ПФРВ
-		/// 3 - ЦАП
-		/// 4 - ЦОП
-		/// 5 - ЛП
-		/// 6 - ПП
-		/// 7 - ЦЗ
-		/// 8 - ЛЗ
-		/// 9 - ПЗ
-		/// 10 - ВРТ
-		/// </summary>
-		[Range(0, 2047, ErrorMessage = "Некорректное амплуа")]
+        /// <summary>
+        /// Название 
+        /// </summary>
+        [StringLength(41, MinimumLength = 2, ErrorMessage = "Название должно быть от 2 до 40 символов")]
+        [RegularExpression(@"[А-Яа-яЁёA-Za-z]+$", ErrorMessage = "В названии могут присутствовать только буквы")]
+        public string? Name { get; set; }
+
+        /// <summary>
+        /// Логотип
+        /// </summary>
+        public string? Logo { get; set; }
+
+        /// <summary>
+        /// Контактная информация
+        /// </summary>
+        [StringLength(41, MinimumLength = 2, ErrorMessage = "Контактная информация должна быть от 2 до 40 символов")]
+        public string? Contact { get; set; }
+
+        /// <summary>
+        /// Игровое амплуа
+        /// Ниже представлены степени двойки, то есть значение для ЦФРВ - 2^0 = 1
+        /// 0 - ЦФРВ
+        /// 1 - ЛФРВ
+        /// 2 - ПФРВ
+        /// 3 - ЦАП
+        /// 4 - ЦОП
+        /// 5 - ЛП
+        /// 6 - ПП
+        /// 7 - ЦЗ
+        /// 8 - ЛЗ
+        /// 9 - ПЗ
+        /// 10 - ВРТ
+        /// </summary>
+        [Range(0, 2047, ErrorMessage = "Некорректное амплуа")]
 		public int PlayerPosition { get; set; }
 
 		/// <summary>

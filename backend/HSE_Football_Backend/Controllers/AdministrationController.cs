@@ -37,6 +37,25 @@ namespace HSE_Football_Backend.Controllers
 		}
 
         /// <summary>
+        /// Авторизация в панель администрирования
+        /// </summary>
+        /// <param name="password">Логин-пароль администратора</param>
+        /// <response code="200">ОК</response>
+        /// <response code="401">Неверный логин-пароль администратора</response>
+        // GET: api/Administration/Authorize/adminadmin
+        [ProducesResponseType(200)]
+        [ProducesResponseType(401)]
+        [HttpGet("Authorize/{password}")]
+        public async Task<IActionResult> Authorize(string password)
+        {
+            if (this.password != password)
+            {
+                return Unauthorized();
+            }
+            return Ok();
+        }
+
+        /// <summary>
         /// Возвращает игрока по номеру телефона
         /// </summary>
 		/// <param name="password">Логин-пароль администратора</param>
