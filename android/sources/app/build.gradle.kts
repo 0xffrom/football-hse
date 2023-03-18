@@ -25,7 +25,12 @@ dependencies {
 
   implementation(project(":domain_auth"))
   implementation(project(":feature_auth"))
-
   implementation(project(":domain_main"))
   implementation(project(":feature_main"))
+  implementation(project(":domain_chat"))
+  implementation(project(":feature_chat"))
+  implementation(project(":domain_search"))
+  implementation(project(":feature_search"))
+  implementation(project(":domain_profile"))
+  implementation(project(":feature_profile"))
 }

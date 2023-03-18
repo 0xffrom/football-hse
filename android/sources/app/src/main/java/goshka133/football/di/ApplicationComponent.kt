@@ -14,6 +14,7 @@ import javax.inject.Singleton
       CoreModule::class,
       AuthFeatureModule::class,
       MainFeatureModule::class,
+
     ]
 )
 @Singleton

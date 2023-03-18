@@ -28,10 +28,16 @@
             <option value="$PROJECT_DIR$/sources/core/core_elmslie" />
             <option value="$PROJECT_DIR$/sources/core/core_navigation" />
             <option value="$PROJECT_DIR$/sources/core/core_network" />
-            <option value="$PROJECT_DIR$/sources/features/domain_auth" />
-            <option value="$PROJECT_DIR$/sources/features/domain_main" />
-            <option value="$PROJECT_DIR$/sources/features/feature_auth" />
-            <option value="$PROJECT_DIR$/sources/features/feature_main" />
+            <option value="$PROJECT_DIR$/sources/features/auth/domain_auth" />
+            <option value="$PROJECT_DIR$/sources/features/auth/feature_auth" />
+            <option value="$PROJECT_DIR$/sources/features/chat/domain_chat" />
+            <option value="$PROJECT_DIR$/sources/features/chat/feature_chat" />
+            <option value="$PROJECT_DIR$/sources/features/main/domain_main" />
+            <option value="$PROJECT_DIR$/sources/features/main/feature_main" />
+            <option value="$PROJECT_DIR$/sources/features/profile/domain_profile" />
+            <option value="$PROJECT_DIR$/sources/features/profile/feature_profile" />
+            <option value="$PROJECT_DIR$/sources/features/search/domain_search" />
+            <option value="$PROJECT_DIR$/sources/features/search/feature_search" />
             <option value="$PROJECT_DIR$/sources/ui_kit" />
           </set>
         </option>
