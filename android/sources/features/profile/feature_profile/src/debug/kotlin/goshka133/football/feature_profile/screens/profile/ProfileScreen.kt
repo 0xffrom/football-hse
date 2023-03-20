@@ -1,6 +1,6 @@
 package goshka133.football.feature_profile.screens.profile
 
-import androidx.compose.material.Scaffold
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -13,6 +13,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 internal class ProfileScreen : BaseScreen() {
 
+  @OptIn(ExperimentalFoundationApi::class)
   @Composable
   override fun Content() {
     val store =
@@ -28,10 +29,6 @@ internal class ProfileScreen : BaseScreen() {
           else -> Unit
         }
       }
-    }
-    Scaffold(
-      topBar = {},
-    ) { contentPadding ->
     }
   }
 }

@@ -16,6 +16,25 @@ internal object SearchReducer :
       is Ui.System.Start -> {
         // your code
       }
+      is Ui.Action.OnSearchTextFieldValueChange -> {
+        state {
+          copy(
+            searchTextFieldValue = event.value,
+            filteredApplications =
+              if (event.value.text.isNotBlank()) {
+                state.applications.filter { teamApplication ->
+                  teamApplication.title.lowercase().contains(event.value.text.lowercase())
+                }
+              } else state.applications
+          )
+        }
+      }
+      is Ui.Click.Filter -> {
+        // TODO: Implement this event.
+      }
+      is Ui.Click.CreateApplicationBanner -> {
+        // TODO: Implement this event.
+      }
     }
   }
 

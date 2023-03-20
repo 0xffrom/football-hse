@@ -1,20 +1,28 @@
 package goshka133.football.ui_kit.text_field
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
-import androidx.compose.material.TextField as MaterialTextField
 import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material.TextFieldDefaults.indicatorLine
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.graphics.takeOrElse
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import goshka133.football.ui_kit.theme.BodyRegular
 import goshka133.football.ui_kit.theme.DefaultShapes
@@ -26,10 +34,13 @@ fun FTextField(
   onValueChange: (TextFieldValue) -> Unit,
   modifier: Modifier = Modifier,
   placeholder: String? = null,
+  minHeight: Dp = TextFieldDefaults.MinHeight,
+  leadingIcon: @Composable (() -> Unit)? = null,
   visualTransformation: VisualTransformation = VisualTransformation.None,
   keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
   keyboardActions: KeyboardActions = KeyboardActions.Default,
   isError: Boolean = false,
+  singleLine: Boolean = false,
 ) {
   var isFocused by remember { mutableStateOf(false) }
 
@@ -44,10 +55,30 @@ fun FTextField(
       Modifier.border(width = 1.dp, color = color, shape = DefaultShapes.large)
     }
 
-  MaterialTextField(
+  val colors =
+    TextFieldDefaults.textFieldColors(
+      textColor = FootballColors.Text.Primary,
+      backgroundColor = FootballColors.Surface1,
+      placeholderColor = FootballColors.Text.Tertiary,
+      cursorColor = FootballColors.Text.Primary,
+      errorCursorColor = FootballColors.Accent.Red,
+      // Indicators ↴
+      focusedIndicatorColor = Color.Transparent,
+      disabledIndicatorColor = Color.Transparent,
+      errorIndicatorColor = Color.Transparent,
+      unfocusedIndicatorColor = Color.Transparent,
+    )
+  // If color is not provided via the text style, use content color as a default
+  val textColor = BodyRegular.color.takeOrElse { colors.textColor(true).value }
+  val mergedTextStyle = BodyRegular.merge(TextStyle(color = textColor))
+
+  val interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
+
+  @OptIn(ExperimentalMaterialApi::class)
+  BasicTextField(
+    value = value,
     modifier =
       modifier
-        .heightIn(min = 54.dp)
         .onFocusChanged { focusState -> isFocused = focusState.isFocused }
         .then(
           if (isFocused) {
@@ -55,28 +86,43 @@ fun FTextField(
           } else {
             Modifier
           }
+        )
+        .background(colors.backgroundColor(true).value, DefaultShapes.large)
+        .indicatorLine(true, isError, interactionSource, colors)
+        .defaultMinSize(
+          minWidth = TextFieldDefaults.MinWidth,
+          minHeight = minHeight,
         ),
-    value = value,
     onValueChange = onValueChange,
+    enabled = true,
+    readOnly = false,
+    textStyle = mergedTextStyle,
+    cursorBrush = SolidColor(colors.cursorColor(isError).value),
     visualTransformation = visualTransformation,
-    textStyle = BodyRegular,
-    placeholder = placeholder?.let { placeholderText -> { Placeholder(placeholderText) } },
-    colors =
-      TextFieldDefaults.textFieldColors(
-        textColor = FootballColors.Text.Primary,
-        backgroundColor = FootballColors.Surface1,
-        placeholderColor = FootballColors.Text.Tertiary,
-        cursorColor = FootballColors.Text.Primary,
-        errorCursorColor = FootballColors.Accent.Red,
-        // Indicators ↴
-        focusedIndicatorColor = Color.Transparent,
-        disabledIndicatorColor = Color.Transparent,
-        errorIndicatorColor = Color.Transparent,
-        unfocusedIndicatorColor = Color.Transparent,
-      ),
-    shape = DefaultShapes.large,
     keyboardOptions = keyboardOptions,
     keyboardActions = keyboardActions,
+    interactionSource = interactionSource,
+    singleLine = singleLine,
+    maxLines = if (singleLine) 1 else Int.MAX_VALUE,
+    minLines = 1,
+    decorationBox =
+      @Composable { innerTextField ->
+        // places leading icon, text field with label and placeholder, trailing icon
+        TextFieldDefaults.TextFieldDecorationBox(
+          value = value.text,
+          visualTransformation = visualTransformation,
+          innerTextField = innerTextField,
+          placeholder = placeholder?.let { placeholderText -> { Placeholder(placeholderText) } },
+          label = null,
+          leadingIcon = leadingIcon,
+          trailingIcon = null,
+          singleLine = singleLine,
+          enabled = true,
+          isError = isError,
+          interactionSource = interactionSource,
+          colors = colors
+        )
+      }
   )
 }
 

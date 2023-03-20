@@ -1,7 +1,13 @@
 package goshka133.football.feature_search.screens.search.presentation
 
+import androidx.compose.ui.text.input.TextFieldValue
+import goshka133.football.domain_search.dto.TeamApplication
+import goshka133.football.domain_search.dto.mockList
+
 internal data class SearchState(
-  val isRefreshing: Boolean = false,
+  val searchTextFieldValue: TextFieldValue = TextFieldValue(),
+  val applications: List<TeamApplication> = TeamApplication.mockList(),
+  val filteredApplications: List<TeamApplication> = applications,
 )
 
 internal sealed interface SearchEvent {
@@ -12,11 +18,14 @@ internal sealed interface SearchEvent {
     }
 
     object Click {
-      // your code
+
+      object Filter : Ui
+      object CreateApplicationBanner : Ui
     }
 
     object Action {
-      // your code
+
+      data class OnSearchTextFieldValueChange(val value: TextFieldValue) : Ui
     }
   }
 

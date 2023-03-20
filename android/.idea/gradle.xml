@@ -26,6 +26,7 @@
             <option value="$PROJECT_DIR$/sources/app" />
             <option value="$PROJECT_DIR$/sources/core/core_di" />
             <option value="$PROJECT_DIR$/sources/core/core_elmslie" />
+            <option value="$PROJECT_DIR$/sources/core/core_models" />
             <option value="$PROJECT_DIR$/sources/core/core_navigation" />
             <option value="$PROJECT_DIR$/sources/core/core_network" />
             <option value="$PROJECT_DIR$/sources/features/auth/domain_auth" />

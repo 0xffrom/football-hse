@@ -28,6 +28,8 @@ compose-ui-viewbinding = { module = "androidx.compose.ui:ui-viewbinding", versio
 
 coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version = "1.6.4" }
 
+coil = { module = "io.coil-kt:coil-compose", version = "2.2.2" }
+
 dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
 dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }
 datastore = { module = "androidx.datastore:datastore-preferences", version = "1.0.0" }
