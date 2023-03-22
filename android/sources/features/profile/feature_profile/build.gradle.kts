@@ -16,6 +16,7 @@ dependencies {
 
   implementation(libs.kotlin.immutable)
   implementation(libs.compose.activity)
+  implementation(libs.coil)
   implementation(libs.bundles.elmslie)
 
   implementation(project(":ui_kit"))

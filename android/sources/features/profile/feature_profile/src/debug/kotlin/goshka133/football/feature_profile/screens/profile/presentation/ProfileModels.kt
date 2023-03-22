@@ -1,7 +1,12 @@
 package goshka133.football.feature_profile.screens.profile.presentation
 
+import androidx.compose.runtime.Immutable
+import goshka133.football.domain_profile.dto.Profile
+import goshka133.football.domain_profile.dto.mock
+
+@Immutable
 internal data class ProfileState(
-  val isRefreshing: Boolean = false,
+  val profile: Profile = Profile.mock(),
 )
 
 internal sealed interface ProfileEvent {
@@ -29,6 +34,7 @@ internal sealed interface ProfileCommand {
   // your code
 }
 
+@Immutable
 internal sealed interface ProfileEffect {
   // your code
 }

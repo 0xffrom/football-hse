@@ -54,7 +54,6 @@ internal class MainScreen : BaseScreen() {
     }
 
     val eventReceiver = store.rememberEventReceiver()
-
     BackHandler { eventReceiver.invoke(MainEvent.Ui.Click.Back) }
 
     val state by store.states.collectAsState(store.currentState)

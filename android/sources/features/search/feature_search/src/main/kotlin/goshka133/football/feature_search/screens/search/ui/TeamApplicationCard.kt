@@ -8,6 +8,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -62,12 +63,14 @@ fun TeamApplicationCard(
             style = CaptionMMedium,
           )
         }
-        Icon(
-          modifier = Modifier.padding(top = 4.dp, end = 20.dp),
-          painter = painterResource(id = R.drawable.ic_20_more),
-          contentDescription = null,
-          tint = FootballColors.Icons.Tertiary,
-        )
+        IconButton(modifier = Modifier.padding(top = 4.dp, end = 20.dp).size(24.dp), onClick = { /*TODO*/}) {
+          Icon(
+            modifier = Modifier.size(20.dp),
+            painter = painterResource(id = R.drawable.ic_20_more),
+            contentDescription = null,
+            tint = FootballColors.Icons.Tertiary,
+          )
+        }
       }
 
       val tournaments =
