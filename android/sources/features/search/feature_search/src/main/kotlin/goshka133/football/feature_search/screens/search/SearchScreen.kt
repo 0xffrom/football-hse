@@ -54,7 +54,7 @@ internal class SearchScreen : BaseScreen() {
     val eventReceiver = store.rememberEventReceiver()
 
     Column {
-      Spacer(modifier = Modifier.height(12.dp))
+      Spacer(modifier = Modifier.statusBarsPadding().height(12.dp))
       Row(
         modifier = Modifier.padding(horizontal = 16.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp),
@@ -121,7 +121,7 @@ internal class SearchScreen : BaseScreen() {
         ) {
           Image(
             modifier = Modifier.size(width = 250.dp, height = 200.dp),
-            painter = painterResource(id = R.drawable.img_empty_applications),
+            painter = painterResource(id = R.drawable.img_not_found),
             contentDescription = null,
           )
           Text(

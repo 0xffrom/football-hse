@@ -21,6 +21,7 @@ dependencies {
 
   implementation(project(":ui_kit"))
 
+  implementation(project(":core_models"))
   implementation(project(":core_elmslie"))
   implementation(project(":core_navigation"))
 

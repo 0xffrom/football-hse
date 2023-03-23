@@ -1,6 +1,7 @@
 package goshka133.football.feature_profile.screens.profile.ui
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -61,7 +62,31 @@ internal fun ProfileCard(modifier: Modifier, profile: Profile) {
             contentScale = ContentScale.Crop,
           )
         }
-        Spacer(modifier = Modifier.height(16.dp))
+        if (profile.isCaptain) {
+          Text(
+            modifier =
+              Modifier
+                .padding(vertical = 12.dp)
+                .background(
+                  color = Color(0x1A4258FE),
+                  shape = RoundedCornerShape(4.dp),
+                )
+                .padding(horizontal = 6.dp, vertical = 2.dp),
+            text = "Капитан",
+            color = Color(0xFF3461FD),
+            style =
+              TextStyle(
+                fontFamily = FontFamily.SansSerif,
+                fontWeight = FontWeight.W500,
+                fontSize = 14.sp,
+                lineHeight = 20.sp,
+                letterSpacing = 1.sp,
+              ),
+          )
+        } else {
+
+          Spacer(modifier = Modifier.height(16.dp))
+        }
         Text(
           modifier = Modifier.fillMaxWidth(),
           text = profile.fullName,

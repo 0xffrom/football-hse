@@ -6,14 +6,26 @@ import androidx.compose.material.Shapes
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @Composable
 fun FootballTheme(content: @Composable () -> Unit) {
   CompositionLocalProvider(
     LocalFootballColors provides FootballColors,
   ) {
+    val systemUiController = rememberSystemUiController()
+
+    SideEffect {
+      systemUiController.setSystemBarsColor(
+        color = Color.Transparent,
+        darkIcons = true,
+      )
+    }
+
     MaterialTheme(
       colors =
         lightColors(

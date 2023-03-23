@@ -1,4 +1,5 @@
 [versions]
+accompanist = "0.28.0"
 agp = "7.4"
 compose = "1.4.0-alpha04"
 compose-compiler = "1.4.0"
@@ -13,6 +14,7 @@ kotest = "5.5.5"
 junit = "5.9.2"
 
 [libraries]
+accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist" }
 compose-animation = { module = "androidx.compose.animation:animation", version.ref = "compose" }
 compose-activity = { module = "androidx.activity:activity-compose", version = "1.7.0-alpha02" }
 compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }

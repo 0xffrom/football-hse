@@ -8,6 +8,7 @@ import androidx.compose.material.SnackbarHost
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
+import androidx.core.view.WindowCompat
 import com.github.terrakok.modo.Modo
 import com.github.terrakok.modo.Screen
 import com.github.terrakok.modo.stack.StackNavModel
@@ -25,6 +26,7 @@ class MainActivity : ComponentActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+    WindowCompat.setDecorFitsSystemWindows(window, false)
 
     val dependencies: RootDependencies = getComponent(this)
 

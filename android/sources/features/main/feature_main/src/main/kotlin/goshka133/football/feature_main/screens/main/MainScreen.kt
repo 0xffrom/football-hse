@@ -61,7 +61,7 @@ internal class MainScreen : BaseScreen() {
       bottomBar = {
         BottomNavigation(
           modifier = Modifier.navigationBarsPadding(),
-          elevation = 4.dp,
+          elevation = 0.dp,
           backgroundColor = FootballColors.Background,
         ) {
           state.tabs.fastForEach { type ->

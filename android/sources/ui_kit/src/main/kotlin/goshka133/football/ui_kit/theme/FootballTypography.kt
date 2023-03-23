@@ -38,6 +38,28 @@ val BodySemibold =
     lineHeight = 20.sp,
   )
 
+val Style16500 =
+  TextStyle(
+    fontWeight = FontWeight.W500,
+    fontSize = 16.sp,
+    lineHeight = 22.sp,
+  )
+
+val Style19600 =
+  TextStyle(
+    fontWeight = FontWeight.W500,
+    fontSize = 19.sp,
+    lineHeight = 24.sp,
+  )
+
+
+val Style14400 =
+  TextStyle(
+    fontWeight = FontWeight.W400,
+    fontSize = 14.sp,
+    lineHeight = 20.sp,
+  )
+
 val BodyRegular =
   TextStyle(
     fontFamily = FontFamily.Default,
