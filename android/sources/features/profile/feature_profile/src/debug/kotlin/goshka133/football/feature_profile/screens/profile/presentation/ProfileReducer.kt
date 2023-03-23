@@ -1,5 +1,6 @@
 package goshka133.football.feature_profile.screens.profile.presentation
 
+import goshka133.football.core_models.TeamApplication
 import goshka133.football.feature_profile.screens.profile.presentation.ProfileCommand as Command
 import goshka133.football.feature_profile.screens.profile.presentation.ProfileEffect as Effect
 import goshka133.football.feature_profile.screens.profile.presentation.ProfileEvent as Event
@@ -15,6 +16,16 @@ internal object ProfileReducer :
     when (event) {
       is Ui.System.Start -> {
         // your code
+      }
+      is Ui.Click.TeamApplication -> {
+        when (state.teamApplication) {
+          is TeamApplication.Registered -> {
+            // TODO
+          }
+          is TeamApplication.NotRegistered -> {
+            effects { +Effect.OpenTeamRegistration(profileFullName = state.profile.fullName) }
+          }
+        }
       }
     }
   }

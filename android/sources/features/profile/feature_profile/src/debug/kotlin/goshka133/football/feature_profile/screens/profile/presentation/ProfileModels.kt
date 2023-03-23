@@ -20,7 +20,8 @@ internal sealed interface ProfileEvent {
     }
 
     object Click {
-      // your code
+
+      object TeamApplication : Ui
     }
 
     object Action {
@@ -39,5 +40,6 @@ internal sealed interface ProfileCommand {
 
 @Immutable
 internal sealed interface ProfileEffect {
-  // your code
+
+  data class OpenTeamRegistration(val profileFullName: String) : ProfileEffect
 }

@@ -11,20 +11,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import com.github.terrakok.modo.stack.forward
+import goshka133.football.core_elmslie.rememberEventReceiver
 import goshka133.football.core_elmslie.rememberStore
-import goshka133.football.feature_profile.R
+import goshka133.football.core_navigation.LocalRouter
+import goshka133.football.feature_profile.screens.profile.presentation.ProfileEffect
+import goshka133.football.feature_profile.screens.profile.presentation.ProfileEvent
 import goshka133.football.feature_profile.screens.profile.presentation.ProfileStoreFactory
 import goshka133.football.feature_profile.screens.profile.ui.ProfileCard
 import goshka133.football.feature_profile.screens.profile.ui.TeamCreationApplicationCard
+import goshka133.football.feature_profile.screens.team_registration.TeamRegistrationScreen
 import goshka133.football.ui_kit.BaseScreen
 import goshka133.football.ui_kit.theme.FootballColors
+import goshka133.football.ui_kit.theme.Style16500
+import goshka133.football.ui_kit.theme.Style16600
 import goshka133.football.ui_kit.theme.Style19600
 import kotlinx.parcelize.Parcelize
 
@@ -39,11 +42,18 @@ internal class ProfileScreen : BaseScreen() {
         storeProvider = { storeFactory, _ -> storeFactory.create() },
       )
     val state by store.states().collectAsState(store.currentState)
+    val eventReceiver = store.rememberEventReceiver()
+    val router = LocalRouter.current
 
     LaunchedEffect(key1 = store) {
       store.effects().collect { effect ->
         when (effect) {
-          else -> Unit
+          is ProfileEffect.OpenTeamRegistration ->
+            router.forward(
+              TeamRegistrationScreen(
+                effect.profileFullName,
+              )
+            )
         }
       }
     }
@@ -62,25 +72,13 @@ internal class ProfileScreen : BaseScreen() {
             text = "Профиль",
             textAlign = TextAlign.Center,
             color = FootballColors.Text.Primary,
-            style =
-              TextStyle(
-                fontFamily = FontFamily.Default,
-                fontWeight = FontWeight.W500,
-                fontSize = 16.sp,
-                lineHeight = 22.sp,
-              ),
+            style = Style16500,
           )
           Text(
             modifier = Modifier.onSizeChanged { exitSize.value = it },
             text = "Выйти",
             color = FootballColors.Primary,
-            style =
-              TextStyle(
-                fontFamily = FontFamily.Default,
-                fontWeight = FontWeight.W600,
-                fontSize = 16.sp,
-                lineHeight = 22.sp,
-              ),
+            style = Style16600,
           )
         }
       }
@@ -98,9 +96,7 @@ internal class ProfileScreen : BaseScreen() {
           TeamCreationApplicationCard(
             modifier = Modifier.padding(horizontal = 16.dp),
             teamApplication = state.teamApplication,
-            onClick = {
-              // TODO
-            },
+            onClick = { eventReceiver.invoke(ProfileEvent.Ui.Click.TeamApplication) },
           )
           Spacer(modifier = Modifier.height(24.dp))
         }
