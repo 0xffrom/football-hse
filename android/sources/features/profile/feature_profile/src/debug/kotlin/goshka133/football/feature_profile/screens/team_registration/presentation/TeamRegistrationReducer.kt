@@ -17,6 +17,26 @@ internal object TeamRegistrationReducer :
       is Ui.Click.Back -> {
         effects { +Effect.Close }
       }
+      is Ui.Click.Avatar -> {
+        effects { +Effect.OpenPhotoPicker }
+      }
+      is Ui.Action.OnImageReceived -> {
+        if (event.uri != null && state.photoUri != event.uri) {
+          state { copy(photoUri = event.uri) }
+        }
+      }
+      is Ui.Action.OnTeamInfoTextFieldChange -> {
+        state { copy(teamInfoTextField = event.value) }
+      }
+      is Ui.Action.OnCaptainNameTextFieldChange -> {
+        state { copy(captainNameTextField = event.value) }
+      }
+      is Ui.Action.OnTeamNameTextFieldChange -> {
+        state { copy(teamNameTextField = event.value) }
+      }
+      is Ui.Click.Continue -> {
+        effects { +Effect.Close }
+      }
     }
   }
 

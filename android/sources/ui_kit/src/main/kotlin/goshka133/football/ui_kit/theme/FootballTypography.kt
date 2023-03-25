@@ -38,6 +38,13 @@ val BodySemibold =
     lineHeight = 20.sp,
   )
 
+val Style12500 =
+  TextStyle(
+    fontWeight = FontWeight.W500,
+    fontSize = 12.sp,
+    lineHeight = 16.sp,
+  )
+
 val Style16500 =
   TextStyle(
     fontWeight = FontWeight.W500,

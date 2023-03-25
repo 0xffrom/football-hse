@@ -1,7 +1,5 @@
 package goshka133.football.core_models
 
-import kotlin.random.Random
-
 sealed interface TeamApplication {
 
   object NotRegistered : TeamApplication
@@ -24,16 +22,18 @@ enum class TeamStatus {
 }
 
 fun TeamApplication.Companion.mock(): TeamApplication {
-  return if (Random.nextBoolean()) {
-    TeamApplication.NotRegistered
-  } else {
-    TeamApplication.Registered(
-      team =
-        Team(
-          id = "1",
-          name = "ФК Вышка",
-          status = TeamStatus.values().random(),
-        )
-    )
-  }
+  return TeamApplication.NotRegistered
+
+  //  return if (Random.nextBoolean()) {
+  //    TeamApplication.NotRegistered
+  //  } else {
+  //    TeamApplication.Registered(
+  //      team =
+  //        Team(
+  //          id = "1",
+  //          name = "ФК Вышка",
+  //          status = TeamStatus.values().random(),
+  //        )
+  //    )
+  //  }
 }
