@@ -18,11 +18,13 @@ internal object TeamRegistrationReducer :
         effects { +Effect.Close }
       }
       is Ui.Click.Avatar -> {
-        effects { +Effect.OpenPhotoPicker }
+        effects { +Effect.ShowBottomPhotoPickerSheet }
       }
       is Ui.Action.OnImageReceived -> {
         if (event.uri != null && state.photoUri != event.uri) {
           state { copy(photoUri = event.uri) }
+
+          effects { +Effect.HideBottomPhotoPickerSheet }
         }
       }
       is Ui.Action.OnTeamInfoTextFieldChange -> {
@@ -36,6 +38,12 @@ internal object TeamRegistrationReducer :
       }
       is Ui.Click.Continue -> {
         effects { +Effect.Close }
+      }
+      is Ui.Click.PhotoPickerSheetClose -> {
+        effects { +Effect.HideBottomPhotoPickerSheet }
+      }
+      is Ui.Click.PhotoPickerSheetContinue -> {
+        effects { +Effect.OpenPhotoPicker }
       }
     }
   }

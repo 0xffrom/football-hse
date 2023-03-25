@@ -1,5 +1,6 @@
 package goshka133.football.feature_profile.screens.team_registration
 
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -12,14 +13,13 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -41,6 +41,7 @@ import goshka133.football.feature_profile.screens.team_registration.presentation
 import goshka133.football.feature_profile.screens.team_registration.presentation.TeamRegistrationStoreFactory
 import goshka133.football.ui_kit.BaseScreen
 import goshka133.football.ui_kit.button.BottomBarStack
+import goshka133.football.ui_kit.button.ButtonStyle
 import goshka133.football.ui_kit.button.FButton
 import goshka133.football.ui_kit.text_field.FTextField
 import goshka133.football.ui_kit.theme.FootballColors
@@ -52,6 +53,7 @@ internal class TeamRegistrationScreen(
   private val profileFullName: String,
 ) : BaseScreen() {
 
+  @OptIn(ExperimentalMaterialApi::class)
   @Composable
   override fun Content() {
     val store =
@@ -74,6 +76,12 @@ internal class TeamRegistrationScreen(
         eventReceiver.invoke(TeamRegistrationEvent.Ui.Action.OnImageReceived(uri))
       }
 
+    val sheetState =
+      rememberModalBottomSheetState(
+        initialValue = ModalBottomSheetValue.Hidden,
+        skipHalfExpanded = true,
+      )
+
     LaunchedEffect(key1 = store) {
       store.effects().collect { effect ->
         when (effect) {
@@ -83,86 +91,107 @@ internal class TeamRegistrationScreen(
               PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
             )
           }
+          is TeamRegistrationEffect.ShowBottomPhotoPickerSheet -> {
+            sheetState.show()
+          }
+          is TeamRegistrationEffect.HideBottomPhotoPickerSheet -> {
+            sheetState.hide()
+          }
         }
       }
     }
 
-    Scaffold(
-      topBar = {
-        Box(
-          modifier = Modifier.systemBarsPadding().heightIn(min = 44.dp).padding(horizontal = 16.dp),
-          contentAlignment = Alignment.CenterStart,
-        ) {
-          IconButton(onClick = { eventReceiver.invoke(Click.Back) }) {
-            Icon(
-              painter = painterResource(id = goshka133.football.ui_kit.R.drawable.ic_24_back),
-              contentDescription = null,
-              tint = FootballColors.Icons.Primary,
+    ModalBottomSheetLayout(
+      sheetState = sheetState,
+      sheetShape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp),
+      sheetBackgroundColor = Color.White,
+      sheetContent = {
+        SheetContent(
+          onCloseClick = { eventReceiver.invoke(Click.PhotoPickerSheetClose) },
+          onContinueClick = { eventReceiver.invoke(Click.PhotoPickerSheetContinue) },
+        )
+      }
+    ) {
+      Scaffold(
+        topBar = {
+          Box(
+            modifier =
+              Modifier.systemBarsPadding().heightIn(min = 44.dp).padding(horizontal = 16.dp),
+            contentAlignment = Alignment.CenterStart,
+          ) {
+            IconButton(onClick = { eventReceiver.invoke(Click.Back) }) {
+              Icon(
+                painter = painterResource(id = goshka133.football.ui_kit.R.drawable.ic_24_back),
+                contentDescription = null,
+                tint = FootballColors.Icons.Primary,
+              )
+            }
+            Text(
+              modifier = Modifier.fillMaxWidth(),
+              text = "Регистрация команды",
+              textAlign = TextAlign.Center,
+              color = FootballColors.Text.Primary,
+              style = Style16500,
             )
           }
-          Text(
-            modifier = Modifier.fillMaxWidth(),
-            text = "Регистрация команды",
-            textAlign = TextAlign.Center,
-            color = FootballColors.Text.Primary,
-            style = Style16500,
-          )
-        }
-      },
-      bottomBar = {
-        BottomBarStack {
-          FButton(
-            text = "Зарегистрировать",
-            isLoading = state.isLoading,
-          ) {
-            eventReceiver(Click.Continue)
+        },
+        bottomBar = {
+          BottomBarStack {
+            FButton(
+              text = "Зарегистрировать",
+              isLoading = state.isLoading,
+            ) {
+              eventReceiver(Click.Continue)
+            }
           }
         }
-      }
-    ) { contentPadding ->
-      LazyColumn(contentPadding = contentPadding) {
-        item {
-          AvatarBox(
-            state = state,
-            eventReceiver = eventReceiver,
-          )
-          Spacer(modifier = Modifier.height(36.dp))
-        }
-        item {
-          FormField(
-            modifier = Modifier.padding(horizontal = 16.dp),
-            textFieldValue = state.teamNameTextField,
-            onValueChange = {
-              eventReceiver.invoke(TeamRegistrationEvent.Ui.Action.OnTeamNameTextFieldChange(it))
-            },
-            title = "Название команды",
-            placeholder = "Введите название",
-          )
-          Spacer(modifier = Modifier.height(24.dp))
-        }
-        item {
-          FormField(
-            modifier = Modifier.padding(horizontal = 16.dp),
-            textFieldValue = state.teamInfoTextField,
-            onValueChange = {
-              eventReceiver.invoke(TeamRegistrationEvent.Ui.Action.OnTeamInfoTextFieldChange(it))
-            },
-            title = "Информация о команде",
-            placeholder = "Расскажите в каких лигах принимает участие Ваша команда",
-          )
-          Spacer(modifier = Modifier.height(24.dp))
-        }
-        item {
-          FormField(
-            modifier = Modifier.padding(horizontal = 16.dp),
-            textFieldValue = state.captainNameTextField,
-            onValueChange = {
-              eventReceiver.invoke(TeamRegistrationEvent.Ui.Action.OnCaptainNameTextFieldChange(it))
-            },
-            title = "Капитан команды",
-            placeholder = "Введите имя капитана команды",
-          )
-          Spacer(modifier = Modifier.height(24.dp))
+      ) { contentPadding ->
+        LazyColumn(contentPadding = contentPadding) {
+          item {
+            AvatarBox(
+              state = state,
+              eventReceiver = eventReceiver,
+            )
+            Spacer(modifier = Modifier.height(36.dp))
+          }
+          item {
+            FormField(
+              modifier = Modifier.padding(horizontal = 16.dp),
+              textFieldValue = state.teamNameTextField,
+              onValueChange = {
+                eventReceiver.invoke(TeamRegistrationEvent.Ui.Action.OnTeamNameTextFieldChange(it))
+              },
+              title = "Название команды",
+              placeholder = "Введите название",
+            )
+            Spacer(modifier = Modifier.height(24.dp))
+          }
+          item {
+            FormField(
+              modifier = Modifier.padding(horizontal = 16.dp),
+              textFieldValue = state.teamInfoTextField,
+              onValueChange = {
+                eventReceiver.invoke(TeamRegistrationEvent.Ui.Action.OnTeamInfoTextFieldChange(it))
+              },
+              title = "Информация о команде",
+              placeholder = "Расскажите в каких лигах принимает участие Ваша команда",
+            )
+            Spacer(modifier = Modifier.height(24.dp))
+          }
+          item {
+            FormField(
+              modifier = Modifier.padding(horizontal = 16.dp),
+              textFieldValue = state.captainNameTextField,
+              onValueChange = {
+                eventReceiver.invoke(
+                  TeamRegistrationEvent.Ui.Action.OnCaptainNameTextFieldChange(it)
+                )
+              },
+              title = "Капитан команды",
+              placeholder = "Введите имя капитана команды",
+            )
+            Spacer(modifier = Modifier.height(24.dp))
+          }
         }
       }
     }
@@ -244,6 +273,49 @@ internal class TeamRegistrationScreen(
         onValueChange = onValueChange,
         placeholder = placeholder,
       )
+    }
+  }
+
+  @Composable
+  private fun SheetContent(
+    onContinueClick: () -> Unit,
+    onCloseClick: () -> Unit,
+  ) {
+    BackHandler(onBack = onCloseClick)
+
+    Column(
+      modifier =
+        Modifier.padding(horizontal = 16.dp, vertical = 12.dp).imePadding().navigationBarsPadding(),
+    ) {
+      Text(
+        modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
+        text = "Логотип",
+        textAlign = TextAlign.Start,
+        color = FootballColors.Text.Primary,
+        style =
+          TextStyle(
+            fontWeight = FontWeight.W600,
+            fontSize = 19.sp,
+            lineHeight = 24.sp,
+          ),
+      )
+      Spacer(modifier = Modifier.height(4.dp))
+      Text(
+        modifier = Modifier.fillMaxWidth(),
+        text = "Загрузите логотип Вашей команды",
+        textAlign = TextAlign.Start,
+        color = FootballColors.Text.Primary,
+        style =
+          TextStyle(
+            fontWeight = FontWeight.W400,
+            fontSize = 16.sp,
+            lineHeight = 22.sp,
+          ),
+      )
+      Spacer(modifier = Modifier.height(12.dp))
+      FButton(text = "Выбрать", buttonStyle = ButtonStyle.Primary, onClick = onContinueClick)
+      Spacer(modifier = Modifier.height(12.dp))
+      FButton(text = "Отмена", buttonStyle = ButtonStyle.Secondary, onClick = onCloseClick)
     }
   }
 }

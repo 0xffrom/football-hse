@@ -30,6 +30,9 @@ internal sealed interface TeamRegistrationEvent {
       object Avatar : Ui
 
       object Continue : Ui
+
+      object PhotoPickerSheetContinue: Ui
+      object PhotoPickerSheetClose: Ui
     }
 
     object Action {
@@ -53,4 +56,7 @@ internal sealed interface TeamRegistrationEffect {
 
   object Close : TeamRegistrationEffect
   object OpenPhotoPicker : TeamRegistrationEffect
+
+  object ShowBottomPhotoPickerSheet : TeamRegistrationEffect
+  object HideBottomPhotoPickerSheet : TeamRegistrationEffect
 }
