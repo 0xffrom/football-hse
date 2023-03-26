@@ -22,8 +22,10 @@ internal object MainReducer :
         }
       }
       is Ui.Click.BottomBarTab -> {
+        if(state.selectedTab == event.tab) return
+
         state {
-          copy(selectedTab = event.tab)
+          copy(selectedTab = event.tab, previousTab = state.selectedTab)
         }
       }
     }

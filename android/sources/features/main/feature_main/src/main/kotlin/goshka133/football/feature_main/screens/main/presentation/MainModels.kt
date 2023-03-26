@@ -6,6 +6,7 @@ import kotlinx.collections.immutable.toImmutableList
 
 internal data class MainState(
   val selectedTab: BottomBarTabType,
+  val previousTab: BottomBarTabType = selectedTab,
   val tabs: ImmutableList<BottomBarTabType> = BottomBarTabType.values().toList().toImmutableList(),
 )
 
