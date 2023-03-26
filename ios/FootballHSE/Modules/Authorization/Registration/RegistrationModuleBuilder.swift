@@ -13,16 +13,24 @@ public final class RegistrationModuleBuilder {
 
     private weak var output: RegistrationModuleOutput?
 
+    private let networkService: INetworkService
+
     // MARK: Lifecycle
 
-    public init(output: RegistrationModuleOutput?) {
+    public init(
+        output: RegistrationModuleOutput?,
+        networkService: INetworkService
+    ) {
         self.output = output
+        self.networkService = networkService
     }
 
     // MARK: Public Methods
 
     public func build() -> UIViewController {
-        let interactor = RegistrationInteractor()
+        let interactor = RegistrationInteractor(
+            networkService: networkService
+        )
         let presenter = RegistrationPresenter(interactor: interactor)
 
         let storyboard = UIStoryboard(name: "Registration", bundle: nil)

@@ -128,6 +128,35 @@ extension AuthorizationCodeEnteringViewController: AuthorizationCodeEnteringView
         return valid
     }
 
+    func getCode() -> String? {
+        var code = String()
+        codeFields.forEach { field in
+            guard let input = field?.inputValueWithoutMask else { return }
+            code.append(input)
+        }
+        return code
+    }
+
+    func showWrongCodeAlert() {
+        let alert = UIAlertController(title: "Введен неверный код", message: "Попробуйте еще раз", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    func showNetworkErrorAlert() {
+        let alert = UIAlertController(title: "Ошибка сети", message: "Проверьте подключение и повторите попытку", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    func setLoadingState() {
+        nextButton.isLoading = true
+    }
+
+    func removeLoadingState() {
+        nextButton.isLoading = false
+    }
+
     func setErrorState() {
         UIView.animate(withDuration: 0.3) { [weak self] in
             guard let strongSelf = self else { return }

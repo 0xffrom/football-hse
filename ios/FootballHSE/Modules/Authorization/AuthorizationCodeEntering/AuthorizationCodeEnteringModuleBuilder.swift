@@ -13,16 +13,24 @@ public final class AuthorizationCodeEnteringModuleBuilder {
 
     private weak var output: AuthorizationCodeEnteringModuleOutput?
 
+    private let networkService: INetworkService
+
     // MARK: Lifecycle
 
-    public init(output: AuthorizationCodeEnteringModuleOutput?) {
+    public init(
+        output: AuthorizationCodeEnteringModuleOutput?,
+        networkService: INetworkService
+    ) {
         self.output = output
+        self.networkService = networkService
     }
 
     // MARK: Public Methods
 
     public func build() -> UIViewController {
-        let interactor = AuthorizationCodeEnteringInteractor()
+        let interactor = AuthorizationCodeEnteringInteractor(
+            networkService: networkService
+        )
         let presenter = AuthorizationCodeEnteringPresenter(interactor: interactor)
 
         let storyboard = UIStoryboard(name: "AuthorizationCodeEntering", bundle: nil)
