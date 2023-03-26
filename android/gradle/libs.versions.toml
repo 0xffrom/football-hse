@@ -1,14 +1,14 @@
 [versions]
 accompanist = "0.28.0"
 agp = "7.4"
-compose = "1.4.0-alpha04"
-compose-compiler = "1.4.0"
+compose = "1.4.0"
+compose-compiler = "1.4.4"
 dagger = "2.44.2"
 elmslie = "3.0.0-alpha06"
 lifecycle = "2.5.1"
 moshi = "1.14.0"
-kotlin = "1.8.0"
-ksp = "1.8.0-1.0.8"
+kotlin = "1.8.10"
+ksp = "1.8.10-1.0.9"
 okhttp = "4.10.0"
 kotest = "5.5.5"
 junit = "5.9.2"
@@ -47,7 +47,7 @@ lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel
 kotlin-parcelize = { module = "org.jetbrains.kotlin:kotlin-parcelize-runtime", version.ref = "kotlin" }
 kotlin-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version = "0.3.5" }
 
-modo = { module = "com.github.andreyromanyuk:Modo", version = "0.0.1" }
+modo = { module = "com.github.andreyromanyuk:Modo", version = "0.0.3" }
 moshi = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshi" }
 moshi-compiler = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshi" }
 

@@ -7,7 +7,7 @@ import goshka133.football.core_elmslie.StoreFactory
 import goshka133.football.core_elmslie.StoreFactoryKey
 import goshka133.football.domain_team.TeamFeatureApi
 import goshka133.football.feature_team.feature_api.TeamFeatureApiImpl
-import goshka133.football.feature_team.screens.team_details.presentation.TeamDetailsStoreFactory
+import goshka133.football.feature_team.screens.team_details.presentation.TeamApplicationDetailsStoreFactory
 
 @Module
 abstract class TeamFeatureModule {
@@ -16,6 +16,6 @@ abstract class TeamFeatureModule {
 
   @Binds
   @IntoMap
-  @StoreFactoryKey(TeamDetailsStoreFactory::class)
-  internal abstract fun TeamDetailsStoreFactory.bindTeamDetailsStoreFactory(): StoreFactory
+  @StoreFactoryKey(TeamApplicationDetailsStoreFactory::class)
+  internal abstract fun TeamApplicationDetailsStoreFactory.bindTeamApplicationDetailsStoreFactory(): StoreFactory
 }

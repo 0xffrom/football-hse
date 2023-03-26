@@ -42,7 +42,7 @@ fun TeamApplicationCard(
   ) {
     Column(
       modifier = Modifier.clickable(onClick = onClick).padding(vertical = 20.dp),
-      verticalArrangement = Arrangement.spacedBy(8.dp),
+      verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
       Row(
         horizontalArrangement = Arrangement.spacedBy(4.dp),
@@ -63,7 +63,10 @@ fun TeamApplicationCard(
             style = CaptionMMedium,
           )
         }
-        IconButton(modifier = Modifier.padding(top = 4.dp, end = 20.dp).size(24.dp), onClick = { /*TODO*/}) {
+        IconButton(
+          modifier = Modifier.padding(top = 4.dp, end = 20.dp).size(24.dp),
+          onClick = { /*TODO*/}
+        ) {
           Icon(
             modifier = Modifier.size(20.dp),
             painter = painterResource(id = R.drawable.ic_20_more),
@@ -114,10 +117,9 @@ fun TeamApplicationCard(
               color = Color(0xFF3461FD),
               style =
                 TextStyle(
-                  fontFamily = FontFamily.SansSerif,
                   fontWeight = FontWeight.W500,
-                  fontSize = 10.sp,
-                  lineHeight = 14.sp,
+                  fontSize = 12.sp,
+                  lineHeight = 18.sp,
                   letterSpacing = 1.sp,
                 ),
             )

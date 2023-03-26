@@ -1,3 +1,8 @@
 package goshka133.football.feature_search.di
 
-interface SearchFeatureDependencies
+import goshka133.football.domain_team.TeamFeatureApi
+
+interface SearchFeatureDependencies {
+
+    val teamFeatureApi: TeamFeatureApi
+}

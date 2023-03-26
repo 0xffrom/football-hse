@@ -1,4 +1,4 @@
-package goshka133.football.feature_profile.ui
+package goshka133.football.ui_kit.toolbar
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
@@ -20,7 +20,7 @@ fun Toolbar(
   title: String,
 ) {
   Box(
-    modifier = Modifier.systemBarsPadding().heightIn(min = 44.dp).padding(horizontal = 16.dp),
+    modifier = Modifier.statusBarsPadding().heightIn(min = 44.dp).padding(horizontal = 16.dp),
     contentAlignment = Alignment.CenterStart,
   ) {
     IconButton(onClick = onBackClick) {

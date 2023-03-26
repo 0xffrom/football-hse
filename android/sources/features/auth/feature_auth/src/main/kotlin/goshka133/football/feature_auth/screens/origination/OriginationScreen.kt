@@ -15,6 +15,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
@@ -82,7 +83,9 @@ internal class OriginationScreen : BaseScreen() {
 
     Scaffold(
       bottomBar = {
-        BottomBarStack {
+        BottomBarStack(
+          backgroundColor = Color.White,
+        ) {
           FButton(
             text = "Продолжить",
             isLoading = state.isLoading,

@@ -1,5 +1,6 @@
 package goshka133.football.feature_profile.screens.team_registration
 
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -38,6 +39,7 @@ import goshka133.football.ui_kit.BaseScreen
 import goshka133.football.ui_kit.button.BottomBarStack
 import goshka133.football.ui_kit.button.FButton
 import goshka133.football.ui_kit.theme.FootballColors
+import goshka133.football.ui_kit.toolbar.Toolbar
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -69,6 +71,8 @@ internal class TeamRegistrationScreen(
         initialValue = ModalBottomSheetValue.Hidden,
         skipHalfExpanded = true,
       )
+
+    BackHandler { eventReceiver.invoke(Click.Back) }
 
     LaunchedEffect(key1 = store) {
       store.effects().collect { effect ->

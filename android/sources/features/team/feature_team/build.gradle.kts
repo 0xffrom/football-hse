@@ -14,6 +14,7 @@ dependencies {
   implementation(libs.lifecycle.viewmodel)
   implementation(libs.lifecycle.viewmodel.compose)
 
+  implementation(libs.coil)
   implementation(libs.kotlin.immutable)
   implementation(libs.compose.activity)
   implementation(libs.bundles.elmslie)

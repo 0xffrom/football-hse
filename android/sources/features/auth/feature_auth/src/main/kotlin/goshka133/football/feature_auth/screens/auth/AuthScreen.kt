@@ -5,6 +5,7 @@ import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Scaffold
+import androidx.compose.material.SnackbarDuration
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -49,7 +50,7 @@ internal class AuthScreen : BaseScreen() {
           is AuthEffect.Close -> router.back()
           is AuthEffect.OpenOriginationScreen -> router.newStack(OriginationScreen())
           is AuthEffect.ShowError -> {
-            effect.error.message?.let { snackbarHostState.showSnackbar(it) }
+            effect.error.message?.let { snackbarHostState.showSnackbar(it, duration = SnackbarDuration.Short) }
           }
         }
       }

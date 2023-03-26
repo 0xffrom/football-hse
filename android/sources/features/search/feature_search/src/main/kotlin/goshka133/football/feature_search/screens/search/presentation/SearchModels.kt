@@ -21,6 +21,8 @@ internal sealed interface SearchEvent {
 
       object Filter : Ui
       object CreateApplicationBanner : Ui
+
+      data class TeamApplicationCard(val application: TeamApplication): Ui
     }
 
     object Action {
@@ -39,5 +41,6 @@ internal sealed interface SearchCommand {
 }
 
 internal sealed interface SearchEffect {
-  // your code
+
+  data class OpenTeamApplicationDetails(val application: TeamApplication): SearchEffect
 }

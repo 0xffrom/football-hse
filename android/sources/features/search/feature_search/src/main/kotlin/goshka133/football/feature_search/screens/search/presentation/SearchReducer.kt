@@ -35,6 +35,11 @@ internal object SearchReducer :
       is Ui.Click.CreateApplicationBanner -> {
         // TODO: Implement this event.
       }
+      is Ui.Click.TeamApplicationCard -> {
+        effects {
+          +Effect.OpenTeamApplicationDetails(event.application)
+        }
+      }
     }
   }
 

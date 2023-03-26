@@ -23,6 +23,7 @@ dependencies {
 
   implementation(project(":core_elmslie"))
   implementation(project(":core_navigation"))
+  implementation(project(":core_di"))
   implementation(project(":core_models"))
 
   implementation(project(":domain_search"))

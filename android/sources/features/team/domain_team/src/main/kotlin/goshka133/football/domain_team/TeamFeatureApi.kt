@@ -4,5 +4,5 @@ import com.github.terrakok.modo.Screen
 
 interface TeamFeatureApi {
 
-  fun getDetailsScreen(): Screen
+  fun getApplicationDetailsScreen(application: TeamApplication): Screen
 }

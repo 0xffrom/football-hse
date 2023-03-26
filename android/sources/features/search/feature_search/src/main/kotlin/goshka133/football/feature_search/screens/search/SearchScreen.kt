@@ -17,9 +17,14 @@ import androidx.compose.ui.BiasAlignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.github.terrakok.modo.stack.forward
+import goshka133.football.core_di.rememberDependencies
 import goshka133.football.core_elmslie.rememberEventReceiver
 import goshka133.football.core_elmslie.rememberStore
+import goshka133.football.core_navigation.LocalRouter
 import goshka133.football.feature_search.R
+import goshka133.football.feature_search.di.SearchFeatureDependencies
+import goshka133.football.feature_search.screens.search.presentation.SearchEffect
 import goshka133.football.feature_search.screens.search.presentation.SearchEvent
 import goshka133.football.feature_search.screens.search.presentation.SearchStoreFactory
 import goshka133.football.feature_search.screens.search.ui.CreateApplicationBanner
@@ -43,11 +48,16 @@ internal class SearchScreen : BaseScreen() {
         storeProvider = { storeFactory, _ -> storeFactory.create() },
       )
     val state by store.states().collectAsState(store.currentState)
-
+    val dependencies: SearchFeatureDependencies = rememberDependencies()
+    val router = LocalRouter.current
     LaunchedEffect(key1 = store) {
       store.effects().collect { effect ->
         when (effect) {
-          else -> Unit
+          is SearchEffect.OpenTeamApplicationDetails -> {
+            router.forward(
+              dependencies.teamFeatureApi.getApplicationDetailsScreen(effect.application)
+            )
+          }
         }
       }
     }
@@ -100,11 +110,15 @@ internal class SearchScreen : BaseScreen() {
       if (state.filteredApplications.isNotEmpty()) {
         Spacer(modifier = Modifier.height(12.dp))
         LazyColumn {
-          items(state.filteredApplications) { application ->
+          items(state.filteredApplications, key = { it.id }) { application ->
             TeamApplicationCard(
-              modifier = Modifier.padding(horizontal = 16.dp),
+              modifier = Modifier.padding(horizontal = 16.dp).animateItemPlacement(),
               application = application,
-              onClick = { /*TODO*/}
+              onClick = {
+                eventReceiver.invoke(
+                  SearchEvent.Ui.Click.TeamApplicationCard(application = application)
+                )
+              }
             )
             Spacer(modifier = Modifier.height(12.dp))
           }

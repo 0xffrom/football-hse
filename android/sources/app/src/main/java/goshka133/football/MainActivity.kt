@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.SnackbarHost
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.core.view.WindowCompat
 import com.github.terrakok.modo.Modo
@@ -33,7 +34,7 @@ class MainActivity : ComponentActivity() {
     val dependencies: RootDependencies = getComponent(this)
 
     // TODO: a temporary solution instead of 'rootScreen = dependencies.authFeatureApi.getScreen()'
-    val rootStackView = RootStackView(rootScreen = dependencies.mainFeatureApi.getScreen())
+    val rootStackView = RootStackView(rootScreen = dependencies.authFeatureApi.getScreen())
 
     rootScreen = Modo.init(savedInstanceState, rootScreen) { rootStackView }
 
@@ -43,14 +44,15 @@ class MainActivity : ComponentActivity() {
         LocalSnackBarHostState provides rememberSnackBarHostState(),
       ) {
         FootballTheme {
-          Column(
+          Box(
             modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Bottom,
+            contentAlignment = Alignment.TopCenter,
           ) {
-            Box(modifier = Modifier.fillMaxSize().weight(1f)) { rootScreen?.Content() }
-            Box(modifier = Modifier.fillMaxWidth()) {
-              SnackbarHost(hostState = LocalSnackBarHostState.current)
-            }
+            Box(modifier = Modifier.fillMaxSize()) { rootScreen?.Content() }
+            SnackbarHost(
+              modifier = Modifier.fillMaxWidth().statusBarsPadding(),
+              hostState = LocalSnackBarHostState.current
+            )
           }
         }
       }
@@ -66,8 +68,6 @@ class RootStackView(private val stackNavModel: StackNavModel) : StackScreen(stac
   @OptIn(ExperimentalAnimationApi::class)
   @Composable
   override fun Content() {
-    TopScreenContent {
-      ScreenTransition()
-    }
+    TopScreenContent { ScreenTransition() }
   }
 }

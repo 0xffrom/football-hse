@@ -1,13 +1,12 @@
 package goshka133.football.feature_profile.screens.edit_profile
 
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
@@ -18,7 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberAsyncImagePainter
+import coil.compose.AsyncImage
 import com.github.terrakok.modo.stack.back
 import goshka133.football.core_elmslie.rememberEventReceiver
 import goshka133.football.core_elmslie.rememberStore
@@ -39,6 +38,7 @@ import goshka133.football.ui_kit.BaseScreen
 import goshka133.football.ui_kit.button.BottomBarStack
 import goshka133.football.ui_kit.button.FButton
 import goshka133.football.ui_kit.theme.FootballColors
+import goshka133.football.ui_kit.toolbar.Toolbar
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -93,6 +93,8 @@ internal class EditProfileScreen(
         }
       }
     }
+
+    BackHandler { eventReceiver.invoke(Click.Back) }
 
     ModalBottomSheetLayout(
       sheetState = sheetState,
@@ -215,23 +217,20 @@ private fun AvatarBox(
         onClick = onClick,
       )
     } else {
-      Image(
+      AsyncImage(
         modifier =
           Modifier.size(size.value)
             .clip(CircleShape)
             .border(width = 1.dp, color = FootballColors.Primary, shape = CircleShape)
             .clickable(onClick = onClick),
-        painter =
-          rememberAsyncImagePainter(
-            model =
-              if (state.profile.imageUrl.isNullOrBlank()) {
-                state.loadedImageUri
-              } else {
-                state.profile.imageUrl
-              },
-            contentScale = ContentScale.Crop
-          ),
+        model =
+          if (state.profile.imageUrl.isNullOrBlank()) {
+            state.loadedImageUri
+          } else {
+            state.profile.imageUrl
+          },
         contentDescription = null,
+        contentScale = ContentScale.Crop,
       )
     }
   }

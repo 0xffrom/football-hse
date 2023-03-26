@@ -24,6 +24,12 @@ data class TeamApplication(
 
 fun TeamApplication.Companion.mockList(): List<TeamApplication> {
   return buildList {
+    val contact = "По всем вопросам писать в личные сообщения: https://vk.com/id0000000000"
+    val description =
+      "Как команда, мы предлагаем:\n" +
+        "• регулярные тренировки с тренером на полях спорткомплекса “Лужники”\n" +
+        "• стремление прогрессировать, занимать первые места во всех турнирах под эгидой чемпионата Вышки, так мы прошли за полтора года путь от низших мест Молодёжной Лиги до верхового футбола Вышки, и выиграли уже 4 комплекта медалей\n" +
+        "• самый молодой коллектив в верховом футболе НИУ ВШЭ, при этом дружный и амбициозный"
     add(
       TeamApplication(
         id = "1",
@@ -33,8 +39,8 @@ fun TeamApplication.Companion.mockList(): List<TeamApplication> {
         playerPosition = listOf(PlayerPosition.Goalkeeper, PlayerPosition.RightMidfielder),
         tournaments =
           listOf(Tournament.SecondLeague, Tournament.MajorLeague, Tournament.FutsalPremierLeague),
-        contact = null,
-        description = null,
+        contact = contact,
+        description = description,
       )
     )
     add(
@@ -57,8 +63,8 @@ fun TeamApplication.Companion.mockList(): List<TeamApplication> {
             Tournament.FutsalSecondLeague,
             Tournament.FutsalPremierLeague,
           ),
-        contact = null,
-        description = null,
+        contact = contact,
+        description = description,
       )
     )
     add(
@@ -72,8 +78,8 @@ fun TeamApplication.Companion.mockList(): List<TeamApplication> {
           listOf(
             Tournament.SecondLeague,
           ),
-        contact = null,
-        description = null,
+        contact = contact,
+        description = description,
       )
     )
     add(
@@ -84,8 +90,8 @@ fun TeamApplication.Companion.mockList(): List<TeamApplication> {
         imageUrl = "https://i.ibb.co/vY69NRW/Group-14.png",
         playerPosition = listOf(PlayerPosition.Goalkeeper),
         tournaments = listOf(Tournament.SecondLeague),
-        contact = null,
-        description = null,
+        contact = contact,
+        description = description,
       )
     )
     add(
@@ -102,8 +108,8 @@ fun TeamApplication.Companion.mockList(): List<TeamApplication> {
           listOf(
             Tournament.FutsalFirstLeague,
           ),
-        contact = null,
-        description = null,
+        contact = contact,
+        description = description,
       )
     )
     add(
@@ -118,8 +124,8 @@ fun TeamApplication.Companion.mockList(): List<TeamApplication> {
             Tournament.SummerCup,
             Tournament.AutumnCup,
           ),
-        contact = null,
-        description = null,
+        contact = contact,
+        description = description,
       )
     )
   }

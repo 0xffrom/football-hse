@@ -1,6 +1,30 @@
 plugins { id("goshka133.football.app") }
 
-android { namespace = "goshka133.football.app" }
+android {
+  namespace = "goshka133.football.app"
+
+  buildTypes {
+    debug {
+      isDebuggable = true
+      isMinifyEnabled = false
+      isShrinkResources = false
+
+      signingConfig = (signingConfigs.getByName("debug"))
+    }
+
+    release {
+      isDebuggable = false
+      isMinifyEnabled = false
+      isShrinkResources = false
+      proguardFiles(
+        getDefaultProguardFile("proguard-android-optimize.txt"),
+        "proguard-rules.pro",
+      )
+      matchingFallbacks.add("debug")
+      signingConfig = (signingConfigs.getByName("debug"))
+    }
+  }
+}
 
 dependencies {
   implementation(libs.lifecycle.compiler)
@@ -12,6 +36,8 @@ dependencies {
   implementation(libs.coroutines)
 
   implementation(libs.dagger)
+  implementation(libs.coil)
+
   kapt(libs.dagger.compiler)
 
   implementation(libs.modo)

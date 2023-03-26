@@ -3,6 +3,8 @@ package goshka133.football.feature_profile.screens.profile
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
@@ -62,7 +64,7 @@ internal class ProfileScreen : BaseScreen() {
     Scaffold(
       topBar = {
         Row(
-          modifier = Modifier.systemBarsPadding().heightIn(min = 44.dp).padding(horizontal = 16.dp),
+          modifier = Modifier.statusBarsPadding().heightIn(min = 44.dp).padding(horizontal = 16.dp),
           verticalAlignment = Alignment.CenterVertically,
         ) {
           val exitSize = remember { mutableStateOf(IntSize.Zero) }
@@ -84,7 +86,7 @@ internal class ProfileScreen : BaseScreen() {
         }
       }
     ) { contentPadding ->
-      LazyColumn(contentPadding = contentPadding) {
+      LazyColumn(state = rememberLazyListState(), contentPadding = contentPadding) {
         item { Spacer(modifier = Modifier.height(12.dp)) }
         item {
           ProfileCard(

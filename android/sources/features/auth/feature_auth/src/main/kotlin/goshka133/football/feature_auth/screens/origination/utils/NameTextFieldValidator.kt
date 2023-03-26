@@ -1,7 +1,7 @@
 package goshka133.football.feature_auth.screens.origination.utils
 
 private const val MinNameLength = 2
-private const val MaxNameLength = 20
+private const val MaxNameLength = 40
 
 internal object NameTextFieldValidator {
 
@@ -10,6 +10,6 @@ internal object NameTextFieldValidator {
 
     return (trimmeredValue.length in MinNameLength until MaxNameLength) &&
       !trimmeredValue.any(Char::isDigit) &&
-      trimmeredValue.all(Char::isLetterOrDigit)
+      trimmeredValue.all { it.isLetterOrDigit() || it == ' ' }
   }
 }
