@@ -1,19 +1,16 @@
 package goshka133.football.feature_profile.screens.team_registration.presentation
 
 import android.net.Uri
-import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
+import goshka133.football.domain_profile.dto.Profile
+import goshka133.football.ui_kit.text_field.toTextFieldValue
 
 internal data class TeamRegistrationState(
-  val profileFullName: String,
+  val profile: Profile,
   val photoUri: Uri? = null,
   val teamNameTextField: TextFieldValue = TextFieldValue(),
   val teamInfoTextField: TextFieldValue = TextFieldValue(),
-  val captainNameTextField: TextFieldValue =
-    TextFieldValue(
-      text = profileFullName,
-      selection = TextRange(profileFullName.length),
-    ),
+  val captainNameTextField: TextFieldValue = profile.fullName.toTextFieldValue(),
   val isLoading: Boolean = false,
 )
 
@@ -31,8 +28,8 @@ internal sealed interface TeamRegistrationEvent {
 
       object Continue : Ui
 
-      object PhotoPickerSheetContinue: Ui
-      object PhotoPickerSheetClose: Ui
+      object PhotoPickerSheetContinue : Ui
+      object PhotoPickerSheetClose : Ui
     }
 
     object Action {

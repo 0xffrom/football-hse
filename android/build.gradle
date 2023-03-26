@@ -6,4 +6,11 @@ plugins {
     id "org.jetbrains.kotlin.kapt" version "1.8.0" apply false
     id "com.google.devtools.ksp" version "1.8.0-1.0.8" apply false
     id "com.stepango.aar2jar" version "0.6" apply false
+    id 'com.stepango.androidjar' version "0.1"
+}
+
+allprojects {
+    ext {
+        set("androidJar", androidjar.find(33))
+    }
 }

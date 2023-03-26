@@ -17,13 +17,16 @@ internal object ProfileReducer :
       is Ui.System.Start -> {
         // your code
       }
+      is Ui.Click.EditClick -> {
+        effects { +Effect.OpenEditProfile(state.profile) }
+      }
       is Ui.Click.TeamApplication -> {
         when (state.teamApplication) {
           is TeamApplication.Registered -> {
             // TODO
           }
           is TeamApplication.NotRegistered -> {
-            effects { +Effect.OpenTeamRegistration(profileFullName = state.profile.fullName) }
+            effects { +Effect.OpenTeamRegistration(state.profile) }
           }
         }
       }

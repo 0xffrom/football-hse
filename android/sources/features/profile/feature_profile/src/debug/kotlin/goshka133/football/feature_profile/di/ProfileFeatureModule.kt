@@ -7,6 +7,7 @@ import goshka133.football.core_elmslie.StoreFactory
 import goshka133.football.core_elmslie.StoreFactoryKey
 import goshka133.football.domain_profile.ProfileFeatureApi
 import goshka133.football.feature_profile.feature_api.ProfileFeatureApiImpl
+import goshka133.football.feature_profile.screens.edit_profile.presentation.EditProfileStoreFactory
 import goshka133.football.feature_profile.screens.profile.presentation.ProfileStoreFactory
 import goshka133.football.feature_profile.screens.team_registration.presentation.TeamRegistrationStoreFactory
 
@@ -25,4 +26,9 @@ abstract class ProfileFeatureModule {
   @StoreFactoryKey(TeamRegistrationStoreFactory::class)
   internal abstract fun TeamRegistrationStoreFactory.bindTeamRegistrationStoreFactory():
     StoreFactory
+
+  @Binds
+  @IntoMap
+  @StoreFactoryKey(EditProfileStoreFactory::class)
+  internal abstract fun EditProfileStoreFactory.bindEditProfileStoreFactory(): StoreFactory
 }

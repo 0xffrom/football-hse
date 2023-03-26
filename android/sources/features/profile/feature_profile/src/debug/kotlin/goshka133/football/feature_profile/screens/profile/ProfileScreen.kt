@@ -18,8 +18,9 @@ import com.github.terrakok.modo.stack.forward
 import goshka133.football.core_elmslie.rememberEventReceiver
 import goshka133.football.core_elmslie.rememberStore
 import goshka133.football.core_navigation.LocalRouter
+import goshka133.football.feature_profile.screens.edit_profile.EditProfileScreen
 import goshka133.football.feature_profile.screens.profile.presentation.ProfileEffect
-import goshka133.football.feature_profile.screens.profile.presentation.ProfileEvent
+import goshka133.football.feature_profile.screens.profile.presentation.ProfileEvent.Ui.Click
 import goshka133.football.feature_profile.screens.profile.presentation.ProfileStoreFactory
 import goshka133.football.feature_profile.screens.profile.ui.ProfileCard
 import goshka133.football.feature_profile.screens.profile.ui.TeamCreationApplicationCard
@@ -48,12 +49,12 @@ internal class ProfileScreen : BaseScreen() {
     LaunchedEffect(key1 = store) {
       store.effects().collect { effect ->
         when (effect) {
-          is ProfileEffect.OpenTeamRegistration ->
-            router.forward(
-              TeamRegistrationScreen(
-                effect.profileFullName,
-              )
-            )
+          is ProfileEffect.OpenTeamRegistration -> {
+            router.forward(TeamRegistrationScreen(profile = effect.profile))
+          }
+          is ProfileEffect.OpenEditProfile -> {
+            router.forward(EditProfileScreen(profile = effect.profile))
+          }
         }
       }
     }
@@ -89,6 +90,7 @@ internal class ProfileScreen : BaseScreen() {
           ProfileCard(
             modifier = Modifier.padding(horizontal = 16.dp),
             profile = state.profile,
+            onEditClick = { eventReceiver.invoke(Click.EditClick) }
           )
           Spacer(modifier = Modifier.height(10.dp))
         }
@@ -96,7 +98,7 @@ internal class ProfileScreen : BaseScreen() {
           TeamCreationApplicationCard(
             modifier = Modifier.padding(horizontal = 16.dp),
             teamApplication = state.teamApplication,
-            onClick = { eventReceiver.invoke(ProfileEvent.Ui.Click.TeamApplication) },
+            onClick = { eventReceiver.invoke(Click.TeamApplication) },
           )
           Spacer(modifier = Modifier.height(24.dp))
         }

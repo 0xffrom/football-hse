@@ -1,6 +1,7 @@
 package goshka133.football.feature_profile.screens.team_registration.presentation
 
 import goshka133.football.core_elmslie.StoreFactory
+import goshka133.football.domain_profile.dto.Profile
 import goshka133.football.feature_profile.screens.team_registration.presentation.TeamRegistrationEffect as Effect
 import goshka133.football.feature_profile.screens.team_registration.presentation.TeamRegistrationEvent as Event
 import goshka133.football.feature_profile.screens.team_registration.presentation.TeamRegistrationState as State
@@ -14,12 +15,10 @@ constructor(
   private val actor: TeamRegistrationActor,
 ) : StoreFactory {
 
-  fun create(profileFullName: String): Store<Event, Effect, State> =
+  fun create(profile: Profile): Store<Event, Effect, State> =
     ElmStoreCompat(
       startEvent = Event.Ui.System.Start,
-      initialState = State(
-        profileFullName = profileFullName,
-      ),
+      initialState = State(profile = profile),
       reducer = TeamRegistrationReducer,
       actor = actor,
     )

@@ -1,56 +1,48 @@
 package goshka133.football.feature_profile.screens.team_registration
 
-import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import com.github.terrakok.modo.stack.back
-import goshka133.football.core_elmslie.EventReceiver
 import goshka133.football.core_elmslie.rememberEventReceiver
 import goshka133.football.core_elmslie.rememberStore
 import goshka133.football.core_navigation.LocalRouter
+import goshka133.football.domain_profile.dto.Profile
 import goshka133.football.feature_profile.screens.team_registration.presentation.TeamRegistrationEffect
 import goshka133.football.feature_profile.screens.team_registration.presentation.TeamRegistrationEvent
 import goshka133.football.feature_profile.screens.team_registration.presentation.TeamRegistrationEvent.Ui.Click
 import goshka133.football.feature_profile.screens.team_registration.presentation.TeamRegistrationState
 import goshka133.football.feature_profile.screens.team_registration.presentation.TeamRegistrationStoreFactory
+import goshka133.football.feature_profile.ui.*
+import goshka133.football.feature_profile.ui.AvatarPickerSheetContent
+import goshka133.football.feature_profile.ui.DefaultSheetBackgroundColor
+import goshka133.football.feature_profile.ui.DefaultSheetShape
+import goshka133.football.feature_profile.ui.FormField
 import goshka133.football.ui_kit.BaseScreen
 import goshka133.football.ui_kit.button.BottomBarStack
-import goshka133.football.ui_kit.button.ButtonStyle
 import goshka133.football.ui_kit.button.FButton
-import goshka133.football.ui_kit.text_field.FTextField
 import goshka133.football.ui_kit.theme.FootballColors
-import goshka133.football.ui_kit.theme.Style16500
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 internal class TeamRegistrationScreen(
-  private val profileFullName: String,
+  private val profile: Profile,
 ) : BaseScreen() {
 
   @OptIn(ExperimentalMaterialApi::class)
@@ -59,11 +51,7 @@ internal class TeamRegistrationScreen(
     val store =
       rememberStore(
         storeFactoryClass = TeamRegistrationStoreFactory::class.java,
-        storeProvider = { storeFactory, _ ->
-          storeFactory.create(
-            profileFullName = profileFullName,
-          )
-        },
+        storeProvider = { storeFactory, _ -> storeFactory.create(profile = profile) },
       )
 
     val state by store.states().collectAsState(store.currentState)
@@ -103,10 +91,11 @@ internal class TeamRegistrationScreen(
 
     ModalBottomSheetLayout(
       sheetState = sheetState,
-      sheetShape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp),
-      sheetBackgroundColor = Color.White,
+      sheetShape = DefaultSheetShape,
+      sheetBackgroundColor = DefaultSheetBackgroundColor,
       sheetContent = {
-        SheetContent(
+        AvatarPickerSheetContent(
+          title = "Загрузите логотип Вашей команды",
           onCloseClick = { eventReceiver.invoke(Click.PhotoPickerSheetClose) },
           onContinueClick = { eventReceiver.invoke(Click.PhotoPickerSheetContinue) },
         )
@@ -114,26 +103,10 @@ internal class TeamRegistrationScreen(
     ) {
       Scaffold(
         topBar = {
-          Box(
-            modifier =
-              Modifier.systemBarsPadding().heightIn(min = 44.dp).padding(horizontal = 16.dp),
-            contentAlignment = Alignment.CenterStart,
-          ) {
-            IconButton(onClick = { eventReceiver.invoke(Click.Back) }) {
-              Icon(
-                painter = painterResource(id = goshka133.football.ui_kit.R.drawable.ic_24_back),
-                contentDescription = null,
-                tint = FootballColors.Icons.Primary,
-              )
-            }
-            Text(
-              modifier = Modifier.fillMaxWidth(),
-              text = "Регистрация команды",
-              textAlign = TextAlign.Center,
-              color = FootballColors.Text.Primary,
-              style = Style16500,
-            )
-          }
+          Toolbar(
+            onBackClick = { eventReceiver.invoke(Click.Back) },
+            title = "Регистрация команды",
+          )
         },
         bottomBar = {
           BottomBarStack {
@@ -150,7 +123,7 @@ internal class TeamRegistrationScreen(
           item {
             AvatarBox(
               state = state,
-              eventReceiver = eventReceiver,
+              onClick = { eventReceiver.invoke(Click.Avatar) },
             )
             Spacer(modifier = Modifier.height(36.dp))
           }
@@ -200,7 +173,7 @@ internal class TeamRegistrationScreen(
   @Composable
   private fun AvatarBox(
     state: TeamRegistrationState,
-    eventReceiver: EventReceiver<TeamRegistrationEvent>,
+    onClick: () -> Unit,
   ) {
     val size =
       animateDpAsState(
@@ -213,109 +186,22 @@ internal class TeamRegistrationScreen(
       contentAlignment = Alignment.Center,
     ) {
       if (state.photoUri == null) {
-        Box(
-          modifier =
-            Modifier.size(size.value)
-              .clip(CircleShape)
-              .background(color = FootballColors.Surface2, shape = CircleShape)
-              .clickable { eventReceiver.invoke(Click.Avatar) },
-          contentAlignment = Alignment.Center,
-        ) {
-          Icon(
-            painter = painterResource(id = goshka133.football.ui_kit.R.drawable.ic_24_plus),
-            contentDescription = null,
-            tint = FootballColors.Primary,
-          )
-        }
+        AvatarNewPhotoBox(
+          size = size.value,
+          onClick = onClick,
+        )
       } else {
         Image(
           modifier =
             Modifier.size(size.value)
               .clip(CircleShape)
               .border(width = 1.dp, color = FootballColors.Primary, shape = CircleShape)
-              .clickable { eventReceiver.invoke(Click.Avatar) },
+              .clickable(onClick = onClick),
           painter =
             rememberAsyncImagePainter(model = state.photoUri, contentScale = ContentScale.Crop),
           contentDescription = null,
         )
       }
-    }
-  }
-
-  @Composable
-  private fun FormField(
-    textFieldValue: TextFieldValue,
-    onValueChange: (value: TextFieldValue) -> Unit,
-    title: String,
-    placeholder: String,
-    modifier: Modifier = Modifier,
-  ) {
-    Column(
-      modifier = modifier,
-      verticalArrangement = Arrangement.spacedBy(4.dp),
-    ) {
-      Text(
-        modifier = Modifier.fillMaxWidth(),
-        text = remember(title) { title.uppercase() },
-        textAlign = TextAlign.Start,
-        color = FootballColors.Text.Secondary,
-        style =
-          TextStyle(
-            fontWeight = FontWeight.W500,
-            fontSize = 12.sp,
-            lineHeight = 16.sp,
-            letterSpacing = 0.5.sp,
-          ),
-      )
-      FTextField(
-        modifier = Modifier.fillMaxWidth(),
-        value = textFieldValue,
-        onValueChange = onValueChange,
-        placeholder = placeholder,
-      )
-    }
-  }
-
-  @Composable
-  private fun SheetContent(
-    onContinueClick: () -> Unit,
-    onCloseClick: () -> Unit,
-  ) {
-    BackHandler(onBack = onCloseClick)
-
-    Column(
-      modifier =
-        Modifier.padding(horizontal = 16.dp, vertical = 12.dp).imePadding().navigationBarsPadding(),
-    ) {
-      Text(
-        modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
-        text = "Логотип",
-        textAlign = TextAlign.Start,
-        color = FootballColors.Text.Primary,
-        style =
-          TextStyle(
-            fontWeight = FontWeight.W600,
-            fontSize = 19.sp,
-            lineHeight = 24.sp,
-          ),
-      )
-      Spacer(modifier = Modifier.height(4.dp))
-      Text(
-        modifier = Modifier.fillMaxWidth(),
-        text = "Загрузите логотип Вашей команды",
-        textAlign = TextAlign.Start,
-        color = FootballColors.Text.Primary,
-        style =
-          TextStyle(
-            fontWeight = FontWeight.W400,
-            fontSize = 16.sp,
-            lineHeight = 22.sp,
-          ),
-      )
-      Spacer(modifier = Modifier.height(12.dp))
-      FButton(text = "Выбрать", buttonStyle = ButtonStyle.Primary, onClick = onContinueClick)
-      Spacer(modifier = Modifier.height(12.dp))
-      FButton(text = "Отмена", buttonStyle = ButtonStyle.Secondary, onClick = onCloseClick)
     }
   }
 }

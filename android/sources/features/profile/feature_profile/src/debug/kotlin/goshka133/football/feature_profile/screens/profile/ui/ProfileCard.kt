@@ -27,7 +27,11 @@ import goshka133.football.feature_profile.R
 import goshka133.football.ui_kit.theme.FootballColors
 
 @Composable
-internal fun ProfileCard(modifier: Modifier, profile: Profile) {
+internal fun ProfileCard(
+  modifier: Modifier,
+  profile: Profile,
+  onEditClick: () -> Unit,
+) {
   Card(
     modifier = modifier.fillMaxWidth(),
     backgroundColor = Color(0xFFF5F9FE),
@@ -40,7 +44,7 @@ internal fun ProfileCard(modifier: Modifier, profile: Profile) {
           vertical = 20.dp,
         ),
     ) {
-      IconButton(modifier = Modifier.align(Alignment.TopEnd), onClick = { /*TODO*/}) {
+      IconButton(modifier = Modifier.align(Alignment.TopEnd), onClick = onEditClick) {
         Icon(
           modifier = Modifier.size(24.dp),
           painter = painterResource(id = R.drawable.ic_24_pen),
@@ -65,8 +69,7 @@ internal fun ProfileCard(modifier: Modifier, profile: Profile) {
         if (profile.isCaptain) {
           Text(
             modifier =
-              Modifier
-                .padding(vertical = 12.dp)
+              Modifier.padding(vertical = 12.dp)
                 .background(
                   color = Color(0x1A4258FE),
                   shape = RoundedCornerShape(4.dp),

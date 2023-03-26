@@ -1,5 +1,9 @@
 package goshka133.football.domain_profile.dto
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Profile(
   val fullName: String,
   val footballExperience: String,
@@ -8,7 +12,7 @@ data class Profile(
   val about: String,
   val imageUrl: String?,
   val isCaptain: Boolean,
-) {
+) : Parcelable {
 
   companion object
 }

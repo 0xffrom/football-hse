@@ -22,6 +22,7 @@ internal sealed interface ProfileEvent {
     object Click {
 
       object TeamApplication : Ui
+      object EditClick: Ui
     }
 
     object Action {
@@ -41,5 +42,6 @@ internal sealed interface ProfileCommand {
 @Immutable
 internal sealed interface ProfileEffect {
 
-  data class OpenTeamRegistration(val profileFullName: String) : ProfileEffect
+  data class OpenTeamRegistration(val profile: Profile) : ProfileEffect
+  data class OpenEditProfile(val profile: Profile): ProfileEffect
 }
