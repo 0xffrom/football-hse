@@ -15,14 +15,23 @@ final class SearchTeamsCoordinator {
     private var childCoordinators: [Coordinatable] = []
     private var finishHandlers: [(() -> Void)?] = []
 
+    private unowned let window: UIWindow
+
     private weak var parentTabBarController: UITabBarController?
+    private weak var navigationController: UINavigationController?
+
+    private let networkService: INetworkService
 
     // MARK: Lifecycle
 
     init(
-        parentTabBarController: UITabBarController
+        parentTabBarController: UITabBarController,
+        window: UIWindow,
+        networkService: INetworkService
     ) {
         self.parentTabBarController = parentTabBarController
+        self.window = window
+        self.networkService = networkService
     }
 }
 
@@ -31,7 +40,10 @@ final class SearchTeamsCoordinator {
 extension SearchTeamsCoordinator: Coordinatable {
 
     func start(animated: Bool) {
-        let builder = SearchTeamsPageModuleBuilder(output: self)
+        let builder = SearchTeamsPageModuleBuilder(
+            output: self,
+            networkService: networkService
+        )
         let viewController = builder.build()
 
         let navigationController = UINavigationController(rootViewController: viewController)
@@ -50,7 +62,16 @@ extension SearchTeamsCoordinator: Coordinatable {
 
 extension SearchTeamsCoordinator: SearchTeamsPageModuleOutput {
 
-    func moduleWantsToGoToTheNextStep(_ module: SearchTeamsPageModuleInput) {
-        //
+    func openCreateApplictaionScreen() {
+        let builder = CreateTeamSearchApplicationModuleBuilder(
+            output: self,
+            networkService: networkService
+        )
+        let viewController = builder.build()
+        parentTabBarController?.navigationController?.pushViewController(viewController, animated: true)
     }
+}
+
+extension SearchTeamsCoordinator: CreateTeamSearchApplicationModuleOutput {
+
 }

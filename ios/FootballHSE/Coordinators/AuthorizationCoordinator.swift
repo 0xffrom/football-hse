@@ -21,21 +21,17 @@ final class AuthorizationCoordinator {
 
     private let networkService: INetworkService
 
-    private let currentUserConfig: CurrentUserConfig
-
     // MARK: Lifecycle
 
     init(
-        parentNavigationController: UINavigationController,
+        parentNavigationController: UINavigationController?,
         window: UIWindow,
         networkService: INetworkService,
-        currentUserConfig: CurrentUserConfig,
         finishHandler: (() -> Void)?
     ) {
         self.parentNavigationController = parentNavigationController
         self.window = window
         self.networkService = networkService
-        self.currentUserConfig = currentUserConfig
         finishHandlers.append(finishHandler)
     }
 }
@@ -45,17 +41,16 @@ final class AuthorizationCoordinator {
 extension AuthorizationCoordinator: Coordinatable {
 
     func start(animated: Bool) {
-        guard let parentNavigationController = parentNavigationController else { return }
-
         let builder = AuthorizationPhoneEnteringModuleBuilder(
             output: self,
-            networkService: networkService,
-            currentUserConfig: currentUserConfig
+            networkService: networkService
         )
 
         let viewController = builder.build()
+        let navigationController = UINavigationController(rootViewController: viewController)
+        parentNavigationController = navigationController
 
-        parentNavigationController.pushViewController(viewController, animated: animated)
+        switchViewController(parentNavigationController, in: window)
     }
 
     func finish(animated: Bool, completion: (() -> Void)?) {
@@ -74,8 +69,7 @@ extension AuthorizationCoordinator: AuthorizationPhoneEnteringModuleOutput {
     func moduleWantsToGoToTheNextStep(_ module: AuthorizationPhoneEnteringModuleInput) {
         let builder = AuthorizationCodeEnteringModuleBuilder(
             output: self,
-            networkService: networkService,
-            currentUserConfig: currentUserConfig
+            networkService: networkService
         )
         let viewController = builder.build()
         parentNavigationController?.pushViewController(viewController, animated: true)
@@ -89,15 +83,17 @@ extension AuthorizationCoordinator: AuthorizationCodeEnteringModuleOutput {
     func moduleWantsToGoToRegistration(_ module: AuthorizationCodeEnteringModuleInput) {
         let сoordinator = RegistrationCoordinator(
             window: window,
-            networkService: networkService,
-            currentUserConfig: currentUserConfig
+            networkService: networkService
         )
         childCoordinators.append(сoordinator)
         сoordinator.start(animated: true)
     }
 
     func moduleWantsToGoToMainApp(_ module: AuthorizationCodeEnteringModuleInput) {
-        let сoordinator = MainCoordinator(window: window)
+        let сoordinator = MainCoordinator(
+            window: window,
+            networkService: networkService
+        )
         childCoordinators.append(сoordinator)
         сoordinator.start(animated: true)
     }

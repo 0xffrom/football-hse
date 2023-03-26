@@ -52,6 +52,25 @@ extension AuthorizationCodeEnteringPresenter: AuthorizationCodeEnteringViewOutpu
         }
     }
 
+    private func getUserInfo() {
+        interactor.getCurrentUser(completion: { [weak self] result in
+            guard let self = self, let view = self.view else { return }
+            switch result {
+            case .success(_):
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    view.removeLoadingState()
+                    self.moduleOutput?.moduleWantsToGoToMainApp(self)
+                }
+            case .failure(_):
+                DispatchQueue.main.async { [weak self] in
+                    self?.view?.removeLoadingState()
+                    self?.view?.showNetworkErrorAlert()
+                }
+            }
+        })
+    }
+
     func viewDidTapActionButton(with input: String?) {
         guard let code = code, codeInputIsValid else {
             view?.setErrorState()
@@ -64,14 +83,13 @@ extension AuthorizationCodeEnteringPresenter: AuthorizationCodeEnteringViewOutpu
         }
 
         interactor.sendCode(code: code, completion: { [weak self] result in
-            guard let self = self, let view = self.view else { return }
+            guard let self = self else { return }
             switch result {
             case .success(let info):
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+                DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
-                    view.removeLoadingState()
                     if info.isRegistered {
-                        self.moduleOutput?.moduleWantsToGoToMainApp(self)
+                        self.getUserInfo()
                     } else {
                         self.moduleOutput?.moduleWantsToGoToRegistration(self)
                     }

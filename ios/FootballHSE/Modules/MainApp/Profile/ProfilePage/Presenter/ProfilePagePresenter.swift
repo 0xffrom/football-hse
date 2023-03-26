@@ -38,4 +38,11 @@ extension ProfilePagePresenter: ProfilePageInteractorOutput {}
 
 extension ProfilePagePresenter: ProfilePageViewOutput {
 
+    func viewWantToEditProfile() {
+        moduleOutput?.openEditProfile()
+    }
+
+    func exit() {
+        moduleOutput?.exit()
+    }
 }

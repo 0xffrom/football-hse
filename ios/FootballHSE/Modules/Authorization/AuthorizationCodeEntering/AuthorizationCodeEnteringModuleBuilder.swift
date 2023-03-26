@@ -14,26 +14,22 @@ public final class AuthorizationCodeEnteringModuleBuilder {
     private weak var output: AuthorizationCodeEnteringModuleOutput?
 
     private let networkService: INetworkService
-    private let currentUserConfig: CurrentUserConfig
 
     // MARK: Lifecycle
 
     public init(
         output: AuthorizationCodeEnteringModuleOutput?,
-        networkService: INetworkService,
-        currentUserConfig: CurrentUserConfig
+        networkService: INetworkService
     ) {
         self.output = output
         self.networkService = networkService
-        self.currentUserConfig = currentUserConfig
     }
 
     // MARK: Public Methods
 
     public func build() -> UIViewController {
         let interactor = AuthorizationCodeEnteringInteractor(
-            networkService: networkService,
-            currentUserConfig: currentUserConfig
+            networkService: networkService
         )
         let presenter = AuthorizationCodeEnteringPresenter(interactor: interactor)
 

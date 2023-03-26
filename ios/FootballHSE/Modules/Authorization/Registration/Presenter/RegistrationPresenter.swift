@@ -5,6 +5,8 @@
 //  Created by Екатерина on 11.01.2023.
 //
 
+import Foundation
+
 final class RegistrationPresenter {
 
     // MARK: Public Properties
@@ -63,16 +65,40 @@ extension RegistrationPresenter: RegistrationViewOutput {
     }
 
     func viewDidTapActionButton(with input: String?) {
+        guard let view = view else { return }
+
         if !nameIsValid {
-            view?.setNameErrorState()
+            view.setNameErrorState()
         }
 
         if selectedRole == nil {
-            view?.setNoRoleErrorState()
+            view.setNoRoleErrorState()
         }
 
         guard nameIsValid && selectedRole != nil else { return }
+        guard let name = name, let roleId = selectedRole?.rawValue else { return }
 
-        moduleOutput?.moduleWantsToGoToTheNextStep(self)
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.view?.setLoadingState()
+        }
+
+        interactor.registerUser(name: name, roleId: roleId) { [weak self] result in
+            guard let self = self, let view = self.view else { return }
+            switch result {
+            case .success(_):
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+                    guard let self = self else { return }
+                    view.removeLoadingState()
+                    self.moduleOutput?.moduleWantsToGoToTheNextStep(self)
+                }
+            case .failure(_):
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self, let view = self.view else { return }
+                    view.removeLoadingState()
+                    view.showAlert()
+                }
+            }
+        }
     }
 }

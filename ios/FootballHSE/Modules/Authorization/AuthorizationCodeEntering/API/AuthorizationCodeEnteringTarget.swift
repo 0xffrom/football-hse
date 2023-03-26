@@ -17,6 +17,7 @@ struct AuthorizationCodeEnteringTarget: IRequest {
         guard let url = URL(string: urlString) else {
             return
         }
-        self.urlRequest = URLRequest(url: url)
+        urlRequest = URLRequest(url: url)
+        urlRequest?.httpMethod = "POST"
     }
 }

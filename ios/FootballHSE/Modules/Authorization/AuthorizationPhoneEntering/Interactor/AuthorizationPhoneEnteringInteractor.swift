@@ -16,30 +16,28 @@ final class AuthorizationPhoneEnteringInteractor {
     // MARK: Private Properties
 
     private let networkService: INetworkService
-    private let currentUserConfig: CurrentUserConfig
 
     // MARK: Lifecycle
 
-    init(
-        networkService: INetworkService,
-        currentUserConfig: CurrentUserConfig
-    ) {
+    init(networkService: INetworkService) {
         self.networkService = networkService
-        self.currentUserConfig = currentUserConfig
     }
-    
+}
+
+// MARK: - AuthorizationPhoneEnteringInteractorInput
+
+extension AuthorizationPhoneEnteringInteractor: AuthorizationPhoneEnteringInteractorInput {
+
     // MARK: Public
 
     func authorize(with phoneNumber: String, completion: @escaping (Result<Data?, Error>) -> Void) {
         let phoneNumberWithCode = "8" + phoneNumber
         let config = RequestConfig(request: AuthorizationPhoneEnteringTarget(phoneNumber: phoneNumberWithCode))
 
-        networkService.sendPostRequest(config: config, competionHandler: { [weak self] result in
-            guard let self = self else { return }
-
+        networkService.sendPostRequest(config: config, competionHandler: { result in
             switch result {
             case let .success(data):
-                self.currentUserConfig.phoneNumber = phoneNumberWithCode
+                CurrentUserConfig.shared.phoneNumber = phoneNumberWithCode
                 completion(.success(data))
             case let .failure(error):
                 completion(.failure(error))
@@ -47,7 +45,3 @@ final class AuthorizationPhoneEnteringInteractor {
         })
     }
 }
-
-// MARK: - AuthorizationPhoneEnteringInteractorInput
-
-extension AuthorizationPhoneEnteringInteractor: AuthorizationPhoneEnteringInteractorInput {}

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Create Team Search Application View Controller-->
+        <scene sceneID="hdo-OI-h51">
+            <objects>
+                <viewController storyboardIdentifier="CreateTeamSearchApplicationViewController" id="BbR-25-vXP" customClass="CreateTeamSearchApplicationViewController" customModule="FootballHSE" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Tam-v3-80x">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="67w-Ow-OzZ">
+                                <rect key="frame" x="0.0" y="48" width="375" height="814"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wNM-mD-NNU">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="650"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fJH-MO-AII" customClass="HSEMainButton" customModule="FootballHSE" customModuleProvider="target">
+                                                <rect key="frame" x="16" y="503" width="343" height="60"/>
+                                                <color key="backgroundColor" name="BasePrimary"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="QLv-RE-Uym"/>
+                                                </constraints>
+                                                <color key="tintColor" name="TextIconsWhite"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Далее"/>
+                                            </button>
+                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xSO-40-D6O" customClass="HSESmartTextFieldView" customModule="FootballHSE" customModuleProvider="target">
+                                                <rect key="frame" x="65" y="232" width="343" height="109.5"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="fJH-MO-AII" secondAttribute="trailing" constant="16" id="ARv-9M-rac"/>
+                                            <constraint firstAttribute="trailing" secondItem="xSO-40-D6O" secondAttribute="trailing" constant="16" id="BKc-Jj-OEv"/>
+                                            <constraint firstItem="fJH-MO-AII" firstAttribute="leading" secondItem="wNM-mD-NNU" secondAttribute="leading" constant="16" id="CDI-8U-I0Z"/>
+                                            <constraint firstItem="xSO-40-D6O" firstAttribute="leading" secondItem="wNM-mD-NNU" secondAttribute="leading" constant="16" id="p7v-wZ-vMb"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="wNM-mD-NNU" firstAttribute="top" secondItem="BGc-aa-K1n" secondAttribute="top" id="JLL-fL-civ"/>
+                                    <constraint firstItem="wNM-mD-NNU" firstAttribute="leading" secondItem="BGc-aa-K1n" secondAttribute="leading" id="NcZ-T4-kiq"/>
+                                    <constraint firstItem="wNM-mD-NNU" firstAttribute="bottom" secondItem="BGc-aa-K1n" secondAttribute="bottom" id="Zq5-3p-Krs"/>
+                                    <constraint firstItem="wNM-mD-NNU" firstAttribute="width" secondItem="jqa-hS-3TG" secondAttribute="width" id="qXx-lB-SFx"/>
+                                    <constraint firstItem="wNM-mD-NNU" firstAttribute="trailing" secondItem="BGc-aa-K1n" secondAttribute="trailing" id="rZ9-bh-EOq"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="BGc-aa-K1n"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="jqa-hS-3TG"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="nXb-KK-8pS"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="nXb-KK-8pS" firstAttribute="bottom" secondItem="67w-Ow-OzZ" secondAttribute="bottom" id="Apc-W1-A1F"/>
+                            <constraint firstItem="67w-Ow-OzZ" firstAttribute="leading" secondItem="nXb-KK-8pS" secondAttribute="leading" id="VWe-tX-01p"/>
+                            <constraint firstItem="67w-Ow-OzZ" firstAttribute="top" secondItem="nXb-KK-8pS" secondAttribute="top" id="bdQ-uF-xrF"/>
+                            <constraint firstItem="nXb-KK-8pS" firstAttribute="trailing" secondItem="67w-Ow-OzZ" secondAttribute="trailing" id="xKP-v0-yhw"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PCP-JZ-OHW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="544.92753623188412" y="77.678571428571431"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="BasePrimary">
+            <color red="0.24699999392032623" green="0.37599998712539673" blue="0.9570000171661377" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="TextIconsWhite">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

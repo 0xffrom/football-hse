@@ -17,31 +17,26 @@ final class RootCoordinator {
     private var childCoordinators: [Coordinatable] = []
     private var finishHandlers: [(() -> Void)?] = []
 
-    private weak var rootViewController: UIViewController?
     private weak var parentNavigationController: UINavigationController?
 
     private let networkService: INetworkService = NetworkService()
-
-    private let currentUserConfig: CurrentUserConfig
 
     // MARK: Lifecycle
 
     init(
         parentNavigationController: UINavigationController,
         window: UIWindow,
-        currentUserConfig: CurrentUserConfig,
         finishHandler: (() -> Void)?
     ) {
         self.parentNavigationController = parentNavigationController
         self.window = window
-        self.currentUserConfig = currentUserConfig
         finishHandlers.append(finishHandler)
     }
 
     // MARK: Private
 
     private func startAuthorizationFlow() {
-        guard let parentNavigationController = parentNavigationController else { return }
+        // guard let parentNavigationController = parentNavigationController else { return }
 
         let finishHandler: () -> Void = { [weak self] in
             guard let self = self else { return }
@@ -52,7 +47,6 @@ final class RootCoordinator {
             parentNavigationController: parentNavigationController,
             window: window,
             networkService: networkService,
-            currentUserConfig: currentUserConfig,
             finishHandler: finishHandler
         )
         coordinator.start(animated: true)

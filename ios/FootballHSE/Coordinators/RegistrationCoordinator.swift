@@ -19,16 +19,12 @@ final class RegistrationCoordinator {
 
     private let networkService: INetworkService
 
-    private let currentUserConfig: CurrentUserConfig
-
     init(
         window: UIWindow,
-        networkService: INetworkService,
-        currentUserConfig: CurrentUserConfig
+        networkService: INetworkService
     ) {
         self.window = window
         self.networkService = networkService
-        self.currentUserConfig = currentUserConfig
     }
 }
 
@@ -37,8 +33,7 @@ extension RegistrationCoordinator: Coordinatable {
     func start(animated: Bool) {
         let moduleBuilder = RegistrationModuleBuilder(
             output: self,
-            networkService: networkService,
-            currentUserConfig: currentUserConfig
+            networkService: networkService
         )
         rootController = moduleBuilder.build()
 
@@ -59,7 +54,10 @@ extension RegistrationCoordinator: Coordinatable {
 extension RegistrationCoordinator: RegistrationModuleOutput {
 
     func moduleWantsToGoToTheNextStep(_ module: RegistrationModuleInput) {
-        let сoordinator = MainCoordinator(window: window)
+        let сoordinator = MainCoordinator(
+            window: window,
+            networkService: networkService
+        )
         childCoordinators.append(сoordinator)
         сoordinator.start(animated: true)
     }

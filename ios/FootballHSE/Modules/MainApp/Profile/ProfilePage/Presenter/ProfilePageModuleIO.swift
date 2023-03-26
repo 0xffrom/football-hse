@@ -12,5 +12,6 @@ public protocol ProfilePageModuleInput: AnyObject {
 }
 
 public protocol ProfilePageModuleOutput: AnyObject {
-    func moduleWantsToGoToTheNextStep(_ module: ProfilePageModuleInput)
+    func openEditProfile()
+    func exit()
 }

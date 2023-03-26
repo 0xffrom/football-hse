@@ -12,5 +12,6 @@ protocol ProfilePageViewInput: AnyObject {
 }
 
 protocol ProfilePageViewOutput: AnyObject {
-
+    func viewWantToEditProfile()
+    func exit()
 }

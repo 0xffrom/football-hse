@@ -16,6 +16,7 @@ struct AuthorizationPhoneEnteringTarget: IRequest {
         guard let url = URL(string: BaseURL.stringURL + path + phoneNumber) else {
             return
         }
-        self.urlRequest = URLRequest(url: url)
+        urlRequest = URLRequest(url: url)
+        urlRequest?.httpMethod = "POST"
     }
 }

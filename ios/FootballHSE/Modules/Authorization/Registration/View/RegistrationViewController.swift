@@ -180,6 +180,14 @@ extension RegistrationViewController: RegistrationViewInput {
         nameTextField.validationState = .error
     }
 
+    func setLoadingState() {
+        nextButton.isLoading = true
+    }
+
+    func removeLoadingState() {
+        nextButton.isLoading = false
+    }
+
     func selecteRole(_ role: PlayerRole) {
         switch role {
         case .student:
@@ -224,5 +232,11 @@ extension RegistrationViewController: RegistrationViewInput {
                 make.top.equalTo(strongSelf.employeeButton.snp.bottom).offset(6)
             }
         }
+    }
+
+    func showAlert() {
+        let alert = UIAlertController(title: "Ошибка сети", message: "Проверьте подключение и повторите попытку", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }

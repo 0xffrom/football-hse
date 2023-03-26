@@ -18,10 +18,15 @@ class NetworkService: INetworkService {
 
    func sendGetRequest<Parser>(config: RequestConfigWithParser<Parser>,
                      competionHandler: @escaping (Result<Parser.Model, Error>) -> Void) {
-       guard let urlRequest = config.request.urlRequest else {
+       guard var urlRequest = config.request.urlRequest else {
            competionHandler(.failure(NetworkError.badURL))
            return
        }
+
+       if let token = CurrentUserConfig.shared.token {
+           urlRequest.setValue( "Bearer \(token)", forHTTPHeaderField: "Authorization")
+       }
+
        let task = session.dataTask(with: urlRequest) { (data: Data?, response: URLResponse?, error: Error?) in
            if let error = error {
                print(response.debugDescription)
@@ -62,7 +67,11 @@ class NetworkService: INetworkService {
             return
         }
 
-        urlRequest.httpMethod = "POST"
+        if let token = CurrentUserConfig.shared.token {
+            urlRequest.setValue( "Bearer \(token)", forHTTPHeaderField: "Authorization")
+        }
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.addValue("text/plain", forHTTPHeaderField: "accept")
 
         let task = session.dataTask(with: urlRequest) { (data: Data?, response: URLResponse?, error: Error?) in
             if let error = error {
@@ -78,6 +87,7 @@ class NetworkService: INetworkService {
             }
 
             guard (200...299).contains(response.statusCode) else {
+                print(response.statusCode)
                 if response.statusCode == 401 {
                     competionHandler(.failure(NetworkError.tokensError))
                     return

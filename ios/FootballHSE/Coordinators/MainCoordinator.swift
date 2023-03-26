@@ -23,11 +23,17 @@ final class MainCoordinator {
 
     private weak var rootTabBarController: UITabBarController?
 
+    private let networkService: INetworkService
+
     private var childCoordinators: [Coordinatable] = []
     private var finishHandlers: [(() -> Void)?] = []
 
-    init(window: UIWindow) {
+    init(
+        window: UIWindow,
+        networkService: INetworkService
+    ) {
         self.window = window
+        self.networkService = networkService
     }
 
     private func configureTabsForPlayer() {
@@ -49,7 +55,9 @@ final class MainCoordinator {
         }
 
         let searchTeamsCoordinator = SearchTeamsCoordinator(
-            parentTabBarController: rootTabBarController
+            parentTabBarController: rootTabBarController,
+            window: window,
+            networkService: networkService
         )
         childCoordinators.append(searchTeamsCoordinator)
 
@@ -68,7 +76,9 @@ final class MainCoordinator {
         }
 
         let profileCoordinator = ProfileCoordinator(
-            parentTabBarController: rootTabBarController
+            parentTabBarController: rootTabBarController,
+            networkService: networkService,
+            window: window
         )
         childCoordinators.append(profileCoordinator)
 

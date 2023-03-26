@@ -14,26 +14,22 @@ public final class RegistrationModuleBuilder {
     private weak var output: RegistrationModuleOutput?
 
     private let networkService: INetworkService
-    private let currentUserConfig: CurrentUserConfig
 
     // MARK: Lifecycle
 
     public init(
         output: RegistrationModuleOutput?,
-        networkService: INetworkService,
-        currentUserConfig: CurrentUserConfig
+        networkService: INetworkService
     ) {
         self.output = output
         self.networkService = networkService
-        self.currentUserConfig = currentUserConfig
     }
 
     // MARK: Public Methods
 
     public func build() -> UIViewController {
         let interactor = RegistrationInteractor(
-            networkService: networkService,
-            currentUserConfig: currentUserConfig
+            networkService: networkService
         )
         let presenter = RegistrationPresenter(interactor: interactor)
 

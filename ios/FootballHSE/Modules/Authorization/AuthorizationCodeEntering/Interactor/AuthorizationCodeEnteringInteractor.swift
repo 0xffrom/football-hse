@@ -16,39 +16,16 @@ final class AuthorizationCodeEnteringInteractor {
     // MARK: Private Properties
 
     private let networkService: INetworkService
-    private let currentUserConfig: CurrentUserConfig
 
     // MARK: Lifecycle
 
-    init(
-        networkService: INetworkService,
-        currentUserConfig: CurrentUserConfig
-    ) {
+    init( networkService: INetworkService) {
         self.networkService = networkService
-        self.currentUserConfig = currentUserConfig
-    }
-    
-    // MARK: Public
-
-    func sendCode(code: String, completion: @escaping (Result<TokensModel, Error>) -> Void) {
-        guard let phoneNumber = currentUserConfig.phoneNumber else { return }
-        let config = RequestConfig(request: AuthorizationCodeEnteringTarget(phoneNumber: phoneNumber, code: code))
-
-        networkService.sendPostRequest(config: config, competionHandler: { result in
-            switch result {
-            case let .success(data):
-                guard let info = self.parse(data: data) else {
-                    completion(.failure(NetworkError.parsingError))
-                    return
-                }
-                completion(.success(info))
-            case let .failure(error):
-                completion(.failure(error))
-            }
-        })
     }
 
-    func parse(data: Data?) -> TokensModel? {
+    // MARK: Private
+
+    private func parse(data: Data?) -> TokensModel? {
         guard let data = data,
               let model = try? JSONDecoder().decode(TokensModel.self, from: data)
         else {
@@ -60,4 +37,53 @@ final class AuthorizationCodeEnteringInteractor {
 
 // MARK: - AuthorizationCodeEnteringInteractorInput
 
-extension AuthorizationCodeEnteringInteractor: AuthorizationCodeEnteringInteractorInput {}
+extension AuthorizationCodeEnteringInteractor: AuthorizationCodeEnteringInteractorInput {
+
+    // MARK: Public
+
+    func sendCode(code: String, completion: @escaping (Result<TokensModel, Error>) -> Void) {
+        guard let phoneNumber = CurrentUserConfig.shared.phoneNumber else { return }
+        let config = RequestConfig(request: AuthorizationCodeEnteringTarget(phoneNumber: phoneNumber, code: code))
+
+        networkService.sendPostRequest(config: config, competionHandler: { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case let .success(data):
+                guard let info = self.parse(data: data) else {
+                    completion(.failure(NetworkError.parsingError))
+                    return
+                }
+                CurrentUserConfig.shared.isCaptain = info.isCaptain
+                CurrentUserConfig.shared.refreshToken = info.refreshToken
+                CurrentUserConfig.shared.token = info.token
+                completion(.success(info))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        })
+    }
+
+    func getCurrentUser(completion: @escaping (Result<User, Error>) -> Void) {
+        guard let phoneNumber = CurrentUserConfig.shared.phoneNumber else { return }
+        let config = RequestConfigWithParser(request: UserTarget(phoneNumber: phoneNumber), parser: UserParser())
+
+        networkService.sendGetRequest(config: config, competionHandler: { result in
+            switch result {
+            case let .success(data):
+                CurrentUserConfig.shared.name = data.name
+                CurrentUserConfig.shared.phoneNumber = data.phoneNumber
+                CurrentUserConfig.shared.isCaptain = data.isCaptain
+                CurrentUserConfig.shared.about = data.about
+                CurrentUserConfig.shared.contact = data.contact
+                CurrentUserConfig.shared.footballExperience = data.footballExperience
+                CurrentUserConfig.shared.tournamentExperience = data.tournamentExperience
+                CurrentUserConfig.shared.photo = data.photo
+                CurrentUserConfig.shared.hseRole = data.hseRole
+                CurrentUserConfig.shared.applicationId = data.applicationId
+                completion(.success(data))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        })
+    }
+}

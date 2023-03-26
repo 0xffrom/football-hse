@@ -13,8 +13,6 @@ final class AppDelegate: UIResponder {
     private var rootCoordinator: Coordinatable?
     lazy var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
     var layer: CAEmitterLayer?
-
-    private let currentUserConfig = CurrentUserConfig.shared
 }
 
 
@@ -24,13 +22,20 @@ extension AppDelegate: UIApplicationDelegate {
                       didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let rootNavigationController = UINavigationController()
 
-        rootCoordinator = RootCoordinator(parentNavigationController: rootNavigationController, window: window!, currentUserConfig: currentUserConfig, finishHandler: nil)
+        rootCoordinator = RootCoordinator(
+            parentNavigationController: rootNavigationController,
+            window: window!,
+            finishHandler: nil
+        )
 
         window?.rootViewController = rootNavigationController
         window?.makeKeyAndVisible()
 
-        // let coordinator = MainCoordinator(window: window!)
-
+//        rootCoordinator = MainCoordinator(
+//            window: window!,
+//            networkService: NetworkService()
+//        )
+// uncommet this to skip authorization
         rootCoordinator?.start(animated: true)
 
         return true

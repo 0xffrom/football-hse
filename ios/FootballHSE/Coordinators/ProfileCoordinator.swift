@@ -12,17 +12,26 @@ final class ProfileCoordinator {
 
     // MARK: Private Properties
 
+    private unowned let window: UIWindow
+
     private var childCoordinators: [Coordinatable] = []
     private var finishHandlers: [(() -> Void)?] = []
 
     private weak var parentTabBarController: UITabBarController?
+    private weak var parentNavigationController: UINavigationController?
+
+    private let networkService: INetworkService
 
     // MARK: Lifecycle
 
     init(
-        parentTabBarController: UITabBarController
+        parentTabBarController: UITabBarController,
+        networkService: INetworkService,
+        window: UIWindow
     ) {
         self.parentTabBarController = parentTabBarController
+        self.networkService = networkService
+        self.window = window
     }
 }
 
@@ -35,8 +44,9 @@ extension ProfileCoordinator: Coordinatable {
         let viewController = builder.build()
 
         let navigationController = UINavigationController(rootViewController: viewController)
+        parentNavigationController = navigationController
 
-        parentTabBarController?.addViewController(navigationController)
+        parentTabBarController?.addViewController(parentNavigationController!)
     }
 
     func finish(animated: Bool, completion: (() -> Void)?) {
@@ -50,7 +60,31 @@ extension ProfileCoordinator: Coordinatable {
 
 extension ProfileCoordinator: ProfilePageModuleOutput {
 
-    func moduleWantsToGoToTheNextStep(_ module: ProfilePageModuleInput) {
-        //
+    func openEditProfile() {
+        let builder = EditProfilePageModuleBuilder(
+            output: self,
+            networkService: networkService
+        )
+        let viewController = builder.build()
+        parentNavigationController?.pushViewController(viewController, animated: true)
+    }
+
+    func exit() {
+        CurrentUserConfig.clear()
+
+        let rootCoordinator = RootCoordinator(
+            parentNavigationController: UINavigationController(),
+            window: window,
+            finishHandler: nil
+        )
+        childCoordinators.append(rootCoordinator)
+        rootCoordinator.start(animated: true)
+    }
+}
+
+extension ProfileCoordinator: EditProfilePageModuleOutput {
+
+    func back() {
+        parentNavigationController?.popViewController(animated: true)
     }
 }
