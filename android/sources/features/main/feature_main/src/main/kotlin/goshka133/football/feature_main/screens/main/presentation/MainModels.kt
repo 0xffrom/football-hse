@@ -8,6 +8,7 @@ internal data class MainState(
   val selectedTab: BottomBarTabType,
   val previousTab: BottomBarTabType = selectedTab,
   val tabs: ImmutableList<BottomBarTabType> = BottomBarTabType.values().toList().toImmutableList(),
+  val tabsHistory: List<BottomBarTabType> = listOf(selectedTab),
 )
 
 internal sealed interface MainEvent {
@@ -19,8 +20,8 @@ internal sealed interface MainEvent {
 
     object Click {
 
-      object Back: Ui
-      data class BottomBarTab(val tab: BottomBarTabType): Ui
+      object Back : Ui
+      data class BottomBarTab(val tab: BottomBarTabType) : Ui
     }
 
     object Action {

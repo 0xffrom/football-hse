@@ -89,7 +89,7 @@ internal class MainScreen : BaseScreen() {
         modifier = Modifier.padding(paddingValues),
         targetState = state.selectedTab,
         transitionSpec = {
-          val isLeftToRight = if(state.selectedTab > state.previousTab) 1 else -1
+          val isLeftToRight = if (state.selectedTab > state.previousTab) 1 else -1
 
           slideIn(
               animationSpec = tween(600),

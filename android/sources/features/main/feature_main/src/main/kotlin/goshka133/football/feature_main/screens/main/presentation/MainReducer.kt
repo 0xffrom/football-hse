@@ -17,15 +17,27 @@ internal object MainReducer :
         // your code
       }
       is Ui.Click.Back -> {
-        effects {
-          +Effect.Close
+        if (state.tabsHistory.size > 1) {
+          val tab = state.tabsHistory[state.tabsHistory.size - 2]
+
+          state {
+            copy(
+              selectedTab = tab,
+              previousTab = state.selectedTab,
+              tabsHistory = state.tabsHistory.dropLast(1),
+            )
+          }
         }
       }
       is Ui.Click.BottomBarTab -> {
-        if(state.selectedTab == event.tab) return
+        if (state.selectedTab == event.tab) return
 
         state {
-          copy(selectedTab = event.tab, previousTab = state.selectedTab)
+          copy(
+            selectedTab = event.tab,
+            previousTab = state.selectedTab,
+            tabsHistory = state.tabsHistory + event.tab,
+          )
         }
       }
     }
