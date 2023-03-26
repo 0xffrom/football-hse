@@ -69,6 +69,7 @@ final class AuthorizationPhoneEnteringViewController: UIViewController {
     }
 
     private func setupNextButton() {
+        nextButton.setTitle("Продолжить", for: .normal)
         nextButton.addTarget(self, action: #selector(goNext), for: .touchUpInside)
     }
 
@@ -83,8 +84,26 @@ final class AuthorizationPhoneEnteringViewController: UIViewController {
 
 extension AuthorizationPhoneEnteringViewController: AuthorizationPhoneEnteringViewInput {
 
+    func setLoadingState() {
+        nextButton.isLoading = true
+    }
+
+    func removeLoadingState() {
+        nextButton.isLoading = false
+    }
+
     func validate() -> Bool {
         phoneNumberTextField.validate()
+    }
+
+    func getPhoneNumber() -> String? {
+        phoneNumberTextField.inputValueWithoutMask
+    }
+
+    func showAlert() {
+        let alert = UIAlertController(title: "Ошибка сети", message: "Проверьте подключение и повторите попытку", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 
     func setNormalState() {

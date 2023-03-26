@@ -20,6 +20,11 @@ protocol RegistrationViewInput: AnyObject {
 
     func selecteRole(_ role: PlayerRole)
     func unselectRole(_ role: PlayerRole)
+
+    func setLoadingState()
+    func removeLoadingState()
+
+    func showAlert()
 }
 
 protocol RegistrationViewOutput: AnyObject {

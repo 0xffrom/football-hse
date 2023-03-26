@@ -10,6 +10,7 @@ import UIKit
 @main
 final class AppDelegate: UIResponder {
 
+    private var rootCoordinator: Coordinatable?
     lazy var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
     var layer: CAEmitterLayer?
 }
@@ -20,12 +21,22 @@ extension AppDelegate: UIApplicationDelegate {
     func application( _ application: UIApplication,
                       didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let rootNavigationController = UINavigationController()
-        let coordinator = RootCoordinator(parentNavigationController: rootNavigationController, finishHandler: nil)
+
+        rootCoordinator = RootCoordinator(
+            parentNavigationController: rootNavigationController,
+            window: window!,
+            finishHandler: nil
+        )
 
         window?.rootViewController = rootNavigationController
         window?.makeKeyAndVisible()
 
-        coordinator.start(animated: true)
+//        rootCoordinator = MainCoordinator(
+//            window: window!,
+//            networkService: NetworkService()
+//        )
+// uncommet this to skip authorization
+        rootCoordinator?.start(animated: true)
 
         return true
     }

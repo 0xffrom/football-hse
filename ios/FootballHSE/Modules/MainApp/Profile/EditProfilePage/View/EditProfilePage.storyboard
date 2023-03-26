@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Edit Profile Page View Controller-->
+        <scene sceneID="5hq-AK-AGE">
+            <objects>
+                <viewController storyboardIdentifier="EditProfilePageViewController" id="3rb-zL-mKz" customClass="EditProfilePageViewController" customModule="FootballHSE" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="76j-P8-poF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KVv-rv-YE7">
+                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ing-hQ-MKX">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="650"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hn6-cI-Hse" customClass="HSESmartTextFieldView" customModule="FootballHSE" customModuleProvider="target">
+                                                <rect key="frame" x="16" y="220" width="382" height="76"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jXY-rJ-AYu" customClass="HSESmartTextFieldView" customModule="FootballHSE" customModuleProvider="target">
+                                                <rect key="frame" x="16" y="309" width="382" height="76"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d5V-Pq-Nk6" customClass="HSESmartTextFieldView" customModule="FootballHSE" customModuleProvider="target">
+                                                <rect key="frame" x="16" y="401" width="382" height="76"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c4d-z9-ZoJ" customClass="HSESmartTextFieldView" customModule="FootballHSE" customModuleProvider="target">
+                                                <rect key="frame" x="16" y="476" width="382" height="76"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0dZ-cy-D3M" customClass="HSEMainButton" customModule="FootballHSE" customModuleProvider="target">
+                                                <rect key="frame" x="16" y="565" width="382" height="60"/>
+                                                <color key="backgroundColor" name="BasePrimary"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="6f1-F5-ZKS"/>
+                                                </constraints>
+                                                <color key="tintColor" name="TextIconsWhite"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Сохранить"/>
+                                            </button>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ellipse 8" translatesAutoresizingMaskIntoConstraints="NO" id="xaI-Of-LQF">
+                                                <rect key="frame" x="172" y="0.0" width="70" height="70"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="70" id="bbG-1c-eyN"/>
+                                                    <constraint firstAttribute="height" constant="70" id="iVS-pZ-1hI"/>
+                                                </constraints>
+                                            </imageView>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2UI-4D-GyA" customClass="HSESmartTextFieldView" customModule="FootballHSE" customModuleProvider="target">
+                                                <rect key="frame" x="16" y="136" width="382" height="76"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="d5V-Pq-Nk6" secondAttribute="trailing" constant="16" id="AIE-JN-4x3"/>
+                                            <constraint firstItem="Hn6-cI-Hse" firstAttribute="top" secondItem="2UI-4D-GyA" secondAttribute="bottom" constant="24" id="FMs-36-XKu"/>
+                                            <constraint firstAttribute="trailing" secondItem="c4d-z9-ZoJ" secondAttribute="trailing" constant="16" id="GiY-rM-kVA"/>
+                                            <constraint firstItem="0dZ-cy-D3M" firstAttribute="top" secondItem="c4d-z9-ZoJ" secondAttribute="bottom" constant="30" id="HMw-TL-VL4"/>
+                                            <constraint firstAttribute="bottom" secondItem="0dZ-cy-D3M" secondAttribute="bottom" constant="40" id="MUm-H2-Z9y"/>
+                                            <constraint firstAttribute="trailing" secondItem="2UI-4D-GyA" secondAttribute="trailing" constant="16" id="Q26-Ed-Blo"/>
+                                            <constraint firstAttribute="trailing" secondItem="0dZ-cy-D3M" secondAttribute="trailing" constant="16" id="R5A-yp-cOg"/>
+                                            <constraint firstItem="jXY-rJ-AYu" firstAttribute="leading" secondItem="Ing-hQ-MKX" secondAttribute="leading" constant="16" id="ULC-xe-nuo"/>
+                                            <constraint firstItem="c4d-z9-ZoJ" firstAttribute="leading" secondItem="Ing-hQ-MKX" secondAttribute="leading" constant="16" id="WZg-MS-e8d"/>
+                                            <constraint firstItem="d5V-Pq-Nk6" firstAttribute="leading" secondItem="Ing-hQ-MKX" secondAttribute="leading" constant="16" id="X7a-N9-hsn"/>
+                                            <constraint firstItem="0dZ-cy-D3M" firstAttribute="leading" secondItem="Ing-hQ-MKX" secondAttribute="leading" constant="16" id="ZYe-Zh-gHx"/>
+                                            <constraint firstItem="2UI-4D-GyA" firstAttribute="top" secondItem="xaI-Of-LQF" secondAttribute="bottom" constant="36" id="d0S-vr-v15"/>
+                                            <constraint firstItem="d5V-Pq-Nk6" firstAttribute="top" secondItem="jXY-rJ-AYu" secondAttribute="bottom" constant="24" id="eCC-5Q-91Z"/>
+                                            <constraint firstItem="jXY-rJ-AYu" firstAttribute="top" secondItem="Hn6-cI-Hse" secondAttribute="bottom" constant="24" id="gTg-fd-S9g"/>
+                                            <constraint firstItem="xaI-Of-LQF" firstAttribute="top" secondItem="Ing-hQ-MKX" secondAttribute="top" id="kQx-UV-Q7k"/>
+                                            <constraint firstAttribute="trailing" secondItem="Hn6-cI-Hse" secondAttribute="trailing" constant="16" id="krj-ru-YUR"/>
+                                            <constraint firstAttribute="trailing" secondItem="jXY-rJ-AYu" secondAttribute="trailing" constant="16" id="tRm-OB-2fc"/>
+                                            <constraint firstItem="Hn6-cI-Hse" firstAttribute="leading" secondItem="Ing-hQ-MKX" secondAttribute="leading" constant="16" id="vJj-NX-sY5"/>
+                                            <constraint firstItem="xaI-Of-LQF" firstAttribute="centerX" secondItem="Ing-hQ-MKX" secondAttribute="centerX" id="w02-M4-gip"/>
+                                            <constraint firstItem="2UI-4D-GyA" firstAttribute="leading" secondItem="Ing-hQ-MKX" secondAttribute="leading" constant="16" id="wbj-Rp-9Jx"/>
+                                            <constraint firstItem="c4d-z9-ZoJ" firstAttribute="top" secondItem="d5V-Pq-Nk6" secondAttribute="bottom" constant="24" id="zsn-k2-oiG"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Ing-hQ-MKX" firstAttribute="bottom" secondItem="LZc-eQ-mbE" secondAttribute="bottom" id="KxK-3U-28e"/>
+                                    <constraint firstItem="Ing-hQ-MKX" firstAttribute="width" secondItem="e1R-Ys-7s2" secondAttribute="width" id="Y5P-UY-cgZ"/>
+                                    <constraint firstItem="Ing-hQ-MKX" firstAttribute="leading" secondItem="LZc-eQ-mbE" secondAttribute="leading" id="esD-2G-mfi"/>
+                                    <constraint firstItem="Ing-hQ-MKX" firstAttribute="top" secondItem="LZc-eQ-mbE" secondAttribute="top" id="kVe-S5-4xs"/>
+                                    <constraint firstItem="Ing-hQ-MKX" firstAttribute="trailing" secondItem="LZc-eQ-mbE" secondAttribute="trailing" id="pTv-11-Hvj"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="LZc-eQ-mbE"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="e1R-Ys-7s2"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="4ea-Io-jvE"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="KVv-rv-YE7" firstAttribute="leading" secondItem="4ea-Io-jvE" secondAttribute="leading" id="5TZ-tG-sI1"/>
+                            <constraint firstItem="4ea-Io-jvE" firstAttribute="bottom" secondItem="KVv-rv-YE7" secondAttribute="bottom" id="amT-cU-Us7"/>
+                            <constraint firstItem="KVv-rv-YE7" firstAttribute="top" secondItem="4ea-Io-jvE" secondAttribute="top" id="dg6-Jz-CQ8"/>
+                            <constraint firstItem="4ea-Io-jvE" firstAttribute="trailing" secondItem="KVv-rv-YE7" secondAttribute="trailing" id="vNX-Mp-TCA"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="aboutTextField" destination="c4d-z9-ZoJ" id="UHP-YI-ZyH"/>
+                        <outlet property="contactTextField" destination="d5V-Pq-Nk6" id="pWB-cb-nNf"/>
+                        <outlet property="footballExperienceTextField" destination="Hn6-cI-Hse" id="dmf-ph-cVS"/>
+                        <outlet property="nameTextField" destination="2UI-4D-GyA" id="ONv-vg-qSZ"/>
+                        <outlet property="saveButton" destination="0dZ-cy-D3M" id="c6e-vM-T45"/>
+                        <outlet property="tournamentExperienceTextField" destination="jXY-rJ-AYu" id="Hxk-41-kuT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1OX-Va-TN8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="428.98550724637687" y="67.633928571428569"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Ellipse 8" width="280" height="280"/>
+        <namedColor name="BasePrimary">
+            <color red="0.24699999392032623" green="0.37599998712539673" blue="0.9570000171661377" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="TextIconsWhite">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

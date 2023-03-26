@@ -12,5 +12,6 @@ public protocol AuthorizationCodeEnteringModuleInput: AnyObject {
 }
 
 public protocol AuthorizationCodeEnteringModuleOutput: AnyObject {
-    func moduleWantsToGoToTheNextStep(_ module: AuthorizationCodeEnteringModuleInput)
+    func moduleWantsToGoToRegistration(_ module: AuthorizationCodeEnteringModuleInput)
+    func moduleWantsToGoToMainApp(_ module: AuthorizationCodeEnteringModuleInput)
 }

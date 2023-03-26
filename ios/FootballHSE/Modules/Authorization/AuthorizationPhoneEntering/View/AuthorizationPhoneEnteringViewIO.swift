@@ -9,8 +9,12 @@ import Foundation
 
 protocol AuthorizationPhoneEnteringViewInput: AnyObject {
     func validate() -> Bool
+    func getPhoneNumber() -> String?
+    func showAlert()
     func setNormalState()
     func setErrorState()
+    func setLoadingState()
+    func removeLoadingState()
 }
 
 protocol AuthorizationPhoneEnteringViewOutput: AnyObject {

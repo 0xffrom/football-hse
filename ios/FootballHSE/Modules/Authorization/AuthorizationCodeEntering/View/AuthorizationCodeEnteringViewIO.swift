@@ -9,8 +9,13 @@ import Foundation
 
 protocol AuthorizationCodeEnteringViewInput: AnyObject {
     func validate() -> Bool
+    func getCode() -> String?
+    func showWrongCodeAlert()
+    func showNetworkErrorAlert()
     func setErrorState()
     func setNormalState()
+    func setLoadingState()
+    func removeLoadingState()
 }
 
 protocol AuthorizationCodeEnteringViewOutput: AnyObject {
