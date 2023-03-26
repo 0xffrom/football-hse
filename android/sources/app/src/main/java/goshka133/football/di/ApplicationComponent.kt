@@ -14,6 +14,8 @@ import goshka133.football.feature_profile.di.ProfileFeatureDependencies
 import goshka133.football.feature_profile.di.ProfileFeatureModule
 import goshka133.football.feature_search.di.SearchFeatureDependencies
 import goshka133.football.feature_search.di.SearchFeatureModule
+import goshka133.football.feature_team.di.TeamFeatureDependencies
+import goshka133.football.feature_team.di.TeamFeatureModule
 import javax.inject.Singleton
 
 @Component(
@@ -25,6 +27,7 @@ import javax.inject.Singleton
       ChatFeatureModule::class,
       SearchFeatureModule::class,
       ProfileFeatureModule::class,
+      TeamFeatureModule::class,
     ]
 )
 @Singleton
@@ -35,7 +38,8 @@ interface ApplicationComponent :
   ChatFeatureDependencies,
   SearchFeatureDependencies,
   ProfileFeatureDependencies,
-  MainFeatureDependencies {
+  MainFeatureDependencies,
+  TeamFeatureDependencies {
 
   @Component.Factory
   interface Factory {

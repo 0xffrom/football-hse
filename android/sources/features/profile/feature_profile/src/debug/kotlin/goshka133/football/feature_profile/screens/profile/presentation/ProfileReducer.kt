@@ -1,6 +1,6 @@
 package goshka133.football.feature_profile.screens.profile.presentation
 
-import goshka133.football.core_models.TeamApplication
+import goshka133.football.domain_team.TeamCreationApplicationStatus
 import goshka133.football.feature_profile.screens.profile.presentation.ProfileCommand as Command
 import goshka133.football.feature_profile.screens.profile.presentation.ProfileEffect as Effect
 import goshka133.football.feature_profile.screens.profile.presentation.ProfileEvent as Event
@@ -22,10 +22,10 @@ internal object ProfileReducer :
       }
       is Ui.Click.TeamApplication -> {
         when (state.teamApplication) {
-          is TeamApplication.Registered -> {
+          is TeamCreationApplicationStatus.Registered -> {
             // TODO
           }
-          is TeamApplication.NotRegistered -> {
+          is TeamCreationApplicationStatus.NotRegistered -> {
             effects { +Effect.OpenTeamRegistration(state.profile) }
           }
         }

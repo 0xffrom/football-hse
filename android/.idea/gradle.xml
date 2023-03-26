@@ -39,6 +39,8 @@
             <option value="$PROJECT_DIR$/sources/features/profile/feature_profile" />
             <option value="$PROJECT_DIR$/sources/features/search/domain_search" />
             <option value="$PROJECT_DIR$/sources/features/search/feature_search" />
+            <option value="$PROJECT_DIR$/sources/features/team/domain_team" />
+            <option value="$PROJECT_DIR$/sources/features/team/feature_team" />
             <option value="$PROJECT_DIR$/sources/ui_kit" />
           </set>
         </option>

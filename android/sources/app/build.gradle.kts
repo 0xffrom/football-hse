@@ -37,4 +37,6 @@ dependencies {
   implementation(project(":feature_search"))
   implementation(project(":domain_profile"))
   implementation(project(":feature_profile"))
+  implementation(project(":domain_team"))
+  implementation(project(":feature_team"))
 }

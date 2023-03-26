@@ -1,15 +1,15 @@
 package goshka133.football.feature_profile.screens.profile.presentation
 
 import androidx.compose.runtime.Immutable
-import goshka133.football.core_models.TeamApplication
-import goshka133.football.core_models.mock
 import goshka133.football.domain_profile.dto.Profile
 import goshka133.football.domain_profile.dto.mock
+import goshka133.football.domain_team.TeamCreationApplicationStatus
+import goshka133.football.domain_team.mock
 
 @Immutable
 internal data class ProfileState(
   val profile: Profile = Profile.mock(),
-  val teamApplication: TeamApplication = TeamApplication.mock(),
+  val teamApplication: TeamCreationApplicationStatus = TeamCreationApplicationStatus.mock(),
 )
 
 internal sealed interface ProfileEvent {
@@ -22,7 +22,7 @@ internal sealed interface ProfileEvent {
     object Click {
 
       object TeamApplication : Ui
-      object EditClick: Ui
+      object EditClick : Ui
     }
 
     object Action {
@@ -43,5 +43,5 @@ internal sealed interface ProfileCommand {
 internal sealed interface ProfileEffect {
 
   data class OpenTeamRegistration(val profile: Profile) : ProfileEffect
-  data class OpenEditProfile(val profile: Profile): ProfileEffect
+  data class OpenEditProfile(val profile: Profile) : ProfileEffect
 }

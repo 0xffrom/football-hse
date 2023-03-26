@@ -13,8 +13,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import goshka133.football.core_models.TeamApplication
-import goshka133.football.core_models.TeamStatus
+import goshka133.football.domain_team.TeamCreationApplicationStatus
+import goshka133.football.domain_team.TeamStatus
 import goshka133.football.ui_kit.R
 import goshka133.football.ui_kit.theme.FootballColors
 import goshka133.football.ui_kit.theme.Style14400
@@ -23,7 +23,7 @@ import goshka133.football.ui_kit.theme.Style16500
 @Composable
 fun TeamCreationApplicationCard(
   modifier: Modifier,
-  teamApplication: TeamApplication,
+  teamApplication: TeamCreationApplicationStatus,
   onClick: () -> Unit,
 ) {
   Card(
@@ -37,7 +37,7 @@ fun TeamCreationApplicationCard(
       verticalAlignment = Alignment.CenterVertically,
     ) {
       when (teamApplication) {
-        is TeamApplication.NotRegistered -> {
+        is TeamCreationApplicationStatus.NotRegistered -> {
           Image(
             modifier = Modifier.size(44.dp),
             painter = painterResource(id = R.drawable.img_document),
@@ -51,7 +51,7 @@ fun TeamCreationApplicationCard(
             style = Style16500,
           )
         }
-        is TeamApplication.Registered -> {
+        is TeamCreationApplicationStatus.Registered -> {
           Column(
             modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.spacedBy(4.dp),

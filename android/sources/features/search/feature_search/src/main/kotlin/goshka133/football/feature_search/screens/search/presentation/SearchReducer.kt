@@ -23,7 +23,7 @@ internal object SearchReducer :
             filteredApplications =
               if (event.value.text.isNotBlank()) {
                 state.applications.filter { teamApplication ->
-                  teamApplication.title.lowercase().contains(event.value.text.lowercase())
+                  teamApplication.name.lowercase().contains(event.value.text.lowercase())
                 }
               } else state.applications
           )

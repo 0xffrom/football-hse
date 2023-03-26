@@ -1,7 +1,7 @@
 plugins { id("goshka133.football.lib") }
 
 android {
-  namespace = "goshka133.football.feature_search"
+  namespace = "goshka133.football.feature_team"
 
   testOptions { unitTests.all { it.useJUnitPlatform() } }
 }
@@ -9,7 +9,6 @@ android {
 dependencies {
   implementation(libs.modo)
   implementation(libs.dagger)
-  implementation(libs.coil)
 
   annotationProcessor(libs.lifecycle.compiler)
   implementation(libs.lifecycle.viewmodel)
@@ -22,10 +21,10 @@ dependencies {
   implementation(project(":ui_kit"))
 
   implementation(project(":core_elmslie"))
+  implementation(project(":core_di"))
   implementation(project(":core_navigation"))
   implementation(project(":core_models"))
 
-  implementation(project(":domain_search"))
   implementation(project(":domain_team"))
 
   testImplementation(libs.bundles.kotest)

@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import goshka133.football.core_models.joinTitleToString
 import goshka133.football.core_models.mapToTitle
-import goshka133.football.domain_search.dto.TeamApplication
+import goshka133.football.domain_team.TeamApplication
 import goshka133.football.feature_search.R
 import goshka133.football.ui_kit.theme.CaptionMMedium
 import goshka133.football.ui_kit.theme.FootballColors
@@ -58,7 +58,7 @@ fun TeamApplicationCard(
             contentDescription = null,
           )
           Text(
-            text = application.title,
+            text = application.name,
             color = FootballColors.Text.Primary,
             style = CaptionMMedium,
           )

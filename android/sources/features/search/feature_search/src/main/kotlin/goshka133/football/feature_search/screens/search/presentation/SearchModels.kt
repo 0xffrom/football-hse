@@ -1,8 +1,8 @@
 package goshka133.football.feature_search.screens.search.presentation
 
 import androidx.compose.ui.text.input.TextFieldValue
-import goshka133.football.domain_search.dto.TeamApplication
-import goshka133.football.domain_search.dto.mockList
+import goshka133.football.domain_team.TeamApplication
+import goshka133.football.domain_team.mockList
 
 internal data class SearchState(
   val searchTextFieldValue: TextFieldValue = TextFieldValue(),

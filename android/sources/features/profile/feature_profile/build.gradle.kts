@@ -26,6 +26,7 @@ dependencies {
   implementation(project(":core_navigation"))
 
   implementation(project(":domain_profile"))
+  implementation(project(":domain_team"))
 
   testImplementation(libs.bundles.kotest)
 }
