@@ -39,4 +39,7 @@ extension CreateTeamSearchApplicationPresenter: CreateTeamSearchApplicationInter
 
 extension CreateTeamSearchApplicationPresenter: CreateTeamSearchApplicationViewOutput {
 
+    func save() {
+        moduleOutput?.back()
+    }
 }

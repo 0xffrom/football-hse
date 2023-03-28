@@ -49,6 +49,9 @@ final class EditProfilePageViewController: UIViewController {
 
     private func setupView() {
         setupTextFields()
+        navigationItem.title = "Редактирование профиля";
+        let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .medium)]
+        UINavigationBar.appearance().titleTextAttributes = attributes
         saveButton.addTarget(self, action: #selector(save), for: .touchUpInside)
     }
 
@@ -99,7 +102,7 @@ final class EditProfilePageViewController: UIViewController {
         aboutTextField.horizontalInset = 16
         aboutTextField.verticalInset = 12
         aboutTextField.hightOfTextField = 48
-        aboutTextField.descriptionLabelText = "О себе"
+        aboutTextField.descriptionLabelText = "О СЕБЕ"
         aboutTextField.placeholder = "Расскажите о себе"
     }
 }

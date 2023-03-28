@@ -18,7 +18,7 @@ final class SearchTeamsCoordinator {
     private unowned let window: UIWindow
 
     private weak var parentTabBarController: UITabBarController?
-    private weak var navigationController: UINavigationController?
+    private weak var parentNavigationController: UINavigationController?
 
     private let networkService: INetworkService
 
@@ -47,6 +47,7 @@ extension SearchTeamsCoordinator: Coordinatable {
         let viewController = builder.build()
 
         let navigationController = UINavigationController(rootViewController: viewController)
+        parentNavigationController = navigationController
 
         parentTabBarController?.addViewController(navigationController)
     }
@@ -68,10 +69,27 @@ extension SearchTeamsCoordinator: SearchTeamsPageModuleOutput {
             networkService: networkService
         )
         let viewController = builder.build()
-        parentTabBarController?.navigationController?.pushViewController(viewController, animated: true)
+        parentNavigationController?.pushViewController(viewController, animated: true)
+    }
+
+    func openTeamApplication(team: TeamApplicationDisplayModel) {
+        let builder = TeamApplicationModuleBuilder(
+            output: self,
+            networkService: networkService,
+            team: team
+        )
+        let viewController = builder.build()
+        parentNavigationController?.pushViewController(viewController, animated: true)
     }
 }
 
 extension SearchTeamsCoordinator: CreateTeamSearchApplicationModuleOutput {
+
+    func back() {
+        parentNavigationController?.popViewController(animated: true)
+    }
+}
+
+extension SearchTeamsCoordinator: TeamApplicationModuleOutput {
 
 }

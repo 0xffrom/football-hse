@@ -13,4 +13,5 @@ public protocol SearchTeamsPageModuleInput: AnyObject {
 
 public protocol SearchTeamsPageModuleOutput: AnyObject {
     func openCreateApplictaionScreen()
+    func openTeamApplication(team: TeamApplicationDisplayModel)
 }

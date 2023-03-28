@@ -12,5 +12,5 @@ public protocol CreateTeamSearchApplicationModuleInput: AnyObject {
 }
 
 public protocol CreateTeamSearchApplicationModuleOutput: AnyObject {
-    func openCreateApplictaionScreen()
+    func back() 
 }

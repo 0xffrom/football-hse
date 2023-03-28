@@ -93,4 +93,8 @@ extension SearchTeamsPagePresenter: SearchTeamsPageViewOutput {
     func viewWantsToOpenCreateApplictaionScreen() {
         moduleOutput?.openCreateApplictaionScreen()
     }
+
+    func wantsToOpenTeamApplication(team: TeamApplicationDisplayModel) {
+        moduleOutput?.openTeamApplication(team: team)
+    }
 }
