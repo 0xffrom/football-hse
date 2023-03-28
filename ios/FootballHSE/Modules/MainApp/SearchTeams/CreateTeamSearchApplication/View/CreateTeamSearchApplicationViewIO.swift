@@ -12,5 +12,5 @@ protocol CreateTeamSearchApplicationViewInput: AnyObject {
 }
 
 protocol CreateTeamSearchApplicationViewOutput: AnyObject {
-
+    func save()
 }

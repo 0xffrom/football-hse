@@ -53,6 +53,8 @@ final class ProfilePageViewController: UIViewController {
         editButtton.setTitle("", for: .normal)
         editButtton.addTarget(self, action: #selector(edit), for: .touchUpInside)
         exitButtton.addTarget(self, action: #selector(exit), for: .touchUpInside)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.registerTeam(_:)))
+        registerTeamView.addGestureRecognizer(tap)
         profileWrapperView.layer.cornerRadius = 16
         prifileImage.layer.cornerRadius = 16
         registerTeamView.layer.cornerRadius = 15
@@ -66,6 +68,10 @@ final class ProfilePageViewController: UIViewController {
 
     @objc private func exit(sender: UIButton) {
         output?.exit()
+    }
+
+    @objc func registerTeam(_ sender: UITapGestureRecognizer? = nil) {
+        output?.registerTeam()
     }
 }
 

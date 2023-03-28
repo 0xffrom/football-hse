@@ -60,6 +60,15 @@ extension ProfileCoordinator: Coordinatable {
 
 extension ProfileCoordinator: ProfilePageModuleOutput {
 
+    func registerTeam() {
+        let builder = RegisterTeamPageModuleBuilder(
+            output: self,
+            networkService: networkService
+        )
+        let viewController = builder.build()
+        parentNavigationController?.pushViewController(viewController, animated: true)
+    }
+
     func openEditProfile() {
         let builder = EditProfilePageModuleBuilder(
             output: self,
@@ -88,3 +97,5 @@ extension ProfileCoordinator: EditProfilePageModuleOutput {
         parentNavigationController?.popViewController(animated: true)
     }
 }
+
+extension ProfileCoordinator: RegisterTeamPageModuleOutput {}

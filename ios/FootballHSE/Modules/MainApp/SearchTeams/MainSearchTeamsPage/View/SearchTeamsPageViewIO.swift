@@ -20,4 +20,5 @@ protocol SearchTeamsPageViewOutput: AnyObject {
     func viewStartRefreshing()
     func searchBarTextDidChange(text: String)
     func viewWantsToOpenCreateApplictaionScreen()
+    func wantsToOpenTeamApplication(team: TeamApplicationDisplayModel)
 }

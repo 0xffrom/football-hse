@@ -14,4 +14,5 @@ public protocol ProfilePageModuleInput: AnyObject {
 public protocol ProfilePageModuleOutput: AnyObject {
     func openEditProfile()
     func exit()
+    func registerTeam()
 }
