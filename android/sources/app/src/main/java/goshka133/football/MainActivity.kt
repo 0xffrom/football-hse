@@ -33,10 +33,10 @@ class MainActivity : ComponentActivity() {
 
     val dependencies: RootDependencies = getComponent(this)
 
-    // TODO: a temporary solution instead of 'rootScreen = dependencies.authFeatureApi.getScreen()'
     val rootStackView = RootStackView(rootScreen = dependencies.authFeatureApi.getScreen())
 
     rootScreen = Modo.init(savedInstanceState, rootScreen) { rootStackView }
+    dependencies.routerHolder.setRouter(rootScreen!!)
 
     setContent {
       CompositionLocalProvider(

@@ -1,5 +1,10 @@
-plugins { id("goshka133.football.lib") }
+plugins { id("goshka133.football.kotlin") }
 
-android { namespace = "goshka133.football.core_navigation" }
+dependencies {
 
-dependencies { implementation(libs.modo) }
+    implementationAar(libs.modo)
+    implementation(libs.dagger)
+
+    val androidJar: Any by rootProject.extra
+    compileOnly(androidJar)
+}

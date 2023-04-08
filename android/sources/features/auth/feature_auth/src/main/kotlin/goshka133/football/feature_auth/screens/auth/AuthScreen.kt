@@ -12,8 +12,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.github.terrakok.modo.stack.back
 import com.github.terrakok.modo.stack.newStack
+import goshka133.football.core_di.rememberDependencies
 import goshka133.football.core_elmslie.rememberStore
 import goshka133.football.core_navigation.LocalRouter
+import goshka133.football.feature_auth.di.AuthFeatureDependencies
 import goshka133.football.feature_auth.screens.auth.components.Stepper
 import goshka133.football.feature_auth.screens.auth.components.StepperState
 import goshka133.football.feature_auth.screens.auth.components.pageTransitionSpec
@@ -43,6 +45,7 @@ internal class AuthScreen : BaseScreen() {
 
     val router = LocalRouter.current
     val snackbarHostState = LocalSnackBarHostState.current
+    val dependencies: AuthFeatureDependencies = rememberDependencies()
 
     LaunchedEffect(Unit) {
       store.effects().collect { effect ->
@@ -50,7 +53,12 @@ internal class AuthScreen : BaseScreen() {
           is AuthEffect.Close -> router.back()
           is AuthEffect.OpenOriginationScreen -> router.newStack(OriginationScreen())
           is AuthEffect.ShowError -> {
-            effect.error.message?.let { snackbarHostState.showSnackbar(it, duration = SnackbarDuration.Short) }
+            effect.error.message?.let {
+              snackbarHostState.showSnackbar(it, duration = SnackbarDuration.Short)
+            }
+          }
+          is AuthEffect.OpenMainScreen -> {
+            router.newStack(dependencies.mainFeatureApi.getScreen())
           }
         }
       }

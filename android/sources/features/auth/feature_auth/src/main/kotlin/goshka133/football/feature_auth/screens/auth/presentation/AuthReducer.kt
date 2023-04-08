@@ -2,12 +2,15 @@ package goshka133.football.feature_auth.screens.auth.presentation
 
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
+import goshka133.football.domain_auth.session.UserSessionResponse
 import goshka133.football.feature_auth.screens.auth.presentation.AuthCommand as Command
 import goshka133.football.feature_auth.screens.auth.presentation.AuthEffect as Effect
 import goshka133.football.feature_auth.screens.auth.presentation.AuthEvent as Event
 import goshka133.football.feature_auth.screens.auth.presentation.AuthEvent.Internal
 import goshka133.football.feature_auth.screens.auth.presentation.AuthEvent.Ui
 import goshka133.football.feature_auth.screens.auth.presentation.AuthState as State
+import goshka133.football.feature_auth.screens.auth.presentation.AuthState.Page
+import goshka133.football.ui_kit.error.SomethingWentWrongException
 import vivid.money.elmslie.core.store.dsl_reducer.ScreenDslReducer
 
 internal object AuthReducer :
@@ -17,26 +20,28 @@ internal object AuthReducer :
     when (event) {
       is Ui.System.Start -> Unit
       is Ui.Click.Continue -> {
-        val isPageValid = state.currentPage.validate()
+        val page = state.currentPage
+        val isPageValid = page.validate()
         state {
           copy(
             isErrorPageValidationState = !isPageValid,
           )
         }
-        when {
-          !isPageValid -> {
-            effects { +Effect.ShowError(IllegalStateException("Необходимо заполнить данные")) }
+        if (!isPageValid) {
+          effects { +Effect.ShowError(IllegalStateException("Необходимо заполнить данные")) }
+        } else {
+          state {
+            copy(
+              isLoading = true,
+            )
           }
-          state.canGoNext -> {
-            state {
-              copy(
-                currentNumberPage = state.currentNumberPage + 1,
-                previousNumberPage = state.currentNumberPage,
-              )
+          when (page) {
+            is Page.PhoneNumber -> {
+              commands { +Command.SendOtp(page.numberTextFieldValue.text) }
             }
-          }
-          else -> {
-            effects { +Effect.OpenOriginationScreen }
+            is Page.SmsCode -> {
+              commands { +Command.VerifyCode(page.smsTextFieldValue.text) }
+            }
           }
         }
       }
@@ -70,7 +75,7 @@ internal object AuthReducer :
       is Ui.Action.OnSmsTextFieldChange -> {
         if (state.isLoading) return
 
-        val formattedText = event.textFieldValue.text.filter(Char::isDigit)
+        val formattedText = event.textFieldValue.text.filter(Char::isDigit).take(4)
 
         if (formattedText != state.smsCodePage.smsTextFieldValue.text) {
           state {
@@ -87,14 +92,61 @@ internal object AuthReducer :
             )
           }
 
-          if (state.smsCodePage.smsTextFieldValue.text.length == 4) {
-            state { copy(isLoading = false) }
-            effects { +Effect.OpenOriginationScreen }
+          if (formattedText.length == 4) {
+            state { copy(isLoading = true) }
+            commands { +Command.VerifyCode(formattedText) }
           }
         }
       }
     }
   }
 
-  override fun Result.internal(event: Internal) = Unit
+  override fun Result.internal(event: Internal) {
+    when (event) {
+      is Internal.SendOtpSuccess -> {
+        state {
+          copy(
+            isLoading = false,
+            currentNumberPage = state.currentNumberPage + 1,
+          )
+        }
+      }
+      is Internal.SendOtpError -> {
+        state {
+          copy(
+            isLoading = false,
+          )
+        }
+        effects { +Effect.ShowError(SomethingWentWrongException()) }
+      }
+      is Internal.VerifyCodeSuccess -> {
+        state {
+          copy(
+            isLoading = false,
+          )
+        }
+        when (event.session) {
+          is UserSessionResponse.Data -> {
+            if (event.session.session.isRegistered) {
+              effects { +Effect.OpenMainScreen }
+            } else {
+              effects { +Effect.OpenOriginationScreen }
+            }
+          }
+          is UserSessionResponse.Error.IncorrectCode -> {
+            // TODO: shake
+            effects { +Effect.ShowError(IllegalStateException("Некорректный код")) }
+          }
+        }
+      }
+      is Internal.VerifyCodeError -> {
+        state {
+          copy(
+            isLoading = false,
+          )
+        }
+        effects { +Effect.ShowError(SomethingWentWrongException()) }
+      }
+    }
+  }
 }

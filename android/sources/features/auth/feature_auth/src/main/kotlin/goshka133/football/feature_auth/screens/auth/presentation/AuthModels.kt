@@ -2,6 +2,7 @@ package goshka133.football.feature_auth.screens.auth.presentation
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.text.input.TextFieldValue
+import goshka133.football.domain_auth.session.UserSessionResponse
 import goshka133.football.feature_auth.screens.auth.models.CodeDigit
 
 internal const val PageNumbers = 2
@@ -105,12 +106,19 @@ internal sealed interface AuthEvent {
   }
 
   sealed interface Internal : AuthEvent {
-    // your code
+
+    object SendOtpSuccess : Internal
+    data class SendOtpError(val error: Throwable) : Internal
+
+    data class VerifyCodeSuccess(val session: UserSessionResponse) : Internal
+    data class VerifyCodeError(val error: Throwable) : Internal
   }
 }
 
 internal sealed interface AuthCommand {
-  // your code
+
+  data class SendOtp(val phoneNumber: String) : AuthCommand
+  data class VerifyCode(val code: String) : AuthCommand
 }
 
 @Immutable
@@ -119,4 +127,5 @@ internal sealed interface AuthEffect {
   data class ShowError(val error: Throwable) : AuthEffect
   object Close : AuthEffect
   object OpenOriginationScreen : AuthEffect
+  object OpenMainScreen : AuthEffect
 }

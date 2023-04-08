@@ -8,5 +8,8 @@ dependencies {
   implementation(libs.okhttp)
   implementation(libs.okhttp.logging)
   implementation(libs.retrofit)
-  implementation(libs.retrofit.moshi)
+  implementation(libs.retrofit.serialization)
+  implementation(libs.kotlin.serializer)
+
+  implementation(project(":domain_auth"))
 }

@@ -16,6 +16,7 @@ internal class PureKotlinModulePlugin : Plugin<Project> {
       apply(KotlinParcelizePlugin::class.java)
       apply(KotlinComposePlugin::class.java)
       apply("org.jetbrains.kotlin.kapt")
+      apply("org.jetbrains.kotlin.plugin.serialization")
     }
     val libs = project.getVersionCatalog()
 

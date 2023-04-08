@@ -34,7 +34,10 @@ coil = { module = "io.coil-kt:coil-compose", version = "2.2.2" }
 
 dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
 dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }
-datastore = { module = "androidx.datastore:datastore-preferences", version = "1.0.0" }
+datastore-preferences = { module = "androidx.datastore:datastore-preferences", version = "1.0.0" }
+datastore-core = { module = "androidx.datastore:datastore-preferences-core", version = "1.0.0" }
+datastore-security = { module = "io.github.osipxd:security-crypto-datastore", version = "1.0.0-beta01" }
+datastore-security-preferences = { module = "io.github.osipxd:security-crypto-datastore-preferences", version = "1.0.0-beta01" }
 
 elmslie-android = { module = "com.github.vivid-money.elmslie:elmslie-android", version.ref = "elmslie" }
 elmslie-core = { module = "com.github.vivid-money.elmslie:elmslie-core", version.ref = "elmslie" }
@@ -46,17 +49,16 @@ lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel
 
 kotlin-parcelize = { module = "org.jetbrains.kotlin:kotlin-parcelize-runtime", version.ref = "kotlin" }
 kotlin-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version = "0.3.5" }
+kotlin-serializer = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json-jvm", version = "1.5.0" }
 
 modo = { module = "com.github.andreyromanyuk:Modo", version = "0.0.3" }
-moshi = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshi" }
-moshi-compiler = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshi" }
 
 okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 okhttp-logging = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp" }
 
 timber = { module = "com.jakewharton.timber:timber", version = "5.0.1" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version = "2.9.0" }
-retrofit-moshi = { module = "com.squareup.retrofit2:converter-moshi", version = "2.9.0" }
+retrofit-serialization = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version = "0.8.0" }
 
 # Tests
 kotest-assertions = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }

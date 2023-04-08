@@ -2,6 +2,8 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="17">
+      <module name="HSE_Football.core_auth.main" target="11" />
+      <module name="HSE_Football.core_auth.test" target="11" />
       <module name="HSE_Football.domain_auth.main" target="11" />
       <module name="HSE_Football.domain_auth.test" target="11" />
       <module name="HSE_Football.domain_chat.main" target="11" />
