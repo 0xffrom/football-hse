@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TeamApplicationDisplayModel: Codable {
+public struct TeamApplicationDisplayModel: Codable {
     let id: Int
     let teamId: Int
     let name: String

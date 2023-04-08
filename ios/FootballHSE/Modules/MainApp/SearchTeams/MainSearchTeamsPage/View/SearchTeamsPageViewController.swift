@@ -180,6 +180,7 @@ extension SearchTeamsPageViewController: SearchTeamsPageViewInput {
 extension SearchTeamsPageViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        output?.wantsToOpenTeamApplication(team: data[indexPath.section])
         tableView.deselectRow(at: indexPath, animated: true)
     }
 

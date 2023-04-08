@@ -38,6 +38,10 @@ extension ProfilePagePresenter: ProfilePageInteractorOutput {}
 
 extension ProfilePagePresenter: ProfilePageViewOutput {
 
+    func registerTeam() {
+        moduleOutput?.registerTeam()
+    }
+
     func viewWantToEditProfile() {
         moduleOutput?.openEditProfile()
     }
