@@ -1,10 +1,11 @@
-package goshka133.football.domain_auth.dto
+package goshka133.football.core_auth.session
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class SessionResponse(
-  val token: String,
+data class UserSession(
+  @SerialName("token") val accessToken: String,
   val refreshToken: String,
   val phoneNumber: String,
   val isCaptain: Boolean,

@@ -2,18 +2,6 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="17">
-      <module name="HSE_Football.core_auth.main" target="11" />
-      <module name="HSE_Football.core_auth.test" target="11" />
-      <module name="HSE_Football.domain_auth.main" target="11" />
-      <module name="HSE_Football.domain_auth.test" target="11" />
-      <module name="HSE_Football.domain_chat.main" target="11" />
-      <module name="HSE_Football.domain_chat.test" target="11" />
-      <module name="HSE_Football.domain_main.main" target="11" />
-      <module name="HSE_Football.domain_main.test" target="11" />
-      <module name="HSE_Football.domain_profile.main" target="11" />
-      <module name="HSE_Football.domain_profile.test" target="11" />
-      <module name="HSE_Football.domain_search.main" target="11" />
-      <module name="HSE_Football.domain_search.test" target="11" />
       <module name="HSE_Football.feature_domain.main" target="11" />
       <module name="HSE_Football.feature_domain.test" target="11" />
       <module name="HSE_Football.network.main" target="17" />

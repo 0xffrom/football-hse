@@ -4,9 +4,10 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
-import goshka133.football.domain_auth.session.UserSession
-import goshka133.football.domain_auth.session.UserSessionResponse
-import goshka133.football.domain_auth.session.UserSessionUpdater
+import goshka133.football.core_auth.session.UserSessionUpdater
+import goshka133.football.domain_auth.dto.UserSessionResponse
+import goshka133.football.domain_profile.ProfileApi
+import goshka133.football.domain_profile.dto.CreateProfileBody
 import javax.inject.Inject
 import kotlinx.coroutines.flow.first
 import retrofit2.HttpException
@@ -15,6 +16,7 @@ class AuthRepository
 @Inject
 constructor(
   private val api: AuthApi,
+  private val profileApi: ProfileApi,
   private val dataStore: DataStore<Preferences>,
   private val userSessionUpdater: UserSessionUpdater,
 ) {
@@ -31,25 +33,30 @@ constructor(
       dataStore.data.first()[phoneNumberPrefsKey]
         ?: throw IllegalStateException("Empty phone number in the preferences")
 
-    return runCatching {
-        val response = api.verifyOtpCode(phoneNumber = phoneNumber, code = code)
+    val response =
+      runCatching {
+          val session = api.verifyOtpCode(phoneNumber = phoneNumber, code = code)
+          userSessionUpdater.updateSession(session)
 
-        userSessionUpdater.updateSession(response)
-      UserSessionResponse.Data(
-        session =
-        UserSession(
-          accessToken = response.token,
-          phoneNumber = response.phoneNumber,
-          isCaptain = response.isCaptain,
-          isRegistered = response.isRegistered,
-        )
-      )
-      }
-      .getOrElse { error ->
-        when {
-          error is HttpException && error.code() == 400 -> UserSessionResponse.Error.IncorrectCode
-          else -> throw error
+          UserSessionResponse.Data(session)
         }
+        .getOrElse { error ->
+          when {
+            error is HttpException && error.code() == 400 -> UserSessionResponse.Error.IncorrectCode
+            else -> throw error
+          }
+        }
+
+    if (response is UserSessionResponse.Data) {
+      if (!response.session.isRegistered) {
+        val profile = profileApi.getProfile(response.session.phoneNumber)
+
+        return response.copy(
+          shouldBeOnboarded = profile.fullName.isNullOrBlank(),
+        )
       }
+    }
+
+    return response
   }
 }

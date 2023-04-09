@@ -4,8 +4,10 @@ import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFact
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoSet
-import goshka133.football.domain_auth.session.UserSessionProvider
-import goshka133.football.domain_auth.session.UserSessionUpdater
+import goshka133.football.core_auth.session.UserSessionProvider
+import goshka133.football.core_auth.session.UserSessionUpdater
+import goshka133.football.core_network.interceptors.SessionExpirationInterceptor
+import goshka133.football.core_network.interceptors.SessionHeaderInterceptor
 import javax.inject.Singleton
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
@@ -20,15 +22,23 @@ private const val BaseServiceUrl = "http://hse-football.ru/api/"
 @Module
 object NetworkModule {
 
+  private val json = Json {
+    ignoreUnknownKeys = true
+    isLenient = true
+    coerceInputValues = true
+  }
+
   @OptIn(ExperimentalSerializationApi::class)
   @Provides
   @Singleton
   fun provideRetrofit(client: OkHttpClient): Retrofit {
     val contentType = "application/json".toMediaType()
 
+    val converterFactory = json.asConverterFactory(contentType)
+
     return Retrofit.Builder()
       .baseUrl(BaseServiceUrl)
-      .addConverterFactory(Json.asConverterFactory(contentType))
+      .addConverterFactory(converterFactory)
       .client(client)
       .build()
   }

@@ -1,8 +1,7 @@
 package goshka133.football.domain_auth
 
-import goshka133.football.domain_auth.dto.SessionResponse
-import goshka133.football.domain_auth.dto.UpdateSessionRequestBody
-import retrofit2.http.Body
+import goshka133.football.core_auth.session.UserSession
+import goshka133.football.domain_auth.dto.UserSessionResponse
 import retrofit2.http.POST
 import retrofit2.http.Path
 
@@ -15,10 +14,5 @@ interface AuthApi {
   suspend fun verifyOtpCode(
     @Path("phoneNumber") phoneNumber: String,
     @Path("code") code: String,
-  ): SessionResponse
-
-  @POST("/api/Authentication/access")
-  suspend fun updateSession(
-    @Body requestBody: UpdateSessionRequestBody,
-  ): SessionResponse
+  ): UserSession
 }

@@ -1,4 +1,4 @@
-package goshka133.football.domain_auth.session
+package goshka133.football.core_auth.session
 
 import kotlinx.coroutines.flow.StateFlow
 

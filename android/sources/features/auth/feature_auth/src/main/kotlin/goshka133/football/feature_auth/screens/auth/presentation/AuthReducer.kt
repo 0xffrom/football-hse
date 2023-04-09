@@ -2,7 +2,7 @@ package goshka133.football.feature_auth.screens.auth.presentation
 
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
-import goshka133.football.domain_auth.session.UserSessionResponse
+import goshka133.football.domain_auth.dto.UserSessionResponse
 import goshka133.football.feature_auth.screens.auth.presentation.AuthCommand as Command
 import goshka133.football.feature_auth.screens.auth.presentation.AuthEffect as Effect
 import goshka133.football.feature_auth.screens.auth.presentation.AuthEvent as Event
@@ -104,11 +104,13 @@ internal object AuthReducer :
   override fun Result.internal(event: Internal) {
     when (event) {
       is Internal.SendOtpSuccess -> {
-        state {
-          copy(
-            isLoading = false,
-            currentNumberPage = state.currentNumberPage + 1,
-          )
+        if (state.currentPage is Page.PhoneNumber) {
+          state {
+            copy(
+              isLoading = false,
+              currentNumberPage = state.currentNumberPage + 1,
+            )
+          }
         }
       }
       is Internal.SendOtpError -> {
@@ -127,10 +129,10 @@ internal object AuthReducer :
         }
         when (event.session) {
           is UserSessionResponse.Data -> {
-            if (event.session.session.isRegistered) {
-              effects { +Effect.OpenMainScreen }
-            } else {
+            if (event.session.shouldBeOnboarded) {
               effects { +Effect.OpenOriginationScreen }
+            } else {
+              effects { +Effect.OpenMainScreen }
             }
           }
           is UserSessionResponse.Error.IncorrectCode -> {

@@ -11,7 +11,10 @@ dependencies {
   implementationAar(libs.modo)
   kapt(libs.dagger.compiler)
 
+  implementation(project(":core_auth"))
   implementation(project(":core_navigation"))
+
+  implementation(project(":domain_profile"))
 
   val androidJar: Any by rootProject.extra
   compileOnly(androidJar)

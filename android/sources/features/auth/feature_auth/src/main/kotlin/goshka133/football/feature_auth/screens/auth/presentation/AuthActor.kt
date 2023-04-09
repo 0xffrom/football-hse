@@ -17,7 +17,7 @@ constructor(
   override fun execute(command: Command): Flow<Internal> {
     return when (command) {
       is Command.SendOtp ->
-        flow { emit(authRepository.sendOtp(command.phoneNumber)) }
+        flow { emit(authRepository.sendOtp("8${command.phoneNumber}")) }
           .mapEvents(
             { Internal.SendOtpSuccess },
             Internal::SendOtpError,

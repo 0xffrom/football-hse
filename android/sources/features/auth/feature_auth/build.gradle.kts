@@ -20,11 +20,14 @@ dependencies {
   implementation(project(":ui_kit"))
 
   implementation(project(":core_di"))
+  implementation(project(":core_auth"))
+
   implementation(project(":core_elmslie"))
   implementation(project(":core_navigation"))
 
   implementation(project(":domain_auth"))
   implementation(project(":domain_main"))
+  implementation(project(":domain_profile"))
 
   testImplementation(libs.bundles.kotest)
 }

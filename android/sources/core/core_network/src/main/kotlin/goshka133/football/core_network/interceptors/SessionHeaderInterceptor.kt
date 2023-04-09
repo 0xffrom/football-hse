@@ -1,6 +1,6 @@
-package goshka133.football.core_network.di
+package goshka133.football.core_network.interceptors
 
-import goshka133.football.domain_auth.session.UserSessionProvider
+import goshka133.football.core_auth.session.UserSessionProvider
 import javax.inject.Inject
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -20,7 +20,7 @@ constructor(
         .newBuilder()
         .apply {
           if (sessionToken != null) {
-            addHeader("Authorization", "Bearer $sessionToken")
+            addHeader("Authorization", "Bearer ${sessionToken.accessToken}")
           }
         }
         .build()

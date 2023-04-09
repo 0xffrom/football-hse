@@ -1,5 +1,7 @@
 package goshka133.football.feature_profile.screens.profile.presentation
 
+import goshka133.football.core_kotlin.Resource
+import goshka133.football.domain_profile.dto.Profile
 import goshka133.football.domain_team.TeamCreationApplicationStatus
 import goshka133.football.feature_profile.screens.profile.presentation.ProfileCommand as Command
 import goshka133.football.feature_profile.screens.profile.presentation.ProfileEffect as Effect
@@ -7,6 +9,8 @@ import goshka133.football.feature_profile.screens.profile.presentation.ProfileEv
 import goshka133.football.feature_profile.screens.profile.presentation.ProfileEvent.Internal
 import goshka133.football.feature_profile.screens.profile.presentation.ProfileEvent.Ui
 import goshka133.football.feature_profile.screens.profile.presentation.ProfileState as State
+import goshka133.football.ui_kit.error.SomethingWentWrongException
+import timber.log.Timber
 import vivid.money.elmslie.core.store.dsl_reducer.ScreenDslReducer
 
 internal object ProfileReducer :
@@ -15,10 +19,10 @@ internal object ProfileReducer :
   override fun Result.ui(event: Ui) {
     when (event) {
       is Ui.System.Start -> {
-        // your code
+        commands { +Command.ObserveProfile }
       }
       is Ui.Click.EditClick -> {
-        effects { +Effect.OpenEditProfile(state.profile) }
+        performOnProfile { effects { +Effect.OpenEditProfile(this@performOnProfile) } }
       }
       is Ui.Click.TeamApplication -> {
         when (state.teamApplication) {
@@ -26,12 +30,32 @@ internal object ProfileReducer :
             // TODO
           }
           is TeamCreationApplicationStatus.NotRegistered -> {
-            effects { +Effect.OpenTeamRegistration(state.profile) }
+            performOnProfile { effects { +Effect.OpenTeamRegistration(this@performOnProfile) } }
           }
         }
       }
     }
   }
 
-  override fun Result.internal(event: Internal) = Unit
+  override fun Result.internal(event: Internal) {
+    when (event) {
+      is Internal.ObserveProfileSuccess -> {
+        state { copy(profile = Resource.Data(event.profile)) }
+      }
+      is Internal.ObserveProfileError -> {
+        state { copy(profile = Resource.Error(event.error)) }
+        effects { +Effect.ShowError(SomethingWentWrongException()) }
+      }
+    }
+  }
+
+  private fun Result.performOnProfile(block: Profile.() -> Unit) {
+    val profile = state.profile.value
+
+    if (profile == null) {
+      Timber.e("Incorrect state. Profile is null")
+    } else {
+      profile.block()
+    }
+  }
 }

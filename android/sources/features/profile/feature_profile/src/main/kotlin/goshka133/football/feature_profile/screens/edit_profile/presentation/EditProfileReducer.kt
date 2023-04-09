@@ -6,6 +6,7 @@ import goshka133.football.feature_profile.screens.edit_profile.presentation.Edit
 import goshka133.football.feature_profile.screens.edit_profile.presentation.EditProfileEvent.Internal
 import goshka133.football.feature_profile.screens.edit_profile.presentation.EditProfileEvent.Ui
 import goshka133.football.feature_profile.screens.edit_profile.presentation.EditProfileState as State
+import goshka133.football.ui_kit.error.SomethingWentWrongException
 import vivid.money.elmslie.core.store.dsl_reducer.ScreenDslReducer
 
 internal object EditProfileReducer :
@@ -28,7 +29,21 @@ internal object EditProfileReducer :
         }
       }
       is Ui.Click.Continue -> {
-        effects { +Effect.Close }
+        if (state.isLoading) return
+
+        state { copy(isLoading = true) }
+        commands {
+          +Command.UpdateProfile(
+            profile =
+              state.profile.copy(
+                fullName = state.fullNameTextFieldValue.text,
+                footballExperience = state.footballExperienceTextFieldValue.text,
+                tournamentsExperience = state.tournamentsExperienceTextFieldValue.text,
+                contactInfo = state.contactInfoTextFieldValue.text,
+                about = state.aboutInfoTextFieldValue.text,
+              )
+          )
+        }
       }
       is Ui.Click.PhotoPickerSheetClose -> {
         effects { +Effect.HideBottomPhotoPickerSheet }
@@ -54,5 +69,16 @@ internal object EditProfileReducer :
     }
   }
 
-  override fun Result.internal(event: Internal) = Unit
+  override fun Result.internal(event: Internal) {
+    when (event) {
+      is Internal.UpdateProfileError -> {
+        state { copy(isLoading = false) }
+        effects { +Effect.ShowError(SomethingWentWrongException()) }
+      }
+      is Internal.UpdateProfileSuccess -> {
+        state { copy(isLoading = false) }
+        effects { +Effect.Close }
+      }
+    }
+  }
 }

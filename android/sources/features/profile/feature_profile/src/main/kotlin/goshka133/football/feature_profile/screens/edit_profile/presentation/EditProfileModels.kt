@@ -50,10 +50,19 @@ internal sealed interface EditProfileEvent {
     }
   }
 
-  sealed interface Internal : EditProfileEvent
+  sealed interface Internal : EditProfileEvent {
+
+    object UpdateProfileSuccess : Internal
+    data class UpdateProfileError(val error: Throwable) : Internal
+  }
 }
 
-internal sealed interface EditProfileCommand
+internal sealed interface EditProfileCommand {
+
+  data class UpdateProfile(
+    val profile: Profile,
+  ) : EditProfileCommand
+}
 
 @Immutable
 internal sealed interface EditProfileEffect {
@@ -62,4 +71,6 @@ internal sealed interface EditProfileEffect {
 
   object ShowBottomPhotoPickerSheet : EditProfileEffect
   object HideBottomPhotoPickerSheet : EditProfileEffect
+
+  data class ShowError(val error: Throwable) : EditProfileEffect
 }

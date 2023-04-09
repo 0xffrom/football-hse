@@ -11,5 +11,5 @@ dependencies {
   implementation(libs.retrofit.serialization)
   implementation(libs.kotlin.serializer)
 
-  implementation(project(":domain_auth"))
+  implementation(project(":core_auth"))
 }

@@ -22,7 +22,7 @@ object CoreModule {
     val dataStore =
       PreferenceDataStoreFactory.createEncrypted {
         EncryptedFile.Builder(
-            /* file = */ context.dataStoreFile("preferences.preferences_pb"),
+            /* file = */ context.dataStoreFile("prefs.preferences_pb"),
             /* context = */ context,
             /* masterKeyAlias = */ MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC),
             /* fileEncryptionScheme = */ EncryptedFile.FileEncryptionScheme.AES256_GCM_HKDF_4KB

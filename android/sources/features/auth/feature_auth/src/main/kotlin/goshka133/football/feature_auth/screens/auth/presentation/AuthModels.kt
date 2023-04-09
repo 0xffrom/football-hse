@@ -2,7 +2,7 @@ package goshka133.football.feature_auth.screens.auth.presentation
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.text.input.TextFieldValue
-import goshka133.football.domain_auth.session.UserSessionResponse
+import goshka133.football.domain_auth.dto.UserSessionResponse
 import goshka133.football.feature_auth.screens.auth.models.CodeDigit
 
 internal const val PageNumbers = 2

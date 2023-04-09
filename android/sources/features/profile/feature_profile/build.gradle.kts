@@ -14,6 +14,7 @@ dependencies {
   implementation(libs.lifecycle.viewmodel)
   implementation(libs.lifecycle.viewmodel.compose)
 
+  implementation(libs.timber)
   implementation(libs.kotlin.immutable)
   implementation(libs.compose.activity)
   implementation(libs.coil)
@@ -21,6 +22,7 @@ dependencies {
 
   implementation(project(":ui_kit"))
 
+  implementation(project(":core_kotlin"))
   implementation(project(":core_models"))
   implementation(project(":core_elmslie"))
   implementation(project(":core_navigation"))

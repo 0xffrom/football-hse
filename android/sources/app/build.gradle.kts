@@ -51,6 +51,7 @@ dependencies {
 
   implementation(project(":ui_kit"))
   // #region Di Dependencies
+  implementation(project(":core_auth"))
   implementation(project(":core_di"))
   implementation(project(":core_elmslie"))
   implementation(project(":core_navigation"))

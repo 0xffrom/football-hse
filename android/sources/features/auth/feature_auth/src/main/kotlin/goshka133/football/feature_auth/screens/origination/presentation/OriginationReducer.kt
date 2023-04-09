@@ -7,6 +7,7 @@ import goshka133.football.feature_auth.screens.origination.presentation.Originat
 import goshka133.football.feature_auth.screens.origination.presentation.OriginationEvent.Ui
 import goshka133.football.feature_auth.screens.origination.presentation.OriginationState as State
 import goshka133.football.feature_auth.screens.origination.utils.NameTextFieldValidator
+import goshka133.football.ui_kit.error.SomethingWentWrongException
 import vivid.money.elmslie.core.store.dsl_reducer.ScreenDslReducer
 
 internal object OriginationReducer :
@@ -26,16 +27,23 @@ internal object OriginationReducer :
         }
       }
       is Ui.Click.Continue -> {
+        if (state.isLoading) return
+
         val isTextFieldCorrect = NameTextFieldValidator.isCorrect(state.nameTextFieldValue.text)
 
         if (isTextFieldCorrect) {
           state {
             copy(
               isNameTextFieldError = false,
-              isLoading = false,
+              isLoading = true,
             )
           }
-          effects { +Effect.OpenMain }
+          commands {
+            +Command.UpdateProfile(
+              fullName = state.nameTextFieldValue.text,
+              role = state.selectedRoleType,
+            )
+          }
         } else {
           state {
             copy(
@@ -56,5 +64,16 @@ internal object OriginationReducer :
     }
   }
 
-  override fun Result.internal(event: Internal) = Unit
+  override fun Result.internal(event: Internal) {
+    when (event) {
+      is Internal.UpdateProfileSuccess -> {
+        state { copy(isLoading = false) }
+        effects { +Effect.OpenMain }
+      }
+      is Internal.UpdateProfileError -> {
+        state { copy(isLoading = false) }
+        effects { +Effect.ShowError(SomethingWentWrongException()) }
+      }
+    }
+  }
 }

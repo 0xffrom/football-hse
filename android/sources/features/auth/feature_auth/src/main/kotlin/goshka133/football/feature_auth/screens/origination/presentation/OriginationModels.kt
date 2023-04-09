@@ -2,14 +2,15 @@ package goshka133.football.feature_auth.screens.origination.presentation
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.text.input.TextFieldValue
-import goshka133.football.domain_auth.dto.RoleType
+import goshka133.football.domain_profile.dto.RoleType
 import goshka133.football.feature_auth.screens.origination.models.RoleCard
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toImmutableList
 
 @Immutable
 internal data class OriginationState(
   val isLoading: Boolean = false,
-  // TODO: change to ImmutableList from kotlinX for the skipping recompositions
-  val roleCards: List<RoleCard> = RoleCard.createList(),
+  val roleCards: ImmutableList<RoleCard> = RoleCard.createList().toImmutableList(),
   val selectedRoleType: RoleType = RoleType.Student,
   val nameTextFieldValue: TextFieldValue = TextFieldValue(),
   val isNameTextFieldError: Boolean = false,
@@ -37,12 +38,15 @@ internal sealed interface OriginationEvent {
   }
 
   sealed interface Internal : OriginationEvent {
-    // your code
+
+    object UpdateProfileSuccess : Internal
+    data class UpdateProfileError(val error: Throwable) : Internal
   }
 }
 
 internal sealed interface OriginationCommand {
-  // your code
+
+  data class UpdateProfile(val fullName: String, val role: RoleType) : OriginationCommand
 }
 
 @Immutable

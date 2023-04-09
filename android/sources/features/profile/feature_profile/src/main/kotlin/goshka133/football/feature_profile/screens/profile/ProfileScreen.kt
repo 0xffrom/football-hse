@@ -3,7 +3,6 @@ package goshka133.football.feature_profile.screens.profile
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
@@ -19,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import com.github.terrakok.modo.stack.forward
 import goshka133.football.core_elmslie.rememberEventReceiver
 import goshka133.football.core_elmslie.rememberStore
+import goshka133.football.core_kotlin.Resource
 import goshka133.football.core_navigation.LocalRouter
 import goshka133.football.feature_profile.screens.edit_profile.EditProfileScreen
 import goshka133.football.feature_profile.screens.profile.presentation.ProfileEffect
@@ -28,6 +28,8 @@ import goshka133.football.feature_profile.screens.profile.ui.ProfileCard
 import goshka133.football.feature_profile.screens.profile.ui.TeamCreationApplicationCard
 import goshka133.football.feature_profile.screens.team_registration.TeamRegistrationScreen
 import goshka133.football.ui_kit.BaseScreen
+import goshka133.football.ui_kit.R
+import goshka133.football.ui_kit.snack_bar.LocalSnackBarHostState
 import goshka133.football.ui_kit.theme.FootballColors
 import goshka133.football.ui_kit.theme.Style16500
 import goshka133.football.ui_kit.theme.Style16600
@@ -47,6 +49,7 @@ internal class ProfileScreen : BaseScreen() {
     val state by store.states().collectAsState(store.currentState)
     val eventReceiver = store.rememberEventReceiver()
     val router = LocalRouter.current
+    val snackbarHostState = LocalSnackBarHostState.current
 
     LaunchedEffect(key1 = store) {
       store.effects().collect { effect ->
@@ -56,6 +59,9 @@ internal class ProfileScreen : BaseScreen() {
           }
           is ProfileEffect.OpenEditProfile -> {
             router.forward(EditProfileScreen(profile = effect.profile))
+          }
+          is ProfileEffect.ShowError -> {
+            effect.error.message?.let { snackbarHostState.showSnackbar(it) }
           }
         }
       }
@@ -88,13 +94,18 @@ internal class ProfileScreen : BaseScreen() {
     ) { contentPadding ->
       LazyColumn(state = rememberLazyListState(), contentPadding = contentPadding) {
         item { Spacer(modifier = Modifier.height(12.dp)) }
-        item {
-          ProfileCard(
-            modifier = Modifier.padding(horizontal = 16.dp),
-            profile = state.profile,
-            onEditClick = { eventReceiver.invoke(Click.EditClick) }
-          )
-          Spacer(modifier = Modifier.height(10.dp))
+        when (val profileResource = state.profile) {
+          is Resource.Data, is Resource.Loading -> {
+            item {
+              ProfileCard(
+                modifier = Modifier.padding(horizontal = 16.dp),
+                profile = profileResource.value,
+                onEditClick = { eventReceiver.invoke(Click.EditClick) }
+              )
+              Spacer(modifier = Modifier.height(10.dp))
+            }
+          }
+          is Resource.Error -> {}
         }
         item {
           TeamCreationApplicationCard(
@@ -123,7 +134,7 @@ internal class ProfileScreen : BaseScreen() {
               modifier = Modifier.size(250.dp, 200.dp),
               painter =
                 painterResource(
-                  id = goshka133.football.ui_kit.R.drawable.img_empty_applications,
+                  id = R.drawable.img_empty_applications,
                 ),
               contentDescription = null,
             )

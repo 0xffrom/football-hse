@@ -37,6 +37,7 @@ import goshka133.football.feature_profile.ui.FormField
 import goshka133.football.ui_kit.BaseScreen
 import goshka133.football.ui_kit.button.BottomBarStack
 import goshka133.football.ui_kit.button.FButton
+import goshka133.football.ui_kit.snack_bar.LocalSnackBarHostState
 import goshka133.football.ui_kit.theme.FootballColors
 import goshka133.football.ui_kit.toolbar.Toolbar
 import kotlinx.parcelize.Parcelize
@@ -75,6 +76,8 @@ internal class EditProfileScreen(
         skipHalfExpanded = true,
       )
 
+    val snackbarHostState = LocalSnackBarHostState.current
+
     LaunchedEffect(key1 = store) {
       store.effects().collect { effect ->
         when (effect) {
@@ -89,6 +92,9 @@ internal class EditProfileScreen(
           }
           is EditProfileEffect.HideBottomPhotoPickerSheet -> {
             sheetState.hide()
+          }
+          is EditProfileEffect.ShowError -> {
+            effect.error.message?.let { message -> snackbarHostState.showSnackbar(message) }
           }
         }
       }
@@ -170,7 +176,7 @@ internal class EditProfileScreen(
               modifier = Modifier.padding(horizontal = 16.dp),
               textFieldValue = state.contactInfoTextFieldValue,
               onValueChange = {
-                eventReceiver.invoke(Action.OnTournamentsExperienceTextFieldChange(it))
+                eventReceiver.invoke(Action.OnContactInfoTextFieldChange(it))
               },
               title = "Контактная информация",
               placeholder = "Телефон, Telegram...",
@@ -182,7 +188,7 @@ internal class EditProfileScreen(
               modifier = Modifier.padding(horizontal = 16.dp),
               textFieldValue = state.aboutInfoTextFieldValue,
               onValueChange = {
-                eventReceiver.invoke(Action.OnTournamentsExperienceTextFieldChange(it))
+                eventReceiver.invoke(Action.OnAboutInfoTextFieldChange(it))
               },
               title = "О себе",
               placeholder = "Расскажите о своём опыте и достижениях",

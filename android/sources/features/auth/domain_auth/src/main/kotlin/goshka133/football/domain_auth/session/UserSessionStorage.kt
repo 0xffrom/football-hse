@@ -5,22 +5,25 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.github.terrakok.modo.stack.forward
+import goshka133.football.core_auth.dto.UpdateUserSessionRequestBody
+import goshka133.football.core_auth.feature_api.RefreshSessionFeatureApi
+import goshka133.football.core_auth.session.UserSession
+import goshka133.football.core_auth.session.UserSessionApi
+import goshka133.football.core_auth.session.UserSessionProvider
+import goshka133.football.core_auth.session.UserSessionUpdater
 import goshka133.football.core_navigation.RouterProvider
-import goshka133.football.domain_auth.AuthApi
-import goshka133.football.domain_auth.AuthFeatureApi
-import goshka133.football.domain_auth.dto.SessionResponse
-import goshka133.football.domain_auth.dto.UpdateSessionRequestBody
+import javax.inject.Inject
+import javax.inject.Singleton
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
-import javax.inject.Inject
-import javax.inject.Provider
 
+@Singleton
 internal class UserSessionStorage
 @Inject
 constructor(
-  private val api: dagger.Lazy<AuthApi>,
+  private val api: dagger.Lazy<UserSessionApi>,
   private val dataStore: DataStore<Preferences>,
-  private val authFeatureApi: AuthFeatureApi,
+  private val authFeatureApi: RefreshSessionFeatureApi,
   private val routerHolder: RouterProvider,
 ) : UserSessionUpdater, UserSessionProvider {
 
@@ -40,31 +43,24 @@ constructor(
     } else {
 
       val sessionResponse =
-        api.get().updateSession(
-          requestBody =
-          UpdateSessionRequestBody(
-            refreshToken = refreshToken,
-            phoneNumber = phoneNumber,
+        api
+          .get()
+          .updateSession(
+            requestBody =
+              UpdateUserSessionRequestBody(
+                refreshToken = refreshToken,
+                phoneNumber = phoneNumber,
+              )
           )
-        )
 
       updateSession(sessionResponse)
     }
   }
 
-  override suspend fun updateSession(sessionResponse: SessionResponse) {
-    sessionFlow.emit(sessionResponse.toUserSession())
+  override suspend fun updateSession(sessionResponse: UserSession) {
+    sessionFlow.emit(sessionResponse)
 
     dataStore.edit { prefs -> prefs[phoneNumberPrefsKey] = sessionResponse.phoneNumber }
     dataStore.edit { prefs -> prefs[refreshTokenPrefsKey] = sessionResponse.refreshToken }
-  }
-
-  private fun SessionResponse.toUserSession(): UserSession {
-    return UserSession(
-      accessToken = token,
-      phoneNumber = phoneNumber,
-      isCaptain = isCaptain,
-      isRegistered = isRegistered
-    )
   }
 }
