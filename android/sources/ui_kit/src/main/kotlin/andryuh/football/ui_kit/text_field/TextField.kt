@@ -1,13 +1,10 @@
 package andryuh.football.ui_kit.text_field
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.relocation.BringIntoViewRequester
-import androidx.compose.foundation.relocation.bringIntoViewRequester
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -30,9 +27,8 @@ import androidx.compose.ui.unit.dp
 import andryuh.football.ui_kit.theme.BodyRegular
 import andryuh.football.ui_kit.theme.DefaultShapes
 import andryuh.football.ui_kit.theme.FootballColors
-import kotlinx.coroutines.android.awaitFrame
 
-@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun FTextField(
   value: TextFieldValue,
@@ -48,7 +44,6 @@ fun FTextField(
   singleLine: Boolean = false,
 ) {
   var isFocused by remember { mutableStateOf(false) }
-
   val borderModifier =
     remember(isError) {
       val color =
@@ -79,16 +74,6 @@ fun FTextField(
 
   val interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
 
-  val bringIntoViewRequester = remember { BringIntoViewRequester() }
-
-  if (isFocused) {
-
-    LaunchedEffect(Unit) {
-      awaitFrame()
-      bringIntoViewRequester.bringIntoView()
-    }
-  }
-
   BasicTextField(
     value = value,
     modifier =
@@ -101,7 +86,6 @@ fun FTextField(
             Modifier
           }
         )
-        .bringIntoViewRequester(bringIntoViewRequester)
         .background(colors.backgroundColor(true).value, DefaultShapes.large)
         .indicatorLine(true, isError, interactionSource, colors)
         .defaultMinSize(

@@ -36,8 +36,7 @@ internal fun SmsPage(
   contentPadding: PaddingValues,
 ) {
   LazyColumn(
-    modifier = Modifier.fillMaxSize(),
-    contentPadding = contentPadding,
+    modifier = Modifier.fillMaxSize().padding(contentPadding),
     verticalArrangement = Arrangement.Center,
     horizontalAlignment = Alignment.CenterHorizontally,
   ) {

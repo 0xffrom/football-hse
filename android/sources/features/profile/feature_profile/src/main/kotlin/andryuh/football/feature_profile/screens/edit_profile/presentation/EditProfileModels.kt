@@ -5,6 +5,7 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.ui.text.input.TextFieldValue
 import andryuh.football.domain_profile.dto.Profile
 import andryuh.football.ui_kit.text_field.toTextFieldValue
+import java.io.File
 
 @Immutable
 internal data class EditProfileState(
@@ -54,6 +55,9 @@ internal sealed interface EditProfileEvent {
 
     object UpdateProfileSuccess : Internal
     data class UpdateProfileError(val error: Throwable) : Internal
+
+    object UploadPhotoSuccess : Internal
+    data class UploadPhotoError(val error: Throwable) : Internal
   }
 }
 
@@ -62,6 +66,8 @@ internal sealed interface EditProfileCommand {
   data class UpdateProfile(
     val profile: Profile,
   ) : EditProfileCommand
+
+  data class UploadPhoto(val photo: Uri) : EditProfileCommand
 }
 
 @Immutable

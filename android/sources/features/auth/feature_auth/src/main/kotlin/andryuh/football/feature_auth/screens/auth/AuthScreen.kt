@@ -104,7 +104,7 @@ internal class AuthScreen : BaseScreen() {
         transitionSpec =
           pageTransitionSpec(
             isLeftToRightSlideProvider = { state.currentNumberPage < state.previousNumberPage },
-          )
+          ), label = ""
       ) { number ->
         when (state.getPageByNumber(number)) {
           is AuthState.Page.PhoneNumber -> {

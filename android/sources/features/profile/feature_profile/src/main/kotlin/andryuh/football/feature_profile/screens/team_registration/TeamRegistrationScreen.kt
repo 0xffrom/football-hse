@@ -123,7 +123,7 @@ internal class TeamRegistrationScreen(
           }
         }
       ) { contentPadding ->
-        LazyColumn(contentPadding = contentPadding) {
+        LazyColumn(modifier = Modifier.padding(contentPadding)) {
           item {
             AvatarBox(
               state = state,

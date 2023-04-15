@@ -19,6 +19,9 @@ constructor(
       is Command.UpdateProfile ->
         flow { emit(profileRepository.updateProfile(command.profile)) }
           .mapEvents({ Internal.UpdateProfileSuccess }, Internal::UpdateProfileError)
+      is Command.UploadPhoto ->
+        flow { emit(profileRepository.updatePhoto(command.photo)) }
+          .mapEvents({ Internal.UploadPhotoSuccess }, Internal::UploadPhotoError)
     }
   }
 }

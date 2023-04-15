@@ -92,7 +92,7 @@ internal class ProfileScreen : BaseScreen() {
         }
       }
     ) { contentPadding ->
-      LazyColumn(state = rememberLazyListState(), contentPadding = contentPadding) {
+      LazyColumn(modifier = Modifier.padding(contentPadding), state = rememberLazyListState()) {
         item { Spacer(modifier = Modifier.height(12.dp)) }
         when (val profileResource = state.profile) {
           is Resource.Data, is Resource.Loading -> {

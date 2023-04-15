@@ -9,6 +9,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -132,7 +133,7 @@ internal class EditProfileScreen(
           }
         }
       ) { contentPadding ->
-        LazyColumn(contentPadding = contentPadding) {
+        LazyColumn(modifier = Modifier.padding(contentPadding)) {
           item {
             AvatarBox(state = state, onClick = { eventReceiver.invoke(Click.Avatar) })
             Spacer(modifier = Modifier.height(36.dp))

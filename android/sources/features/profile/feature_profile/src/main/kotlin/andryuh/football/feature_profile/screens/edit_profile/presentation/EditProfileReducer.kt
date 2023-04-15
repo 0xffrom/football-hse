@@ -1,5 +1,6 @@
 package andryuh.football.feature_profile.screens.edit_profile.presentation
 
+import androidx.core.net.toFile
 import andryuh.football.feature_profile.screens.edit_profile.presentation.EditProfileCommand as Command
 import andryuh.football.feature_profile.screens.edit_profile.presentation.EditProfileEffect as Effect
 import andryuh.football.feature_profile.screens.edit_profile.presentation.EditProfileEvent as Event
@@ -71,13 +72,26 @@ internal object EditProfileReducer :
 
   override fun Result.internal(event: Internal) {
     when (event) {
+      is Internal.UpdateProfileSuccess -> {
+        val imageUri = state.loadedImageUri
+        if (imageUri != null) {
+          commands { +Command.UploadPhoto(imageUri) }
+        } else {
+          state { copy(isLoading = false) }
+          effects { +Effect.Close }
+        }
+      }
       is Internal.UpdateProfileError -> {
         state { copy(isLoading = false) }
         effects { +Effect.ShowError(SomethingWentWrongException()) }
       }
-      is Internal.UpdateProfileSuccess -> {
+      is Internal.UploadPhotoSuccess -> {
         state { copy(isLoading = false) }
         effects { +Effect.Close }
+      }
+      is Internal.UploadPhotoError -> {
+        state { copy(isLoading = false) }
+        effects { +Effect.ShowError(SomethingWentWrongException()) }
       }
     }
   }

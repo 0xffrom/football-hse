@@ -81,7 +81,7 @@ internal class TeamApplicationDetailsScreen(
         remember(application.playerPosition) { application.playerPosition.mapToTitle() }
 
       LazyColumn(
-        contentPadding = contentPadding,
+        modifier = Modifier.padding(contentPadding),
         horizontalAlignment = Alignment.CenterHorizontally,
       ) {
         item {

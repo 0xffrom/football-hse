@@ -104,8 +104,7 @@ internal class OriginationScreen : BaseScreen() {
       }
     ) { contentPadding ->
       LazyVerticalGrid(
-        modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp),
-        contentPadding = contentPadding,
+        modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp).padding(contentPadding),
         columns = GridCells.Fixed(2),
       ) {
         item(span = { GridItemSpan(2) }) {
