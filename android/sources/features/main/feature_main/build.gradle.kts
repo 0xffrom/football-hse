@@ -1,7 +1,7 @@
-plugins { id("goshka133.football.lib") }
+plugins { id("andryuh.football.lib") }
 
 android {
-  namespace = "goshka133.football.feature_auth"
+  namespace = "andryuh.football.feature_auth"
 
   testOptions { unitTests.all { it.useJUnitPlatform() } }
 }

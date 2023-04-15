@@ -1,7 +1,7 @@
-plugins { id("goshka133.football.app") }
+plugins { id("andryuh.football.app") }
 
 android {
-  namespace = "goshka133.football.app"
+  namespace = "andryuh.football.app"
 
   buildTypes {
     debug {

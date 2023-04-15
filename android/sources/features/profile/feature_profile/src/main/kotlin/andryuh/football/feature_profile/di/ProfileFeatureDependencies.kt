@@ -1,0 +1,3 @@
+package andryuh.football.feature_profile.di
+
+interface ProfileFeatureDependencies

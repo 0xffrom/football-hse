@@ -14,24 +14,24 @@ dependencies {
 gradlePlugin {
   plugins {
     create("android-base") {
-      id = "goshka133.football.base"
+      id = "andryuh.football.base"
       displayName = "Android Base Module Plugin"
-      implementationClass = "goshka133.football.modules.android.AndroidBaseModulePlugin"
+      implementationClass = "andryuh.football.modules.android.AndroidBaseModulePlugin"
     }
     create("android-app") {
-      id = "goshka133.football.app"
+      id = "andryuh.football.app"
       displayName = "Android App Module Plugin"
-      implementationClass = "goshka133.football.modules.android.AndroidAppModulePlugin"
+      implementationClass = "andryuh.football.modules.android.AndroidAppModulePlugin"
     }
     create("android-lib") {
-      id = "goshka133.football.lib"
+      id = "andryuh.football.lib"
       displayName = "Android Lib Module Plugin"
-      implementationClass = "goshka133.football.modules.android.AndroidLibModulePlugin"
+      implementationClass = "andryuh.football.modules.android.AndroidLibModulePlugin"
     }
     create("pure-kotlin") {
-      id = "goshka133.football.kotlin"
+      id = "andryuh.football.kotlin"
       displayName = "Pure Kotlin Module Plugin"
-      implementationClass = "goshka133.football.modules.kotlin.PureKotlinModulePlugin"
+      implementationClass = "andryuh.football.modules.kotlin.PureKotlinModulePlugin"
     }
   }
 }

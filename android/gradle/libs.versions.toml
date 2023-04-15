@@ -1,11 +1,11 @@
 [versions]
 accompanist = "0.28.0"
 agp = "7.4"
-compose = "1.4.0"
-compose-compiler = "1.4.4"
-dagger = "2.44.2"
+compose = "1.4.1"
+compose-compiler = "1.4.5"
+dagger = "2.45"
 elmslie = "3.0.0-alpha06"
-lifecycle = "2.5.1"
+lifecycle = "2.6.1"
 moshi = "1.14.0"
 kotlin = "1.8.10"
 ksp = "1.8.10-1.0.9"
@@ -18,7 +18,7 @@ accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-
 accompanist-placeholder = { module = "com.google.accompanist:accompanist-placeholder-material", version.ref = "accompanist" }
 
 compose-animation = { module = "androidx.compose.animation:animation", version.ref = "compose" }
-compose-activity = { module = "androidx.activity:activity-compose", version = "1.7.0-alpha02" }
+compose-activity = { module = "androidx.activity:activity-compose", version = "1.8.0-alpha03" }
 compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
 compose-layout = { module = "androidx.compose.foundation:foundation-layout", version.ref = "compose" }
 compose-material = { module = "androidx.compose.material:material", version.ref = "compose" }

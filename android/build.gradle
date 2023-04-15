@@ -5,6 +5,7 @@ plugins {
     id "org.jetbrains.kotlin.jvm" version '1.8.10' apply false
     id "org.jetbrains.kotlin.kapt" version "1.8.10" apply false
     id "com.google.devtools.ksp" version "1.8.10-1.0.9" apply false
+    // id "com.andryuh.aar2jar" version "0.7" apply false
     id "com.stepango.aar2jar" version "0.6" apply false
     id 'com.stepango.androidjar' version "0.1"
     id 'org.jetbrains.kotlin.plugin.serialization' version '1.8.10' apply false

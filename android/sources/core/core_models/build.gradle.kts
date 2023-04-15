@@ -1,1 +1,1 @@
-plugins { id("goshka133.football.kotlin") }
+plugins { id("andryuh.football.kotlin") }

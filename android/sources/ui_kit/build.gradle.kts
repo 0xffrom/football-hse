@@ -1,6 +1,6 @@
-plugins { id("goshka133.football.lib") }
+plugins { id("andryuh.football.lib") }
 
-android { namespace = "goshka133.football.ui_kit" }
+android { namespace = "andryuh.football.ui_kit" }
 
 dependencies {
   annotationProcessor(libs.lifecycle.compiler)

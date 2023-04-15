@@ -1,6 +1,6 @@
-plugins { id("goshka133.football.lib") }
+plugins { id("andryuh.football.lib") }
 
-android { namespace = "goshka133.football.core_elmslie" }
+android { namespace = "andryuh.football.core_elmslie" }
 
 dependencies {
   implementation(libs.dagger)

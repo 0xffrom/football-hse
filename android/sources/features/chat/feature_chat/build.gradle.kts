@@ -1,7 +1,7 @@
-plugins { id("goshka133.football.lib") }
+plugins { id("andryuh.football.lib") }
 
 android {
-  namespace = "goshka133.football.feature_chat"
+  namespace = "andryuh.football.feature_chat"
 
   testOptions { unitTests.all { it.useJUnitPlatform() } }
 }
