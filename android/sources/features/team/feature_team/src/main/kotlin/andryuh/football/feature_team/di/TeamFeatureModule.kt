@@ -5,7 +5,8 @@ import andryuh.football.core_elmslie.StoreFactoryKey
 import andryuh.football.domain_team.TeamApi
 import andryuh.football.domain_team.TeamFeatureApi
 import andryuh.football.feature_team.feature_api.TeamFeatureApiImpl
-import andryuh.football.feature_team.screens.team_details.presentation.TeamApplicationDetailsStoreFactory
+import andryuh.football.feature_team.screens.team_application_details.presentation.TeamApplicationDetailsStoreFactory
+import andryuh.football.feature_team.screens.team_details.presentation.TeamDetailsStoreFactory
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -23,6 +24,11 @@ abstract class TeamFeatureModule {
   @StoreFactoryKey(TeamApplicationDetailsStoreFactory::class)
   internal abstract fun TeamApplicationDetailsStoreFactory.bindTeamApplicationDetailsStoreFactory():
     StoreFactory
+
+  @Binds
+  @IntoMap
+  @StoreFactoryKey(TeamDetailsStoreFactory::class)
+  internal abstract fun TeamDetailsStoreFactory.bindTeamDetailsStoreFactory(): StoreFactory
 }
 
 @Module

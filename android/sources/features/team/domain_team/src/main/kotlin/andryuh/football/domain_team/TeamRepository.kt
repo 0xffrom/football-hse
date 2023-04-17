@@ -35,6 +35,7 @@ constructor(
 
     return teamCreationCache.filterNotNull()
   }
+
   suspend fun createTeam(body: CreateTeamBody) {
     val requestBody =
       CreateTeamRequestBody.create(
@@ -60,6 +61,12 @@ constructor(
       )
 
     teamApi.updatePhoto(team.id, filePart).throwExceptionIfError()
+    updateTeamCreationApplication()
+  }
+
+  suspend fun deleteTeam(teamId: String) {
+    teamApi.deleteTeam(teamId).throwExceptionIfError()
+
     updateTeamCreationApplication()
   }
 

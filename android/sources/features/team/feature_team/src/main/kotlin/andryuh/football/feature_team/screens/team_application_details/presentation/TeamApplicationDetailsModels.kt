@@ -1,4 +1,4 @@
-package andryuh.football.feature_team.screens.team_details.presentation
+package andryuh.football.feature_team.screens.team_application_details.presentation
 
 import andryuh.football.domain_team.dto.TeamApplication
 

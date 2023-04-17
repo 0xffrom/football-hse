@@ -18,10 +18,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
+import andryuh.football.core_di.rememberDependencies
 import andryuh.football.core_elmslie.rememberEventReceiver
 import andryuh.football.core_elmslie.rememberStore
 import andryuh.football.core_kotlin.Resource
 import andryuh.football.core_navigation.LocalRouter
+import andryuh.football.feature_profile.di.ProfileFeatureDependencies
 import andryuh.football.feature_profile.screens.edit_profile.EditProfileScreen
 import andryuh.football.feature_profile.screens.profile.presentation.ProfileEffect
 import andryuh.football.feature_profile.screens.profile.presentation.ProfileEvent.Ui.Click
@@ -40,7 +42,6 @@ import com.github.terrakok.modo.stack.forward
 import com.google.accompanist.placeholder.PlaceholderHighlight
 import com.google.accompanist.placeholder.material.fade
 import com.google.accompanist.placeholder.material.placeholder
-import com.google.accompanist.placeholder.placeholder
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -56,7 +57,8 @@ internal class ProfileScreen : BaseScreen() {
     val state by store.states().collectAsState(store.currentState)
     val eventReceiver = store.rememberEventReceiver()
     val router = LocalRouter.current
-    val snackbarHostState = LocalSnackBarHostState.current
+    val snackBarHostState = LocalSnackBarHostState.current
+    val dependencies = rememberDependencies<ProfileFeatureDependencies>()
 
     LaunchedEffect(key1 = store) {
       store.effects().collect { effect ->
@@ -68,7 +70,10 @@ internal class ProfileScreen : BaseScreen() {
             router.forward(EditProfileScreen(profile = effect.profile))
           }
           is ProfileEffect.ShowError -> {
-            effect.error.message?.let { snackbarHostState.showSnackbar(it) }
+            effect.error.message?.let { snackBarHostState.showSnackbar(it) }
+          }
+          is ProfileEffect.OpenTeamDetails -> {
+            router.forward(dependencies.teamFeatureApi.getTeamDetails(effect.team))
           }
         }
       }
@@ -119,20 +124,18 @@ internal class ProfileScreen : BaseScreen() {
           is Resource.Loading -> {
             item {
               Card(
-                modifier =
-                  Modifier.fillMaxWidth()
-                    .height(64.dp)
-                    .padding(horizontal = 16.dp),
+                modifier = Modifier.fillMaxWidth().height(64.dp).padding(horizontal = 16.dp),
                 shape = RoundedCornerShape(16.dp),
                 backgroundColor = Color(0xFFF5F9FE),
                 elevation = 0.dp,
               ) {
                 Box(
-                  modifier = Modifier.fillMaxSize()
-                    .placeholder(
-                      visible = true,
-                      highlight = PlaceholderHighlight.fade(),
-                    ),
+                  modifier =
+                    Modifier.fillMaxSize()
+                      .placeholder(
+                        visible = true,
+                        highlight = PlaceholderHighlight.fade(),
+                      ),
                 )
               }
               Spacer(modifier = Modifier.height(24.dp))

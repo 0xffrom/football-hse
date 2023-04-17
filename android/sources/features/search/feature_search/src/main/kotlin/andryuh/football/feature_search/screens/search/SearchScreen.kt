@@ -55,7 +55,7 @@ internal class SearchScreen : BaseScreen() {
         when (effect) {
           is SearchEffect.OpenTeamApplicationDetails -> {
             router.forward(
-              dependencies.teamFeatureApi.getApplicationDetailsScreen(effect.application)
+              dependencies.teamFeatureApi.getTeamApplicationDetailsScreen(effect.application)
             )
           }
         }

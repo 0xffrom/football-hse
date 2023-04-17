@@ -12,6 +12,8 @@ interface TeamApi {
 
   @GET("Teams") suspend fun getTeams(): List<Team>
 
+  @DELETE("Teams/{teamId}") suspend fun deleteTeam(@Path("teamId") teamId: String): Response<Unit>
+
   @Multipart
   @POST("Image/Team/{teamId}")
   suspend fun updatePhoto(

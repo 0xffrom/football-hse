@@ -1,4 +1,4 @@
-package andryuh.football.feature_team.screens.team_details
+package andryuh.football.feature_team.screens.team_application_details
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
@@ -7,7 +7,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
@@ -18,27 +17,26 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
-import com.github.terrakok.modo.stack.back
 import andryuh.football.core_elmslie.rememberEventReceiver
 import andryuh.football.core_elmslie.rememberStore
 import andryuh.football.core_models.mapToTitle
 import andryuh.football.core_navigation.LocalRouter
 import andryuh.football.domain_team.dto.TeamApplication
-import andryuh.football.ui_kit.toolbar.Toolbar
-import andryuh.football.feature_team.screens.team_details.presentation.TeamApplicationDetailsEffect
-import andryuh.football.feature_team.screens.team_details.presentation.TeamApplicationDetailsEvent
-import andryuh.football.feature_team.screens.team_details.presentation.TeamApplicationDetailsStoreFactory
+import andryuh.football.feature_team.screens.team_application_details.presentation.TeamApplicationDetailsEffect
+import andryuh.football.feature_team.screens.team_application_details.presentation.TeamApplicationDetailsEvent
+import andryuh.football.feature_team.screens.team_application_details.presentation.TeamApplicationDetailsStoreFactory
 import andryuh.football.ui_kit.BaseScreen
+import andryuh.football.ui_kit.items.SectionCard
 import andryuh.football.ui_kit.theme.FootballColors
-import andryuh.football.ui_kit.theme.Style12500
-import andryuh.football.ui_kit.theme.Style14400
 import andryuh.football.ui_kit.theme.Style19600
+import andryuh.football.ui_kit.toolbar.Toolbar
+import coil.compose.AsyncImage
+import com.github.terrakok.modo.stack.back
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 internal class TeamApplicationDetailsScreen(
-    private val application: TeamApplication,
+  private val application: TeamApplication,
 ) : BaseScreen() {
 
   @Composable
@@ -143,11 +141,7 @@ internal class TeamApplicationDetailsScreen(
               modifier = Modifier.padding(horizontal = 16.dp),
               title = "Контактная история"
             ) {
-              Text(
-                text = application.contact.orEmpty(),
-                color = FootballColors.Text.Primary,
-                style = Style14400,
-              )
+              SectionText(value = application.contact.orEmpty())
             }
             Spacer(modifier = Modifier.height(12.dp))
           }
@@ -158,45 +152,12 @@ internal class TeamApplicationDetailsScreen(
               modifier = Modifier.padding(horizontal = 16.dp),
               title = "Дополнительная информация",
             ) {
-              Text(
-                text = application.description.orEmpty(),
-                color = FootballColors.Text.Primary,
-                style = Style14400,
-              )
+              SectionText(value = application.description.orEmpty())
             }
           }
         }
         item { Spacer(modifier = Modifier.height(20.dp)) }
       }
-    }
-  }
-}
-
-@Composable
-private fun SectionCard(
-  modifier: Modifier = Modifier,
-  title: String,
-  contentPadding: PaddingValues = PaddingValues(20.dp),
-  titlePadding: PaddingValues = PaddingValues(0.dp),
-  content: @Composable () -> Unit,
-) {
-  Card(
-    modifier = modifier.fillMaxWidth(),
-    shape = RoundedCornerShape(12.dp),
-    backgroundColor = FootballColors.Surface1,
-    elevation = 0.dp,
-  ) {
-    Column(
-      modifier = Modifier.padding(contentPadding),
-      verticalArrangement = Arrangement.spacedBy(10.dp),
-    ) {
-      Text(
-        modifier = Modifier.padding(titlePadding),
-        text = title,
-        color = FootballColors.Text.Secondary,
-        style = Style12500,
-      )
-      content.invoke()
     }
   }
 }

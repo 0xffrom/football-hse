@@ -24,6 +24,14 @@ enum class TeamStatus(val value: Int) {
   Declined(2),
 }
 
+fun TeamStatus.toLocalizedString(): String {
+  return when (this) {
+    TeamStatus.OnValidation -> "Обрабатывается"
+    TeamStatus.Verified -> "Подтверждена"
+    TeamStatus.Declined -> "Отклонена"
+  }
+}
+
 private class TeamStatusSerializer :
   EnumAsIntSerializer<TeamStatus>(
     "status",

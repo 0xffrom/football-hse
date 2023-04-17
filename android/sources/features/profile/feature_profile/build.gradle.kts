@@ -24,6 +24,7 @@ dependencies {
 
   implementation(project(":ui_kit"))
 
+  implementation(project(":core_di"))
   implementation(project(":core_kotlin"))
   implementation(project(":core_models"))
   implementation(project(":core_elmslie"))

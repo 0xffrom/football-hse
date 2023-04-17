@@ -28,9 +28,9 @@ internal object ProfileReducer :
         performOnProfile { effects { +Effect.OpenEditProfile(this@performOnProfile) } }
       }
       is Ui.Click.TeamApplication -> {
-        when (state.teamApplication.value) {
+        when (val application = state.teamApplication.value) {
           is TeamCreationApplicationStatus.Registered -> {
-            // TODO
+            performOnProfile { effects { +Effect.OpenTeamDetails(application.team) } }
           }
           is TeamCreationApplicationStatus.NotRegistered -> {
             performOnProfile { effects { +Effect.OpenTeamRegistration(this@performOnProfile) } }
