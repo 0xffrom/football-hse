@@ -2,14 +2,11 @@ package andryuh.football.domain_auth
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.stringPreferencesKey
+import andryuh.football.core_auth.PhoneStorage
 import andryuh.football.core_auth.session.UserSessionUpdater
 import andryuh.football.domain_auth.dto.UserSessionResponse
 import andryuh.football.domain_profile.ProfileApi
-import andryuh.football.domain_profile.dto.CreateProfileBody
 import javax.inject.Inject
-import kotlinx.coroutines.flow.first
 import retrofit2.HttpException
 
 class AuthRepository
@@ -19,19 +16,16 @@ constructor(
   private val profileApi: ProfileApi,
   private val dataStore: DataStore<Preferences>,
   private val userSessionUpdater: UserSessionUpdater,
+  private val phoneStorage: PhoneStorage,
 ) {
 
-  private val phoneNumberPrefsKey = stringPreferencesKey("phoneNumber")
-
   suspend fun sendOtp(phoneNumber: String) {
-    dataStore.edit { prefs -> prefs[phoneNumberPrefsKey] = phoneNumber }
+    phoneStorage.updatePhone(phoneNumber)
     api.sendOtpCode(phoneNumber)
   }
 
   suspend fun verifyOtpCode(code: String): UserSessionResponse {
-    val phoneNumber =
-      dataStore.data.first()[phoneNumberPrefsKey]
-        ?: throw IllegalStateException("Empty phone number in the preferences")
+    val phoneNumber = phoneStorage.getPhoneRequired()
 
     val response =
       runCatching {

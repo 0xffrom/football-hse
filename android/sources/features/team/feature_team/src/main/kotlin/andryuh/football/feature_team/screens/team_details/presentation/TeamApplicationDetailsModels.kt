@@ -1,9 +1,9 @@
 package andryuh.football.feature_team.screens.team_details.presentation
 
-import andryuh.football.domain_team.TeamApplication
+import andryuh.football.domain_team.dto.TeamApplication
 
 internal data class TeamApplicationDetailsState(
-  val teamApplication: TeamApplication,
+    val teamApplication: TeamApplication,
 )
 
 internal sealed interface TeamApplicationDetailsEvent {

@@ -1,33 +1,28 @@
 package andryuh.football.domain_auth
 
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.stringPreferencesKey
+import andryuh.football.core_auth.PhoneStorage
+import andryuh.football.core_network.ext.throwExceptionIfError
 import andryuh.football.domain_profile.ProfileApi
 import andryuh.football.domain_profile.dto.RoleType
 import javax.inject.Inject
-import kotlinx.coroutines.flow.first
-import retrofit2.HttpException
 
 class OriginationRepository
 @Inject
 constructor(
   private val profileApi: ProfileApi,
-  private val dataStore: DataStore<Preferences>,
+  private val phoneStorage: PhoneStorage,
 ) {
-
-  private val phoneNumberPrefsKey = stringPreferencesKey("phoneNumber")
 
   suspend fun updateProfile(
     fullName: String,
     role: RoleType,
   ) {
-    val phoneNumber = requireNotNull(dataStore.data.first()[phoneNumberPrefsKey])
+    val phoneNumber = phoneStorage.getPhoneRequired()
 
     val profile = profileApi.getProfile(phoneNumber)
 
-    val updateResponse =
-      profileApi.updateProfile(
+    profileApi
+      .updateProfile(
         phoneNumber = phoneNumber,
         profileBody =
           profile.copy(
@@ -35,9 +30,6 @@ constructor(
             role = role,
           )
       )
-
-    if (!updateResponse.isSuccessful) {
-      throw HttpException(updateResponse)
-    }
+      .throwExceptionIfError()
   }
 }

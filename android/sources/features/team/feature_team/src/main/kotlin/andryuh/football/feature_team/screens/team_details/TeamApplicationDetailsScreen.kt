@@ -24,7 +24,7 @@ import andryuh.football.core_elmslie.rememberEventReceiver
 import andryuh.football.core_elmslie.rememberStore
 import andryuh.football.core_models.mapToTitle
 import andryuh.football.core_navigation.LocalRouter
-import andryuh.football.domain_team.TeamApplication
+import andryuh.football.domain_team.dto.TeamApplication
 import andryuh.football.ui_kit.toolbar.Toolbar
 import andryuh.football.feature_team.screens.team_details.presentation.TeamApplicationDetailsEffect
 import andryuh.football.feature_team.screens.team_details.presentation.TeamApplicationDetailsEvent
@@ -38,7 +38,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 internal class TeamApplicationDetailsScreen(
-  private val application: TeamApplication,
+    private val application: TeamApplication,
 ) : BaseScreen() {
 
   @Composable

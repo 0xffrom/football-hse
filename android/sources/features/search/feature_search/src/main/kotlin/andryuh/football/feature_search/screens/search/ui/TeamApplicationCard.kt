@@ -24,16 +24,16 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import andryuh.football.core_models.joinTitleToString
 import andryuh.football.core_models.mapToTitle
-import andryuh.football.domain_team.TeamApplication
+import andryuh.football.domain_team.dto.TeamApplication
 import andryuh.football.feature_search.R
 import andryuh.football.ui_kit.theme.CaptionMMedium
 import andryuh.football.ui_kit.theme.FootballColors
 
 @Composable
 fun TeamApplicationCard(
-  application: TeamApplication,
-  onClick: () -> Unit,
-  modifier: Modifier = Modifier,
+    application: TeamApplication,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
   Card(
     modifier = modifier.fillMaxWidth(),

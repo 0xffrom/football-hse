@@ -38,6 +38,7 @@ import andryuh.football.feature_profile.ui.FormField
 import andryuh.football.ui_kit.BaseScreen
 import andryuh.football.ui_kit.button.BottomBarStack
 import andryuh.football.ui_kit.button.FButton
+import andryuh.football.ui_kit.snack_bar.LocalSnackBarHostState
 import andryuh.football.ui_kit.theme.FootballColors
 import andryuh.football.ui_kit.toolbar.Toolbar
 import kotlinx.parcelize.Parcelize
@@ -74,6 +75,7 @@ internal class TeamRegistrationScreen(
 
     BackHandler { eventReceiver.invoke(Click.Back) }
 
+    val snackBarHostState = LocalSnackBarHostState.current
     LaunchedEffect(key1 = store) {
       store.effects().collect { effect ->
         when (effect) {
@@ -88,6 +90,11 @@ internal class TeamRegistrationScreen(
           }
           is TeamRegistrationEffect.HideBottomPhotoPickerSheet -> {
             sheetState.hide()
+          }
+          is TeamRegistrationEffect.ShowError -> {
+            effect.error.message?.let {
+              snackBarHostState.showSnackbar(it)
+            }
           }
         }
       }

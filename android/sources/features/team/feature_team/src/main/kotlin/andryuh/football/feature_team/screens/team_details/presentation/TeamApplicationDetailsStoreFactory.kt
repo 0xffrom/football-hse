@@ -1,7 +1,7 @@
 package andryuh.football.feature_team.screens.team_details.presentation
 
 import andryuh.football.core_elmslie.StoreFactory
-import andryuh.football.domain_team.TeamApplication
+import andryuh.football.domain_team.dto.TeamApplication
 import andryuh.football.feature_team.screens.team_details.presentation.TeamApplicationDetailsEffect as Effect
 import andryuh.football.feature_team.screens.team_details.presentation.TeamApplicationDetailsEvent as Event
 import andryuh.football.feature_team.screens.team_details.presentation.TeamApplicationDetailsState as State

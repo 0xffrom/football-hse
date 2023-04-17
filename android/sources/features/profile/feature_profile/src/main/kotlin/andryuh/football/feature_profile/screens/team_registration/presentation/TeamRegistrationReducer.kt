@@ -1,11 +1,13 @@
 package andryuh.football.feature_profile.screens.team_registration.presentation
 
+import andryuh.football.domain_team.dto.CreateTeamBody
 import andryuh.football.feature_profile.screens.team_registration.presentation.TeamRegistrationCommand as Command
 import andryuh.football.feature_profile.screens.team_registration.presentation.TeamRegistrationEffect as Effect
 import andryuh.football.feature_profile.screens.team_registration.presentation.TeamRegistrationEvent as Event
 import andryuh.football.feature_profile.screens.team_registration.presentation.TeamRegistrationEvent.Internal
 import andryuh.football.feature_profile.screens.team_registration.presentation.TeamRegistrationEvent.Ui
 import andryuh.football.feature_profile.screens.team_registration.presentation.TeamRegistrationState as State
+import andryuh.football.ui_kit.error.SomethingWentWrongException
 import vivid.money.elmslie.core.store.dsl_reducer.ScreenDslReducer
 
 internal object TeamRegistrationReducer :
@@ -37,7 +39,17 @@ internal object TeamRegistrationReducer :
         state { copy(teamNameTextField = event.value) }
       }
       is Ui.Click.Continue -> {
-        effects { +Effect.Close }
+        state { copy(isLoading = true) }
+        commands {
+          +Command.CreateTeam(
+            body =
+              CreateTeamBody(
+                name = state.teamNameTextField.text,
+                captainName = state.captainNameTextField.text,
+                aboutInfo = state.teamInfoTextField.text,
+              )
+          )
+        }
       }
       is Ui.Click.PhotoPickerSheetClose -> {
         effects { +Effect.HideBottomPhotoPickerSheet }
@@ -48,5 +60,29 @@ internal object TeamRegistrationReducer :
     }
   }
 
-  override fun Result.internal(event: Internal) = Unit
+  override fun Result.internal(event: Internal) {
+    when (event) {
+      is Internal.CreateTeamSuccess -> {
+        val photoUri = state.photoUri
+        if (photoUri != null) {
+          commands { +Command.UploadPhoto(photoUri) }
+        } else {
+          state { copy(isLoading = false) }
+          effects { +Effect.Close }
+        }
+      }
+      is Internal.CreateTeamError -> {
+        state { copy(isLoading = false) }
+        effects { +Effect.ShowError(SomethingWentWrongException()) }
+      }
+      is Internal.UploadPhotoSuccess -> {
+        state { copy(isLoading = false) }
+        effects { +Effect.Close }
+      }
+      is Internal.UploadPhotoError -> {
+        state { copy(isLoading = false) }
+        effects { +Effect.ShowError(SomethingWentWrongException()) }
+      }
+    }
+  }
 }

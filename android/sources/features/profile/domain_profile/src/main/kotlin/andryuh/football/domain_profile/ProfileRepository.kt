@@ -2,10 +2,10 @@ package andryuh.football.domain_profile
 
 import android.content.Context
 import android.net.Uri
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.stringPreferencesKey
+import andryuh.football.core_auth.PhoneStorage
 import andryuh.football.core_kotlin.nullIfBlank
+import andryuh.football.core_network.ext.throwExceptionIfError
+import andryuh.football.core_network.ext.toRequestBody
 import andryuh.football.domain_profile.dto.Profile
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -14,13 +14,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.filterNotNull
-import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.last
 import kotlinx.coroutines.launch
-import okhttp3.MediaType
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
-import retrofit2.HttpException
 
 @Singleton
 class ProfileRepository
@@ -28,10 +25,8 @@ class ProfileRepository
 constructor(
   private val context: Context,
   private val profileApi: ProfileApi,
-  private val dataStore: DataStore<Preferences>,
+  private val phoneStorage: PhoneStorage
 ) {
-
-  private val phoneNumberPrefsKey = stringPreferencesKey("phoneNumber")
 
   private val profileCache = MutableStateFlow<Profile?>(null)
 
@@ -48,14 +43,9 @@ constructor(
   }
 
   suspend fun updatePhoto(photo: Uri) {
-    val phoneNumber = dataStore.data.first()[phoneNumberPrefsKey]!!
+    val phoneNumber = phoneStorage.getPhoneRequired()
 
-    val body =
-      context.contentResolver.openInputStream(photo).use { inputStream ->
-        val bytes = inputStream?.readBytes()!!
-
-        RequestBody.create(MediaType.parse("image/*"), bytes)
-      }
+    val body = photo.toRequestBody(context)
 
     val filePart =
       MultipartBody.Part.createFormData(
@@ -64,23 +54,20 @@ constructor(
         /* body = */ body,
       )
 
-    val updateResult =
-      profileApi.updatePhoto(
+    profileApi
+      .updatePhoto(
         phoneNumber = phoneNumber,
         image = filePart,
       )
-
-    if (!updateResult.isSuccessful) {
-      throw HttpException(updateResult)
-    }
+      .throwExceptionIfError()
 
     updateProfileCache()
   }
   suspend fun updateProfile(profile: Profile) {
-    val phoneNumber = dataStore.data.first()[phoneNumberPrefsKey]!!
+    val phoneNumber = phoneStorage.getPhoneRequired()
 
-    val updateResult =
-      profileApi.updateProfile(
+    profileApi
+      .updateProfile(
         phoneNumber = phoneNumber,
         profileBody =
           profile.copy(
@@ -92,15 +79,13 @@ constructor(
             fullName = profile.fullName.nullIfBlank(),
           )
       )
+      .throwExceptionIfError()
 
-    if (!updateResult.isSuccessful) {
-      throw HttpException(updateResult)
-    }
     updateProfileCache()
   }
 
   private suspend fun updateProfileCache() {
-    val phoneNumber = dataStore.data.first()[phoneNumberPrefsKey]!!
+    val phoneNumber = phoneStorage.getPhoneRequired()
 
     profileCache.emit(profileApi.getProfile(phoneNumber))
   }

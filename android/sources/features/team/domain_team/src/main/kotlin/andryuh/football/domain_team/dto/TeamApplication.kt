@@ -1,4 +1,4 @@
-package andryuh.football.domain_team
+package andryuh.football.domain_team.dto
 
 import android.os.Parcelable
 import androidx.compose.runtime.Immutable

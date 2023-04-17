@@ -4,6 +4,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
+import andryuh.football.core_auth.PhoneStorage
 import com.github.terrakok.modo.stack.forward
 import andryuh.football.core_auth.dto.UpdateUserSessionRequestBody
 import andryuh.football.core_auth.feature_api.RefreshSessionFeatureApi
@@ -25,10 +26,10 @@ constructor(
   private val dataStore: DataStore<Preferences>,
   private val authFeatureApi: RefreshSessionFeatureApi,
   private val routerHolder: RouterProvider,
+  private val phoneStorage: PhoneStorage,
 ) : UserSessionUpdater, UserSessionProvider {
 
   private val refreshTokenPrefsKey = stringPreferencesKey("refreshToken")
-  private val phoneNumberPrefsKey = stringPreferencesKey("phoneNumber")
 
   override val sessionFlow: MutableStateFlow<UserSession?> = MutableStateFlow(null)
 
@@ -36,7 +37,7 @@ constructor(
     val data = dataStore.data.first()
 
     val refreshToken = data[refreshTokenPrefsKey]
-    val phoneNumber = data[phoneNumberPrefsKey]
+    val phoneNumber = phoneStorage.getPhone()
 
     if (refreshToken == null || phoneNumber == null) {
       routerHolder.router?.forward(authFeatureApi.getScreen())
@@ -60,7 +61,7 @@ constructor(
   override suspend fun updateSession(sessionResponse: UserSession) {
     sessionFlow.emit(sessionResponse)
 
-    dataStore.edit { prefs -> prefs[phoneNumberPrefsKey] = sessionResponse.phoneNumber }
+    phoneStorage.updatePhone(sessionResponse.phoneNumber)
     dataStore.edit { prefs -> prefs[refreshTokenPrefsKey] = sessionResponse.refreshToken }
   }
 }

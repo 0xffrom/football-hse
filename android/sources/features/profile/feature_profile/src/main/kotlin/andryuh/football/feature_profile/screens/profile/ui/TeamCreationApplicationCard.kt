@@ -3,6 +3,7 @@ package andryuh.football.feature_profile.screens.profile.ui
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
@@ -13,8 +14,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import andryuh.football.domain_team.TeamCreationApplicationStatus
-import andryuh.football.domain_team.TeamStatus
+import andryuh.football.domain_team.dto.TeamCreationApplicationStatus
+import andryuh.football.domain_team.dto.TeamStatus
 import andryuh.football.ui_kit.R
 import andryuh.football.ui_kit.theme.FootballColors
 import andryuh.football.ui_kit.theme.Style14400
@@ -22,12 +23,13 @@ import andryuh.football.ui_kit.theme.Style16500
 
 @Composable
 fun TeamCreationApplicationCard(
-  modifier: Modifier,
-  teamApplication: TeamCreationApplicationStatus,
-  onClick: () -> Unit,
+    modifier: Modifier,
+    teamApplication: TeamCreationApplicationStatus,
+    onClick: () -> Unit,
 ) {
   Card(
     modifier = modifier.fillMaxWidth(),
+    shape = RoundedCornerShape(16.dp),
     backgroundColor = Color(0xFFF5F9FE),
     elevation = 0.dp,
   ) {

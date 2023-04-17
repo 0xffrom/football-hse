@@ -4,18 +4,20 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Card
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
-import com.github.terrakok.modo.stack.forward
 import andryuh.football.core_elmslie.rememberEventReceiver
 import andryuh.football.core_elmslie.rememberStore
 import andryuh.football.core_kotlin.Resource
@@ -34,6 +36,11 @@ import andryuh.football.ui_kit.theme.FootballColors
 import andryuh.football.ui_kit.theme.Style16500
 import andryuh.football.ui_kit.theme.Style16600
 import andryuh.football.ui_kit.theme.Style19600
+import com.github.terrakok.modo.stack.forward
+import com.google.accompanist.placeholder.PlaceholderHighlight
+import com.google.accompanist.placeholder.material.fade
+import com.google.accompanist.placeholder.material.placeholder
+import com.google.accompanist.placeholder.placeholder
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -95,7 +102,8 @@ internal class ProfileScreen : BaseScreen() {
       LazyColumn(modifier = Modifier.padding(contentPadding), state = rememberLazyListState()) {
         item { Spacer(modifier = Modifier.height(12.dp)) }
         when (val profileResource = state.profile) {
-          is Resource.Data, is Resource.Loading -> {
+          is Resource.Data,
+          is Resource.Loading -> {
             item {
               ProfileCard(
                 modifier = Modifier.padding(horizontal = 16.dp),
@@ -107,13 +115,42 @@ internal class ProfileScreen : BaseScreen() {
           }
           is Resource.Error -> {}
         }
-        item {
-          TeamCreationApplicationCard(
-            modifier = Modifier.padding(horizontal = 16.dp),
-            teamApplication = state.teamApplication,
-            onClick = { eventReceiver.invoke(Click.TeamApplication) },
-          )
-          Spacer(modifier = Modifier.height(24.dp))
+        when (val applicationResource = state.teamApplication) {
+          is Resource.Loading -> {
+            item {
+              Card(
+                modifier =
+                  Modifier.fillMaxWidth()
+                    .height(64.dp)
+                    .padding(horizontal = 16.dp),
+                shape = RoundedCornerShape(16.dp),
+                backgroundColor = Color(0xFFF5F9FE),
+                elevation = 0.dp,
+              ) {
+                Box(
+                  modifier = Modifier.fillMaxSize()
+                    .placeholder(
+                      visible = true,
+                      highlight = PlaceholderHighlight.fade(),
+                    ),
+                )
+              }
+              Spacer(modifier = Modifier.height(24.dp))
+            }
+          }
+          is Resource.Data -> {
+            item {
+              TeamCreationApplicationCard(
+                modifier = Modifier.padding(horizontal = 16.dp),
+                teamApplication = applicationResource.value,
+                onClick = { eventReceiver.invoke(Click.TeamApplication) },
+              )
+              Spacer(modifier = Modifier.height(24.dp))
+            }
+          }
+          is Resource.Error -> {
+            item { Spacer(modifier = Modifier.height(12.dp)) }
+          }
         }
         item {
           Text(

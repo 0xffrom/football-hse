@@ -10,8 +10,8 @@ dependencies {
 
   implementationAar(libs.datastore.preferences)
   implementationAar(libs.modo)
-  kapt(libs.dagger.compiler)
 
+  implementation(project(":core_auth"))
   implementation(project(":core_kotlin"))
   implementation(project(":core_network"))
 

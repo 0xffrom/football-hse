@@ -13,6 +13,7 @@ dependencies {
 
   implementation(project(":core_auth"))
   implementation(project(":core_navigation"))
+  implementation(project(":core_network"))
 
   implementation(project(":domain_profile"))
 

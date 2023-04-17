@@ -1,13 +1,13 @@
 package andryuh.football.feature_search.screens.search.presentation
 
 import androidx.compose.ui.text.input.TextFieldValue
-import andryuh.football.domain_team.TeamApplication
-import andryuh.football.domain_team.mockList
+import andryuh.football.domain_team.dto.TeamApplication
+import andryuh.football.domain_team.dto.mockList
 
 internal data class SearchState(
-  val searchTextFieldValue: TextFieldValue = TextFieldValue(),
-  val applications: List<TeamApplication> = TeamApplication.mockList(),
-  val filteredApplications: List<TeamApplication> = applications,
+    val searchTextFieldValue: TextFieldValue = TextFieldValue(),
+    val applications: List<TeamApplication> = TeamApplication.mockList(),
+    val filteredApplications: List<TeamApplication> = applications,
 )
 
 internal sealed interface SearchEvent {

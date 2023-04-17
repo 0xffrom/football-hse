@@ -2,7 +2,7 @@ package andryuh.football.feature_profile.screens.profile.presentation
 
 import andryuh.football.core_kotlin.Resource
 import andryuh.football.domain_profile.dto.Profile
-import andryuh.football.domain_team.TeamCreationApplicationStatus
+import andryuh.football.domain_team.dto.TeamCreationApplicationStatus
 import andryuh.football.feature_profile.screens.profile.presentation.ProfileCommand as Command
 import andryuh.football.feature_profile.screens.profile.presentation.ProfileEffect as Effect
 import andryuh.football.feature_profile.screens.profile.presentation.ProfileEvent as Event
@@ -19,19 +19,23 @@ internal object ProfileReducer :
   override fun Result.ui(event: Ui) {
     when (event) {
       is Ui.System.Start -> {
-        commands { +Command.ObserveProfile }
+        commands {
+          +Command.ObserveProfile
+          +Command.ObserveTeamCreationStatus
+        }
       }
       is Ui.Click.EditClick -> {
         performOnProfile { effects { +Effect.OpenEditProfile(this@performOnProfile) } }
       }
       is Ui.Click.TeamApplication -> {
-        when (state.teamApplication) {
+        when (state.teamApplication.value) {
           is TeamCreationApplicationStatus.Registered -> {
             // TODO
           }
           is TeamCreationApplicationStatus.NotRegistered -> {
             performOnProfile { effects { +Effect.OpenTeamRegistration(this@performOnProfile) } }
           }
+          null -> Unit
         }
       }
     }
@@ -44,6 +48,13 @@ internal object ProfileReducer :
       }
       is Internal.ObserveProfileError -> {
         state { copy(profile = Resource.Error(event.error)) }
+        effects { +Effect.ShowError(SomethingWentWrongException()) }
+      }
+      is Internal.ObserveTeamCreationStatusSuccess -> {
+        state { copy(teamApplication = Resource.Data(event.status)) }
+      }
+      is Internal.ObserveTeamCreationStatusError -> {
+        state { copy(teamApplication = Resource.Error(event.error)) }
         effects { +Effect.ShowError(SomethingWentWrongException()) }
       }
     }

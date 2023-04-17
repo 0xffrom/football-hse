@@ -9,6 +9,9 @@ android {
 dependencies {
   implementation(libs.modo)
   implementation(libs.dagger)
+  kapt(libs.dagger.compiler)
+
+  implementation(libs.retrofit)
 
   annotationProcessor(libs.lifecycle.compiler)
   implementation(libs.lifecycle.viewmodel)
