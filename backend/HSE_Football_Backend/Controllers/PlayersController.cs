@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HSE_Football_Backend.Data;
 using HSE_Football_Backend.Models;
@@ -31,13 +26,13 @@ namespace HSE_Football_Backend.Controllers
 			_context = context;
 		}
 
-        /// <summary>
-        /// Возвращает всех игроков
-        /// </summary>
-        /// <response code="200">ОК</response>
-        /// <response code="404">В БД нет таблицы игроков</response>
-        // GET: api/Players
-        [ProducesResponseType(200)]
+		/// <summary>
+		/// Возвращает всех игроков
+		/// </summary>
+		/// <response code="200">ОК</response>
+		/// <response code="404">В БД нет таблицы игроков</response>
+		// GET: api/Players
+		[ProducesResponseType(200)]
 		[ProducesResponseType(404)]
 		[HttpGet]
 		public async Task<ActionResult<IEnumerable<Player>>> GetPlayers()
@@ -49,16 +44,16 @@ namespace HSE_Football_Backend.Controllers
 			return await _context.Players.ToListAsync();
 		}
 
-        /// <summary>
-        /// Возвращает игрока по номеру телефона
-        /// </summary>
-        /// <param name="phone">Номер телефона</param>
-        /// <response code="200">ОК</response>
-        /// <response code="404">В БД нет таблицы игроков или нет такого игрока</response>
-        // GET: api/Players/89169307114
-        [ProducesResponseType(200)]
-        [ProducesResponseType(404)]
-        [HttpGet("{phone}")]
+		/// <summary>
+		/// Возвращает игрока по номеру телефона
+		/// </summary>
+		/// <param name="phone">Номер телефона</param>
+		/// <response code="200">ОК</response>
+		/// <response code="404">В БД нет таблицы игроков или нет такого игрока</response>
+		// GET: api/Players/89169307114
+		[ProducesResponseType(200)]
+		[ProducesResponseType(404)]
+		[HttpGet("{phone}")]
 		public async Task<ActionResult<Player>> GetPlayer(string phone)
 		{
 			if (_context.Players == null)
@@ -73,19 +68,19 @@ namespace HSE_Football_Backend.Controllers
 			return player;
 		}
 
-        /// <summary>
-        /// Обновляет данные игрока
-        /// </summary>
-        /// <param name="phone">Номер телефона</param>
-        /// <param name="player">Игрок</param>
-        /// <response code="204">ОК</response>
-        /// <response code="404">В БД нет такого игрока</response>
+		/// <summary>
+		/// Обновляет данные игрока
+		/// </summary>
+		/// <param name="phone">Номер телефона</param>
+		/// <param name="player">Игрок</param>
+		/// <response code="204">ОК</response>
+		/// <response code="404">В БД нет такого игрока</response>
 		/// <response code="400">Переданный номер и номер игрока не совпадают</response>
-        // PUT: api/Players/89169307114
-        [ProducesResponseType(204)]
-        [ProducesResponseType(404)]
-        [ProducesResponseType(400)]
-        [HttpPut("{phone}")]
+		// PUT: api/Players/89169307114
+		[ProducesResponseType(204)]
+		[ProducesResponseType(404)]
+		[ProducesResponseType(400)]
+		[HttpPut("{phone}")]
 		public async Task<IActionResult> PutPlayer(string phone, Player player)
 		{
 			if (phone != player.PhoneNumber)
@@ -111,18 +106,18 @@ namespace HSE_Football_Backend.Controllers
 			return NoContent();
 		}
 
-        /// <summary>
-        /// Создает игрока
-        /// </summary>
-        /// <param name="player">Игрок</param>
-        /// <response code="201">ОК</response>
-        /// <response code="409">Уже есть игрок с таким номером</response>
-        /// <response code="500">>В БД нет таблицы игроков</response>
-        // POST: api/Players
-        [ProducesResponseType(201)]
-        [ProducesResponseType(409)]
-        [ProducesResponseType(500)]
-        [HttpPost]
+		/// <summary>
+		/// Создает игрока
+		/// </summary>
+		/// <param name="player">Игрок</param>
+		/// <response code="201">ОК</response>
+		/// <response code="409">Уже есть игрок с таким номером</response>
+		/// <response code="500">>В БД нет таблицы игроков</response>
+		// POST: api/Players
+		[ProducesResponseType(201)]
+		[ProducesResponseType(409)]
+		[ProducesResponseType(500)]
+		[HttpPost]
 		public async Task<ActionResult<Player>> PostPlayer(Player player)
 		{
 			if (_context.Players == null)
@@ -148,16 +143,16 @@ namespace HSE_Football_Backend.Controllers
 			return CreatedAtAction("GetPlayer", new { phone = player.PhoneNumber }, player);
 		}
 
-        /// <summary>
-        /// Удаляет игрока
-        /// </summary>
-        /// <param name="phone">Номер телефона</param>
-        /// <response code="204">ОК</response>
-        /// <response code="404">В БД нет таблицы игроков или нет такого игрока</response>
-        // DELETE: api/Players/89169307114
-        [ProducesResponseType(204)]
-        [ProducesResponseType(404)]
-        [HttpDelete("{phone}")]
+		/// <summary>
+		/// Удаляет игрока
+		/// </summary>
+		/// <param name="phone">Номер телефона</param>
+		/// <response code="204">ОК</response>
+		/// <response code="404">В БД нет таблицы игроков или нет такого игрока</response>
+		// DELETE: api/Players/89169307114
+		[ProducesResponseType(204)]
+		[ProducesResponseType(404)]
+		[HttpDelete("{phone}")]
 		public async Task<IActionResult> DeletePlayer(string phone)
 		{
 			if (_context.Players == null)

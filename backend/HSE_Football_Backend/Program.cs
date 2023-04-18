@@ -4,12 +4,15 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Reflection;
-using Microsoft.Extensions.FileProviders;
+using HSE_Football_Backend.Other;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Подключение CORS
 builder.Services.AddCors();
+
+// Подключение SignalR для чата
+builder.Services.AddSignalR();
 
 // Подключение контроллеров
 builder.Services.AddControllers();
@@ -80,5 +83,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapHub<ChatHub>("/chat");
 
 app.Run();

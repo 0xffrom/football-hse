@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
 
 namespace HSE_Football_Backend.Models
 {
@@ -80,26 +79,22 @@ namespace HSE_Football_Backend.Models
         /// <summary>
         /// Токен обновления токена доступа для учетной записи пользователя
         /// </summary>
-        [JsonIgnore]
         public string? RefreshToken { get; set; }
 
         /// <summary>
         /// Время до которого будет существовать указанный токен обновления
         /// </summary>
-        [JsonIgnore]
         public DateTime RefreshTokenExpiryTime { get; set; }
 
         /// <summary>
         /// Код
         /// </summary>
         [StringLength(129, MinimumLength = 4, ErrorMessage = "код должен быть от 4 до 128 символов")]
-        [JsonIgnore]
         public string? Code { get; set; }
 
         /// <summary>
         /// Дополнительная секьюрность для хранения кода
         /// </summary>
-        [JsonIgnore]
         public byte[]? SaltForCode { get; set; }
     }
 }

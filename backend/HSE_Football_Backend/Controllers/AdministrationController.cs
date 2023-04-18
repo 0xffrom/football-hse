@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HSE_Football_Backend.Data;
 using HSE_Football_Backend.Models;
@@ -36,65 +31,65 @@ namespace HSE_Football_Backend.Controllers
 			_context = context;
 		}
 
-        /// <summary>
-        /// Авторизация в панель администрирования
-        /// </summary>
-        /// <param name="password">Логин-пароль администратора</param>
-        /// <response code="200">ОК</response>
-        /// <response code="401">Неверный логин-пароль администратора</response>
-        // GET: api/Administration/Authorize/adminadmin
-        [ProducesResponseType(200)]
-        [ProducesResponseType(401)]
-        [HttpGet("Authorize/{password}")]
-        public async Task<IActionResult> Authorize(string password)
-        {
-            if (this.password != password)
-            {
-                return Unauthorized();
-            }
-            return Ok();
-        }
-
-        /// <summary>
-        /// Возвращает игрока по номеру телефона
-        /// </summary>
+		/// <summary>
+		/// Авторизация в панель администрирования
+		/// </summary>
 		/// <param name="password">Логин-пароль администратора</param>
-        /// <param name="phone">Номер телефона</param>
-        /// <response code="200">ОК</response>
-        /// <response code="404">В БД нет таблицы игроков или нет такого игрока</response>
+		/// <response code="200">ОК</response>
 		/// <response code="401">Неверный логин-пароль администратора</response>
-        // GET: api/Administration/adminadmin/Players/89169307114
-        [ProducesResponseType(200)]
-        [ProducesResponseType(404)]
-        [ProducesResponseType(401)]
-        [HttpGet("{password}/Players/{phone}")]
-        public async Task<ActionResult<Player>> GetPlayer(string password, string phone)
-        {
-            if (this.password != password)
-            {
-                return Unauthorized();
-            }
-            if (_context.Players == null)
-            {
-                return NotFound();
-            }
-            var player = await _context.Players.FindAsync(phone);
-            if (player == null)
-            {
-                return NotFound();
-            }
-            return player;
-        }
+		// GET: api/Administration/Authorize/adminadmin
+		[ProducesResponseType(200)]
+		[ProducesResponseType(401)]
+		[HttpGet("Authorize/{password}")]
+		public async Task<IActionResult> Authorize(string password)
+		{
+			if (this.password != password)
+			{
+				return Unauthorized();
+			}
+			return Ok();
+		}
 
-        /// <summary>
-        /// Возвращает все заявки игроков
-        /// </summary>
-        /// <param name="password">Логин-пароль администратора</param>
-        /// <response code="200">ОК</response>
-        /// <response code="404">В БД нет таблицы заявок игроков</response>
-        /// <response code="401">Неверный логин-пароль администратора</response>
-        // GET: api/Administration/adminadmin/PlayerApplications
-        [ProducesResponseType(200)]
+		/// <summary>
+		/// Возвращает игрока по номеру телефона
+		/// </summary>
+		/// <param name="password">Логин-пароль администратора</param>
+		/// <param name="phone">Номер телефона</param>
+		/// <response code="200">ОК</response>
+		/// <response code="404">В БД нет таблицы игроков или нет такого игрока</response>
+		/// <response code="401">Неверный логин-пароль администратора</response>
+		// GET: api/Administration/adminadmin/Players/89169307114
+		[ProducesResponseType(200)]
+		[ProducesResponseType(404)]
+		[ProducesResponseType(401)]
+		[HttpGet("{password}/Players/{phone}")]
+		public async Task<ActionResult<Player>> GetPlayer(string password, string phone)
+		{
+			if (this.password != password)
+			{
+				return Unauthorized();
+			}
+			if (_context.Players == null)
+			{
+				return NotFound();
+			}
+			var player = await _context.Players.FindAsync(phone);
+			if (player == null)
+			{
+				return NotFound();
+			}
+			return player;
+		}
+
+		/// <summary>
+		/// Возвращает все заявки игроков
+		/// </summary>
+		/// <param name="password">Логин-пароль администратора</param>
+		/// <response code="200">ОК</response>
+		/// <response code="404">В БД нет таблицы заявок игроков</response>
+		/// <response code="401">Неверный логин-пароль администратора</response>
+		// GET: api/Administration/adminadmin/PlayerApplications
+		[ProducesResponseType(200)]
 		[ProducesResponseType(404)]
 		[ProducesResponseType(401)]
 		[HttpGet("{password}/PlayerApplications")]
@@ -427,10 +422,127 @@ namespace HSE_Football_Backend.Controllers
 		}
 
 		/// <summary>
-		/// Существует ли команда
+		/// Возвращает все переписки администратора
 		/// </summary>
-		/// <param name="id">ID команды</param>
-		private bool TeamExists(long id)
+		/// <param name="password">Логин-пароль администратора</param>
+		/// <response code="200">ОК</response>
+		/// <response code="404">Нет переписок с таким пользователем</response>
+		/// <response code="401">Неверный логин-пароль администратора</response>
+		// GET: api/Adminisration/adminadmin/Chats
+		[ProducesResponseType(200)]
+		[ProducesResponseType(404)]
+		[ProducesResponseType(401)]
+		[HttpGet("{password}/Chats")]
+		public async Task<ActionResult<IEnumerable<Chat>>> GetChats(string password)
+		{
+			if (this.password != password)
+			{
+				return Unauthorized();
+			}
+			var c = await _context.Chats.Include(c => c.LastMessage)
+										.Where(c => c.PhoneNumber1 == "88888888888" || c.PhoneNumber2 == "88888888888")
+										.ToListAsync();
+			if (c == null)
+				return NotFound();
+			return c;
+		}
+
+		/// <summary>
+		/// Возвращает 100 последних сообщений между конкретным пользователем и администратором
+		/// </summary>
+		/// <param name="password">Логин-пароль администратора</param>
+		/// <param name="phone">Номер телефона пользователя</param>
+		/// <param name="n">Какая по счету подгрузка</param>
+		/// <response code="200">ОК</response>
+		/// <response code="401">Неверный логин-пароль администратора</response>
+		// GET: api/Administration/adminadmin/Messages/89169307114/0
+		[ProducesResponseType(200)]
+		[ProducesResponseType(401)]
+		[HttpGet("{password}/Messages/{phone}/{n}")]
+		public async Task<ActionResult<IEnumerable<Message>>> GetMessages(string password, string phone, int n)
+		{
+			if (this.password != password)
+			{
+				return Unauthorized();
+			}
+			// Находим все сообщения между пользователем и администратором
+			var messages = await _context.Messages.ToListAsync();
+			messages = messages.FindAll(m => (m.Sender == phone && m.Receiver == "88888888888") || (m.Sender == "88888888888" && m.Receiver == phone));
+			// Сортируем по времени отправки
+			messages = messages.OrderByDescending(m => m.SendTime).ToList();
+			// Пропускаем n*100 сообщений
+			messages = messages.Skip(n * 100).ToList();
+			// Берем 100 сообщений
+			messages = messages.Take(100).ToList();
+			return messages;
+		}
+
+		/// <summary>
+		/// Добавление нового сообщения
+		/// </summary>
+		/// <param name="password">Логин-пароль администратора</param>
+		/// <param name="message">Сообщение</param>
+		/// <response code="201">ОК</response>
+		/// <response code="400">Такое сообщение уже есть, или нет такой переписки</response>
+		/// <response code="401">Неверный логин-пароль администратора</response>
+		// POST: api/Administration/adminadmin/Messages
+		[ProducesResponseType(201)]
+		[ProducesResponseType(400)]
+		[ProducesResponseType(401)]
+		[HttpPost("{password}/Messages")]
+        public async Task<ActionResult<Message>> PostMessage(string password, Message message)
+        {
+            if (this.password != password)
+            {
+                return Unauthorized();
+            }
+            // Если такое сообщение уже есть
+            var m = await _context.Messages.FindAsync(message.Id);
+            if (m != null)
+                return BadRequest();
+            // Находим переписку
+            var chat = await _context.Chats.FirstOrDefaultAsync(c => (c.PhoneNumber1 == message.Sender && c.PhoneNumber2 == message.Receiver) ||
+                                                                     (c.PhoneNumber2 == message.Sender && c.PhoneNumber1 == message.Receiver));
+            if (chat == null)
+                return BadRequest();
+            // Обновляем данные переписки
+            chat.LastMessage = message;
+            _context.Entry(chat).State = EntityState.Modified;
+            // Добавляем сообщение
+            _context.Messages.Add(message);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction("GetMessage", new { id = message.Id }, message);
+        }
+
+        /// <summary>
+        /// Возвращает конкретное сообщение
+        /// </summary>
+        /// <param name="id">ID сообщения</param>
+        /// <response code="200">ОК</response>
+        /// <response code="404">В БД нет таблицы сообщений или нет такого сообщения</response>
+        // GET: api/Administration/Messages/1
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
+        [HttpGet("Messages/{id}")]
+        public async Task<ActionResult<Message>> GetMessage(long id)
+        {
+            if (_context.Messages == null)
+            {
+                return NotFound();
+            }
+            var m = await _context.Messages.FirstOrDefaultAsync(m => m.Id == id);
+            if (m == null)
+            {
+                return NotFound();
+            }
+            return m;
+        }
+
+        /// <summary>
+        /// Существует ли команда
+        /// </summary>
+        /// <param name="id">ID команды</param>
+        private bool TeamExists(long id)
 		{
 			return (_context.Teams?.Any(e => e.Id == id)).GetValueOrDefault();
 		}

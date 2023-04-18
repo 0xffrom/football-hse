@@ -76,5 +76,10 @@ namespace HSE_Football_Backend.Models
 		/// </summary>
 		[StringLength(201, ErrorMessage = "Слишком много символов")]
 		public string? Description { get; set; }
+
+		/// <summary>
+		/// Показывает возможное наличие нецензурной лексики
+		/// </summary>
+		public bool Attention { get; set; }
 	}
 }
