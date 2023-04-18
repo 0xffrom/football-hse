@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UserTarget: IRequest {
+struct UserTarget: RequestProtocol {
     let path = "api/Players/"
 
     var urlRequest: URLRequest?

@@ -81,6 +81,15 @@ extension SearchTeamsCoordinator: SearchTeamsPageModuleOutput {
         let viewController = builder.build()
         parentNavigationController?.pushViewController(viewController, animated: true)
     }
+
+    func openFilters() {
+        let builder = SearchTeamsPlayerRoleFilterModuleBuilder(
+            output: self,
+            networkService: networkService
+        )
+        let viewController = builder.build()
+        parentNavigationController?.pushViewController(viewController, animated: true)
+    }
 }
 
 extension SearchTeamsCoordinator: CreateTeamSearchApplicationModuleOutput {
@@ -91,5 +100,9 @@ extension SearchTeamsCoordinator: CreateTeamSearchApplicationModuleOutput {
 }
 
 extension SearchTeamsCoordinator: TeamApplicationModuleOutput {
+
+}
+
+extension SearchTeamsCoordinator: SearchTeamsPlayerRoleFilterModuleOutput {
 
 }

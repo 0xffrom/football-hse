@@ -77,6 +77,17 @@
 		00444B4229D25A1500DBFF4B /* TeamApplicationTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00444B3829D25A1500DBFF4B /* TeamApplicationTarget.swift */; };
 		00444B4329D25A1500DBFF4B /* TeamApplicationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00444B3A29D25A1500DBFF4B /* TeamApplicationInteractor.swift */; };
 		00444B4429D25A1500DBFF4B /* TeamApplicationInteractorIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00444B3B29D25A1500DBFF4B /* TeamApplicationInteractorIO.swift */; };
+		00478F0929ED4D5600470745 /* Tournaments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00478F0829ED4D5600470745 /* Tournaments.swift */; };
+		00478F1E29ED702500470745 /* SearchTeamsPlayerRoleFilterViewIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00478F1129ED702400470745 /* SearchTeamsPlayerRoleFilterViewIO.swift */; };
+		00478F2029ED702500470745 /* SearchTeamsPlayerRoleFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00478F1329ED702400470745 /* SearchTeamsPlayerRoleFilterViewController.swift */; };
+		00478F2129ED702500470745 /* SearchTeamsPlayerRoleFilterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00478F1529ED702400470745 /* SearchTeamsPlayerRoleFilterPresenter.swift */; };
+		00478F2229ED702500470745 /* SearchTeamsPlayerRoleFilterModuleIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00478F1629ED702400470745 /* SearchTeamsPlayerRoleFilterModuleIO.swift */; };
+		00478F2329ED702500470745 /* SearchTeamsPlayerRoleFilterInteractorIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00478F1829ED702400470745 /* SearchTeamsPlayerRoleFilterInteractorIO.swift */; };
+		00478F2429ED702500470745 /* SearchTeamsPlayerRoleFilterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00478F1929ED702400470745 /* SearchTeamsPlayerRoleFilterInteractor.swift */; };
+		00478F2529ED702500470745 /* SearchTeamsPlayerRoleFilterModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00478F1A29ED702500470745 /* SearchTeamsPlayerRoleFilterModuleBuilder.swift */; };
+		00478F2729EDA03400470745 /* FilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00478F2629EDA03400470745 /* FilterCell.xib */; };
+		00478F2C29EDA27A00470745 /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00478F2B29EDA27A00470745 /* FilterCell.swift */; };
+		00478F3029EE51D300470745 /* SearchTeamsPlayerRoleFilter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00478F2F29EE51D300470745 /* SearchTeamsPlayerRoleFilter.storyboard */; };
 		006B06D2298FD35400A2C8A2 /* AuthorizationPhoneEnteringModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B06C8298FD35400A2C8A2 /* AuthorizationPhoneEnteringModuleBuilder.swift */; };
 		006B06D3298FD35400A2C8A2 /* AuthorizationPhoneEnteringInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B06CA298FD35400A2C8A2 /* AuthorizationPhoneEnteringInteractor.swift */; };
 		006B06D4298FD35400A2C8A2 /* AuthorizationPhoneEnteringInteractorIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B06CB298FD35400A2C8A2 /* AuthorizationPhoneEnteringInteractorIO.swift */; };
@@ -112,8 +123,8 @@
 		00C4738E29B89C0C00EFFB6C /* RegistrationModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C4738629B89C0C00EFFB6C /* RegistrationModuleBuilder.swift */; };
 		00C493A329C45D7C0071849D /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C493A229C45D7C0071849D /* NetworkService.swift */; };
 		00C493A529C45DE10071849D /* RequestConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C493A429C45DE10071849D /* RequestConfig.swift */; };
-		00C493A729C45E020071849D /* IRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C493A629C45E020071849D /* IRequest.swift */; };
-		00C493A929C45E230071849D /* IParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C493A829C45E230071849D /* IParser.swift */; };
+		00C493A729C45E020071849D /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C493A629C45E020071849D /* RequestProtocol.swift */; };
+		00C493A929C45E230071849D /* ParserProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C493A829C45E230071849D /* ParserProtocol.swift */; };
 		00C493AB29C45E4B0071849D /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C493AA29C45E4B0071849D /* NetworkError.swift */; };
 		00C493AD29C468980071849D /* BaseURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C493AC29C468980071849D /* BaseURL.swift */; };
 		00C493B129C476140071849D /* AuthorizationPhoneEnteringTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C493B029C476140071849D /* AuthorizationPhoneEnteringTarget.swift */; };
@@ -132,6 +143,7 @@
 		00C493D229C643540071849D /* PlayerImageTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C493D129C643540071849D /* PlayerImageTarget.swift */; };
 		00C493D429C643AF0071849D /* TeamImageTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C493D329C643AF0071849D /* TeamImageTarget.swift */; };
 		00C493D629C645450071849D /* UIImageView + Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C493D529C645450071849D /* UIImageView + Networking.swift */; };
+		00D7997C29D84AB10070FD4A /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D7997B29D84AB10070FD4A /* R.generated.swift */; };
 		34B6BF29296F3D3B006E9882 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B6BF28296F3D3B006E9882 /* AppDelegate.swift */; };
 		34B6BF32296F3D3D006E9882 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34B6BF31296F3D3D006E9882 /* Assets.xcassets */; };
 		34B6BF35296F3D3D006E9882 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34B6BF33296F3D3D006E9882 /* LaunchScreen.storyboard */; };
@@ -231,6 +243,17 @@
 		00444B3829D25A1500DBFF4B /* TeamApplicationTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamApplicationTarget.swift; sourceTree = "<group>"; };
 		00444B3A29D25A1500DBFF4B /* TeamApplicationInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamApplicationInteractor.swift; sourceTree = "<group>"; };
 		00444B3B29D25A1500DBFF4B /* TeamApplicationInteractorIO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamApplicationInteractorIO.swift; sourceTree = "<group>"; };
+		00478F0829ED4D5600470745 /* Tournaments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tournaments.swift; sourceTree = "<group>"; };
+		00478F1129ED702400470745 /* SearchTeamsPlayerRoleFilterViewIO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTeamsPlayerRoleFilterViewIO.swift; sourceTree = "<group>"; };
+		00478F1329ED702400470745 /* SearchTeamsPlayerRoleFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTeamsPlayerRoleFilterViewController.swift; sourceTree = "<group>"; };
+		00478F1529ED702400470745 /* SearchTeamsPlayerRoleFilterPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTeamsPlayerRoleFilterPresenter.swift; sourceTree = "<group>"; };
+		00478F1629ED702400470745 /* SearchTeamsPlayerRoleFilterModuleIO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTeamsPlayerRoleFilterModuleIO.swift; sourceTree = "<group>"; };
+		00478F1829ED702400470745 /* SearchTeamsPlayerRoleFilterInteractorIO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTeamsPlayerRoleFilterInteractorIO.swift; sourceTree = "<group>"; };
+		00478F1929ED702400470745 /* SearchTeamsPlayerRoleFilterInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTeamsPlayerRoleFilterInteractor.swift; sourceTree = "<group>"; };
+		00478F1A29ED702500470745 /* SearchTeamsPlayerRoleFilterModuleBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTeamsPlayerRoleFilterModuleBuilder.swift; sourceTree = "<group>"; };
+		00478F2629EDA03400470745 /* FilterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterCell.xib; sourceTree = "<group>"; };
+		00478F2B29EDA27A00470745 /* FilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
+		00478F2F29EE51D300470745 /* SearchTeamsPlayerRoleFilter.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchTeamsPlayerRoleFilter.storyboard; sourceTree = "<group>"; };
 		006B06C8298FD35400A2C8A2 /* AuthorizationPhoneEnteringModuleBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationPhoneEnteringModuleBuilder.swift; sourceTree = "<group>"; };
 		006B06CA298FD35400A2C8A2 /* AuthorizationPhoneEnteringInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationPhoneEnteringInteractor.swift; sourceTree = "<group>"; };
 		006B06CB298FD35400A2C8A2 /* AuthorizationPhoneEnteringInteractorIO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationPhoneEnteringInteractorIO.swift; sourceTree = "<group>"; };
@@ -266,8 +289,8 @@
 		00C4738629B89C0C00EFFB6C /* RegistrationModuleBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationModuleBuilder.swift; sourceTree = "<group>"; };
 		00C493A229C45D7C0071849D /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		00C493A429C45DE10071849D /* RequestConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestConfig.swift; sourceTree = "<group>"; };
-		00C493A629C45E020071849D /* IRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRequest.swift; sourceTree = "<group>"; };
-		00C493A829C45E230071849D /* IParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IParser.swift; sourceTree = "<group>"; };
+		00C493A629C45E020071849D /* RequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProtocol.swift; sourceTree = "<group>"; };
+		00C493A829C45E230071849D /* ParserProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserProtocol.swift; sourceTree = "<group>"; };
 		00C493AA29C45E4B0071849D /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		00C493AC29C468980071849D /* BaseURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURL.swift; sourceTree = "<group>"; };
 		00C493B029C476140071849D /* AuthorizationPhoneEnteringTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationPhoneEnteringTarget.swift; sourceTree = "<group>"; };
@@ -286,6 +309,7 @@
 		00C493D129C643540071849D /* PlayerImageTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerImageTarget.swift; sourceTree = "<group>"; };
 		00C493D329C643AF0071849D /* TeamImageTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamImageTarget.swift; sourceTree = "<group>"; };
 		00C493D529C645450071849D /* UIImageView + Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + Networking.swift"; sourceTree = "<group>"; };
+		00D7997B29D84AB10070FD4A /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = FootballHSE/R.generated.swift; sourceTree = SOURCE_ROOT; };
 		11EB685CC5DC4026965F7B30 /* Pods-FootballHSETests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FootballHSETests.release.xcconfig"; path = "Target Support Files/Pods-FootballHSETests/Pods-FootballHSETests.release.xcconfig"; sourceTree = "<group>"; };
 		1E0880FA34599A032DCC2D84 /* Pods-FootballHSE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FootballHSE.release.xcconfig"; path = "Target Support Files/Pods-FootballHSE/Pods-FootballHSE.release.xcconfig"; sourceTree = "<group>"; };
 		3394C19D580923A364EF2213 /* Pods_FootballHSE_FootballHSEUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FootballHSE_FootballHSEUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -338,6 +362,7 @@
 		0013E6F32984066A00BD93EF /* UI Resources */ = {
 			isa = PBXGroup;
 			children = (
+				00D7997B29D84AB10070FD4A /* R.generated.swift */,
 				34B6BF33296F3D3D006E9882 /* LaunchScreen.storyboard */,
 				34B6BF31296F3D3D006E9882 /* Assets.xcassets */,
 			);
@@ -347,6 +372,7 @@
 		0013E6F4298406A100BD93EF /* Design System */ = {
 			isa = PBXGroup;
 			children = (
+				00478F2D29EDA28B00470745 /* Cells */,
 				00C4736129B4EAE800EFFB6C /* Buttons */,
 				00C4735A29B4DC5700EFFB6C /* UITextFields */,
 			);
@@ -393,10 +419,10 @@
 		001A7A4E29B92E9600152098 /* CommonModels */ = {
 			isa = PBXGroup;
 			children = (
-				00C493B829C4CB0A0071849D /* TokensModel.swift */,
+				00C493B529C4A27D0071849D /* CurrentUserConfig.swift */,
 				001A7A4F29B92ECD00152098 /* PlayerRole.swift */,
 				00C493C829C6166B0071849D /* PlayerPosition.swift */,
-				00C493B529C4A27D0071849D /* CurrentUserConfig.swift */,
+				00478F0829ED4D5600470745 /* Tournaments.swift */,
 				0038C17D29D065300079EB9D /* User.swift */,
 			);
 			path = CommonModels;
@@ -405,8 +431,8 @@
 		001A7A5729BD1E5400152098 /* MainApp */ = {
 			isa = PBXGroup;
 			children = (
+				00478F2829EDA1F400470745 /* Search */,
 				001A7A5829BD1E6100152098 /* TabBar */,
-				001A7A6C29BDD4E600152098 /* SearchTeams */,
 				001A7A8529BDE0FC00152098 /* Profile */,
 			);
 			path = MainApp;
@@ -444,24 +470,24 @@
 		001A7A6C29BDD4E600152098 /* SearchTeams */ = {
 			isa = PBXGroup;
 			children = (
-				00444B2E29D25A1500DBFF4B /* TeamApplication */,
-				0038C15729CDBFDB0079EB9D /* CreateTeamSearchApplication */,
-				001A7A6D29BDD4E600152098 /* MainSearchTeamsPage */,
+				00444B2E29D25A1500DBFF4B /* TeamApplicationModule */,
+				001A7A6D29BDD4E600152098 /* SearchTeamsPageModule */,
+				0038C15729CDBFDB0079EB9D /* CreateTeamSearchApplicationModule */,
 			);
 			path = SearchTeams;
 			sourceTree = "<group>";
 		};
-		001A7A6D29BDD4E600152098 /* MainSearchTeamsPage */ = {
+		001A7A6D29BDD4E600152098 /* SearchTeamsPageModule */ = {
 			isa = PBXGroup;
 			children = (
 				001A7A6E29BDD4E600152098 /* SearchTeamsPageModuleBuilder.swift */,
 				001A7A7629BDD4E600152098 /* Interactor */,
 				001A7A6F29BDD4E600152098 /* Presenter */,
 				001A7A7229BDD4E600152098 /* View */,
-				00C493BF29C5914F0071849D /* API */,
 				00C493C229C5A1080071849D /* Models */,
+				00C493BF29C5914F0071849D /* API */,
 			);
-			path = MainSearchTeamsPage;
+			path = SearchTeamsPageModule;
 			sourceTree = "<group>";
 		};
 		001A7A6F29BDD4E600152098 /* Presenter */ = {
@@ -499,7 +525,7 @@
 		001A7A8529BDE0FC00152098 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				0038C19929D0B3C40079EB9D /* RegisterTeam */,
+				0038C19929D0B3C40079EB9D /* RegisterTeamPage */,
 				0038C18329D06DB80079EB9D /* EditProfilePage */,
 				001A7A8629BDE0FC00152098 /* ProfilePage */,
 			);
@@ -545,7 +571,7 @@
 			path = Interactor;
 			sourceTree = "<group>";
 		};
-		0038C15729CDBFDB0079EB9D /* CreateTeamSearchApplication */ = {
+		0038C15729CDBFDB0079EB9D /* CreateTeamSearchApplicationModule */ = {
 			isa = PBXGroup;
 			children = (
 				0038C15B29CDC0250079EB9D /* API */,
@@ -554,7 +580,7 @@
 				0038C15829CDC0250079EB9D /* Presenter */,
 				0038C16129CDC0250079EB9D /* View */,
 			);
-			path = CreateTeamSearchApplication;
+			path = CreateTeamSearchApplicationModule;
 			sourceTree = "<group>";
 		};
 		0038C15829CDC0250079EB9D /* Presenter */ = {
@@ -632,7 +658,7 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		0038C19929D0B3C40079EB9D /* RegisterTeam */ = {
+		0038C19929D0B3C40079EB9D /* RegisterTeamPage */ = {
 			isa = PBXGroup;
 			children = (
 				0038C19A29D0E6D40079EB9D /* RegisterTeamPageModuleBuilder.swift */,
@@ -640,7 +666,7 @@
 				0038C19F29D0E6D40079EB9D /* Presenter */,
 				0038C19B29D0E6D40079EB9D /* View */,
 			);
-			path = RegisterTeam;
+			path = RegisterTeamPage;
 			sourceTree = "<group>";
 		};
 		0038C19B29D0E6D40079EB9D /* View */ = {
@@ -674,16 +700,16 @@
 			path = FootballHSE/Modules/MainApp/Profile/RegisterTeamPage/Interactor;
 			sourceTree = SOURCE_ROOT;
 		};
-		00444B2E29D25A1500DBFF4B /* TeamApplication */ = {
+		00444B2E29D25A1500DBFF4B /* TeamApplicationModule */ = {
 			isa = PBXGroup;
 			children = (
 				00444B3229D25A1500DBFF4B /* TeamApplicationModuleBuilder.swift */,
 				00444B2F29D25A1500DBFF4B /* Presenter */,
 				00444B3329D25A1500DBFF4B /* View */,
-				00444B3729D25A1500DBFF4B /* API */,
 				00444B3929D25A1500DBFF4B /* Interactor */,
+				00444B3729D25A1500DBFF4B /* API */,
 			);
-			path = TeamApplication;
+			path = TeamApplicationModule;
 			sourceTree = "<group>";
 		};
 		00444B2F29D25A1500DBFF4B /* Presenter */ = {
@@ -720,6 +746,87 @@
 				00444B3B29D25A1500DBFF4B /* TeamApplicationInteractorIO.swift */,
 			);
 			path = Interactor;
+			sourceTree = "<group>";
+		};
+		00478F0A29ED6B7D00470745 /* SearchTeamsPlayerRoleFilterModule */ = {
+			isa = PBXGroup;
+			children = (
+				00478F1A29ED702500470745 /* SearchTeamsPlayerRoleFilterModuleBuilder.swift */,
+				00478F1729ED702400470745 /* Interactor */,
+				00478F1429ED702400470745 /* Presenter */,
+				00478F1029ED702400470745 /* View */,
+			);
+			path = SearchTeamsPlayerRoleFilterModule;
+			sourceTree = "<group>";
+		};
+		00478F0B29ED6FDB00470745 /* SearchTeamsTournamentFilterModule */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SearchTeamsTournamentFilterModule;
+			sourceTree = "<group>";
+		};
+		00478F1029ED702400470745 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				00478F1129ED702400470745 /* SearchTeamsPlayerRoleFilterViewIO.swift */,
+				00478F2F29EE51D300470745 /* SearchTeamsPlayerRoleFilter.storyboard */,
+				00478F1329ED702400470745 /* SearchTeamsPlayerRoleFilterViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		00478F1429ED702400470745 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				00478F1529ED702400470745 /* SearchTeamsPlayerRoleFilterPresenter.swift */,
+				00478F1629ED702400470745 /* SearchTeamsPlayerRoleFilterModuleIO.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		00478F1729ED702400470745 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				00478F1829ED702400470745 /* SearchTeamsPlayerRoleFilterInteractorIO.swift */,
+				00478F1929ED702400470745 /* SearchTeamsPlayerRoleFilterInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		00478F2829EDA1F400470745 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				00478F2A29EDA21600470745 /* Filters */,
+				001A7A6C29BDD4E600152098 /* SearchTeams */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		00478F2A29EDA21600470745 /* Filters */ = {
+			isa = PBXGroup;
+			children = (
+				00478F0A29ED6B7D00470745 /* SearchTeamsPlayerRoleFilterModule */,
+				00478F0B29ED6FDB00470745 /* SearchTeamsTournamentFilterModule */,
+			);
+			path = Filters;
+			sourceTree = "<group>";
+		};
+		00478F2D29EDA28B00470745 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				00478F2E29EDA29E00470745 /* FilterCell */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		00478F2E29EDA29E00470745 /* FilterCell */ = {
+			isa = PBXGroup;
+			children = (
+				00478F2629EDA03400470745 /* FilterCell.xib */,
+				00478F2B29EDA27A00470745 /* FilterCell.swift */,
+			);
+			path = FilterCell;
 			sourceTree = "<group>";
 		};
 		006B06C9298FD35400A2C8A2 /* Interactor */ = {
@@ -896,13 +1003,8 @@
 		00C493A129C45D590071849D /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				00C493AC29C468980071849D /* BaseURL.swift */,
-				00C493AA29C45E4B0071849D /* NetworkError.swift */,
-				00C493A429C45DE10071849D /* RequestConfig.swift */,
-				00C493A829C45E230071849D /* IParser.swift */,
-				00C493A629C45E020071849D /* IRequest.swift */,
-				00C493A229C45D7C0071849D /* NetworkService.swift */,
-				00C493CC29C641970071849D /* HttpMethod.swift */,
+				00D7994429D618B00070FD4A /* Models */,
+				00D7994529D619720070FD4A /* BaseServise */,
 				00C493D029C6430E0071849D /* ImageServise */,
 			);
 			path = Network;
@@ -929,6 +1031,8 @@
 		00C493BF29C5914F0071849D /* API */ = {
 			isa = PBXGroup;
 			children = (
+				00C493C329C5A11B0071849D /* TeamApplicationResponseModel.swift */,
+				00C493C529C5A2370071849D /* TeamApplicationsParser.swift */,
 				00C493C029C5917D0071849D /* SearchTeamsTarget.swift */,
 			);
 			path = API;
@@ -937,8 +1041,6 @@
 		00C493C229C5A1080071849D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				00C493C329C5A11B0071849D /* TeamApplicationResponseModel.swift */,
-				00C493C529C5A2370071849D /* TeamApplicationsParser.swift */,
 				00C493CA29C618540071849D /* TeamApplicationDisplayModel.swift */,
 			);
 			path = Models;
@@ -952,6 +1054,28 @@
 				00C493D329C643AF0071849D /* TeamImageTarget.swift */,
 			);
 			path = ImageServise;
+			sourceTree = "<group>";
+		};
+		00D7994429D618B00070FD4A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				00C493CC29C641970071849D /* HttpMethod.swift */,
+				00C493B829C4CB0A0071849D /* TokensModel.swift */,
+				00C493AA29C45E4B0071849D /* NetworkError.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		00D7994529D619720070FD4A /* BaseServise */ = {
+			isa = PBXGroup;
+			children = (
+				00C493AC29C468980071849D /* BaseURL.swift */,
+				00C493A429C45DE10071849D /* RequestConfig.swift */,
+				00C493A829C45E230071849D /* ParserProtocol.swift */,
+				00C493A629C45E020071849D /* RequestProtocol.swift */,
+				00C493A229C45D7C0071849D /* NetworkService.swift */,
+			);
+			path = BaseServise;
 			sourceTree = "<group>";
 		};
 		34B6BF1C296F3D3B006E9882 = {
@@ -1040,6 +1164,7 @@
 			buildConfigurationList = 34B6BF4F296F3D3E006E9882 /* Build configuration list for PBXNativeTarget "FootballHSE" */;
 			buildPhases = (
 				52EE4D16FB7F9239A78FEC00 /* [CP] Check Pods Manifest.lock */,
+				00D7995529D743AE0070FD4A /* RSwift */,
 				34B6BF21296F3D3B006E9882 /* Sources */,
 				34B6BF22296F3D3B006E9882 /* Frameworks */,
 				34B6BF23296F3D3B006E9882 /* Resources */,
@@ -1143,8 +1268,10 @@
 			files = (
 				006B06E12990190800A2C8A2 /* AuthorizationPhoneEntering.storyboard in Resources */,
 				001A7A6829BD1F7700152098 /* Main.storyboard in Resources */,
+				00478F3029EE51D300470745 /* SearchTeamsPlayerRoleFilter.storyboard in Resources */,
 				0038C17529CDC0250079EB9D /* CreateTeamSearchApplication.storyboard in Resources */,
 				34B6BF35296F3D3D006E9882 /* LaunchScreen.storyboard in Resources */,
+				00478F2729EDA03400470745 /* FilterCell.xib in Resources */,
 				00444B4129D25A1500DBFF4B /* TeamApplication.storyboard in Resources */,
 				001A7A9629BDE0FC00152098 /* ProfilePage.storyboard in Resources */,
 				00C4738929B89C0C00EFFB6C /* Registration.storyboard in Resources */,
@@ -1175,6 +1302,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		00D7995529D743AE0070FD4A /* RSwift */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = RSwift;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$SRCROOT/UI Resources/R.generated.swift",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"${SRCROOT}/FootballHSE/R.generated.swift\"\n";
+		};
 		02DC43E7F5569CF148D73816 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1294,6 +1441,8 @@
 				001A7A7A29BDD4E600152098 /* SearchTeamsPageModuleIO.swift in Sources */,
 				006B06DB298FD76A00A2C8A2 /* Coordinatable.swift in Sources */,
 				006B06D7298FD35400A2C8A2 /* AuthorizationPhoneEnteringViewIO.swift in Sources */,
+				00D7997C29D84AB10070FD4A /* R.generated.swift in Sources */,
+				00478F2329ED702500470745 /* SearchTeamsPlayerRoleFilterInteractorIO.swift in Sources */,
 				001A7A9B29BDE18A00152098 /* ProfileCoordinator.swift in Sources */,
 				0038C17029CDC0250079EB9D /* CreateTeamSearchApplicationModuleBuilder.swift in Sources */,
 				00C493C929C6166B0071849D /* PlayerPosition.swift in Sources */,
@@ -1303,12 +1452,14 @@
 				0008C7C929C07C7000465CCF /* RoleCell.swift in Sources */,
 				0038C19329D072FD0079EB9D /* EditProfilePageModuleBuilder.swift in Sources */,
 				0038C19429D072FD0079EB9D /* EditProfilePageInteractor.swift in Sources */,
-				00C493A929C45E230071849D /* IParser.swift in Sources */,
+				00C493A929C45E230071849D /* ParserProtocol.swift in Sources */,
+				00478F2529ED702500470745 /* SearchTeamsPlayerRoleFilterModuleBuilder.swift in Sources */,
 				00C4738B29B89C0C00EFFB6C /* RegistrationViewIO.swift in Sources */,
 				00C4736329B4EAF900EFFB6C /* HSEMainButton.swift in Sources */,
 				001A7A8029BDD4E600152098 /* SearchTeamsPageInteractor.swift in Sources */,
 				00444B4329D25A1500DBFF4B /* TeamApplicationInteractor.swift in Sources */,
 				00444B3D29D25A1500DBFF4B /* TeamApplicationModuleIO.swift in Sources */,
+				00478F2129ED702500470745 /* SearchTeamsPlayerRoleFilterPresenter.swift in Sources */,
 				0038C19129D072FC0079EB9D /* EditProfilePageModuleIO.swift in Sources */,
 				00444B4029D25A1500DBFF4B /* TeamApplicationViewController.swift in Sources */,
 				00C493D229C643540071849D /* PlayerImageTarget.swift in Sources */,
@@ -1325,12 +1476,13 @@
 				006B06D4298FD35400A2C8A2 /* AuthorizationPhoneEnteringInteractorIO.swift in Sources */,
 				00C493B929C4CB0A0071849D /* TokensModel.swift in Sources */,
 				00444B4229D25A1500DBFF4B /* TeamApplicationTarget.swift in Sources */,
-				00C493A729C45E020071849D /* IRequest.swift in Sources */,
+				00C493A729C45E020071849D /* RequestProtocol.swift in Sources */,
 				00C4737829B5E2BF00EFFB6C /* AuthorizationCodeEnteringModuleBuilder.swift in Sources */,
 				001A7A5A29BD1E9900152098 /* MainModuleBuilder.swift in Sources */,
 				006B06D3298FD35400A2C8A2 /* AuthorizationPhoneEnteringInteractor.swift in Sources */,
 				001A7A5429BCD8BD00152098 /* MainCoordinator.swift in Sources */,
 				0038C1A929D0E6D50079EB9D /* RegisterTeamPagePresenter.swift in Sources */,
+				00478F1E29ED702500470745 /* SearchTeamsPlayerRoleFilterViewIO.swift in Sources */,
 				0038C1AB29D0E6D50079EB9D /* RegisterTeamPageInteractor.swift in Sources */,
 				001A7A7929BDD4E600152098 /* SearchTeamsPageModuleBuilder.swift in Sources */,
 				001A7A9229BDE0FC00152098 /* ProfilePageModuleBuilder.swift in Sources */,
@@ -1341,6 +1493,7 @@
 				0038C17329CDC0250079EB9D /* CreateTeamSearchApplicationViewController.swift in Sources */,
 				0038C1A829D0E6D50079EB9D /* RegisterTeamPageViewController.swift in Sources */,
 				001A7A7B29BDD4E600152098 /* SearchTeamsPagePresenter.swift in Sources */,
+				00478F2229ED702500470745 /* SearchTeamsPlayerRoleFilterModuleIO.swift in Sources */,
 				00C493AB29C45E4B0071849D /* NetworkError.swift in Sources */,
 				001A7AA129BFC6F400152098 /* HSECreateApplicationButton.swift in Sources */,
 				0038C19829D072FD0079EB9D /* EditProfilePageViewIO.swift in Sources */,
@@ -1369,16 +1522,20 @@
 				001A7A7F29BDD4E600152098 /* SearchTeamsPageInteractorIO.swift in Sources */,
 				001A7A9829BDE0FC00152098 /* ProfilePageInteractorIO.swift in Sources */,
 				00C4737229B5E2BF00EFFB6C /* AuthorizationCodeEnteringInteractorIO.swift in Sources */,
+				00478F0929ED4D5600470745 /* Tournaments.swift in Sources */,
 				0038C18229D066DF0079EB9D /* UserTarget.swift in Sources */,
 				001A7A6529BD1F7700152098 /* MainPresenter.swift in Sources */,
 				00C493BE29C5254A0071849D /* RegistrationTarget.swift in Sources */,
 				00C4735C29B4DC6C00EFFB6C /* HSETextField.swift in Sources */,
+				00478F2029ED702500470745 /* SearchTeamsPlayerRoleFilterViewController.swift in Sources */,
 				00C493CD29C641970071849D /* HttpMethod.swift in Sources */,
 				0038C16E29CDC0250079EB9D /* CreateTeamSearchApplicationPresenter.swift in Sources */,
+				00478F2C29EDA27A00470745 /* FilterCell.swift in Sources */,
 				00C4738A29B89C0C00EFFB6C /* RegistrationViewController.swift in Sources */,
 				00C493C129C5917D0071849D /* SearchTeamsTarget.swift in Sources */,
 				001A7A7C29BDD4E600152098 /* SearchTeamsPageViewController.swift in Sources */,
 				00C493A529C45DE10071849D /* RequestConfig.swift in Sources */,
+				00478F2429ED702500470745 /* SearchTeamsPlayerRoleFilterInteractor.swift in Sources */,
 				001A7A6929BD1F7700152098 /* MainViewController.swift in Sources */,
 				00444B3F29D25A1500DBFF4B /* TeamApplicationViewIO.swift in Sources */,
 				001A7A9429BDE0FC00152098 /* ProfilePagePresenter.swift in Sources */,

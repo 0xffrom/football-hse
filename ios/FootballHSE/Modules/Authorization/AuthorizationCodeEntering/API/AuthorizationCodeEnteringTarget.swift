@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct AuthorizationCodeEnteringTarget: IRequest {
+struct AuthorizationCodeEnteringTarget: RequestProtocol {
     let path = "api/Authentication/refresh/"
 
     var urlRequest: URLRequest?

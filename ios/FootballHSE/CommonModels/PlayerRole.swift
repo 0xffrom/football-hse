@@ -8,7 +8,7 @@
 import Foundation
 
 enum PlayerRole: Int {
-    case student = 0
+    case student
     case graduate
     case employee
     case legionnaire

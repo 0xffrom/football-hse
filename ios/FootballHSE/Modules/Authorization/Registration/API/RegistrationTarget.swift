@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RegistrationTarget: IRequest {
+struct RegistrationTarget: RequestProtocol {
     let path = "api/Players/"
 
     var urlRequest: URLRequest?

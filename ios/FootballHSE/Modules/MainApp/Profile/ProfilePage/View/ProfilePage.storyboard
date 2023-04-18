@@ -34,7 +34,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eXB-Ca-UKS">
                                 <rect key="frame" x="16" y="101.66666666666669" width="361" height="135"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserIcon" translatesAutoresizingMaskIntoConstraints="NO" id="gk1-7A-3nK">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userIcon" translatesAutoresizingMaskIntoConstraints="NO" id="gk1-7A-3nK">
                                         <rect key="frame" x="152.66666666666666" y="20" width="56" height="56"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="56" id="Iw5-AX-Ihc"/>
@@ -71,7 +71,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rmh-jH-F1f">
                                 <rect key="frame" x="16" y="246.66666666666663" width="361" height="68"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DocumentIcon" translatesAutoresizingMaskIntoConstraints="NO" id="IFi-M5-QgZ">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="documentIcon" translatesAutoresizingMaskIntoConstraints="NO" id="IFi-M5-QgZ">
                                         <rect key="frame" x="12" y="12.000000000000028" width="44" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="44" id="POE-Sd-xzq"/>
@@ -164,11 +164,11 @@
     </scenes>
     <resources>
         <image name="ArrowIcon" width="8" height="12"/>
-        <image name="DocumentIcon" width="176" height="176"/>
         <image name="EditIcon" width="20" height="20"/>
         <image name="EmptyStateInProfile" width="864" height="342"/>
-        <image name="UserIcon" width="56" height="56"/>
+        <image name="documentIcon" width="176" height="176"/>
         <image name="profileIcon" width="24" height="24"/>
+        <image name="userIcon" width="56" height="56"/>
         <namedColor name="BasePrimary">
             <color red="0.24699999392032623" green="0.37599998712539673" blue="0.9570000171661377" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>

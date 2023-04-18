@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class UserParser: IParser {
+final class UserParser: ParserProtocol {
 
     typealias Model = User
 
