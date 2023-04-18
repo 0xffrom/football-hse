@@ -1,13 +1,13 @@
 package andryuh.football.feature_search.screens.search.presentation
 
 import androidx.compose.ui.text.input.TextFieldValue
+import andryuh.football.core_kotlin.Resource
 import andryuh.football.domain_team.dto.TeamApplication
-import andryuh.football.domain_team.dto.mockList
 
 internal data class SearchState(
-    val searchTextFieldValue: TextFieldValue = TextFieldValue(),
-    val applications: List<TeamApplication> = TeamApplication.mockList(),
-    val filteredApplications: List<TeamApplication> = applications,
+  val searchTextFieldValue: TextFieldValue = TextFieldValue(),
+  val applications: Resource<List<TeamApplication>> = Resource.Loading,
+  val filteredApplications: List<TeamApplication> = applications.value.orEmpty(),
 )
 
 internal sealed interface SearchEvent {
@@ -22,7 +22,7 @@ internal sealed interface SearchEvent {
       object Filter : Ui
       object CreateApplicationBanner : Ui
 
-      data class TeamApplicationCard(val application: TeamApplication): Ui
+      data class TeamApplicationCard(val application: TeamApplication) : Ui
     }
 
     object Action {
@@ -32,15 +32,18 @@ internal sealed interface SearchEvent {
   }
 
   sealed interface Internal : SearchEvent {
-    // your code
+    data class ObserveTeamApplicationsSuccess(val applications: List<TeamApplication>) : Internal
+    data class ObserveTeamApplicationsError(val error: Throwable) : Internal
   }
 }
 
 internal sealed interface SearchCommand {
-  // your code
+
+  object ObserveTeamApplications : SearchCommand
 }
 
 internal sealed interface SearchEffect {
 
-  data class OpenTeamApplicationDetails(val application: TeamApplication): SearchEffect
+  data class ShowError(val error: Throwable): SearchEffect
+  data class OpenTeamApplicationDetails(val application: TeamApplication) : SearchEffect
 }

@@ -5,35 +5,37 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
 import andryuh.football.core_models.joinTitleToString
 import andryuh.football.core_models.mapToTitle
 import andryuh.football.domain_team.dto.TeamApplication
-import andryuh.football.feature_search.R
 import andryuh.football.ui_kit.theme.CaptionMMedium
 import andryuh.football.ui_kit.theme.FootballColors
+import coil.compose.AsyncImage
+import com.google.accompanist.placeholder.PlaceholderHighlight
+import com.google.accompanist.placeholder.material.fade
+import com.google.accompanist.placeholder.material.placeholder
 
 @Composable
-fun TeamApplicationCard(
-    application: TeamApplication,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
+internal fun TeamApplicationCard(
+  application: TeamApplication,
+  onClick: () -> Unit,
+  modifier: Modifier = Modifier,
 ) {
   Card(
     modifier = modifier.fillMaxWidth(),
@@ -53,25 +55,15 @@ fun TeamApplicationCard(
           verticalAlignment = Alignment.CenterVertically,
         ) {
           AsyncImage(
-            modifier = Modifier.size(34.dp),
+            modifier = Modifier.size(34.dp).clip(CircleShape),
             model = application.imageUrl,
             contentDescription = null,
+            contentScale = ContentScale.Crop,
           )
           Text(
             text = application.name,
             color = FootballColors.Text.Primary,
             style = CaptionMMedium,
-          )
-        }
-        IconButton(
-          modifier = Modifier.padding(top = 4.dp, end = 20.dp).size(24.dp),
-          onClick = { /*TODO*/}
-        ) {
-          Icon(
-            modifier = Modifier.size(20.dp),
-            painter = painterResource(id = R.drawable.ic_20_more),
-            contentDescription = null,
-            tint = FootballColors.Icons.Tertiary,
           )
         }
       }
@@ -120,12 +112,29 @@ fun TeamApplicationCard(
                   fontWeight = FontWeight.W500,
                   fontSize = 12.sp,
                   lineHeight = 18.sp,
-                  letterSpacing = 1.sp,
                 ),
             )
           }
         }
       }
     }
+  }
+}
+
+@Composable
+internal fun TeamApplicationCardShimmer(modifier: Modifier = Modifier) {
+  Card(
+    modifier = modifier.fillMaxWidth().height(120.dp),
+    backgroundColor = FootballColors.Surface1,
+    elevation = 0.dp,
+  ) {
+    Box(
+      modifier =
+        Modifier.fillMaxSize()
+          .placeholder(
+            visible = true,
+            highlight = PlaceholderHighlight.fade(),
+          )
+    )
   }
 }

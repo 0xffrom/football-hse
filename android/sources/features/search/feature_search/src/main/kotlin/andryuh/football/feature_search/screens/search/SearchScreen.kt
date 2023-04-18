@@ -17,10 +17,10 @@ import androidx.compose.ui.BiasAlignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.github.terrakok.modo.stack.forward
 import andryuh.football.core_di.rememberDependencies
 import andryuh.football.core_elmslie.rememberEventReceiver
 import andryuh.football.core_elmslie.rememberStore
+import andryuh.football.core_kotlin.Resource
 import andryuh.football.core_navigation.LocalRouter
 import andryuh.football.feature_search.R
 import andryuh.football.feature_search.di.SearchFeatureDependencies
@@ -29,11 +29,13 @@ import andryuh.football.feature_search.screens.search.presentation.SearchEvent
 import andryuh.football.feature_search.screens.search.presentation.SearchStoreFactory
 import andryuh.football.feature_search.screens.search.ui.CreateApplicationBanner
 import andryuh.football.feature_search.screens.search.ui.TeamApplicationCard
+import andryuh.football.feature_search.screens.search.ui.TeamApplicationCardShimmer
 import andryuh.football.ui_kit.BaseScreen
 import andryuh.football.ui_kit.text_field.FTextField
 import andryuh.football.ui_kit.theme.BodyLarge
 import andryuh.football.ui_kit.theme.BodySemibold
 import andryuh.football.ui_kit.theme.FootballColors
+import com.github.terrakok.modo.stack.forward
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -58,6 +60,7 @@ internal class SearchScreen : BaseScreen() {
               dependencies.teamFeatureApi.getTeamApplicationDetailsScreen(effect.application)
             )
           }
+          is SearchEffect.ShowError -> {}
         }
       }
     }
@@ -107,42 +110,63 @@ internal class SearchScreen : BaseScreen() {
         color = FootballColors.Text.Primary,
         style = BodyLarge,
       )
-      if (state.filteredApplications.isNotEmpty()) {
-        Spacer(modifier = Modifier.height(12.dp))
-        LazyColumn {
-          items(state.filteredApplications, key = { it.id }) { application ->
-            TeamApplicationCard(
-              modifier = Modifier.padding(horizontal = 16.dp).animateItemPlacement(),
-              application = application,
-              onClick = {
-                eventReceiver.invoke(
-                  SearchEvent.Ui.Click.TeamApplicationCard(application = application)
-                )
-              }
-            )
-            Spacer(modifier = Modifier.height(12.dp))
+      when (state.applications) {
+        is Resource.Loading -> {
+          LazyColumn(
+            modifier = Modifier.fillMaxWidth(),
+          ) {
+            item { Spacer(modifier = Modifier.height(12.dp)) }
+            items(3) {
+              TeamApplicationCardShimmer(
+                modifier = Modifier.padding(horizontal = 16.dp),
+              )
+              Spacer(modifier = Modifier.height(12.dp))
+            }
+            item { Spacer(modifier = Modifier.height(8.dp)) }
           }
         }
-      } else {
-        Column(
-          modifier = Modifier.fillMaxSize(),
-          verticalArrangement =
-            Arrangement.spacedBy(
-              space = 8.dp,
-              alignment = BiasAlignment.Vertical(bias = -1f),
-            ),
-          horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-          Image(
-            modifier = Modifier.size(width = 250.dp, height = 200.dp),
-            painter = painterResource(id = R.drawable.img_not_found),
-            contentDescription = null,
-          )
-          Text(
-            text = "Заявок пока нет",
-            color = FootballColors.Text.Tertiary,
-            style = BodySemibold,
-          )
+        is Resource.Data -> {
+          if (state.filteredApplications.isNotEmpty()) {
+            Spacer(modifier = Modifier.height(12.dp))
+            LazyColumn {
+              items(state.filteredApplications, key = { it.id }) { application ->
+                TeamApplicationCard(
+                  modifier = Modifier.padding(horizontal = 16.dp).animateItemPlacement(),
+                  application = application,
+                  onClick = {
+                    eventReceiver.invoke(
+                      SearchEvent.Ui.Click.TeamApplicationCard(application = application)
+                    )
+                  }
+                )
+                Spacer(modifier = Modifier.height(12.dp))
+              }
+            }
+          } else {
+            Column(
+              modifier = Modifier.fillMaxSize(),
+              verticalArrangement =
+                Arrangement.spacedBy(
+                  space = 8.dp,
+                  alignment = BiasAlignment.Vertical(bias = -1f),
+                ),
+              horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+              Image(
+                modifier = Modifier.size(width = 250.dp, height = 200.dp),
+                painter = painterResource(id = R.drawable.img_not_found),
+                contentDescription = null,
+              )
+              Text(
+                text = "Заявок пока нет",
+                color = FootballColors.Text.Tertiary,
+                style = BodySemibold,
+              )
+            }
+          }
+        }
+        is Resource.Error -> {
+          // TODO: error state
         }
       }
     }
