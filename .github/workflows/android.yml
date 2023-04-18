@@ -16,8 +16,8 @@ jobs:
     - name: set up JDK 11
       uses: actions/setup-java@v3
       with:
-        java-version: '11'
-        distribution: 'temurin'
+        java-version: '17'
+        distribution: 'zulu'
         cache: gradle
 
     - name: Grant execute permission for gradlew
@@ -25,5 +25,5 @@ jobs:
       working-directory: android
       
     - name: Build with Gradle
-      run: ./gradlew build
+      run: ./gradlew build --stacktrace
       working-directory: android
