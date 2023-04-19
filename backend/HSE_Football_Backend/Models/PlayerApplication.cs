@@ -88,5 +88,10 @@ namespace HSE_Football_Backend.Models
         /// Фото профиля
         /// </summary>
         public string? Photo { get; set; }
+
+        /// <summary>
+        /// Показывает возможное наличие нецензурной лексики
+        /// </summary>
+        public bool Attention { get; set; }
     }
 }

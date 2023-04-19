@@ -45,5 +45,15 @@ namespace HSE_Football_Backend.Data
         /// Заявки команд
         /// </summary>
         public DbSet<TeamApplication> TeamApplications { get; set; }
+
+        /// <summary>
+        /// Сообщения
+        /// </summary>
+        public DbSet<Message> Messages { get; set; }
+
+        /// <summary>
+        /// Переписки
+        /// </summary>
+        public DbSet<Chat> Chats { get; set; }
     }
 }

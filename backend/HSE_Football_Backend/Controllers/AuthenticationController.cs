@@ -48,9 +48,9 @@ namespace HSE_Football_Backend.Controllers
         /// <param name="number">Номер телефона</param>
         /// <param name="code">Код</param>
         /// <response code="200">ОК</response>
-        /// <response code="401">Токен обновления устарел</response>
+        /// <response code="400">Неправильный код</response>
         [ProducesResponseType(200)]
-        [ProducesResponseType(401)]
+        [ProducesResponseType(400)]
         [HttpPost("refresh/{number}/{code}")]
         // POST: api/Authentication/refresh/89169307114/1234
         public async Task<IActionResult> GetRefreshToken(string number, string code)
@@ -59,7 +59,7 @@ namespace HSE_Football_Backend.Controllers
 
             if (playerData == null || IsCodeIncorrect(playerData, code))
             {
-                return Unauthorized();
+                return BadRequest();
             }
 
             var token = _jWTManager.Authenticate(ref playerData);

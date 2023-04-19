@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HSE_Football_Backend.Data;
 using HSE_Football_Backend.Models;
+using HSE_Football_Backend.Other;
 
 namespace HSE_Football_Backend.Controllers
 {
@@ -129,6 +125,7 @@ namespace HSE_Football_Backend.Controllers
             {
                 return Problem("Entity set 'HSEFootballContext.TeamApplications'  is null.");
             }
+            teamApplication.Attention = Censorship.IsCensored(teamApplication.Description);
             _context.TeamApplications.Add(teamApplication);
             await _context.SaveChangesAsync();
             return CreatedAtAction("GetTeamApplication", new { id = teamApplication.Id }, teamApplication);
@@ -176,6 +173,21 @@ namespace HSE_Football_Backend.Controllers
                 applications = applications.FindAll(a => (a.PlayerPosition & position) > 0);
             if (tournaments != -1)
                 applications = applications.FindAll(a => (a.Tournaments & tournaments) > 0);
+            return applications;
+        }
+
+        /// <summary>
+        /// Возвращает заявки команд по ID команды
+        /// </summary>
+        /// <param name="teamID">Позиция</param>
+        /// <response code="200">ОК</response>
+        // GET: api/TeamApplications/team/1
+        [ProducesResponseType(200)]
+        [HttpGet("team/{teamID}")]
+        public async Task<ActionResult<IEnumerable<TeamApplication>>> GetFilteredTeamApplications(long teamID)
+        {
+            var applications = await _context.TeamApplications.ToListAsync();
+            applications = applications.FindAll(a => a.TeamId == teamID);
             return applications;
         }
 

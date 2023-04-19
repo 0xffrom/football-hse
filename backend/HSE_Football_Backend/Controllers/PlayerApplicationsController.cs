@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HSE_Football_Backend.Data;
 using HSE_Football_Backend.Models;
+using HSE_Football_Backend.Other;
 
 namespace HSE_Football_Backend.Controllers
 {
@@ -129,6 +125,9 @@ namespace HSE_Football_Backend.Controllers
 			{
 				return Problem("Entity set 'HSEFootballContext.PlayerApplications'  is null.");
 			}
+			playerApplication.Attention = Censorship.IsCensored(playerApplication.Faculty) ||
+										  Censorship.IsCensored(playerApplication.FootballExperience) ||
+										  Censorship.IsCensored(playerApplication.TournamentExperience);
 			_context.PlayerApplications.Add(playerApplication);
 			await _context.SaveChangesAsync();
 			return CreatedAtAction("GetPlayerApplication", new { id = playerApplication.Id }, playerApplication);
