@@ -14,6 +14,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.last
 import kotlinx.coroutines.launch
@@ -39,7 +40,7 @@ constructor(
   suspend fun getProfile(): Profile {
     updateProfileCache()
 
-    return profileCache.filterNotNull().last()
+    return profileCache.filterNotNull().first()
   }
 
   suspend fun updatePhoto(photo: Uri) {

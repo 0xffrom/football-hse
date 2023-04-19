@@ -4,11 +4,13 @@ repositories {
   gradlePluginPortal()
   mavenCentral()
   google()
+  maven("https://jitpack.io")
 }
 
 dependencies {
   implementation(kotlin("gradle-plugin"))
-  implementation("com.android.tools.build:gradle:7.4.2")
+  implementation("com.android.tools.build:gradle:8.0.0")
+  implementation("com.github.andryuh:aar2jar:0.7.3")
 }
 
 gradlePlugin {
@@ -32,6 +34,12 @@ gradlePlugin {
       id = "andryuh.football.kotlin"
       displayName = "Pure Kotlin Module Plugin"
       implementationClass = "andryuh.football.modules.kotlin.PureKotlinModulePlugin"
+    }
+    create("aar2jar") {
+      id = "com.andryuh.aar2jar"
+      displayName = "Aar2Jar"
+      description = "Transforms Aar's to Jar's"
+      implementationClass = "com.andryuh.aar2jar.Aar2Jar"
     }
   }
 }

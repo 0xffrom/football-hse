@@ -14,4 +14,8 @@ dependencies {
     implementation(project(":core_models"))
 
     implementation(project(":domain_team"))
+    implementation(project(":domain_profile"))
+
+    val androidJar: Any by rootProject.extra
+    compileOnly(androidJar)
 }

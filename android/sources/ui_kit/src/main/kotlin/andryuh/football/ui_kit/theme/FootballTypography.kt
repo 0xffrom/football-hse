@@ -45,6 +45,14 @@ val Style12500 =
     lineHeight = 16.sp,
   )
 
+val Style16400 =
+  TextStyle(
+    fontWeight = FontWeight.W400,
+    fontSize = 16.sp,
+    lineHeight = 22.sp,
+  )
+
+
 val Style16500 =
   TextStyle(
     fontWeight = FontWeight.W500,
@@ -58,6 +66,13 @@ val Style16600 =
     fontWeight = FontWeight.W600,
     fontSize = 16.sp,
     lineHeight = 22.sp,
+  )
+
+val Style17400 =
+  TextStyle(
+    fontWeight = FontWeight.W400,
+    fontSize = 17.sp,
+    lineHeight = 21.sp,
   )
 
 val Style19600 =

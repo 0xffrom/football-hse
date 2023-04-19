@@ -12,6 +12,7 @@ dependencies {
   implementation(libs.kotlin.serializer)
 
   implementation(project(":core_auth"))
+  implementation(project(":core_models"))
 
   val androidJar: Any by rootProject.extra
   compileOnly(androidJar)

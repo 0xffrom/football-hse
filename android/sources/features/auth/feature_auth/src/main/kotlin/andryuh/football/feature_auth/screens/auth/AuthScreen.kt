@@ -10,15 +10,13 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.github.terrakok.modo.stack.back
-import com.github.terrakok.modo.stack.newStack
 import andryuh.football.core_di.rememberDependencies
 import andryuh.football.core_elmslie.rememberStore
 import andryuh.football.core_navigation.LocalRouter
 import andryuh.football.feature_auth.di.AuthFeatureDependencies
 import andryuh.football.feature_auth.screens.auth.components.Stepper
 import andryuh.football.feature_auth.screens.auth.components.StepperState
-import andryuh.football.feature_auth.screens.auth.components.pageTransitionSpec
+import andryuh.football.ui_kit.animation.pageTransitionSpec
 import andryuh.football.feature_auth.screens.auth.page.phone.PhonePage
 import andryuh.football.feature_auth.screens.auth.page.sms.SmsPage
 import andryuh.football.feature_auth.screens.auth.presentation.*
@@ -27,6 +25,8 @@ import andryuh.football.ui_kit.BaseScreen
 import andryuh.football.ui_kit.button.BottomBarStack
 import andryuh.football.ui_kit.button.FButton
 import andryuh.football.ui_kit.snack_bar.LocalSnackBarHostState
+import com.github.terrakok.modo.stack.back
+import com.github.terrakok.modo.stack.newStack
 import kotlinx.parcelize.Parcelize
 import vivid.money.elmslie.coroutines.states
 
@@ -104,7 +104,8 @@ internal class AuthScreen : BaseScreen() {
         transitionSpec =
           pageTransitionSpec(
             isLeftToRightSlideProvider = { state.currentNumberPage < state.previousNumberPage },
-          ), label = ""
+          ),
+        label = ""
       ) { number ->
         when (state.getPageByNumber(number)) {
           is AuthState.Page.PhoneNumber -> {

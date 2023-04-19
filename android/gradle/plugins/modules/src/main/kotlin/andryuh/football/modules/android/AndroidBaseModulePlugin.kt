@@ -17,7 +17,7 @@ internal class AndroidBaseModulePlugin : Plugin<Project> {
     with(project.plugins) {
       apply("kotlin-android")
       apply("kotlin-parcelize")
-      apply("com.stepango.aar2jar")
+      apply("com.andryuh.aar2jar")
       apply("org.jetbrains.kotlin.kapt")
     }
     project.extensions.configure(BaseExtension::class.java) {

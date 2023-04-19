@@ -14,6 +14,7 @@ dependencies {
   implementation(project(":core_auth"))
   implementation(project(":core_kotlin"))
   implementation(project(":core_network"))
+  implementation(project(":core_models"))
 
   val androidJar: Any by rootProject.extra
   compileOnly(androidJar)

@@ -48,7 +48,7 @@ internal fun CreateApplicationBanner(
       )
       Text(
         modifier = Modifier.weight(1f),
-        text = "Создать заявку на поиск игрока",
+        text = "Создать заявку на поиск команды",
         textAlign = TextAlign.Center,
         color = FootballColors.Text.Primary,
         style = BodySemibold,

@@ -131,7 +131,6 @@ internal class TeamApplicationDetailsScreen(
                         fontWeight = FontWeight.W500,
                         fontSize = 12.sp,
                         lineHeight = 18.sp,
-                        letterSpacing = 1.sp,
                       ),
                   )
                 }

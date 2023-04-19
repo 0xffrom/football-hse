@@ -44,6 +44,7 @@ internal sealed interface SearchCommand {
 
 internal sealed interface SearchEffect {
 
-  data class ShowError(val error: Throwable): SearchEffect
+  object OpenSearchTeamApplication : SearchEffect
+  data class ShowError(val error: Throwable) : SearchEffect
   data class OpenTeamApplicationDetails(val application: TeamApplication) : SearchEffect
 }

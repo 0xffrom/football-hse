@@ -30,7 +30,9 @@ import andryuh.football.feature_search.screens.search.presentation.SearchStoreFa
 import andryuh.football.feature_search.screens.search.ui.CreateApplicationBanner
 import andryuh.football.feature_search.screens.search.ui.TeamApplicationCard
 import andryuh.football.feature_search.screens.search.ui.TeamApplicationCardShimmer
+import andryuh.football.feature_search.screens.search_team.SearchTeamDetailsScreen
 import andryuh.football.ui_kit.BaseScreen
+import andryuh.football.ui_kit.snack_bar.LocalSnackBarHostState
 import andryuh.football.ui_kit.text_field.FTextField
 import andryuh.football.ui_kit.theme.BodyLarge
 import andryuh.football.ui_kit.theme.BodySemibold
@@ -52,6 +54,7 @@ internal class SearchScreen : BaseScreen() {
     val state by store.states().collectAsState(store.currentState)
     val dependencies: SearchFeatureDependencies = rememberDependencies()
     val router = LocalRouter.current
+    val snackBarHostState = LocalSnackBarHostState.current
     LaunchedEffect(key1 = store) {
       store.effects().collect { effect ->
         when (effect) {
@@ -60,7 +63,12 @@ internal class SearchScreen : BaseScreen() {
               dependencies.teamFeatureApi.getTeamApplicationDetailsScreen(effect.application)
             )
           }
-          is SearchEffect.ShowError -> {}
+          is SearchEffect.ShowError -> {
+            effect.error.message?.let { snackBarHostState.showSnackbar(it) }
+          }
+          is SearchEffect.OpenSearchTeamApplication -> {
+            router.forward(SearchTeamDetailsScreen())
+          }
         }
       }
     }

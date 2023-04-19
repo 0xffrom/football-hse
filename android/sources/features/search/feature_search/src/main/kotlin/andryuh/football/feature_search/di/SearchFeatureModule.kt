@@ -6,6 +6,7 @@ import andryuh.football.domain_search.SearchApi
 import andryuh.football.domain_search.SearchFeatureApi
 import andryuh.football.feature_search.feature_api.SearchFeatureApiImpl
 import andryuh.football.feature_search.screens.search.presentation.SearchStoreFactory
+import andryuh.football.feature_search.screens.search_team.presentation.SearchTeamDetailsStoreFactory
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -22,6 +23,12 @@ abstract class SearchFeatureModule {
   @IntoMap
   @StoreFactoryKey(SearchStoreFactory::class)
   internal abstract fun SearchStoreFactory.bindSearchStoreFactory(): StoreFactory
+
+  @Binds
+  @IntoMap
+  @StoreFactoryKey(SearchTeamDetailsStoreFactory::class)
+  internal abstract fun SearchTeamDetailsStoreFactory.bindSearchTeamDetailsStoreFactory():
+    StoreFactory
 }
 
 @Module

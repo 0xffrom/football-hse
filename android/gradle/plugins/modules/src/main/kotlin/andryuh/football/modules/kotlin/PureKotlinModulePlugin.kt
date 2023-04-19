@@ -12,7 +12,7 @@ internal class PureKotlinModulePlugin : Plugin<Project> {
   override fun apply(project: Project) {
     with(project.plugins) {
       apply("kotlin")
-      apply("com.stepango.aar2jar")
+      apply("com.andryuh.aar2jar")
       apply(KotlinParcelizePlugin::class.java)
       apply(KotlinComposePlugin::class.java)
       apply("org.jetbrains.kotlin.kapt")

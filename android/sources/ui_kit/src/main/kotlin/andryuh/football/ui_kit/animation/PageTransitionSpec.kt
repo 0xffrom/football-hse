@@ -1,4 +1,4 @@
-package andryuh.football.feature_auth.screens.auth.components
+package andryuh.football.ui_kit.animation
 
 import androidx.compose.animation.*
 import androidx.compose.animation.core.tween

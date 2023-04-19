@@ -108,6 +108,7 @@ internal class MainScreen : BaseScreen() {
               )
             )
         },
+        label = "",
       ) {
         when (it) {
           BottomBarTabType.Search -> searchScreen.Content()
