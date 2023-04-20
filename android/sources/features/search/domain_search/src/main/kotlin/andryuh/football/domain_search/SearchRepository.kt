@@ -7,6 +7,7 @@ import andryuh.football.core_network.ext.throwExceptionIfError
 import andryuh.football.domain_profile.ProfileRepository
 import andryuh.football.domain_profile.dto.PlayerApplication
 import andryuh.football.domain_search.dto.CreatePlayerApplication
+import andryuh.football.domain_search.filters.Filter
 import andryuh.football.domain_team.dto.TeamApplication
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -30,6 +31,7 @@ constructor(
 
   private val teamApplicationsCache = MutableStateFlow<List<TeamApplication>?>(null)
   private val playerApplicationsCache = MutableStateFlow<List<PlayerApplication>?>(null)
+  private val filterCache = MutableStateFlow<Filter?>(null)
 
   fun observeTeamApplications(): Flow<List<TeamApplication>> {
     CoroutineScope(Dispatchers.IO).launch { updateTeamApplicationsCache() }
@@ -45,6 +47,12 @@ constructor(
 
       applications.filter { application -> application.phoneNumber == phoneNumber }
     }
+  }
+
+  fun observeFilter(): Flow<Filter> = filterCache.filterNotNull()
+
+  suspend fun updateFilter(filter: Filter) {
+    filterCache.emit(filter)
   }
 
   suspend fun createCreatePlayerApplication(

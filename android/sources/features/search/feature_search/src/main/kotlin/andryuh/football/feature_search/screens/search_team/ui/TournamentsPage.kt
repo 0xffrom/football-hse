@@ -53,7 +53,7 @@ internal fun TournamentsPage(
         },
         content = { CheckBox(text = tournament.toTitle(), checked = isChecked) }
       )
-      Spacer(modifier = Modifier.height(8.dp))
+      Spacer(modifier = Modifier.height(4.dp))
     }
     item {
       Spacer(modifier = Modifier.height(20.dp))

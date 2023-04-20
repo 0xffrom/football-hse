@@ -24,6 +24,7 @@ import andryuh.football.core_kotlin.Resource
 import andryuh.football.core_navigation.LocalRouter
 import andryuh.football.feature_search.R
 import andryuh.football.feature_search.di.SearchFeatureDependencies
+import andryuh.football.feature_search.screens.filters.SearchFiltersScreen
 import andryuh.football.feature_search.screens.search.presentation.SearchEffect
 import andryuh.football.feature_search.screens.search.presentation.SearchEvent
 import andryuh.football.feature_search.screens.search.presentation.SearchStoreFactory
@@ -73,6 +74,9 @@ internal class SearchScreen : BaseScreen() {
           }
           is SearchEffect.OpenSearchTeamApplication -> {
             router.forward(SearchTeamDetailsScreen())
+          }
+          is SearchEffect.OpenFilters -> {
+            router.forward(SearchFiltersScreen(state.filter))
           }
         }
       }

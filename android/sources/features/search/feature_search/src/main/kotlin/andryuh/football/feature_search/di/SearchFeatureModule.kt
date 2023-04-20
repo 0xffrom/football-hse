@@ -5,6 +5,7 @@ import andryuh.football.core_elmslie.StoreFactoryKey
 import andryuh.football.domain_search.SearchApi
 import andryuh.football.domain_search.SearchFeatureApi
 import andryuh.football.feature_search.feature_api.SearchFeatureApiImpl
+import andryuh.football.feature_search.screens.filters.presentation.SearchFiltersStoreFactory
 import andryuh.football.feature_search.screens.search.presentation.SearchStoreFactory
 import andryuh.football.feature_search.screens.search_team.presentation.SearchTeamDetailsStoreFactory
 import dagger.Binds
@@ -29,6 +30,11 @@ abstract class SearchFeatureModule {
   @StoreFactoryKey(SearchTeamDetailsStoreFactory::class)
   internal abstract fun SearchTeamDetailsStoreFactory.bindSearchTeamDetailsStoreFactory():
     StoreFactory
+
+  @Binds
+  @IntoMap
+  @StoreFactoryKey(SearchFiltersStoreFactory::class)
+  internal abstract fun SearchFiltersStoreFactory.bindSearchFiltersStoreFactory(): StoreFactory
 }
 
 @Module

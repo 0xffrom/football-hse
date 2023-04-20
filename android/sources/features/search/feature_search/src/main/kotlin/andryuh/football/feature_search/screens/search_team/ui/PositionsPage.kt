@@ -46,8 +46,8 @@ internal fun PositionsPage(
         onClick = { eventReceiver.invoke(Click.OnPositionClick(position)) },
         content = { CheckBox(text = position.toTitle(), checked = isChecked) }
       )
-      Spacer(modifier = Modifier.height(8.dp))
+      Spacer(modifier = Modifier.height(4.dp))
     }
-    item { Spacer(modifier = Modifier.height(12.dp)) }
+    item { Spacer(modifier = Modifier.height(16.dp)) }
   }
 }

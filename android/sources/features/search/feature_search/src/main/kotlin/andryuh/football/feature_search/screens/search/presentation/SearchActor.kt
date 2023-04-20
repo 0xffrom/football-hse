@@ -19,8 +19,14 @@ constructor(
         searchRepository
           .observeTeamApplications()
           .mapEvents(
-            Internal::ObserveTeamApplicationsSuccess,
-            Internal::ObserveTeamApplicationsError
+            eventMapper = Internal::ObserveTeamApplicationsSuccess,
+            errorMapper = Internal::ObserveTeamApplicationsError
+          )
+      is Command.ObserveFilter ->
+        searchRepository
+          .observeFilter()
+          .mapEvents(
+            eventMapper = Internal::ObserveFilterSuccess,
           )
     }
   }

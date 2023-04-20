@@ -16,14 +16,17 @@ internal object SearchReducer :
   override fun Result.ui(event: Ui) {
     when (event) {
       is Ui.System.Start -> {
-        commands { +Command.ObserveTeamApplications }
+        commands {
+          +Command.ObserveTeamApplications
+          +Command.ObserveFilter
+        }
       }
       is Ui.Action.OnSearchTextFieldValueChange -> {
         state { copy(searchTextFieldValue = event.value) }
         applySearchFilter()
       }
       is Ui.Click.Filter -> {
-        // TODO: Implement this event.
+        effects { +Effect.OpenFilters }
       }
       is Ui.Click.CreateApplicationBanner -> {
         effects { +Effect.OpenSearchTeamApplication }
@@ -51,18 +54,28 @@ internal object SearchReducer :
           effects { +Effect.ShowError(SomethingWentWrongException()) }
         }
       }
+      is Internal.ObserveFilterSuccess -> {
+        state { copy(filter = event.filter) }
+        applySearchFilter()
+      }
     }
   }
 
   private fun Result.applySearchFilter() {
+    val applications =
+      state.applications.value.orEmpty().filter { application ->
+        application.playerPosition.intersect(state.filter.positions.toSet()).isNotEmpty() &&
+          application.tournaments.intersect(state.filter.tournaments.toSet()).isNotEmpty()
+      }
+
     state {
       copy(
         filteredApplications =
           if (state.searchTextFieldValue.text.isNotBlank()) {
-            state.applications.value.orEmpty().filter { teamApplication ->
+            applications.filter { teamApplication ->
               teamApplication.name.lowercase().contains(state.searchTextFieldValue.text.lowercase())
             }
-          } else state.applications.value.orEmpty(),
+          } else applications,
       )
     }
   }
