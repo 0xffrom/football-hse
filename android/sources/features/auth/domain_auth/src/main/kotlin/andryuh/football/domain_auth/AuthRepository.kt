@@ -1,7 +1,5 @@
 package andryuh.football.domain_auth
 
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
 import andryuh.football.core_auth.PhoneStorage
 import andryuh.football.core_auth.session.UserSessionUpdater
 import andryuh.football.domain_auth.dto.UserSessionResponse
@@ -14,7 +12,6 @@ class AuthRepository
 constructor(
   private val api: AuthApi,
   private val profileApi: ProfileApi,
-  private val dataStore: DataStore<Preferences>,
   private val userSessionUpdater: UserSessionUpdater,
   private val phoneStorage: PhoneStorage,
 ) {
@@ -22,6 +19,10 @@ constructor(
   suspend fun sendOtp(phoneNumber: String) {
     phoneStorage.updatePhone(phoneNumber)
     api.sendOtpCode(phoneNumber)
+  }
+
+  suspend fun clearSession() {
+    userSessionUpdater.updateSession(null)
   }
 
   suspend fun verifyOtpCode(code: String): UserSessionResponse {

@@ -9,6 +9,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
+import androidx.compose.material.TextButton
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -44,6 +45,7 @@ import andryuh.football.ui_kit.theme.Style16500
 import andryuh.football.ui_kit.theme.Style16600
 import andryuh.football.ui_kit.theme.Style19600
 import com.github.terrakok.modo.stack.forward
+import com.github.terrakok.modo.stack.newStack
 import com.google.accompanist.placeholder.PlaceholderHighlight
 import com.google.accompanist.placeholder.material.fade
 import com.google.accompanist.placeholder.material.placeholder
@@ -92,6 +94,11 @@ internal class ProfileScreen : BaseScreen() {
               dependencies.profileFeatureApi.getProfileApplicationScreen(effect.application)
             )
           }
+          is ProfileEffect.OpenAuth -> {
+            router.newStack(
+              dependencies.authFeatureApi.getScreen(),
+            )
+          }
         }
       }
     }
@@ -112,12 +119,14 @@ internal class ProfileScreen : BaseScreen() {
             color = FootballColors.Text.Primary,
             style = Style16500,
           )
-          Text(
-            modifier = Modifier.onSizeChanged { exitSize.value = it },
-            text = "Выйти",
-            color = FootballColors.Primary,
-            style = Style16600,
-          )
+          TextButton(onClick = { eventReceiver.invoke(Click.Leave) }) {
+            Text(
+              modifier = Modifier.onSizeChanged { exitSize.value = it },
+              text = "Выйти",
+              color = FootballColors.Primary,
+              style = Style16600,
+            )
+          }
         }
       }
     ) { contentPadding ->

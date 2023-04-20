@@ -13,7 +13,20 @@ import kotlinx.serialization.Serializable
 @Parcelize
 @Serializable
 data class TeamApplication(
-  val id: String,
+  val id: String?,
+  val teamId: String,
+  val name: String,
+  @SerialName("logo") val imageUrl: String?,
+  val description: String?,
+  val contact: String?,
+  @Serializable(with = PlayerPositionsSerializer::class) val playerPosition: List<PlayerPosition>,
+  @Serializable(with = TournamentsSerializer::class) val tournaments: List<Tournament>,
+) : Parcelable
+
+@Immutable
+@Parcelize
+@Serializable
+data class TeamApplicationCreation(
   val teamId: String,
   val name: String,
   @SerialName("logo") val imageUrl: String?,

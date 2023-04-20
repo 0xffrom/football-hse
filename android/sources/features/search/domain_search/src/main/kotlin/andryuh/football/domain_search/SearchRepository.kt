@@ -9,7 +9,9 @@ import andryuh.football.domain_profile.dto.PlayerApplication
 import andryuh.football.domain_search.dto.CreatePlayerApplication
 import andryuh.football.domain_search.filters.Filter
 import andryuh.football.domain_search.filters.FilterType
+import andryuh.football.domain_team.TeamRepository
 import andryuh.football.domain_team.dto.TeamApplication
+import andryuh.football.domain_team.dto.TeamApplicationCreation
 import javax.inject.Inject
 import javax.inject.Singleton
 import kotlinx.coroutines.CoroutineScope
@@ -27,6 +29,7 @@ constructor(
   private val api: SearchApi,
   private val profileRepository: ProfileRepository,
   private val phoneStorage: PhoneStorage,
+  private val teamRepository: TeamRepository,
 ) {
 
   private val teamApplicationsCache = MutableStateFlow<List<TeamApplication>?>(null)
@@ -89,6 +92,28 @@ constructor(
 
     api.createPlayerApplication(application).throwExceptionIfError()
     updatePlayerApplicationsCache()
+  }
+
+  suspend fun createCreateTeamApplication(
+    tournaments: List<Tournament>,
+    positions: List<PlayerPosition>,
+  ) {
+    val team = teamRepository.getTeam()!!
+    val profile = profileRepository.getProfile()
+
+    val application =
+      TeamApplicationCreation(
+        teamId = team.id,
+        name = team.name,
+        imageUrl = team.logo,
+        description = team.about,
+        contact = profile.contactInfo,
+        playerPosition = positions,
+        tournaments = tournaments,
+      )
+
+    api.createTeamApplication(application).throwExceptionIfError()
+    updateTeamApplicationsCache()
   }
 
   private suspend fun updateTeamApplicationsCache() {

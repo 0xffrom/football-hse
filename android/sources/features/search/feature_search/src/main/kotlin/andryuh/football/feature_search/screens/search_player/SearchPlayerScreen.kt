@@ -34,6 +34,7 @@ import andryuh.football.feature_search.screens.search_player.presentation.Search
 import andryuh.football.feature_search.screens.search_player.ui.CreateSearchPlayerApplicationBanner
 import andryuh.football.feature_search.screens.search_player.ui.PlayerApplicationCard
 import andryuh.football.feature_search.screens.search_player.ui.TeamApplicationCardShimmer
+import andryuh.football.feature_search.screens.search_player_application.SearchPlayerApplicationScreen
 import andryuh.football.ui_kit.BaseScreen
 import andryuh.football.ui_kit.snack_bar.LocalSnackBarHostState
 import andryuh.football.ui_kit.text_field.FTextField
@@ -67,10 +68,7 @@ internal class SearchPlayerScreen : BaseScreen() {
       store.effects().collect { effect ->
         when (effect) {
           is SearchPlayerEffect.OpenSearchPlayerApplication -> {
-            //            router.forward(
-            //
-            // dependencies.teamFeatureApi.getTeamApplicationDetailsScreen(effect.application)
-            //            )
+            router.forward(SearchPlayerApplicationScreen())
           }
           is SearchPlayerEffect.ShowError -> {
             CoroutineScope(Dispatchers.Main).launch {

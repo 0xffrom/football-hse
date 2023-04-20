@@ -42,6 +42,10 @@ internal object ProfileReducer :
       is Ui.Click.PlayerApplicationCard -> {
         effects { +Effect.OpenProfileApplication(event.application) }
       }
+      is Ui.Click.Leave -> {
+        effects { +Effect.OpenAuth }
+        commands { +Command.ClearSession }
+      }
     }
   }
 

@@ -23,10 +23,11 @@ internal sealed interface ProfileEvent {
 
     object Click {
 
+      object Leave : Ui
       object TeamApplication : Ui
       object EditClick : Ui
 
-      data class PlayerApplicationCard(val application: PlayerApplication): Ui
+      data class PlayerApplicationCard(val application: PlayerApplication) : Ui
     }
   }
 
@@ -52,6 +53,8 @@ internal sealed interface ProfileCommand {
   object ObserveTeamCreationStatus : ProfileCommand
 
   object ObservePlayerApplications : ProfileCommand
+
+  object ClearSession : ProfileCommand
 }
 
 @Immutable
@@ -63,4 +66,6 @@ internal sealed interface ProfileEffect {
   data class OpenTeamDetails(val team: Team) : ProfileEffect
   data class OpenEditProfile(val profile: Profile) : ProfileEffect
   data class OpenProfileApplication(val application: PlayerApplication) : ProfileEffect
+
+  object OpenAuth : ProfileEffect
 }

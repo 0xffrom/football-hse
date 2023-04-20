@@ -15,8 +15,8 @@ constructor(
 
   private val phoneNumberPrefsKey = stringPreferencesKey("phoneNumber")
 
-  suspend fun updatePhone(phone: String) {
-    dataStore.edit { prefs -> prefs[phoneNumberPrefsKey] = phone }
+  suspend fun updatePhone(phone: String?) {
+    dataStore.edit { prefs -> prefs[phoneNumberPrefsKey] = phone.orEmpty() }
   }
   suspend fun getPhoneRequired(): String {
     return getPhone()!!

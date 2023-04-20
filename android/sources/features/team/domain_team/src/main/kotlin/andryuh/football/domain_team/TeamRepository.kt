@@ -82,7 +82,8 @@ constructor(
 
     teamCreationCache.emit(status)
   }
-  private suspend fun getTeam(): Team? {
+
+  suspend fun getTeam(): Team? {
     return teamApi.getTeams().firstOrNull { team ->
       team.captainPhoneNumber == phoneNumberStorage.getPhoneRequired()
     }

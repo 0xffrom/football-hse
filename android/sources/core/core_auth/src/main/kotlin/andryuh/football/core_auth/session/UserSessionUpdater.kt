@@ -4,5 +4,5 @@ interface UserSessionUpdater {
 
   suspend fun updateSession()
 
-  suspend fun updateSession(sessionResponse: UserSession)
+  suspend fun updateSession(sessionResponse: UserSession?)
 }

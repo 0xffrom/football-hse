@@ -151,7 +151,7 @@ internal class SearchScreen : BaseScreen() {
           if (state.filteredApplications.isNotEmpty()) {
             Spacer(modifier = Modifier.height(12.dp))
             LazyColumn {
-              items(state.filteredApplications, key = { it.id }) { application ->
+              items(state.filteredApplications, key = { it.id!! }) { application ->
                 TeamApplicationCard(
                   modifier = Modifier.padding(horizontal = 16.dp).animateItemPlacement(),
                   application = application,

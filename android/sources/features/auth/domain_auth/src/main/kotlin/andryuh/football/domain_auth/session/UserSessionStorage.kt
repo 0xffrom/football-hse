@@ -5,7 +5,6 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import andryuh.football.core_auth.PhoneStorage
-import com.github.terrakok.modo.stack.forward
 import andryuh.football.core_auth.dto.UpdateUserSessionRequestBody
 import andryuh.football.core_auth.feature_api.RefreshSessionFeatureApi
 import andryuh.football.core_auth.session.UserSession
@@ -13,6 +12,7 @@ import andryuh.football.core_auth.session.UserSessionApi
 import andryuh.football.core_auth.session.UserSessionProvider
 import andryuh.football.core_auth.session.UserSessionUpdater
 import andryuh.football.core_navigation.RouterProvider
+import com.github.terrakok.modo.stack.forward
 import javax.inject.Inject
 import javax.inject.Singleton
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -58,10 +58,12 @@ constructor(
     }
   }
 
-  override suspend fun updateSession(sessionResponse: UserSession) {
+  override suspend fun updateSession(sessionResponse: UserSession?) {
     sessionFlow.emit(sessionResponse)
 
-    phoneStorage.updatePhone(sessionResponse.phoneNumber)
-    dataStore.edit { prefs -> prefs[refreshTokenPrefsKey] = sessionResponse.refreshToken }
+    phoneStorage.updatePhone(sessionResponse?.phoneNumber)
+    dataStore.edit { prefs ->
+      prefs[refreshTokenPrefsKey] = sessionResponse?.refreshToken.orEmpty()
+    }
   }
 }
