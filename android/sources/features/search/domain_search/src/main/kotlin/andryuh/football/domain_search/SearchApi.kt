@@ -1,5 +1,6 @@
 package andryuh.football.domain_search
 
+import andryuh.football.domain_profile.dto.PlayerApplication
 import andryuh.football.domain_search.dto.CreatePlayerApplication
 import andryuh.football.domain_team.dto.TeamApplication
 import retrofit2.Response
@@ -13,4 +14,7 @@ interface SearchApi {
 
   @POST("PlayerApplications")
   suspend fun createPlayerApplication(@Body body: CreatePlayerApplication): Response<Unit>
+
+  @GET("PlayerApplications")
+  suspend fun getPlayerApplications(): List<PlayerApplication>
 }

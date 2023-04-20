@@ -38,6 +38,9 @@ import andryuh.football.ui_kit.theme.BodyLarge
 import andryuh.football.ui_kit.theme.BodySemibold
 import andryuh.football.ui_kit.theme.FootballColors
 import com.github.terrakok.modo.stack.forward
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -64,7 +67,9 @@ internal class SearchScreen : BaseScreen() {
             )
           }
           is SearchEffect.ShowError -> {
-            effect.error.message?.let { snackBarHostState.showSnackbar(it) }
+            CoroutineScope(Dispatchers.Main).launch {
+              effect.error.message?.let { snackBarHostState.showSnackbar(it) }
+            }
           }
           is SearchEffect.OpenSearchTeamApplication -> {
             router.forward(SearchTeamDetailsScreen())

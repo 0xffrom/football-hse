@@ -22,8 +22,6 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastForEachIndexed
-import com.github.terrakok.modo.stack.back
-import com.github.terrakok.modo.stack.newStack
 import andryuh.football.core_di.rememberDependencies
 import andryuh.football.core_elmslie.rememberStore
 import andryuh.football.core_navigation.LocalRouter
@@ -42,6 +40,11 @@ import andryuh.football.ui_kit.theme.CaptionMRegular
 import andryuh.football.ui_kit.theme.CaptionSRegular
 import andryuh.football.ui_kit.theme.FootballColors
 import andryuh.football.ui_kit.theme.Large
+import com.github.terrakok.modo.stack.back
+import com.github.terrakok.modo.stack.newStack
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.parcelize.Parcelize
 
 internal typealias EventReceiver = (event: OriginationEvent) -> Unit
@@ -68,7 +71,9 @@ internal class OriginationScreen : BaseScreen() {
         when (effect) {
           is OriginationEffect.Close -> router.back()
           is OriginationEffect.ShowError -> {
-            effect.error.message?.let { snackbarHostState.showSnackbar(it) }
+            CoroutineScope(Dispatchers.Main).launch {
+              effect.error.message?.let { snackbarHostState.showSnackbar(it) }
+            }
           }
           is OriginationEffect.OpenMain -> {
             router.newStack(dependencies.mainFeatureApi.getScreen())

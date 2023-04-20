@@ -58,22 +58,23 @@ internal fun ProfileCard(
         }
       }
       Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        when {
-          profile == null || profile.imageUrl.isNullOrBlank() -> {
-            Image(
-              modifier = Modifier.size(56.dp).clip(RoundedCornerShape(16.dp)),
-              painter = painterResource(id = R.drawable.img_default_profile),
-              contentDescription = null,
-            )
-          }
-          else -> {
-            AsyncImage(
-              modifier = Modifier.size(56.dp).clip(RoundedCornerShape(16.dp)),
-              model = profile.imageUrl,
-              contentDescription = null,
-              contentScale = ContentScale.Crop,
-            )
-          }
+        when (profile) {
+            null -> {
+                Image(
+                  modifier = Modifier.size(56.dp).clip(RoundedCornerShape(16.dp)),
+                  painter = painterResource(id = R.drawable.img_default_profile),
+                  contentDescription = null,
+                )
+            }
+            else -> {
+                AsyncImage(
+                  modifier = Modifier.size(56.dp).clip(RoundedCornerShape(16.dp)),
+                  model = profile.imageUrl,
+                  contentDescription = null,
+                  contentScale = ContentScale.Crop,
+                  error = painterResource(id = R.drawable.img_default_profile),
+                )
+            }
         }
         when {
           profile != null && profile.isCaptain -> {

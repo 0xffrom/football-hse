@@ -19,6 +19,7 @@ import andryuh.football.feature_search.screens.search_team.presentation.SearchTe
 import andryuh.football.ui_kit.cell.FCell
 import andryuh.football.ui_kit.theme.FootballColors
 import andryuh.football.ui_kit.theme.Style12500
+import andryuh.football.ui_kit.theme.Style14500
 
 @Composable
 internal fun PositionsPage(
@@ -35,9 +36,9 @@ internal fun PositionsPage(
       Text(
         text = "Позиции",
         color = FootballColors.Text.Secondary,
-        style = Style12500,
+        style = Style14500,
       )
-      Spacer(modifier = Modifier.height(8.dp))
+      Spacer(modifier = Modifier.height(12.dp))
     }
     items(stage.positionsList) { (position, isChecked) ->
       FCell(

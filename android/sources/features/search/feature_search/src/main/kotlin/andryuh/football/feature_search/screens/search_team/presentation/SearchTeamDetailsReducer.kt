@@ -107,7 +107,10 @@ internal object SearchTeamDetailsReducer :
             isLoading = false,
           )
         }
-        effects { +Effect.Close }
+        effects {
+          +Effect.ShowError(IllegalStateException("Заявка успешно создана"))
+          +Effect.Close
+        }
       }
       is Internal.CreatePlayerApplicationError -> {
         state {

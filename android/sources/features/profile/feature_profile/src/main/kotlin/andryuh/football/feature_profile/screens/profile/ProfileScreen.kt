@@ -3,6 +3,7 @@ package andryuh.football.feature_profile.screens.profile
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -29,6 +30,8 @@ import andryuh.football.feature_profile.screens.profile.presentation.ProfileEffe
 import andryuh.football.feature_profile.screens.profile.presentation.ProfileEvent.Ui.Click
 import andryuh.football.feature_profile.screens.profile.presentation.ProfileStoreFactory
 import andryuh.football.feature_profile.screens.profile.ui.ProfileCard
+import andryuh.football.feature_profile.screens.profile.ui.PlayerApplicationCard
+import andryuh.football.feature_profile.screens.profile.ui.PlayerApplicationCardShimmer
 import andryuh.football.feature_profile.screens.profile.ui.TeamCreationApplicationCard
 import andryuh.football.feature_profile.screens.team_registration.TeamRegistrationScreen
 import andryuh.football.ui_kit.BaseScreen
@@ -42,6 +45,9 @@ import com.github.terrakok.modo.stack.forward
 import com.google.accompanist.placeholder.PlaceholderHighlight
 import com.google.accompanist.placeholder.material.fade
 import com.google.accompanist.placeholder.material.placeholder
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -70,7 +76,9 @@ internal class ProfileScreen : BaseScreen() {
             router.forward(EditProfileScreen(profile = effect.profile))
           }
           is ProfileEffect.ShowError -> {
-            effect.error.message?.let { snackBarHostState.showSnackbar(it) }
+            CoroutineScope(Dispatchers.Main).launch {
+              effect.error.message?.let { snackBarHostState.showSnackbar(it) }
+            }
           }
           is ProfileEffect.OpenTeamDetails -> {
             router.forward(dependencies.teamFeatureApi.getTeamDetails(effect.team))
@@ -165,20 +173,45 @@ internal class ProfileScreen : BaseScreen() {
           )
           Spacer(modifier = Modifier.height(16.dp))
         }
-        item {
-          Box(
-            modifier = Modifier.fillMaxWidth(),
-            contentAlignment = Alignment.Center,
-          ) {
-            Image(
-              modifier = Modifier.size(250.dp, 200.dp),
-              painter =
-                painterResource(
-                  id = R.drawable.img_empty_applications,
-                ),
-              contentDescription = null,
-            )
+        when (val applicationsResource = state.applications) {
+          is Resource.Loading -> {
+            items(2) {
+              Spacer(modifier = Modifier.height(12.dp))
+              PlayerApplicationCardShimmer(
+                modifier = Modifier.padding(horizontal = 16.dp),
+              )
+            }
+            item { Spacer(modifier = Modifier.height(20.dp)) }
           }
+          is Resource.Data -> {
+            if (applicationsResource.data.isEmpty()) {
+              item {
+                Box(
+                  modifier = Modifier.fillMaxWidth(),
+                  contentAlignment = Alignment.Center,
+                ) {
+                  Image(
+                    modifier = Modifier.size(250.dp, 200.dp),
+                    painter =
+                      painterResource(
+                        id = R.drawable.img_empty_applications,
+                      ),
+                    contentDescription = null,
+                  )
+                }
+              }
+            } else {
+              items(applicationsResource.data) { application ->
+                Spacer(modifier = Modifier.height(12.dp))
+                PlayerApplicationCard(
+                  modifier = Modifier.padding(horizontal = 16.dp),
+                  application = application
+                )
+              }
+              item { Spacer(modifier = Modifier.height(20.dp)) }
+            }
+          }
+          is Resource.Error -> {}
         }
       }
     }

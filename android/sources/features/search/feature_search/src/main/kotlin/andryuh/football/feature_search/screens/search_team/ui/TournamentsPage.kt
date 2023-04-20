@@ -2,7 +2,6 @@ package andryuh.football.feature_search.screens.search_team.ui
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -28,6 +27,7 @@ import andryuh.football.feature_search.screens.search_team.presentation.SearchTe
 import andryuh.football.ui_kit.cell.FCell
 import andryuh.football.ui_kit.theme.FootballColors
 import andryuh.football.ui_kit.theme.Style12500
+import andryuh.football.ui_kit.theme.Style14500
 import andryuh.football.ui_kit.theme.Style16400
 
 @Composable
@@ -42,9 +42,9 @@ internal fun TournamentsPage(
       Text(
         text = "Предпочтительные турниры",
         color = FootballColors.Text.Secondary,
-        style = Style12500,
+        style = Style14500,
       )
-      Spacer(modifier = Modifier.height(8.dp))
+      Spacer(modifier = Modifier.height(12.dp))
     }
     items(stage.tournamentsList) { (tournament, isChecked) ->
       FCell(

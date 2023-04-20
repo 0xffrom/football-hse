@@ -22,6 +22,7 @@ internal object ProfileReducer :
         commands {
           +Command.ObserveProfile
           +Command.ObserveTeamCreationStatus
+          +Command.ObservePlayerApplications
         }
       }
       is Ui.Click.EditClick -> {
@@ -55,6 +56,13 @@ internal object ProfileReducer :
       }
       is Internal.ObserveTeamCreationStatusError -> {
         state { copy(teamApplication = Resource.Error(event.error)) }
+        effects { +Effect.ShowError(SomethingWentWrongException()) }
+      }
+      is Internal.ObservePlayerApplicationsSuccess -> {
+        state { copy(applications = Resource.Data(event.applications)) }
+      }
+      is Internal.ObservePlayerApplicationsError -> {
+        state { copy(applications = Resource.Error(event.error)) }
         effects { +Effect.ShowError(SomethingWentWrongException()) }
       }
     }

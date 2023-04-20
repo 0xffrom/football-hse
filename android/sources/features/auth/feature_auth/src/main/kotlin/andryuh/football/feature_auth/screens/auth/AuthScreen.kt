@@ -16,17 +16,20 @@ import andryuh.football.core_navigation.LocalRouter
 import andryuh.football.feature_auth.di.AuthFeatureDependencies
 import andryuh.football.feature_auth.screens.auth.components.Stepper
 import andryuh.football.feature_auth.screens.auth.components.StepperState
-import andryuh.football.ui_kit.animation.pageTransitionSpec
 import andryuh.football.feature_auth.screens.auth.page.phone.PhonePage
 import andryuh.football.feature_auth.screens.auth.page.sms.SmsPage
 import andryuh.football.feature_auth.screens.auth.presentation.*
 import andryuh.football.feature_auth.screens.origination.OriginationScreen
 import andryuh.football.ui_kit.BaseScreen
+import andryuh.football.ui_kit.animation.pageTransitionSpec
 import andryuh.football.ui_kit.button.BottomBarStack
 import andryuh.football.ui_kit.button.FButton
 import andryuh.football.ui_kit.snack_bar.LocalSnackBarHostState
 import com.github.terrakok.modo.stack.back
 import com.github.terrakok.modo.stack.newStack
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.parcelize.Parcelize
 import vivid.money.elmslie.coroutines.states
 
@@ -53,8 +56,10 @@ internal class AuthScreen : BaseScreen() {
           is AuthEffect.Close -> router.back()
           is AuthEffect.OpenOriginationScreen -> router.newStack(OriginationScreen())
           is AuthEffect.ShowError -> {
-            effect.error.message?.let {
-              snackbarHostState.showSnackbar(it, duration = SnackbarDuration.Short)
+            CoroutineScope(Dispatchers.Main).launch {
+              effect.error.message?.let {
+                snackbarHostState.showSnackbar(it, duration = SnackbarDuration.Short)
+              }
             }
           }
           is AuthEffect.OpenMainScreen -> {

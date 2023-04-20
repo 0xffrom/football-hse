@@ -9,7 +9,6 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -18,8 +17,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
-import com.github.terrakok.modo.stack.back
 import andryuh.football.core_elmslie.rememberEventReceiver
 import andryuh.football.core_elmslie.rememberStore
 import andryuh.football.core_navigation.LocalRouter
@@ -41,6 +38,11 @@ import andryuh.football.ui_kit.button.FButton
 import andryuh.football.ui_kit.snack_bar.LocalSnackBarHostState
 import andryuh.football.ui_kit.theme.FootballColors
 import andryuh.football.ui_kit.toolbar.Toolbar
+import coil.compose.AsyncImage
+import com.github.terrakok.modo.stack.back
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -95,7 +97,9 @@ internal class EditProfileScreen(
             sheetState.hide()
           }
           is EditProfileEffect.ShowError -> {
-            effect.error.message?.let { message -> snackbarHostState.showSnackbar(message) }
+            CoroutineScope(Dispatchers.Main).launch {
+              effect.error.message?.let { message -> snackbarHostState.showSnackbar(message) }
+            }
           }
         }
       }
@@ -176,9 +180,7 @@ internal class EditProfileScreen(
             FormField(
               modifier = Modifier.padding(horizontal = 16.dp),
               textFieldValue = state.contactInfoTextFieldValue,
-              onValueChange = {
-                eventReceiver.invoke(Action.OnContactInfoTextFieldChange(it))
-              },
+              onValueChange = { eventReceiver.invoke(Action.OnContactInfoTextFieldChange(it)) },
               title = "Контактная информация",
               placeholder = "Телефон, Telegram...",
             )
@@ -188,9 +190,7 @@ internal class EditProfileScreen(
             FormField(
               modifier = Modifier.padding(horizontal = 16.dp),
               textFieldValue = state.aboutInfoTextFieldValue,
-              onValueChange = {
-                eventReceiver.invoke(Action.OnAboutInfoTextFieldChange(it))
-              },
+              onValueChange = { eventReceiver.invoke(Action.OnAboutInfoTextFieldChange(it)) },
               title = "О себе",
               placeholder = "Расскажите о своём опыте и достижениях",
             )

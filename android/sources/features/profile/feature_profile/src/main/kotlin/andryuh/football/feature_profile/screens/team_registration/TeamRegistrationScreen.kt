@@ -19,8 +19,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberAsyncImagePainter
-import com.github.terrakok.modo.stack.back
 import andryuh.football.core_elmslie.rememberEventReceiver
 import andryuh.football.core_elmslie.rememberStore
 import andryuh.football.core_navigation.LocalRouter
@@ -41,6 +39,11 @@ import andryuh.football.ui_kit.button.FButton
 import andryuh.football.ui_kit.snack_bar.LocalSnackBarHostState
 import andryuh.football.ui_kit.theme.FootballColors
 import andryuh.football.ui_kit.toolbar.Toolbar
+import coil.compose.rememberAsyncImagePainter
+import com.github.terrakok.modo.stack.back
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -92,8 +95,8 @@ internal class TeamRegistrationScreen(
             sheetState.hide()
           }
           is TeamRegistrationEffect.ShowError -> {
-            effect.error.message?.let {
-              snackBarHostState.showSnackbar(it)
+            CoroutineScope(Dispatchers.Main).launch {
+              effect.error.message?.let { snackBarHostState.showSnackbar(it) }
             }
           }
         }

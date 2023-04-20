@@ -2,14 +2,17 @@ package andryuh.football.feature_profile.screens.profile.presentation
 
 import androidx.compose.runtime.Immutable
 import andryuh.football.core_kotlin.Resource
+import andryuh.football.domain_profile.dto.PlayerApplication
 import andryuh.football.domain_profile.dto.Profile
 import andryuh.football.domain_team.dto.Team
+import andryuh.football.domain_team.dto.TeamApplication
 import andryuh.football.domain_team.dto.TeamCreationApplicationStatus
 
 @Immutable
 internal data class ProfileState(
   val profile: Resource<Profile> = Resource.Loading,
   val teamApplication: Resource<TeamCreationApplicationStatus> = Resource.Loading,
+  val applications: Resource<List<PlayerApplication>> = Resource.Loading,
 )
 
 internal sealed interface ProfileEvent {
@@ -38,6 +41,9 @@ internal sealed interface ProfileEvent {
     data class ObserveTeamCreationStatusSuccess(val status: TeamCreationApplicationStatus) :
       Internal
     data class ObserveTeamCreationStatusError(val error: Throwable) : Internal
+
+    data class ObservePlayerApplicationsSuccess(val applications: List<PlayerApplication>): Internal
+    data class ObservePlayerApplicationsError(val error: Throwable): Internal
   }
 }
 
@@ -46,6 +52,8 @@ internal sealed interface ProfileCommand {
   object ObserveProfile : ProfileCommand
 
   object ObserveTeamCreationStatus : ProfileCommand
+
+  object ObservePlayerApplications: ProfileCommand
 }
 
 @Immutable

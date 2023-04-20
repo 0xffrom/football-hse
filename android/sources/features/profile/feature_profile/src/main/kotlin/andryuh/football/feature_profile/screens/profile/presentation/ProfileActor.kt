@@ -1,6 +1,7 @@
 package andryuh.football.feature_profile.screens.profile.presentation
 
 import andryuh.football.domain_profile.ProfileRepository
+import andryuh.football.domain_search.SearchRepository
 import andryuh.football.domain_team.TeamRepository
 import andryuh.football.feature_profile.screens.profile.presentation.ProfileCommand as Command
 import andryuh.football.feature_profile.screens.profile.presentation.ProfileEvent.Internal
@@ -13,6 +14,7 @@ internal class ProfileActor
 constructor(
   private val profileRepository: ProfileRepository,
   private val teamRepository: TeamRepository,
+  private val searchRepository: SearchRepository,
 ) : Actor<Command, Internal> {
 
   override fun execute(command: Command): Flow<Internal> {
@@ -30,6 +32,12 @@ constructor(
           .mapEvents(
             Internal::ObserveTeamCreationStatusSuccess,
             Internal::ObserveTeamCreationStatusError,
+          )
+      is Command.ObservePlayerApplications ->
+        searchRepository.observePlayerApplications()
+          .mapEvents(
+            Internal::ObservePlayerApplicationsSuccess,
+            Internal::ObservePlayerApplicationsError,
           )
     }
   }

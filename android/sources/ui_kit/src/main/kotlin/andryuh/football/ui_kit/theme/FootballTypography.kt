@@ -89,6 +89,13 @@ val Style14400 =
     lineHeight = 20.sp,
   )
 
+val Style14500 =
+  TextStyle(
+    fontWeight = FontWeight.W500,
+    fontSize = 14.sp,
+    lineHeight = 20.sp,
+  )
+
 val BodyRegular =
   TextStyle(
     fontFamily = FontFamily.Default,

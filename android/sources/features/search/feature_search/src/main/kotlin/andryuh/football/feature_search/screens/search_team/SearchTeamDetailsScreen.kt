@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -30,6 +31,9 @@ import andryuh.football.ui_kit.toolbar.Toolbar
 import com.github.terrakok.modo.Screen
 import com.github.terrakok.modo.generateScreenKey
 import com.github.terrakok.modo.stack.back
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -53,7 +57,7 @@ internal class SearchTeamDetailsScreen : Screen(generateScreenKey()) {
         when (effect) {
           is SearchTeamDetailsEffect.Close -> router.back()
           is SearchTeamDetailsEffect.ShowError -> {
-            effect.error.message?.let { snackBarHostState.showSnackbar(it) }
+            CoroutineScope(Dispatchers.Main).launch { effect.error.message?.let { snackBarHostState.showSnackbar(it) } }
           }
         }
       }

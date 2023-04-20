@@ -20,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import andryuh.football.core_elmslie.rememberEventReceiver
 import andryuh.football.core_elmslie.rememberStore
@@ -31,6 +32,7 @@ import andryuh.football.feature_team.screens.team_details.presentation.TeamDetai
 import andryuh.football.feature_team.screens.team_details.presentation.TeamDetailsEvent.Ui
 import andryuh.football.feature_team.screens.team_details.presentation.TeamDetailsStoreFactory
 import andryuh.football.ui_kit.BaseScreen
+import andryuh.football.ui_kit.R
 import andryuh.football.ui_kit.button.BottomBarStack
 import andryuh.football.ui_kit.button.FButton
 import andryuh.football.ui_kit.items.SectionCard
@@ -41,6 +43,9 @@ import andryuh.football.ui_kit.theme.Style19600
 import andryuh.football.ui_kit.toolbar.Toolbar
 import coil.compose.AsyncImage
 import com.github.terrakok.modo.stack.back
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -71,7 +76,9 @@ internal class TeamDetailsScreen(
         when (effect) {
           is TeamDetailsEffect.Close -> router.back()
           is TeamDetailsEffect.ShowError -> {
-            effect.error.message?.let { snackBarHostState.showSnackbar(it) }
+            CoroutineScope(Dispatchers.Main).launch {
+              effect.error.message?.let { snackBarHostState.showSnackbar(it) }
+            }
           }
         }
       }
@@ -107,6 +114,7 @@ internal class TeamDetailsScreen(
             model = team.logo,
             contentDescription = null,
             contentScale = ContentScale.Crop,
+            error = painterResource(R.drawable.ic_60_team_placeholder),
           )
           Spacer(modifier = Modifier.height(20.dp))
         }

@@ -30,6 +30,7 @@ dependencies {
   implementation(project(":core_elmslie"))
   implementation(project(":core_navigation"))
 
+  implementation(project(":domain_search"))
   implementation(project(":domain_profile"))
   implementation(project(":domain_team"))
 

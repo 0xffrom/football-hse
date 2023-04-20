@@ -14,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastForEach
-import com.github.terrakok.modo.stack.back
 import andryuh.football.core_di.rememberDependencies
 import andryuh.football.core_elmslie.rememberEventReceiver
 import andryuh.football.core_elmslie.rememberStore
@@ -28,6 +27,10 @@ import andryuh.football.feature_main.screens.main.presentation.MainStoreFactory
 import andryuh.football.ui_kit.BaseScreen
 import andryuh.football.ui_kit.snack_bar.LocalSnackBarHostState
 import andryuh.football.ui_kit.theme.FootballColors
+import com.github.terrakok.modo.stack.back
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.parcelize.Parcelize
 import vivid.money.elmslie.coroutines.states
 
@@ -51,7 +54,9 @@ internal class MainScreen : BaseScreen() {
         when (effect) {
           is MainEffect.Close -> router.back()
           is MainEffect.ShowError -> {
-            effect.error.message?.let { snackbarHostState.showSnackbar(it) }
+            CoroutineScope(Dispatchers.Main).launch {
+              effect.error.message?.let { snackbarHostState.showSnackbar(it) }
+            }
           }
         }
       }

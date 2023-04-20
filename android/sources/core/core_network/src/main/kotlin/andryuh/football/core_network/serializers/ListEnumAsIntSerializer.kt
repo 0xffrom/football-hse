@@ -34,7 +34,7 @@ open class EnumListAsIntSerializer<T : Enum<*>>(
     val list: List<T> = buildList {
       var index = 0
       while (value != 0) {
-        if (value % 2 == 0) {
+        if (value % 2 == 1) {
           add(enumArray[index])
         }
         value = value shr 1
