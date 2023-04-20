@@ -6,20 +6,23 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalSavedStateRegistryOwner
 import androidx.lifecycle.*
 import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
+import androidx.savedstate.SavedStateRegistry
+import androidx.savedstate.SavedStateRegistryOwner
 import andryuh.football.core_di.rememberDependencies
 import andryuh.football.core_elmslie.di.ElmDependencies
+import com.github.terrakok.modo.Screen
 import vivid.money.elmslie.android.RetainedElmStore
 import vivid.money.elmslie.android.RetainedElmStoreFactory
 import vivid.money.elmslie.core.store.Store
 
 @Composable
-fun <SF : StoreFactory, Event : Any, Effect : Any, State : Any> rememberStore(
+fun <SF : StoreFactory, Event : Any, Effect : Any, State : Any> Screen.rememberStore(
   storeFactoryClass: Class<SF>,
+  key: String = storeFactoryClass.name,
   storeProvider: (SF, SavedStateHandle) -> Store<Event, Effect, State>,
+  savedStateRegistryOwner: SavedStateRegistryOwner = this,
+  vmStoreOwner: ViewModelStoreOwner = this,
 ): Store<Event, Effect, State> {
-  val savedStateRegistryOwner = LocalSavedStateRegistryOwner.current
-  val vmStoreOwner = LocalViewModelStoreOwner.current!!
-
   val elmDependencies: ElmDependencies = rememberDependencies()
   val storeFactory = remember { elmDependencies.storeFactoryProvider.get(storeFactoryClass) }
 
@@ -36,7 +39,7 @@ fun <SF : StoreFactory, Event : Any, Effect : Any, State : Any> rememberStore(
     val provider = ViewModelProvider(vmStoreOwner, factory)
 
     @Suppress("UNCHECKED_CAST")
-    provider[storeFactoryClass.name, RetainedElmStore::class.java].store
+    provider[key, RetainedElmStore::class.java].store
       as Store<Event, Effect, State>
   }
 }

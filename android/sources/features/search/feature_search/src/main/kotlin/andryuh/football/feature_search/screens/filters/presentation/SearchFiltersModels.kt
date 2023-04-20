@@ -4,11 +4,13 @@ import androidx.compose.runtime.Immutable
 import andryuh.football.core_models.PlayerPosition
 import andryuh.football.core_models.Tournament
 import andryuh.football.domain_search.filters.Filter
+import andryuh.football.domain_search.filters.FilterType
 
 @Immutable
 internal data class SearchFiltersState(
   val isLoading: Boolean = false,
   val initialFilter: Filter,
+  val filterType: FilterType,
   val positionsStage: Stage.Positions = Stage.Positions(initialFilter),
   val tournamentsStage: Stage.Tournaments = Stage.Tournaments(initialFilter),
   val currentPageType: Stage.Type = Stage.Type.Positions,
@@ -72,10 +74,6 @@ internal sealed interface SearchFiltersEvent {
 
       object Continue : Ui
     }
-
-    sealed interface Action : Ui {
-      // your code
-    }
   }
 
   sealed interface Internal : SearchFiltersEvent {
@@ -86,7 +84,7 @@ internal sealed interface SearchFiltersEvent {
 
 internal sealed interface SearchFiltersCommand {
 
-  data class SaveFilter(val filter: Filter) : SearchFiltersCommand
+  data class SaveFilter(val filter: Filter, val type: FilterType) : SearchFiltersCommand
 }
 
 @Immutable

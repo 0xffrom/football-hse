@@ -8,6 +8,7 @@ import andryuh.football.domain_profile.ProfileRepository
 import andryuh.football.domain_profile.dto.PlayerApplication
 import andryuh.football.domain_search.dto.CreatePlayerApplication
 import andryuh.football.domain_search.filters.Filter
+import andryuh.football.domain_search.filters.FilterType
 import andryuh.football.domain_team.dto.TeamApplication
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -55,14 +56,17 @@ constructor(
 
   fun observeCommandsFilter(): Flow<Filter> = filterCommandsCache.filterNotNull()
 
-  suspend fun updateCommandsFilter(filter: Filter) {
-    filterCommandsCache.emit(filter)
-  }
-
   fun observePlayersFilter(): Flow<Filter> = filterPlayersCache.filterNotNull()
 
-  suspend fun updatePlayersFilter(filter: Filter) {
-    filterPlayersCache.emit(filter)
+  suspend fun updateFilter(filter: Filter, filterType: FilterType) {
+    when (filterType) {
+      FilterType.Players -> {
+        filterPlayersCache.emit(filter)
+      }
+      FilterType.Commands -> {
+        filterCommandsCache.emit(filter)
+      }
+    }
   }
 
   suspend fun createCreatePlayerApplication(

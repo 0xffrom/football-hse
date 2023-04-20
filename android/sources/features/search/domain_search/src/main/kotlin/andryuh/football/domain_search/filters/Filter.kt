@@ -10,3 +10,8 @@ data class Filter(
   val positions: List<PlayerPosition> = PlayerPosition.values().toList(),
   val tournaments: List<Tournament> = Tournament.values().toList(),
 ) : Parcelable
+
+enum class FilterType {
+  Commands,
+  Players,
+}

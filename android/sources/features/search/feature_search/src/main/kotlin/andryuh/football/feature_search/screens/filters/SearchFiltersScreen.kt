@@ -16,6 +16,7 @@ import andryuh.football.core_elmslie.rememberEventReceiver
 import andryuh.football.core_elmslie.rememberStore
 import andryuh.football.core_navigation.LocalRouter
 import andryuh.football.domain_search.filters.Filter
+import andryuh.football.domain_search.filters.FilterType
 import andryuh.football.feature_search.screens.filters.presentation.SearchFiltersEffect
 import andryuh.football.feature_search.screens.filters.presentation.SearchFiltersEvent.Ui.Click
 import andryuh.football.feature_search.screens.filters.presentation.SearchFiltersState as State
@@ -38,6 +39,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 internal class SearchFiltersScreen(
   val filter: Filter,
+  val type: FilterType,
 ) : Screen(generateScreenKey()) {
 
   @OptIn(ExperimentalAnimationApi::class)
@@ -46,7 +48,7 @@ internal class SearchFiltersScreen(
     val store =
       rememberStore(
         storeFactoryClass = SearchFiltersStoreFactory::class.java,
-        storeProvider = { storeFactory, _ -> storeFactory.create(filter) },
+        storeProvider = { storeFactory, _ -> storeFactory.create(filter = filter, type = type) },
       )
     val eventReceiver = store.rememberEventReceiver()
     val state by store.states().collectAsState(store.currentState)

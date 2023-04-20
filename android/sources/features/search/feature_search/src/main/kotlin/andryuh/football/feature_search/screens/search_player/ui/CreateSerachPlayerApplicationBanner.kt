@@ -33,7 +33,6 @@ internal fun CreateSearchPlayerApplicationBanner(
         .then(SelectedBorderModifier)
         .clickable(onClick = onClick),
   ) {
-    // TODO: use a brush with radial gradient instead of webp.
     Image(
       painter = painterResource(id = R.drawable.img_application_banner_background),
       contentDescription = null,
@@ -43,12 +42,17 @@ internal fun CreateSearchPlayerApplicationBanner(
       verticalAlignment = Alignment.CenterVertically,
     ) {
       Image(
-        painter = painterResource(id = R.drawable.img_application_banner),
+        painter = painterResource(id = andryuh.football.ui_kit.R.drawable.img_profile_banner),
         contentDescription = null,
       )
       Text(
-        modifier = Modifier.weight(1f),
-        text = "Создать заявку на поиск команды",
+        modifier =
+          Modifier.weight(1f)
+            .padding(
+              vertical = 8.dp,
+            )
+            .padding(end = 8.dp),
+        text = "Создать заявку на поиск игрока",
         textAlign = TextAlign.Center,
         color = FootballColors.Text.Primary,
         style = BodySemibold,

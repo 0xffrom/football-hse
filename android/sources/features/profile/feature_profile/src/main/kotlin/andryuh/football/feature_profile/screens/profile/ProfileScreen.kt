@@ -15,10 +15,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalSavedStateRegistryOwner
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import andryuh.football.core_di.rememberDependencies
 import andryuh.football.core_elmslie.rememberEventReceiver
 import andryuh.football.core_elmslie.rememberStore
@@ -59,6 +61,8 @@ internal class ProfileScreen : BaseScreen() {
       rememberStore(
         storeFactoryClass = ProfileStoreFactory::class.java,
         storeProvider = { storeFactory, _ -> storeFactory.create() },
+        savedStateRegistryOwner = LocalSavedStateRegistryOwner.current,
+        vmStoreOwner = LocalViewModelStoreOwner.current!!,
       )
     val state by store.states().collectAsState(store.currentState)
     val eventReceiver = store.rememberEventReceiver()

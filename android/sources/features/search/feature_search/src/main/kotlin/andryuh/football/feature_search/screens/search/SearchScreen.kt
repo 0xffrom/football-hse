@@ -15,13 +15,16 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.BiasAlignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalSavedStateRegistryOwner
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import andryuh.football.core_di.rememberDependencies
 import andryuh.football.core_elmslie.rememberEventReceiver
 import andryuh.football.core_elmslie.rememberStore
 import andryuh.football.core_kotlin.Resource
 import andryuh.football.core_navigation.LocalRouter
+import andryuh.football.domain_search.filters.FilterType
 import andryuh.football.feature_search.R
 import andryuh.football.feature_search.di.SearchFeatureDependencies
 import andryuh.football.feature_search.screens.filters.SearchFiltersScreen
@@ -54,6 +57,8 @@ internal class SearchScreen : BaseScreen() {
       rememberStore(
         storeFactoryClass = SearchStoreFactory::class.java,
         storeProvider = { storeFactory, _ -> storeFactory.create() },
+        savedStateRegistryOwner = LocalSavedStateRegistryOwner.current,
+        vmStoreOwner = LocalViewModelStoreOwner.current!!,
       )
     val state by store.states().collectAsState(store.currentState)
     val dependencies: SearchFeatureDependencies = rememberDependencies()
@@ -76,7 +81,7 @@ internal class SearchScreen : BaseScreen() {
             router.forward(SearchTeamDetailsScreen())
           }
           is SearchEffect.OpenFilters -> {
-            router.forward(SearchFiltersScreen(state.filter))
+            router.forward(SearchFiltersScreen(filter = state.filter, type = FilterType.Commands))
           }
         }
       }

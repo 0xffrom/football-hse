@@ -47,11 +47,14 @@ internal fun CreateApplicationBanner(
         contentDescription = null,
       )
       Text(
-        modifier = Modifier.weight(1f),
+        modifier = Modifier.weight(1f).padding(
+          vertical = 8.dp,
+        ).padding(end = 8.dp),
         text = "Создать заявку на поиск команды",
         textAlign = TextAlign.Center,
         color = FootballColors.Text.Primary,
         style = BodySemibold,
+
       )
     }
   }

@@ -61,7 +61,7 @@ internal fun PlayerApplicationCard(
             model = application.imageUrl,
             contentDescription = null,
             contentScale = ContentScale.Crop,
-            error = painterResource(R.drawable.ic_60_team_placeholder)
+            error = painterResource(R.drawable.ic_60_profile_placeholder)
           )
           Text(
             text = application.name.orEmpty(),

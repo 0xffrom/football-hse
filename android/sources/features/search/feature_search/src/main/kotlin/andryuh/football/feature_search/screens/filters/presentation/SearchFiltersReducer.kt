@@ -72,16 +72,18 @@ internal object SearchFiltersReducer :
               }
               commands {
                 +Command.SaveFilter(
-                  Filter(
-                    positions =
-                      state.positionsStage.positions.mapNotNull { (key, value) ->
-                        if (value) key else null
-                      },
-                    tournaments =
-                      state.tournamentsStage.tournaments.mapNotNull { (key, value) ->
-                        if (value) key else null
-                      },
-                  )
+                  filter =
+                    Filter(
+                      positions =
+                        state.positionsStage.positions.mapNotNull { (key, value) ->
+                          if (value) key else null
+                        },
+                      tournaments =
+                        state.tournamentsStage.tournaments.mapNotNull { (key, value) ->
+                          if (value) key else null
+                        },
+                    ),
+                  type = state.filterType,
                 )
               }
             }

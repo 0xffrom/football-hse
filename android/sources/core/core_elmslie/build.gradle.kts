@@ -10,6 +10,7 @@ dependencies {
   implementation(libs.lifecycle.viewmodel.compose)
 
   implementation(libs.bundles.elmslie)
+  implementation(libs.modo)
 
   implementation(project(":core_di"))
 }

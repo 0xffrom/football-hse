@@ -5,6 +5,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.platform.LocalSavedStateRegistryOwner
+import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import andryuh.football.core_elmslie.rememberStore
 import andryuh.football.feature_chat.screens.chat.presentation.ChatStoreFactory
 import andryuh.football.ui_kit.BaseScreen
@@ -19,7 +21,10 @@ internal class ChatScreen : BaseScreen() {
       rememberStore(
         storeFactoryClass = ChatStoreFactory::class.java,
         storeProvider = { storeFactory, _ -> storeFactory.create() },
+        savedStateRegistryOwner = LocalSavedStateRegistryOwner.current,
+        vmStoreOwner = LocalViewModelStoreOwner.current!!,
       )
+
     val state by store.states().collectAsState(store.currentState)
 
     LaunchedEffect(key1 = store) {
