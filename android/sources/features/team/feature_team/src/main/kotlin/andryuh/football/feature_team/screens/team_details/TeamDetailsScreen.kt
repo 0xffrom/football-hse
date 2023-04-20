@@ -93,7 +93,11 @@ internal class TeamDetailsScreen(
       bottomBar = {
         BottomBarStack {
           FButton(
-            text = "Удалить заявку",
+            text =
+              when (state.team.status) {
+                TeamStatus.Verified -> "Удалить команду"
+                else -> "Удалить заявку"
+              },
             isLoading = state.isLoading,
           ) {
             eventReceiver(Ui.Click.Delete)

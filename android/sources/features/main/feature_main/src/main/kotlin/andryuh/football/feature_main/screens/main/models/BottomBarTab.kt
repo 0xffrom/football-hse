@@ -31,6 +31,9 @@ fun RowScope.BottomBarTab(
 
 enum class BottomBarTabType(@DrawableRes val drawableRes: Int) {
   Search(R.drawable.ic_24_search),
+  SearchPlayer(R.drawable.ic_24_user_plus),
   Chat(R.drawable.ic_24_chat),
   Profile(R.drawable.ic_24_user)
 }
+
+

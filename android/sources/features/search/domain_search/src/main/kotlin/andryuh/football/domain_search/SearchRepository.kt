@@ -15,7 +15,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -31,7 +30,9 @@ constructor(
 
   private val teamApplicationsCache = MutableStateFlow<List<TeamApplication>?>(null)
   private val playerApplicationsCache = MutableStateFlow<List<PlayerApplication>?>(null)
-  private val filterCache = MutableStateFlow<Filter?>(null)
+
+  private val filterCommandsCache = MutableStateFlow<Filter?>(null)
+  private val filterPlayersCache = MutableStateFlow<Filter?>(null)
 
   fun observeTeamApplications(): Flow<List<TeamApplication>> {
     CoroutineScope(Dispatchers.IO).launch { updateTeamApplicationsCache() }
@@ -39,20 +40,29 @@ constructor(
     return teamApplicationsCache.filterNotNull()
   }
 
-  fun observePlayerApplications(): Flow<List<PlayerApplication>> {
+  fun observeAllPlayerApplications(): Flow<List<PlayerApplication>> {
     CoroutineScope(Dispatchers.IO).launch { updatePlayerApplicationsCache() }
 
-    return playerApplicationsCache.filterNotNull().map { applications ->
+    return playerApplicationsCache.filterNotNull()
+  }
+
+  fun observeMyPlayerApplications(): Flow<List<PlayerApplication>> =
+    observeAllPlayerApplications().map { applications ->
       val phoneNumber = phoneStorage.getPhoneRequired()
 
       applications.filter { application -> application.phoneNumber == phoneNumber }
     }
+
+  fun observeCommandsFilter(): Flow<Filter> = filterCommandsCache.filterNotNull()
+
+  suspend fun updateCommandsFilter(filter: Filter) {
+    filterCommandsCache.emit(filter)
   }
 
-  fun observeFilter(): Flow<Filter> = filterCache.filterNotNull()
+  fun observePlayersFilter(): Flow<Filter> = filterPlayersCache.filterNotNull()
 
-  suspend fun updateFilter(filter: Filter) {
-    filterCache.emit(filter)
+  suspend fun updatePlayersFilter(filter: Filter) {
+    filterPlayersCache.emit(filter)
   }
 
   suspend fun createCreatePlayerApplication(

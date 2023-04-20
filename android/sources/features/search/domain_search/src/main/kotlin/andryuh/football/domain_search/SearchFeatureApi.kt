@@ -4,5 +4,7 @@ import com.github.terrakok.modo.Screen
 
 interface SearchFeatureApi {
 
-  fun getScreen(): Screen
+  fun getSearchTeamsScreen(): Screen
+
+  fun getSearchPlayersScreen(): Screen
 }

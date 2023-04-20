@@ -24,7 +24,7 @@ constructor(
           )
       is Command.ObserveFilter ->
         searchRepository
-          .observeFilter()
+          .observeCommandsFilter()
           .mapEvents(
             eventMapper = Internal::ObserveFilterSuccess,
           )

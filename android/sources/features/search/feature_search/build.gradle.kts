@@ -31,6 +31,7 @@ dependencies {
 
   implementation(project(":domain_search"))
   implementation(project(":domain_team"))
+  implementation(project(":domain_profile"))
 
   testImplementation(libs.bundles.kotest)
 }

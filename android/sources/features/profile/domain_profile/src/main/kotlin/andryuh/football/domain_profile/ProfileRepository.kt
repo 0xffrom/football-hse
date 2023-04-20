@@ -15,8 +15,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.last
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
 
@@ -36,6 +35,8 @@ constructor(
 
     return profileCache.filterNotNull()
   }
+
+  fun observeCaptain(): Flow<Boolean> = observeProfile().map { profile -> profile.isCaptain }
 
   suspend fun getProfile(): Profile {
     updateProfileCache()

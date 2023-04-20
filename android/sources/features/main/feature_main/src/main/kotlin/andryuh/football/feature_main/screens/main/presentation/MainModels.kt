@@ -7,7 +7,9 @@ import kotlinx.collections.immutable.toImmutableList
 internal data class MainState(
   val selectedTab: BottomBarTabType,
   val previousTab: BottomBarTabType = selectedTab,
-  val tabs: ImmutableList<BottomBarTabType> = BottomBarTabType.values().toList().toImmutableList(),
+  val isCaptain: Boolean = false,
+  val tabs: ImmutableList<BottomBarTabType> =
+    BottomBarTabType.values().filter { it != BottomBarTabType.SearchPlayer }.toImmutableList(),
   val tabsHistory: List<BottomBarTabType> = listOf(selectedTab),
 )
 
@@ -23,19 +25,17 @@ internal sealed interface MainEvent {
       object Back : Ui
       data class BottomBarTab(val tab: BottomBarTabType) : Ui
     }
-
-    object Action {
-      // your code
-    }
   }
 
   sealed interface Internal : MainEvent {
-    // your code
+
+    data class ObserveCaptainSuccess(val isCaptain: Boolean) : Internal
   }
 }
 
 internal sealed interface MainCommand {
-  // your code
+
+  object ObserveCaptain : MainCommand
 }
 
 internal sealed interface MainEffect {

@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Text
@@ -18,7 +17,6 @@ import andryuh.football.feature_search.screens.search_team.presentation.SearchTe
 import andryuh.football.feature_search.screens.search_team.presentation.SearchTeamDetailsState
 import andryuh.football.ui_kit.cell.FCell
 import andryuh.football.ui_kit.theme.FootballColors
-import andryuh.football.ui_kit.theme.Style12500
 import andryuh.football.ui_kit.theme.Style14500
 
 @Composable
@@ -27,10 +25,7 @@ internal fun PositionsPage(
   stage: SearchTeamDetailsState.Stage.Positions,
   eventReceiver: EventReceiver<SearchTeamDetailsEvent>,
 ) {
-  LazyColumn(
-    modifier = Modifier.fillMaxWidth(),
-    contentPadding = contentPadding
-  ) {
+  LazyColumn(modifier = Modifier.fillMaxWidth(), contentPadding = contentPadding) {
     item {
       Spacer(modifier = Modifier.height(12.dp))
       Text(

@@ -17,7 +17,7 @@ constructor(
   override fun execute(command: Command): Flow<Internal> {
     return when (command) {
       is Command.SaveFilter ->
-        flow { emit(searchRepository.updateFilter(command.filter)) }
+        flow { emit(searchRepository.updateCommandsFilter(command.filter)) }
           .mapEvents(
             eventMapper = { Internal.SaveFilterSuccess },
           )

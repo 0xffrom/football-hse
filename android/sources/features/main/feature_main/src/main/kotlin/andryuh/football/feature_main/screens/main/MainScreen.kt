@@ -86,7 +86,8 @@ internal class MainScreen : BaseScreen() {
       }
     ) { paddingValues: PaddingValues ->
       val dependencies: MainFeatureDependencies = rememberDependencies()
-      val searchScreen = remember { dependencies.searchFeatureApi.getScreen() }
+      val searchScreen = remember { dependencies.searchFeatureApi.getSearchTeamsScreen() }
+      val searchPlayerScreen = remember { dependencies.searchFeatureApi.getSearchPlayersScreen() }
       val chatScreen = remember { dependencies.chatFeatureApi.getScreen() }
       val profileScreen = remember { dependencies.profileFeatureApi.getScreen() }
 
@@ -117,6 +118,7 @@ internal class MainScreen : BaseScreen() {
       ) {
         when (it) {
           BottomBarTabType.Search -> searchScreen.Content()
+          BottomBarTabType.SearchPlayer -> searchPlayerScreen.Content()
           BottomBarTabType.Chat -> chatScreen.Content()
           BottomBarTabType.Profile -> profileScreen.Content()
         }

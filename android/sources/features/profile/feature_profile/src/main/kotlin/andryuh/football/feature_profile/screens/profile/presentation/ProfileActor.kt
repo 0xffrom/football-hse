@@ -34,7 +34,7 @@ constructor(
             Internal::ObserveTeamCreationStatusError,
           )
       is Command.ObservePlayerApplications ->
-        searchRepository.observePlayerApplications()
+        searchRepository.observeMyPlayerApplications()
           .mapEvents(
             Internal::ObservePlayerApplicationsSuccess,
             Internal::ObservePlayerApplicationsError,

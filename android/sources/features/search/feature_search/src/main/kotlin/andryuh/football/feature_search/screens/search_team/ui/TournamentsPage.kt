@@ -26,7 +26,6 @@ import andryuh.football.feature_search.screens.search_team.presentation.SearchTe
 import andryuh.football.feature_search.screens.search_team.presentation.SearchTeamDetailsState
 import andryuh.football.ui_kit.cell.FCell
 import andryuh.football.ui_kit.theme.FootballColors
-import andryuh.football.ui_kit.theme.Style12500
 import andryuh.football.ui_kit.theme.Style14500
 import andryuh.football.ui_kit.theme.Style16400
 
