@@ -31,9 +31,9 @@ import andryuh.football.feature_profile.screens.edit_profile.EditProfileScreen
 import andryuh.football.feature_profile.screens.profile.presentation.ProfileEffect
 import andryuh.football.feature_profile.screens.profile.presentation.ProfileEvent.Ui.Click
 import andryuh.football.feature_profile.screens.profile.presentation.ProfileStoreFactory
-import andryuh.football.feature_profile.screens.profile.ui.ProfileCard
 import andryuh.football.feature_profile.screens.profile.ui.PlayerApplicationCard
 import andryuh.football.feature_profile.screens.profile.ui.PlayerApplicationCardShimmer
+import andryuh.football.feature_profile.screens.profile.ui.ProfileCard
 import andryuh.football.feature_profile.screens.profile.ui.TeamCreationApplicationCard
 import andryuh.football.feature_profile.screens.team_registration.TeamRegistrationScreen
 import andryuh.football.ui_kit.BaseScreen
@@ -86,6 +86,11 @@ internal class ProfileScreen : BaseScreen() {
           }
           is ProfileEffect.OpenTeamDetails -> {
             router.forward(dependencies.teamFeatureApi.getTeamDetails(effect.team))
+          }
+          is ProfileEffect.OpenProfileApplication -> {
+            router.forward(
+              dependencies.profileFeatureApi.getProfileApplicationScreen(effect.application)
+            )
           }
         }
       }
@@ -209,7 +214,8 @@ internal class ProfileScreen : BaseScreen() {
                 Spacer(modifier = Modifier.height(12.dp))
                 PlayerApplicationCard(
                   modifier = Modifier.padding(horizontal = 16.dp),
-                  application = application
+                  application = application,
+                  onClick = { eventReceiver.invoke(Click.PlayerApplicationCard(application)) }
                 )
               }
               item { Spacer(modifier = Modifier.height(20.dp)) }

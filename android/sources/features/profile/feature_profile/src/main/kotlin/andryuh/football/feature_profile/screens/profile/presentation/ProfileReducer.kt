@@ -39,6 +39,9 @@ internal object ProfileReducer :
           null -> Unit
         }
       }
+      is Ui.Click.PlayerApplicationCard -> {
+        effects { +Effect.OpenProfileApplication(event.application) }
+      }
     }
   }
 

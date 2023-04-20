@@ -89,7 +89,7 @@ internal class MainScreen : BaseScreen() {
       val searchScreen = remember { dependencies.searchFeatureApi.getSearchTeamsScreen() }
       val searchPlayerScreen = remember { dependencies.searchFeatureApi.getSearchPlayersScreen() }
       val chatScreen = remember { dependencies.chatFeatureApi.getScreen() }
-      val profileScreen = remember { dependencies.profileFeatureApi.getScreen() }
+      val profileScreen = remember { dependencies.profileFeatureApi.getProfileScreen() }
 
       AnimatedContent(
         modifier = Modifier.padding(paddingValues),

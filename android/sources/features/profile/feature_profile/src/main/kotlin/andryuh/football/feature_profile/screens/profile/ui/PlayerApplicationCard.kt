@@ -13,6 +13,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -30,16 +31,19 @@ import com.google.accompanist.placeholder.PlaceholderHighlight
 import com.google.accompanist.placeholder.material.fade
 import com.google.accompanist.placeholder.material.placeholder
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 internal fun PlayerApplicationCard(
   modifier: Modifier,
   application: PlayerApplication,
+  onClick: () -> Unit,
 ) {
   Card(
     modifier = modifier.fillMaxWidth(),
     backgroundColor = FootballColors.Surface1,
     elevation = 0.dp,
     shape = RoundedCornerShape(12.dp),
+    onClick = onClick,
   ) {
     Column {
       Text(

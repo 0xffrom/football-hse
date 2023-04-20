@@ -78,7 +78,12 @@ internal class SearchPlayerScreen : BaseScreen() {
             }
           }
           is SearchPlayerEffect.OpenPlayerApplicationDetails -> {
-            //            router.forward(SearchTeamDetailsScreen())
+            router.forward(
+              dependencies.profileFeatureApi.getProfileApplicationScreen(
+                application = effect.application,
+                isChatSupport = true
+              )
+            )
           }
           is SearchPlayerEffect.OpenFilters -> {
             router.forward(SearchFiltersScreen(filter = state.filter, type = FilterType.Players))

@@ -7,6 +7,7 @@ import andryuh.football.domain_profile.ProfileFeatureApi
 import andryuh.football.feature_profile.feature_api.ProfileFeatureApiImpl
 import andryuh.football.feature_profile.screens.edit_profile.presentation.EditProfileStoreFactory
 import andryuh.football.feature_profile.screens.profile.presentation.ProfileStoreFactory
+import andryuh.football.feature_profile.screens.profile_application.presentation.ProfileApplicationStoreFactory
 import andryuh.football.feature_profile.screens.team_registration.presentation.TeamRegistrationStoreFactory
 import dagger.Binds
 import dagger.Module
@@ -35,6 +36,12 @@ abstract class ProfileFeatureModule {
   @IntoMap
   @StoreFactoryKey(EditProfileStoreFactory::class)
   internal abstract fun EditProfileStoreFactory.bindEditProfileStoreFactory(): StoreFactory
+
+  @Binds
+  @IntoMap
+  @StoreFactoryKey(ProfileApplicationStoreFactory::class)
+  internal abstract fun ProfileApplicationStoreFactory.bindProfileApplicationStoreFactory():
+    StoreFactory
 }
 
 @Module
