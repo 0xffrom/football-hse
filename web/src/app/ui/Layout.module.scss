@@ -1,0 +1,33 @@
+.layout {
+  height: 100vh;
+}
+
+.header {
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 28px;
+
+  color: #fff;
+}
+
+.menu {
+  height: 100%;
+  border-right: 0;
+}
+
+.content {
+  background-color: var(--AppBackground);
+}
+
+.logout {
+  position: absolute;
+  bottom: 24px;
+  width: 200px;
+
+  display: flex;
+  justify-content: center;
+}

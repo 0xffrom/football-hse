@@ -1,0 +1,25 @@
+.message {
+  background-color: #fff;
+  color: var(--Gray2);
+  max-width: 50%;
+  border-radius: 8px;
+  margin-right: auto;
+}
+
+.messageSelf {
+  color: #fff;
+  background-color: var(--Blue);
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.messageContent {
+  padding: 10px 20px;
+  
+  display: flex;
+  gap: 10px;
+}
+
+.messageSendTime {
+  align-self: self-end;
+}

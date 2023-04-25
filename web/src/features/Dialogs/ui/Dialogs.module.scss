@@ -1,0 +1,19 @@
+.dialogsCard {
+  background-color: #fff;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dialogsCardTitle {
+  margin: 16px 24px;
+}
+
+.dialogsCardContent {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 437px;
+  border-top: 1px solid var(--Gray3);
+  overflow-y: auto;
+}

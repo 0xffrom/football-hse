@@ -1,0 +1,43 @@
+.openedDialogCard {
+  background-color: #fff;
+
+  border-radius: 8px;
+  height: calc(100% - 48px);
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.cardHeader {
+  margin: 16px 24px;
+}
+
+.openedDialogContainer {
+  background-color: var(--Gray3);
+
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+  width: 100%;
+}
+
+.messagesBody {
+  display: flex;
+  flex-direction: column;
+  
+  gap: 24px;
+  padding: 24px;
+
+  height: 100%;
+  width: 100%;
+
+  overflow-y: auto;
+}
+
+.messageFooter {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+}

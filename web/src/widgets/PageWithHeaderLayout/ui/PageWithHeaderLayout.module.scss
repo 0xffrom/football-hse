@@ -1,0 +1,23 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+}
+
+.header {
+  width: 100%;
+  height: 72px;
+
+  display: flex;
+  align-items: center;
+  padding-left: 24px;
+
+  background-color: #fff;
+  color: var(--BlackFont);
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+}
