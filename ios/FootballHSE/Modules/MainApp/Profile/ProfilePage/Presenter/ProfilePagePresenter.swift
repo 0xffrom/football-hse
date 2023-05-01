@@ -37,6 +37,9 @@ extension ProfilePagePresenter: ProfilePageInteractorOutput {}
 // MARK: - ProfilePageViewOutput
 
 extension ProfilePagePresenter: ProfilePageViewOutput {
+    func openMyApplications() {
+        moduleOutput?.openMyApplications()
+    }
 
     func registerTeam() {
         moduleOutput?.registerTeam()

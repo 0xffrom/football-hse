@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 final class SearchTeamsPageInteractor {
 
@@ -29,36 +30,43 @@ final class SearchTeamsPageInteractor {
         DispatchQueue.global().async { [weak self] in
             guard let self else { return }
 
-            let displayModel = response.map { response in
-                let positions = PlayerPosition.convertIntToPositions(num: response.playerPosition)
-                let tournaments = Tournaments.convertIntToTournaments(num: response.tournaments)
+            Task {
+                var displayModel: [TeamApplicationDisplayModel] = []
 
-                let displayData = TeamApplicationDisplayModel(
-                    id: response.id,
-                    teamId: response.teamId,
-                    name: response.name,
-                    logo: response.logo,
-                    contact: response.contact,
-                    playerPosition: positions,
-                    tournaments: self.convertTournamentsToString(tournaments),
-                    description: response.description
-                )
-                return displayData
+                for responseItem in response {
+                    let positions = PlayerPosition.convertIntToPositions(num: responseItem.playerPosition)
+                    let tournaments = Tournament.convertIntToTournaments(num: responseItem.tournaments)
+
+                    let image = await self.networkService.downlandImage(url: responseItem.logo)
+
+                    let displayItem = TeamApplicationDisplayModel(
+                        id: responseItem.id,
+                        teamId: responseItem.teamId,
+                        name: responseItem.name,
+                        logo: image,
+                        contact: responseItem.contact,
+                        playerPosition: positions,
+                        tournaments: self.convertTournamentsToString(tournaments),
+                        description: responseItem.description
+                    )
+
+                    displayModel.append(displayItem)
+                }
+
+                completion(.success(displayModel))
             }
-
-            completion(.success(displayModel))
         }
     }
 
-    func convertTournamentsToString(_ tournaments: [Tournaments]) -> String {
+    func convertTournamentsToString(_ tournaments: [Tournament]) -> String {
         var string = String()
 
-        guard tournaments.count != Tournaments.getMaxCountOfTournaments() else {
+        guard tournaments.count != Tournament.getMaxCountOfTournaments() else {
             return "На постоянную основу"
         }
 
         for i in 0..<tournaments.count {
-            string.append(tournaments[i].getNameOfTournament())
+            string.append(tournaments[i].getStringValue())
             if i != tournaments.count - 1 {
                 string.append(", ")
             }
@@ -80,6 +88,44 @@ extension SearchTeamsPageInteractor: SearchTeamsPageInteractorInput {
             switch result {
             case let .success(data):
                 self.convertResponseToDisplayModel(data, completion: completion)
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    func getSearchResultsWithFilters(position: Int, tournaments: Int,
+                                     completion: @escaping (Result<[TeamApplicationDisplayModel], Error>) -> Void) {
+        let config = RequestConfigWithParser(
+            request: SearchTeamsWithFilterTarget(
+                position: position,
+                tournaments: tournaments
+            ),
+            parser: TeamApplicationsParser()
+        )
+
+        networkService.sendGetRequest(config: config) { result in
+            switch result {
+            case let .success(data):
+                self.convertResponseToDisplayModel(data, completion: completion)
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    func createNewApplication(position: Int, tournaments: Int, completion: @escaping (Result<Void, Error>) -> Void) {
+        let config = RequestConfig(
+            request: CreatePlayerApplicationsTarget(
+                position: position,
+                tournaments: tournaments
+            )
+        )
+
+        networkService.sendPostRequest(config: config) { result in
+            switch result {
+            case .success(_):
+                completion(.success(Void()))
             case let .failure(error):
                 completion(.failure(error))
             }

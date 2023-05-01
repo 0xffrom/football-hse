@@ -65,6 +65,8 @@ final class MainCoordinator {
     }
 
     private func addSearchPlayersTab() {
+        let vc = UIViewController()
+        rootTabBarController?.addViewController(UIViewController())
     }
 
     private func addChatTab() {

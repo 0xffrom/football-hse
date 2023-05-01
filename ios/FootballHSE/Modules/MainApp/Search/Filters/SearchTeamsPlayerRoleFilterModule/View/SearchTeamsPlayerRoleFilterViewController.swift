@@ -9,23 +9,39 @@ import UIKit
 import SnapKit
 
 final class SearchTeamsPlayerRoleFilterViewController: UIViewController {
-    
-    // MARK: Private data structures
+
+    struct DisplayData {
+        struct FilterCellDisplayData {
+            let filterName: String
+            let checkAction: ((Int) -> Void)?
+        }
+        let data: [FilterCellDisplayData]
+        let title: String
+        let isLast: Bool
+    }
 
     // MARK: Outlets
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var saveButton: HSEMainButton!
 
     // MARK: Public Properties
 
     var output: SearchTeamsPlayerRoleFilterViewOutput?
 
     // MARK: Private Properties
+    private var data: [DisplayData.FilterCellDisplayData] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
 
     // MARK: Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        output?.viewDidLoad()
 
         setupView()
     }
@@ -34,6 +50,27 @@ final class SearchTeamsPlayerRoleFilterViewController: UIViewController {
 
     private func setupView() {
         setupTableView()
+        setupNavigationBar()
+        setupSaveButton()
+    }
+
+    private func setupSaveButton() {
+        saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
+    }
+
+    private func setupNavigationBar() {
+        navigationItem.title = title
+
+        let image = UIImage(systemName: "chevron.backward")
+        image?.withTintColor(R.color.textAndIconsPrimary() ?? .black)
+        let backBTN = UIBarButtonItem(image: image,
+                                      style: .plain,
+                                      target: self,
+                                      action: #selector(goBack))
+        navigationItem.leftBarButtonItem = backBTN
+
+        let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .medium)]
+        UINavigationBar.appearance().titleTextAttributes = attributes
     }
 
     private func setupTableView() {
@@ -49,6 +86,15 @@ final class SearchTeamsPlayerRoleFilterViewController: UIViewController {
     }
 
     // MARK: Actions
+
+    @objc private func saveButtonTapped(_ sender: AnyObject) {
+        output?.saveSelections()
+    }
+
+    @objc private func goBack(_ sender: AnyObject) {
+        output?.removeSelection()
+        self.navigationController?.popViewController(animated: true)
+    }
 }
 
 // MARK: - UITableViewDelegate
@@ -79,13 +125,13 @@ extension SearchTeamsPlayerRoleFilterViewController: UITableViewDataSource {
         guard let filterCell = cell as? FilterCell else {
             return cell
         }
-        // let application = data[indexPath.section]
-        filterCell.configure(
-            displayData: .init(
-                filterName: "Центральный атакующий полузащитник",
-                checkAction: nil
-            )
-        )
+        let item = data[indexPath.section]
+        filterCell.configure(displayData: .init(
+            filterName: item.filterName,
+            checkAction: {
+                item.checkAction?(indexPath.section)
+            }
+        ))
         return filterCell
     }
 
@@ -94,7 +140,7 @@ extension SearchTeamsPlayerRoleFilterViewController: UITableViewDataSource {
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        10
+        data.count
     }
 }
 
@@ -102,4 +148,19 @@ extension SearchTeamsPlayerRoleFilterViewController: UITableViewDataSource {
 
 extension SearchTeamsPlayerRoleFilterViewController: SearchTeamsPlayerRoleFilterViewInput {
 
+    func setupDataState(with data: DisplayData) {
+        self.data = data.data
+        titleLabel.text = data.title
+        if data.isLast {
+            saveButton.setTitle("Сохранить", for: .normal)
+        } else {
+            saveButton.setTitle("Продолжить", for: .normal)
+        }
+    }
+
+    func showAlertMustChooseAllFilters() {
+        let alert = UIAlertController(title: "Необходимо выбрать как минимум один пункт", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
 }

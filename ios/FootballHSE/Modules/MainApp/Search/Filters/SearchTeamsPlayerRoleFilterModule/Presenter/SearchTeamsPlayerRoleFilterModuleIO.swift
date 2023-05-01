@@ -12,5 +12,6 @@ public protocol SearchTeamsPlayerRoleFilterModuleInput: AnyObject {
 }
 
 public protocol SearchTeamsPlayerRoleFilterModuleOutput: AnyObject {
-
+    func openNextFilter()
+    func showResults(filters: [Int])
 }

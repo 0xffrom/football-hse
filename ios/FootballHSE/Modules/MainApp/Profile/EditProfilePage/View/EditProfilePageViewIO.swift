@@ -8,9 +8,10 @@
 import Foundation
 
 protocol EditProfilePageViewInput: AnyObject {
-
+    func setupData(_ data: EditProfilePageViewController.DisplayData)
 }
 
 protocol EditProfilePageViewOutput: AnyObject {
+    func viewDidLoad()
     func save()
 }

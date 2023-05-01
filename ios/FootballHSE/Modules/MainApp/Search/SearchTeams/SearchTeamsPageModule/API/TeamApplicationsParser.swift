@@ -18,3 +18,15 @@ final class TeamApplicationsParser: ParserProtocol {
         return model
     }
 }
+
+final class TeamApplicationParser: ParserProtocol {
+
+    typealias Model = TeamApplicationResponseModel
+
+    func parse(data: Data) -> TeamApplicationResponseModel? {
+        guard let model = try? JSONDecoder().decode(TeamApplicationResponseModel.self, from: data) else {
+            return nil
+        }
+        return model
+    }
+}

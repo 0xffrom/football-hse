@@ -13,7 +13,6 @@ class SearchTeamsCell: UITableViewCell {
 
     @IBOutlet weak var rolesCollectionView: UICollectionView!
     @IBOutlet weak var tournaments: UILabel!
-    @IBOutlet weak var moreButton: UIButton!
     @IBOutlet weak var teamName: UILabel!
     @IBOutlet weak var teamImage: UIImageView!
 
@@ -29,18 +28,15 @@ class SearchTeamsCell: UITableViewCell {
         layer.cornerRadius = 12
         clipsToBounds = true
 
-        moreButton.setTitle("", for: .normal)
-
         teamImage.layer.cornerRadius = teamImage.layer.bounds.width / 2
         teamImage.clipsToBounds = true
         teamImage.layer.borderColor = UIColor(named: "TextIconsTertiary")?.cgColor
         teamImage.layer.borderWidth = 1
         teamImage.contentMode = .scaleAspectFit
-        teamImage.image = UIImage(named: "defaultTeamImage")
 
         rolesCollectionView.register(
-            UINib(nibName: String(describing: RoleCell.self), bundle: nil),
-            forCellWithReuseIdentifier: RoleCell.identifier
+            UINib(nibName: String(describing: BubbleCell.self), bundle: nil),
+            forCellWithReuseIdentifier: BubbleCell.identifier
         )
         rolesCollectionView.dataSource = self
         rolesCollectionView.delegate = self
@@ -48,16 +44,14 @@ class SearchTeamsCell: UITableViewCell {
     }
 
     override func prepareForReuse() {
-        teamImage.image = UIImage(named: "defaultTeamImage")
+        teamImage.image = nil
     }
 
-    func configure(teamName: String, tournaments: String, image: String?, roles: [PlayerPosition]) {
+    func configure(teamName: String, tournaments: String, image: UIImage?, roles: [PlayerPosition]) {
         self.teamName.text = teamName
         self.tournaments.text = tournaments
         self.roles = roles
-//        if let imageURL = image {
-//            teamImage.downloaded(from: imageURL)
-//        }
+        self.teamImage.image = image ?? UIImage(named: "defaultTeamImage")!
     }
 }
 
@@ -76,13 +70,13 @@ extension SearchTeamsCell: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = rolesCollectionView.dequeueReusableCell(
-            withReuseIdentifier: RoleCell.identifier,
+            withReuseIdentifier: BubbleCell.identifier,
             for: indexPath)
         let role = roles[indexPath.row]
-        guard let searchCell = cell as? RoleCell else {
+        guard let searchCell = cell as? BubbleCell else {
             return cell
         }
-        searchCell.configure(role: role)
+        searchCell.configure(content: role.getStringValue())
         return searchCell
     }
 }

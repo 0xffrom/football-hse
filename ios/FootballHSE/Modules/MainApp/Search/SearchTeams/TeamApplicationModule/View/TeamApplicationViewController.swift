@@ -14,10 +14,14 @@ final class TeamApplicationViewController: UIViewController {
 
     @IBOutlet weak var iamge: UIImageView!
     @IBOutlet weak var name: UILabel!
+
     @IBOutlet weak var rolesCollection: UICollectionView!
+    @IBOutlet weak var tournamentsLabel: UILabel!
     @IBOutlet weak var contactLabel: UILabel!
     @IBOutlet weak var infoLabel: UILabel!
+
     @IBOutlet weak var rolesView: UIView!
+    @IBOutlet weak var tournamentsView: UIView!
     @IBOutlet weak var contactView: UIView!
     @IBOutlet weak var infoView: UIView!
 
@@ -49,23 +53,25 @@ final class TeamApplicationViewController: UIViewController {
         iamge.layer.borderColor = UIColor(named: "TextIconsTertiary")?.cgColor
         iamge.layer.borderWidth = 1
         iamge.contentMode = .scaleAspectFit
-        iamge.image = UIImage(named: "defaultTeamImage")
 
         rolesCollection.register(
-            UINib(nibName: String(describing: RoleCell.self), bundle: nil),
-            forCellWithReuseIdentifier: RoleCell.identifier
+            UINib(nibName: String(describing: BubbleCell.self), bundle: nil),
+            forCellWithReuseIdentifier: BubbleCell.identifier
         )
         rolesCollection.dataSource = self
         rolesCollection.delegate = self
         rolesCollection.showsHorizontalScrollIndicator = false
 
         rolesView.layer.cornerRadius = 12
+        tournamentsView.layer.cornerRadius = 12
         contactView.layer.cornerRadius = 12
         infoView.layer.cornerRadius = 12
 
-        name.text = data!.name
-        contactLabel.text = data!.contact
-        infoLabel.text = data!.description
+        name.text = data?.name
+        contactLabel.text = data?.contact ?? "Не указана"
+        infoLabel.text = data?.description ?? "Не указана"
+        tournamentsLabel.text = data?.tournaments
+        iamge.image = data?.logo ?? UIImage(named: "defaultTeamImage")!
     }
 }
 
@@ -85,13 +91,13 @@ extension TeamApplicationViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = rolesCollection.dequeueReusableCell(
-            withReuseIdentifier: RoleCell.identifier,
+            withReuseIdentifier: BubbleCell.identifier,
             for: indexPath)
         let role = data!.playerPosition[indexPath.row]
-        guard let searchCell = cell as? RoleCell else {
+        guard let searchCell = cell as? BubbleCell else {
             return cell
         }
-        searchCell.configure(role: role)
+        searchCell.configure(content: role.getStringValue())
         return searchCell
     }
 }

@@ -33,15 +33,6 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4up-Eq-w7l">
-                        <rect key="frame" x="410" y="25" width="20" height="6"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="5.8099999999999996" id="GmP-Iy-rcE"/>
-                            <constraint firstAttribute="width" constant="20" id="Kgj-I5-v3u"/>
-                        </constraints>
-                        <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain" image="ellipsisIcon"/>
-                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="12" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oyM-Pg-UVA">
                         <rect key="frame" x="21" y="65" width="409" height="25"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -65,14 +56,12 @@
                 <color key="backgroundColor" name="BaseSurface1"/>
                 <constraints>
                     <constraint firstItem="Pad-kV-Rc0" firstAttribute="leading" secondItem="y7H-Ds-4JX" secondAttribute="leading" constant="21" id="0Wj-yy-zIg"/>
-                    <constraint firstAttribute="trailing" secondItem="4up-Eq-w7l" secondAttribute="trailing" constant="18" id="1Me-HR-0T6"/>
                     <constraint firstItem="dvE-Sy-yo8" firstAttribute="top" secondItem="oyM-Pg-UVA" secondAttribute="bottom" constant="13" id="EcJ-pU-2dt"/>
                     <constraint firstItem="Pad-kV-Rc0" firstAttribute="top" secondItem="y7H-Ds-4JX" secondAttribute="top" constant="17" id="RED-8W-TYF"/>
                     <constraint firstItem="oyM-Pg-UVA" firstAttribute="top" secondItem="Pad-kV-Rc0" secondAttribute="bottom" constant="10" id="S6c-TZ-5zn"/>
                     <constraint firstAttribute="trailing" secondItem="oyM-Pg-UVA" secondAttribute="trailing" constant="18" id="WVI-X4-4fo"/>
                     <constraint firstAttribute="bottom" secondItem="dvE-Sy-yo8" secondAttribute="bottom" constant="16" id="ZIo-68-QDJ"/>
                     <constraint firstItem="kD2-jv-ojd" firstAttribute="top" secondItem="y7H-Ds-4JX" secondAttribute="top" constant="27" id="ckW-ei-TUR"/>
-                    <constraint firstItem="4up-Eq-w7l" firstAttribute="top" secondItem="y7H-Ds-4JX" secondAttribute="top" constant="25.100000000000001" id="jGc-cC-JJi"/>
                     <constraint firstItem="oyM-Pg-UVA" firstAttribute="leading" secondItem="Pad-kV-Rc0" secondAttribute="leading" id="lwK-vO-XFv"/>
                     <constraint firstItem="dvE-Sy-yo8" firstAttribute="leading" secondItem="y7H-Ds-4JX" secondAttribute="leading" id="nTI-4r-hmg"/>
                     <constraint firstAttribute="trailing" secondItem="dvE-Sy-yo8" secondAttribute="trailing" id="qoP-Ef-8yp"/>
@@ -81,7 +70,6 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="moreButton" destination="4up-Eq-w7l" id="ZXd-M3-aM0"/>
                 <outlet property="rolesCollectionView" destination="dvE-Sy-yo8" id="lCg-rM-Js7"/>
                 <outlet property="teamImage" destination="Pad-kV-Rc0" id="Im1-hB-WKm"/>
                 <outlet property="teamName" destination="kD2-jv-ojd" id="2Zb-Vl-h5O"/>
@@ -91,7 +79,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="ellipsisIcon" width="20" height="6"/>
         <namedColor name="BaseSurface1">
             <color red="0.9649999737739563" green="0.97600001096725464" blue="0.99599999189376831" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>

@@ -8,9 +8,12 @@
 import Foundation
 
 protocol SearchTeamsPlayerRoleFilterViewInput: AnyObject {
-
+    func setupDataState(with data: SearchTeamsPlayerRoleFilterViewController.DisplayData)
+    func showAlertMustChooseAllFilters()
 }
 
 protocol SearchTeamsPlayerRoleFilterViewOutput: AnyObject {
-
+    func viewDidLoad()
+    func saveSelections()
+    func removeSelection()
 }

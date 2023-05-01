@@ -38,6 +38,19 @@ extension EditProfilePagePresenter: EditProfilePageInteractorOutput {}
 
 extension EditProfilePagePresenter: EditProfilePageViewOutput {
 
+    func viewDidLoad() {
+        view?.setupData(
+            EditProfilePageViewController.DisplayData(
+                photo: CurrentUserConfig.shared.photo,
+                name: CurrentUserConfig.shared.name,
+                footballExperience: CurrentUserConfig.shared.footballExperience,
+                tournamentExperience: CurrentUserConfig.shared.tournamentExperience,
+                contact: CurrentUserConfig.shared.contact,
+                about: CurrentUserConfig.shared.about
+            )
+        )
+    }
+
     func save() {
         moduleOutput?.back()
     }

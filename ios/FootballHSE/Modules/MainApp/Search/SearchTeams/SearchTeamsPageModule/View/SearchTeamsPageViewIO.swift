@@ -13,6 +13,8 @@ protocol SearchTeamsPageViewInput: AnyObject {
     func setupErrorState()
     func setupEmptyState()
     func nothingFoundState()
+    func showNewApplicationWasCreatedMessage()
+    func showNewApplicationWasNotCreatedMessage()
 }
 
 protocol SearchTeamsPageViewOutput: AnyObject {

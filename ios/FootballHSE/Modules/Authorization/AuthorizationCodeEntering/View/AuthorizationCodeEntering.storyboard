@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -13,17 +15,17 @@
             <objects>
                 <viewController storyboardIdentifier="AuthorizationCodeEnteringViewController" id="Y6W-OH-hqX" customClass="AuthorizationCodeEnteringViewController" customModule="FootballHSE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Введите код" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nzq-B7-y7b">
-                                <rect key="frame" x="227" y="296.5" width="146.33333333333337" height="29"/>
+                                <rect key="frame" x="87" y="296.5" width="146.5" height="29"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                 <color key="textColor" name="BasePrimary"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P7g-h1-Wsm">
-                                <rect key="frame" x="16" y="341.5" width="568" height="33.5"/>
+                                <rect key="frame" x="16" y="341.5" width="288" height="33.5"/>
                                 <string key="text">Мы отправили SMS с кодом на Ваш
 мобильный телефон</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -31,14 +33,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="newMessageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="LPN-DX-fxQ">
-                                <rect key="frame" x="255" y="169.5" width="90" height="90"/>
+                                <rect key="frame" x="115" y="169.5" width="90" height="90"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="90" id="N9Z-wP-cze"/>
                                     <constraint firstAttribute="width" constant="90" id="rT9-xm-H0B"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KCz-ir-zo6" customClass="HSEMainButton" customModule="FootballHSE" customModuleProvider="target">
-                                <rect key="frame" x="16" y="569" width="568" height="60"/>
+                                <rect key="frame" x="16" y="569" width="288" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="A9c-RK-IA7"/>
                                 </constraints>
@@ -46,7 +48,7 @@
                                 <state key="normal" title="Продолжить"/>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="QCj-DV-kN5">
-                                <rect key="frame" x="164" y="415" width="272" height="84"/>
+                                <rect key="frame" x="24" y="415" width="272" height="84"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pnd-2Z-ctv" customClass="HSESmartTextFieldView" customModule="FootballHSE" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="56" height="84"/>
@@ -90,7 +92,7 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nJz-ae-NzR">
-                                <rect key="frame" x="16" y="546" width="568" height="29"/>
+                                <rect key="frame" x="16" y="546" width="288" height="29"/>
                                 <string key="text">Неверный код подтверждения
 Отправили повторно</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>

@@ -10,13 +10,30 @@ import SnapKit
 
 final class EditProfilePageViewController: UIViewController {
 
+    struct DisplayData {
+        let photo: String?
+        let name: String?
+        let footballExperience: String?
+        let tournamentExperience: String?
+        let contact: String?
+        let about: String?
+    }
+
+    // MARK: Private data structures
+
+    private enum Constants {
+        static let profileImageCornerRadius: CGFloat = 16
+    }
+
     // MARK: Outlets
 
+    @IBOutlet weak var profileImage: UIImageView!
+
     @IBOutlet weak var nameTextField: HSESmartTextFieldView!
-    @IBOutlet weak var footballExperienceTextField: HSESmartTextFieldView!
-    @IBOutlet weak var tournamentExperienceTextField: HSESmartTextFieldView!
+    @IBOutlet weak var footballExperienceTextField: HSETextView!
+    @IBOutlet weak var tournamentExperienceTextField: HSETextView!
     @IBOutlet weak var contactTextField: HSESmartTextFieldView!
-    @IBOutlet weak var aboutTextField: HSESmartTextFieldView!
+    @IBOutlet weak var aboutTextField: HSETextView!
 
     @IBOutlet weak var saveButton: HSEMainButton!
 
@@ -24,11 +41,20 @@ final class EditProfilePageViewController: UIViewController {
 
     var output: EditProfilePageViewOutput?
 
+    // MARK: Private Properties
+
+    private var data: DisplayData? {
+        didSet {
+            setupView()
+        }
+    }
+
     // MARK: Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        output?.viewDidLoad()
         hideKeyboardWhenTappedAround()
         setupView()
     }
@@ -45,17 +71,45 @@ final class EditProfilePageViewController: UIViewController {
         removeObservers()
     }
 
+    // MARK: Public
+
+    func setupData(_ data: DisplayData) {
+        self.data = data
+    }
+
     // MARK: Private
 
     private func setupView() {
+        setupNavigationBar()
+        setupProfileImageView()
         setupTextFields()
+        setupSaveButton()
+    }
+
+    private func setupNavigationBar() {
         navigationItem.title = "Редактирование профиля";
         let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .medium)]
         UINavigationBar.appearance().titleTextAttributes = attributes
-        saveButton.addTarget(self, action: #selector(save), for: .touchUpInside)
+    }
+
+    private func setupProfileImageView() {
+        let profileImageTap = UITapGestureRecognizer(target: self, action: #selector(self.changeProfileImage(_:)))
+        profileImage.addGestureRecognizer(profileImageTap)
+
+        profileImage.layer.cornerRadius = Constants.profileImageCornerRadius
+        guard let photoURL = CurrentUserConfig.shared.photo else { return }
+        profileImage.downloaded(from: photoURL)
     }
 
     private func setupTextFields() {
+        setupNameTextField()
+        setupFootballExperienceTextField()
+        setupTournamentExperienceTextField()
+        setupContactTextField()
+        setupAboutTextField()
+    }
+
+    private func setupNameTextField() {
         nameTextField.text = CurrentUserConfig.shared.name
         nameTextField.cornerRadius = 12
         nameTextField.horizontalInset = 16
@@ -69,26 +123,30 @@ final class EditProfilePageViewController: UIViewController {
         nameTextField.errorMessage = "Некорректное ФИО"
         nameTextField.configureRestrictions(
             minLength: 2,
-            maxLength: 41,
+            maxLength: 40,
             predicteFormat: "[А-Яа-яЁёa-zA-Z]+$"
         )
+    }
 
-        footballExperienceTextField.text = CurrentUserConfig.shared.footballExperience
-        footballExperienceTextField.cornerRadius = 12
-        footballExperienceTextField.horizontalInset = 16
-        footballExperienceTextField.verticalInset = 12
-        footballExperienceTextField.hightOfTextField = 48
-        footballExperienceTextField.descriptionLabelText = "ФУТБОЛЬНЫЙ ОПЫТ"
-        footballExperienceTextField.placeholder = "Расскажите про свой опыт"
+    private func setupFootballExperienceTextField() {
+        footballExperienceTextField.configure(
+            label: "ФУТБОЛЬНЫЙ ОПЫТ",
+            hintText: "Расскажите про свой опыт",
+            text: CurrentUserConfig.shared.footballExperience,
+            maxNamberOfCharacters: 200
+        )
+    }
 
-        tournamentExperienceTextField.text = CurrentUserConfig.shared.tournamentExperience
-        tournamentExperienceTextField.cornerRadius = 12
-        tournamentExperienceTextField.horizontalInset = 16
-        tournamentExperienceTextField.verticalInset = 12
-        tournamentExperienceTextField.hightOfTextField = 48
-        tournamentExperienceTextField.descriptionLabelText = "ОПЫТ В ТУРНИРАХ НИУ ВШЭ"
-        tournamentExperienceTextField.placeholder = "В каких турнирах вы играли?"
+    private func setupTournamentExperienceTextField() {
+        tournamentExperienceTextField.configure(
+            label: "ОПЫТ В ТУРНИРАХ НИУ ВШЭ",
+            hintText: "Расскажите в каких турнирах НИУ ВШЭ вы играли",
+            text: CurrentUserConfig.shared.tournamentExperience,
+            maxNamberOfCharacters: 200
+        )
+    }
 
+    private func setupContactTextField() {
         contactTextField.text = CurrentUserConfig.shared.contact
         contactTextField.cornerRadius = 12
         contactTextField.horizontalInset = 16
@@ -96,14 +154,33 @@ final class EditProfilePageViewController: UIViewController {
         contactTextField.hightOfTextField = 48
         contactTextField.descriptionLabelText = "КОНТАКТНАЯ ИНФОРМАЦИЯ"
         contactTextField.placeholder = "Телефон, Telegram..."
+        contactTextField.configureRestrictions(
+            minLength: 2,
+            maxLength: 40
+        )
+    }
 
-        aboutTextField.text = CurrentUserConfig.shared.about
-        aboutTextField.cornerRadius = 12
-        aboutTextField.horizontalInset = 16
-        aboutTextField.verticalInset = 12
-        aboutTextField.hightOfTextField = 48
-        aboutTextField.descriptionLabelText = "О СЕБЕ"
-        aboutTextField.placeholder = "Расскажите о себе"
+    private func setupAboutTextField() {
+        aboutTextField.configure(
+            label: "О СЕБЕ",
+            hintText: "Расскажите о своём опыте и достижениях",
+            text: CurrentUserConfig.shared.about,
+            maxNamberOfCharacters: 200
+        )
+    }
+
+    private func setupSaveButton() {
+        saveButton.addTarget(self, action: #selector(save), for: .touchUpInside)
+    }
+
+    // MARK: Actions
+
+    @objc private func changeProfileImage(_ sender: UITapGestureRecognizer? = nil) {
+        ImagePickerControllerService.shared.showActionSheet(vc: self)
+        ImagePickerControllerService.shared.imagePickedBlock = { [weak self] image in
+            guard let self else { return }
+            self.profileImage.image = image
+        }
     }
 }
 
@@ -144,11 +221,6 @@ extension EditProfilePageViewController {
     }
 
     @objc private func save(sender: UIButton) {
-        CurrentUserConfig.shared.name = nameTextField.text
-        CurrentUserConfig.shared.footballExperience = footballExperienceTextField.text
-        CurrentUserConfig.shared.tournamentExperience = tournamentExperienceTextField.text
-        CurrentUserConfig.shared.contact = contactTextField.text
-        CurrentUserConfig.shared.about = aboutTextField.text
         output?.save()
     }
 }

@@ -68,6 +68,12 @@
                                 <color key="textColor" name="TextIconsTertiary"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zgk-59-UrG">
+                                <rect key="frame" x="136.66666666666666" y="491.66666666666669" width="101.66666666666666" height="35.000000000000057"/>
+                                <color key="tintColor" name="BasePrimary"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Обновить"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="YhN-Fp-CTc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -75,12 +81,14 @@
                             <constraint firstItem="d6C-oN-lZt" firstAttribute="centerY" secondItem="ZW4-av-Es9" secondAttribute="centerY" id="1fa-ze-hvF"/>
                             <constraint firstItem="FIb-0P-NXc" firstAttribute="centerX" secondItem="YhN-Fp-CTc" secondAttribute="centerX" id="2W8-kh-EtU"/>
                             <constraint firstItem="XqO-Xz-Bj3" firstAttribute="centerX" secondItem="YhN-Fp-CTc" secondAttribute="centerX" id="3gZ-JR-zs0"/>
+                            <constraint firstItem="Zgk-59-UrG" firstAttribute="centerX" secondItem="YhN-Fp-CTc" secondAttribute="centerX" id="BQ9-q1-fpO"/>
                             <constraint firstItem="YhN-Fp-CTc" firstAttribute="trailing" secondItem="FIb-0P-NXc" secondAttribute="trailing" constant="60" id="CVX-sa-9A5"/>
                             <constraint firstItem="FIb-0P-NXc" firstAttribute="top" secondItem="rsW-QP-Y5I" secondAttribute="bottom" constant="12" id="Dml-Id-vJ4"/>
                             <constraint firstAttribute="trailing" secondItem="d6C-oN-lZt" secondAttribute="trailing" constant="18" id="GY0-51-Zt6"/>
                             <constraint firstItem="FIb-0P-NXc" firstAttribute="leading" secondItem="YhN-Fp-CTc" secondAttribute="leading" constant="60" id="JEG-ek-a61"/>
                             <constraint firstItem="rsW-QP-Y5I" firstAttribute="top" secondItem="uHG-LP-Vsw" secondAttribute="bottom" constant="24" id="KB6-4A-h5Q"/>
                             <constraint firstItem="YhN-Fp-CTc" firstAttribute="bottom" secondItem="H9k-9h-N6y" secondAttribute="bottom" id="Mdo-Oq-Q3y"/>
+                            <constraint firstItem="Zgk-59-UrG" firstAttribute="top" secondItem="XqO-Xz-Bj3" secondAttribute="bottom" constant="16" id="WtA-qC-UfB"/>
                             <constraint firstItem="d6C-oN-lZt" firstAttribute="leading" secondItem="ZW4-av-Es9" secondAttribute="trailing" constant="18" id="XCF-nw-vsm"/>
                             <constraint firstItem="ZW4-av-Es9" firstAttribute="top" secondItem="YhN-Fp-CTc" secondAttribute="top" id="dGU-Xl-kJy"/>
                             <constraint firstItem="YhN-Fp-CTc" firstAttribute="trailing" secondItem="uHG-LP-Vsw" secondAttribute="trailing" constant="16" id="fGt-Hh-B6d"/>
@@ -103,6 +111,7 @@
                         <outlet property="filterButton" destination="d6C-oN-lZt" id="oF3-qO-Itq"/>
                         <outlet property="messageImageView" destination="FIb-0P-NXc" id="2RK-VW-tT1"/>
                         <outlet property="messageLabel" destination="XqO-Xz-Bj3" id="KkD-vD-lcX"/>
+                        <outlet property="refreshButton" destination="Zgk-59-UrG" id="52n-su-pDF"/>
                         <outlet property="searchBar" destination="ZW4-av-Es9" id="Obp-XU-tiz"/>
                         <outlet property="tableView" destination="H9k-9h-N6y" id="Myo-ZL-KVw"/>
                     </connections>
@@ -116,6 +125,9 @@
         <image name="emptySearchState" width="1000" height="800"/>
         <image name="filterIcon" width="20" height="20"/>
         <image name="searchIcon" width="20" height="20"/>
+        <namedColor name="BasePrimary">
+            <color red="0.24699999392032623" green="0.37599998712539673" blue="0.9570000171661377" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <namedColor name="BaseSurface1">
             <color red="0.9649999737739563" green="0.97600001096725464" blue="0.99599999189376831" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>

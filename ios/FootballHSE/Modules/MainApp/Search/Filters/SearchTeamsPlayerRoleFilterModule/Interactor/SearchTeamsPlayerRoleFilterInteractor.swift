@@ -26,6 +26,4 @@ final class SearchTeamsPlayerRoleFilterInteractor {
 
 // MARK: - SearchTeamsPlayerRoleFilterInteractorInput
 
-extension SearchTeamsPlayerRoleFilterInteractor: SearchTeamsPlayerRoleFilterInteractorInput {
-
-}
+extension SearchTeamsPlayerRoleFilterInteractor: SearchTeamsPlayerRoleFilterInteractorInput {}

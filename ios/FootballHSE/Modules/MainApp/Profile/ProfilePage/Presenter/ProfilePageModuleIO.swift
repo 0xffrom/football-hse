@@ -15,4 +15,5 @@ public protocol ProfilePageModuleOutput: AnyObject {
     func openEditProfile()
     func exit()
     func registerTeam()
+    func openMyApplications()
 }

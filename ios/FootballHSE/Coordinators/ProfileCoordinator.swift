@@ -78,6 +78,15 @@ extension ProfileCoordinator: ProfilePageModuleOutput {
         parentNavigationController?.pushViewController(viewController, animated: true)
     }
 
+    func openMyApplications() {
+        let builder = MyApplicationsPageModuleBuilder(
+            output: self,
+            networkService: networkService
+        )
+        let viewController = builder.build()
+        parentNavigationController?.pushViewController(viewController, animated: true)
+    }
+
     func exit() {
         CurrentUserConfig.clear()
 
@@ -99,3 +108,5 @@ extension ProfileCoordinator: EditProfilePageModuleOutput {
 }
 
 extension ProfileCoordinator: RegisterTeamPageModuleOutput {}
+
+extension ProfileCoordinator: MyApplicationsPageModuleOutput {}

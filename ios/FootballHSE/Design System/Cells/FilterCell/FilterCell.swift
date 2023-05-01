@@ -11,7 +11,7 @@ class FilterCell: UITableViewCell {
 
     struct DisplayData {
         let filterName: String
-        let checkAction: ((Bool) -> Void)?
+        let checkAction: (() -> Void)?
     }
 
     static let identifier = String(describing: FilterCell.self)
@@ -20,7 +20,7 @@ class FilterCell: UITableViewCell {
     @IBOutlet weak var filterLabel: UILabel!
     @IBOutlet weak var checkImage: UIImageView!
 
-    private var checkAction: ((Bool) -> Void)?
+    private var checkAction: (() -> Void)?
     private var checked: Bool = false
 
     override func awakeFromNib() {
@@ -44,7 +44,7 @@ class FilterCell: UITableViewCell {
         } else {
             checkImage.image = R.image.checkboxChecked()
         }
-        checkAction?(checked)
+        checkAction?()
         checked = !checked
     }
 }

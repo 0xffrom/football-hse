@@ -38,13 +38,13 @@ final class AuthorizationPhoneEnteringViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
         addObservers()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
         removeObservers()
     }
 

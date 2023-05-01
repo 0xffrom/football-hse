@@ -10,6 +10,10 @@ import Foundation
 
 protocol SearchTeamsPageInteractorInput: AnyObject {
     func getSearchResults(completion: @escaping (Result<[TeamApplicationDisplayModel], Error>) -> Void)
+    func getSearchResultsWithFilters(position: Int, tournaments: Int,
+                                     completion: @escaping (Result<[TeamApplicationDisplayModel], Error>) -> Void)
+    func createNewApplication(position: Int, tournaments: Int,
+                                     completion: @escaping (Result<Void, Error>) -> Void)
 }
 
 protocol SearchTeamsPageInteractorOutput: AnyObject {

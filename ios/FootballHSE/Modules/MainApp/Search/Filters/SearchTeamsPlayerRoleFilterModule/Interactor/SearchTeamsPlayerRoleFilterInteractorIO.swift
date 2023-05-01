@@ -7,6 +7,7 @@
 
 import Foundation
 
-protocol SearchTeamsPlayerRoleFilterInteractorInput: AnyObject {}
+protocol SearchTeamsPlayerRoleFilterInteractorInput: AnyObject {
+}
 
 protocol SearchTeamsPlayerRoleFilterInteractorOutput: AnyObject {}

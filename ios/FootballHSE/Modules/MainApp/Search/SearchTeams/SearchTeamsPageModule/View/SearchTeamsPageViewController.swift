@@ -26,6 +26,7 @@ final class SearchTeamsPageViewController: UIViewController {
 
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var messageImageView: UIImageView!
+    @IBOutlet weak var refreshButton: UIButton!
 
     @IBOutlet weak var tableView: UITableView!
     private let refreshControl = UIRefreshControl()
@@ -68,6 +69,7 @@ final class SearchTeamsPageViewController: UIViewController {
         setupSearchBar()
         setupFilters()
         setupTableView()
+        setupRefreshButton()
         setupCreateApplicationButton()
 
         messageLabel.isHidden = true
@@ -95,6 +97,10 @@ final class SearchTeamsPageViewController: UIViewController {
     private func setupCreateApplicationButton() {
         createApplicationButton.setTitle("Создать заявку на поиск команды", for: .normal)
         createApplicationButton.addTarget(self, action: #selector(createApplication), for: .touchUpInside)
+    }
+
+    private func setupRefreshButton() {
+        refreshButton.addTarget(self, action: #selector(refresh), for: .touchUpInside)
     }
 
     private func setupTableView() {
@@ -137,6 +143,7 @@ extension SearchTeamsPageViewController: SearchTeamsPageViewInput {
         tableView.isHidden = false
         messageLabel.isHidden = true
         messageImageView.isHidden = true
+        refreshButton.isHidden = true
     }
 
     func setupDataState(with data: [TeamApplicationDisplayModel]) {
@@ -147,11 +154,24 @@ extension SearchTeamsPageViewController: SearchTeamsPageViewInput {
         tableView.isHidden = false
         messageLabel.isHidden = true
         messageImageView.isHidden = true
+        refreshButton.isHidden = true
     }
 
     func setupErrorState() {
         setupEmptyState()
         let alert = UIAlertController(title: "Ошибка сети", message: "Проверьте подключение и повторите попытку", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    func showNewApplicationWasCreatedMessage() {
+        let alert = UIAlertController(title: "Заявка была успешно создана", message: "Вы можете увидеть ее в Профиле", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    func showNewApplicationWasNotCreatedMessage() {
+        let alert = UIAlertController(title: "При создании заявки произошла ошибка", message: "Проверьте подключение и повторите попытку", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
@@ -164,6 +184,7 @@ extension SearchTeamsPageViewController: SearchTeamsPageViewInput {
         tableView.isHidden = true
         messageLabel.isHidden = false
         messageImageView.isHidden = false
+        refreshButton.isHidden = true
 
         messageLabel.text = Constants.noResultsString
         messageImageView.image = UIImage(named: "noResultsSearchState")
@@ -177,6 +198,7 @@ extension SearchTeamsPageViewController: SearchTeamsPageViewInput {
         tableView.isHidden = true
         messageLabel.isHidden = false
         messageImageView.isHidden = false
+        refreshButton.isHidden = false
 
         messageLabel.text = Constants.noApplicationsString
         messageImageView.image = UIImage(named: "emptySearchState")

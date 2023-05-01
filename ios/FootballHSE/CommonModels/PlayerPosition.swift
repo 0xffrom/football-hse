@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum PlayerPosition: Int, Codable {
+enum PlayerPosition: Int, Codable, CaseIterable {
     case сentralForward
     case leftForward
     case rightForward
@@ -41,8 +41,45 @@ extension PlayerPosition {
         }
         return positions
     }
+}
 
-    func getNameOfRole() -> String {
+extension PlayerPosition: Filterabale {
+
+    static func getValueWithIndex(_ index: Int) -> PlayerPosition {
+        PlayerPosition.allCases[index]
+    }
+
+    static func getIndexOfValue(_ item: PlayerPosition) -> Int? {
+        PlayerPosition.allCases.firstIndex(of: item)
+    }
+
+    static func getNumber(items: [PlayerPosition]) -> Int {
+        if items.isEmpty { return -1 }
+        var num = 0
+        items.forEach { item in
+            guard let idx = getIndexOfValue(item) else { return }
+            num += Int.pow(2, idx)
+        }
+        return num
+    }
+
+    static func getListOfAllValues() -> [PlayerPosition] {
+        var arr: [PlayerPosition] = []
+        for value in PlayerPosition.allCases {
+            arr.append(value)
+        }
+        return arr
+    }
+
+    static func getListOfAllValuesInStringFormat() -> [String] {
+        var arr: [String] = []
+        for value in PlayerPosition.allCases {
+            arr.append(value.getStringValue())
+        }
+        return arr
+    }
+
+    func getStringValue() -> String {
         switch self {
         case .сentralForward:
             return "Центральный форвард"
