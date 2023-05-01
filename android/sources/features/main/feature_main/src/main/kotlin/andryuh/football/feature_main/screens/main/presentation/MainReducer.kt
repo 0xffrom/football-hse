@@ -1,6 +1,8 @@
 package andryuh.football.feature_main.screens.main.presentation
 
 import andryuh.football.feature_main.screens.main.models.BottomBarTabType
+import andryuh.football.feature_main.screens.main.models.toCommonTab
+import andryuh.football.feature_main.screens.main.models.toTab
 import andryuh.football.feature_main.screens.main.presentation.MainCommand as Command
 import andryuh.football.feature_main.screens.main.presentation.MainEffect as Effect
 import andryuh.football.feature_main.screens.main.presentation.MainEvent as Event
@@ -16,7 +18,10 @@ internal object MainReducer :
   override fun Result.ui(event: Ui) {
     when (event) {
       is Ui.System.Start -> {
-        commands { +Command.ObserveCaptain }
+        commands {
+          +Command.ObserveCaptain
+          +Command.ObserveTab
+        }
       }
       is Ui.Click.Back -> {
         if (state.tabsHistory.size > 1) {
@@ -29,18 +34,12 @@ internal object MainReducer :
               tabsHistory = state.tabsHistory.dropLast(1),
             )
           }
+
+          commands { +Command.ChangeTab(tab.toCommonTab()) }
         }
       }
       is Ui.Click.BottomBarTab -> {
-        if (state.selectedTab == event.tab) return
-
-        state {
-          copy(
-            selectedTab = event.tab,
-            previousTab = state.selectedTab,
-            tabsHistory = state.tabsHistory + event.tab,
-          )
-        }
+        commands { +Command.ChangeTab(event.tab.toCommonTab()) }
       }
     }
   }
@@ -61,6 +60,17 @@ internal object MainReducer :
                   }
                 }
                 .toImmutableList(),
+          )
+        }
+      }
+      is Internal.ObserveTabSuccess -> {
+        val tab = event.tab.toTab()
+
+        state {
+          copy(
+            selectedTab = tab,
+            previousTab = state.selectedTab,
+            tabsHistory = state.tabsHistory + tab,
           )
         }
       }

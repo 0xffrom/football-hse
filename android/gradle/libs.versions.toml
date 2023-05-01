@@ -50,6 +50,7 @@ lifecycle-compiler = { module = "androidx.lifecycle:lifecycle-compiler", version
 lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
 
+kotlin-date = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version = "0.4.0"}
 kotlin-parcelize = { module = "org.jetbrains.kotlin:kotlin-parcelize-runtime", version.ref = "kotlin" }
 kotlin-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version = "0.3.5" }
 kotlin-serializer = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json-jvm", version = "1.5.0" }

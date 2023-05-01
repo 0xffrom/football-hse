@@ -30,12 +30,15 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import andryuh.football.core_di.rememberDependencies
 import andryuh.football.core_elmslie.rememberEventReceiver
 import andryuh.football.core_elmslie.rememberStore
 import andryuh.football.core_models.joinTitleToString
 import andryuh.football.core_models.mapToTitle
 import andryuh.football.core_navigation.LocalRouter
+import andryuh.football.domain_main.CommonBottomBarTabType
 import andryuh.football.domain_profile.dto.PlayerApplication
+import andryuh.football.feature_profile.di.ProfileFeatureDependencies
 import andryuh.football.feature_profile.screens.profile_application.presentation.ProfileApplicationEffect
 import andryuh.football.feature_profile.screens.profile_application.presentation.ProfileApplicationEvent.Ui
 import andryuh.football.feature_profile.screens.profile_application.presentation.ProfileApplicationStoreFactory
@@ -43,6 +46,8 @@ import andryuh.football.ui_kit.R.*
 import andryuh.football.ui_kit.button.BottomBarStack
 import andryuh.football.ui_kit.button.FButton
 import andryuh.football.ui_kit.items.SectionCard
+import andryuh.football.ui_kit.snack_bar.LocalSnackBarHostState
+import andryuh.football.ui_kit.snack_bar.showError
 import andryuh.football.ui_kit.theme.FootballColors
 import andryuh.football.ui_kit.theme.Style19600
 import andryuh.football.ui_kit.toolbar.Toolbar
@@ -50,6 +55,7 @@ import coil.compose.AsyncImage
 import com.github.terrakok.modo.Screen
 import com.github.terrakok.modo.generateScreenKey
 import com.github.terrakok.modo.stack.back
+import com.github.terrakok.modo.stack.backToRoot
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -70,12 +76,19 @@ internal class ProfileApplicationScreen(
     val eventReceiver = store.rememberEventReceiver()
     val router = LocalRouter.current
 
+    val dependencies: ProfileFeatureDependencies = rememberDependencies()
+    val snackbarHostState = LocalSnackBarHostState.current
+
     LaunchedEffect(key1 = store) {
       store.effects().collect { effect ->
         when (effect) {
           is ProfileApplicationEffect.Close -> router.back()
           is ProfileApplicationEffect.OpenChat -> {
-            // TODO:
+            router.backToRoot()
+            dependencies.bottomTabController.change(CommonBottomBarTabType.Chat)
+          }
+          is ProfileApplicationEffect.ShowError -> {
+            snackbarHostState.showError(effect.error)
           }
         }
       }
@@ -90,6 +103,7 @@ internal class ProfileApplicationScreen(
           BottomBarStack {
             FButton(
               text = "Написать",
+              isLoading = state.isCreatingChatLoading,
             ) {
               eventReceiver(Ui.Click.Chat)
             }

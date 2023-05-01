@@ -5,7 +5,7 @@ android { namespace = "andryuh.football.core_elmslie" }
 dependencies {
   implementation(libs.dagger)
 
-  annotationProcessor(libs.lifecycle.compiler)
+  kapt(libs.lifecycle.compiler)
   implementation(libs.lifecycle.viewmodel)
   implementation(libs.lifecycle.viewmodel.compose)
 

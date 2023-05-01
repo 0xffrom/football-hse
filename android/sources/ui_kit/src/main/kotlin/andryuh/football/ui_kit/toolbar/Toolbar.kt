@@ -16,19 +16,21 @@ import andryuh.football.ui_kit.theme.Style16500
 
 @Composable
 fun Toolbar(
-  onBackClick: () -> Unit,
+  onBackClick: (() -> Unit)? = null,
   title: String,
 ) {
   Box(
     modifier = Modifier.statusBarsPadding().heightIn(min = 44.dp).padding(horizontal = 16.dp),
     contentAlignment = Alignment.CenterStart,
   ) {
-    IconButton(onClick = onBackClick) {
-      Icon(
-        painter = painterResource(id = R.drawable.ic_24_back),
-        contentDescription = null,
-        tint = FootballColors.Icons.Primary,
-      )
+    onBackClick?.let {
+      IconButton(onClick = onBackClick) {
+        Icon(
+          painter = painterResource(id = R.drawable.ic_24_back),
+          contentDescription = null,
+          tint = FootballColors.Icons.Primary,
+        )
+      }
     }
     Text(
       modifier = Modifier.fillMaxWidth(),

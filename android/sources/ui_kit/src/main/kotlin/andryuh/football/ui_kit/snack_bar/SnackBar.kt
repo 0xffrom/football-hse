@@ -9,3 +9,7 @@ import androidx.compose.runtime.staticCompositionLocalOf
 
 val LocalSnackBarHostState =
   staticCompositionLocalOf<SnackbarHostState> { error("SnackbarHostState wasn't provided.") }
+
+suspend fun SnackbarHostState.showError(error: Throwable) {
+  error.message?.let { message -> showSnackbar(message) }
+}

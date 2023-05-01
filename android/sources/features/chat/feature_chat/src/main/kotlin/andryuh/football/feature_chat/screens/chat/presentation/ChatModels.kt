@@ -1,7 +1,10 @@
 package andryuh.football.feature_chat.screens.chat.presentation
 
+import andryuh.football.core_kotlin.Resource
+import andryuh.football.domain_chat.dto.Conversation
+
 internal data class ChatState(
-  val isRefreshing: Boolean = false,
+  val conversations: Resource<List<Conversation>> = Resource.Loading,
 )
 
 internal sealed interface ChatEvent {
@@ -12,23 +15,25 @@ internal sealed interface ChatEvent {
     }
 
     object Click {
-      // your code
-    }
 
-    object Action {
-      // your code
+      data class ConversationCard(val conversation: Conversation) : Ui
     }
   }
 
   sealed interface Internal : ChatEvent {
-    // your code
+
+    data class ObserveConversationsSuccess(val conversations: List<Conversation>) : Internal
+    data class ObserveConversationsError(val error: Throwable) : Internal
   }
 }
 
 internal sealed interface ChatCommand {
-  // your code
+
+  object ObserveConversations : ChatCommand
+  object UpdateConversations: ChatCommand
 }
 
 internal sealed interface ChatEffect {
-  // your code
+
+  data class OpenConversation(val conversation: Conversation) : ChatEffect
 }

@@ -13,7 +13,7 @@ dependencies {
   implementation(libs.coil)
   implementation(libs.retrofit)
 
-  annotationProcessor(libs.lifecycle.compiler)
+  kapt(libs.lifecycle.compiler)
   implementation(libs.lifecycle.viewmodel)
   implementation(libs.lifecycle.viewmodel.compose)
 

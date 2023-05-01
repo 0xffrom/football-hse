@@ -12,7 +12,7 @@ dependencies {
   kapt(libs.dagger.compiler)
   implementation(libs.retrofit)
 
-  annotationProcessor(libs.lifecycle.compiler)
+  kapt(libs.lifecycle.compiler)
   implementation(libs.lifecycle.viewmodel)
   implementation(libs.lifecycle.viewmodel.compose)
 
@@ -34,6 +34,8 @@ dependencies {
   implementation(project(":domain_search"))
   implementation(project(":domain_profile"))
   implementation(project(":domain_team"))
+  implementation(project(":domain_chat"))
+  implementation(project(":domain_main"))
 
   testImplementation(libs.bundles.kotest)
 }

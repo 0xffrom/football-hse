@@ -3,6 +3,10 @@ plugins { id("andryuh.football.app") }
 android {
   namespace = "andryuh.football.app"
 
+  defaultConfig {
+    versionName = "1.0.0"
+    versionCode = 4
+  }
   buildTypes {
     debug {
       isDebuggable = true
@@ -27,7 +31,6 @@ android {
 }
 
 dependencies {
-
   implementation(libs.bundles.compose)
   implementation(libs.bundles.elmslie)
   implementation(libs.coil)

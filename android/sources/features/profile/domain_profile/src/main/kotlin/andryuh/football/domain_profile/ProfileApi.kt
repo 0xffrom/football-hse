@@ -13,6 +13,9 @@ interface ProfileApi {
   @GET("Players/{phoneNumber}")
   suspend fun getProfile(@Path("phoneNumber") phoneNumber: String): Profile
 
+  @GET("Players")
+  suspend fun getAllProfile(): List<Profile>
+
   @PUT("Players/{phoneNumber}")
   suspend fun updateProfile(
     @Path("phoneNumber") phoneNumber: String,

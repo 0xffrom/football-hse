@@ -47,7 +47,7 @@ internal class MainScreen : BaseScreen() {
       )
 
     val router = LocalRouter.current
-    val snackbarHostState = LocalSnackBarHostState.current
+    val snackBarHostState = LocalSnackBarHostState.current
 
     LaunchedEffect(Unit) {
       store.effects().collect { effect ->
@@ -55,7 +55,7 @@ internal class MainScreen : BaseScreen() {
           is MainEffect.Close -> router.back()
           is MainEffect.ShowError -> {
             CoroutineScope(Dispatchers.Main).launch {
-              effect.error.message?.let { snackbarHostState.showSnackbar(it) }
+              effect.error.message?.let { snackBarHostState.showSnackbar(it) }
             }
           }
         }
@@ -117,7 +117,7 @@ internal class MainScreen : BaseScreen() {
         label = "",
       ) {
         when (it) {
-          BottomBarTabType.Search -> searchScreen.Content()
+          BottomBarTabType.SearchTeam -> searchScreen.Content()
           BottomBarTabType.SearchPlayer -> searchPlayerScreen.Content()
           BottomBarTabType.Chat -> chatScreen.Content()
           BottomBarTabType.Profile -> profileScreen.Content()

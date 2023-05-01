@@ -1,5 +1,6 @@
 package andryuh.football.feature_chat.screens.chat.presentation
 
+import andryuh.football.core_kotlin.Resource
 import andryuh.football.feature_chat.screens.chat.presentation.ChatCommand as Command
 import andryuh.football.feature_chat.screens.chat.presentation.ChatEffect as Effect
 import andryuh.football.feature_chat.screens.chat.presentation.ChatEvent as Event
@@ -14,10 +15,24 @@ internal object ChatReducer :
   override fun Result.ui(event: Ui) {
     when (event) {
       is Ui.System.Start -> {
-        // your code
+        commands { +Command.ObserveConversations }
+      }
+      is Ui.Click.ConversationCard -> {
+        effects { +Effect.OpenConversation(event.conversation) }
       }
     }
   }
 
-  override fun Result.internal(event: Internal) = Unit
+  override fun Result.internal(event: Internal) {
+    when (event) {
+      is Internal.ObserveConversationsSuccess -> {
+        state { copy(conversations = Resource.Data(event.conversations)) }
+      }
+      is Internal.ObserveConversationsError -> {
+        if (state.conversations is Resource.Loading) {
+          commands { +Command.UpdateConversations }
+        }
+      }
+    }
+  }
 }

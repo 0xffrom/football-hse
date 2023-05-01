@@ -6,6 +6,7 @@ import andryuh.football.feature_profile.screens.profile_application.presentation
 import andryuh.football.feature_profile.screens.profile_application.presentation.ProfileApplicationEvent.Internal
 import andryuh.football.feature_profile.screens.profile_application.presentation.ProfileApplicationEvent.Ui
 import andryuh.football.feature_profile.screens.profile_application.presentation.ProfileApplicationState as State
+import andryuh.football.ui_kit.error.SomethingWentWrongException
 import vivid.money.elmslie.core.store.dsl_reducer.ScreenDslReducer
 
 internal object ProfileApplicationReducer :
@@ -18,10 +19,22 @@ internal object ProfileApplicationReducer :
         effects { +Effect.Close }
       }
       is Ui.Click.Chat -> {
-        effects { +Effect.OpenChat(state.playerApplication.id) }
+        state { copy(isCreatingChatLoading = true) }
+        commands { +Command.CreateChat(state.playerApplication.phoneNumber) }
       }
     }
   }
 
-  override fun Result.internal(event: Internal) = Unit
+  override fun Result.internal(event: Internal) {
+    when (event) {
+      Internal.CreateChatSuccess -> {
+        state { copy(isCreatingChatLoading = false) }
+        effects { +Effect.OpenChat }
+      }
+      is Internal.CreateChatError -> {
+        state { copy(isCreatingChatLoading = false) }
+        effects { +Effect.ShowError(SomethingWentWrongException()) }
+      }
+    }
+  }
 }

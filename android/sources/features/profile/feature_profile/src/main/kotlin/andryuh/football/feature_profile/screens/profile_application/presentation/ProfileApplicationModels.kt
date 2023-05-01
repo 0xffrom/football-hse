@@ -4,6 +4,7 @@ import andryuh.football.domain_profile.dto.PlayerApplication
 
 internal data class ProfileApplicationState(
   val playerApplication: PlayerApplication,
+  val isCreatingChatLoading: Boolean = false,
 )
 
 internal sealed interface ProfileApplicationEvent {
@@ -22,13 +23,22 @@ internal sealed interface ProfileApplicationEvent {
     }
   }
 
-  sealed interface Internal : ProfileApplicationEvent
+  sealed interface Internal : ProfileApplicationEvent {
+
+    object CreateChatSuccess : Internal
+    data class CreateChatError(val error: Throwable) : Internal
+  }
 }
 
-internal sealed interface ProfileApplicationCommand
+internal sealed interface ProfileApplicationCommand {
+
+  data class CreateChat(val phoneNumber: String) : ProfileApplicationCommand
+}
 
 internal sealed interface ProfileApplicationEffect {
 
   object Close : ProfileApplicationEffect
-  data class OpenChat(val playerId: String) : ProfileApplicationEffect
+  object OpenChat : ProfileApplicationEffect
+
+  data class ShowError(val error: Throwable) : ProfileApplicationEffect
 }

@@ -8,20 +8,21 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.SnackbarHost
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.core.view.WindowCompat
-import com.github.terrakok.modo.Modo
-import com.github.terrakok.modo.Screen
-import com.github.terrakok.modo.animation.ScreenTransition
-import com.github.terrakok.modo.stack.StackNavModel
-import com.github.terrakok.modo.stack.StackScreen
 import andryuh.football.core_di.getComponent
 import andryuh.football.core_navigation.LocalRouter
 import andryuh.football.di.RootDependencies
 import andryuh.football.ui_kit.snack_bar.LocalSnackBarHostState
 import andryuh.football.ui_kit.snack_bar.rememberSnackBarHostState
 import andryuh.football.ui_kit.theme.FootballTheme
+import com.github.terrakok.modo.Modo
+import com.github.terrakok.modo.Screen
+import com.github.terrakok.modo.animation.ScreenTransition
+import com.github.terrakok.modo.stack.StackNavModel
+import com.github.terrakok.modo.stack.StackScreen
 import kotlinx.parcelize.Parcelize
 
 class MainActivity : ComponentActivity() {
@@ -33,7 +34,8 @@ class MainActivity : ComponentActivity() {
 
     val dependencies: RootDependencies = getComponent(this)
 
-    val rootStackView = RootStackView(rootScreen = dependencies.authFeatureApi.getScreen())
+    val rootStackView =
+      RootStackView(rootScreen = dependencies.authFeatureApi.getScreen()) { finish() }
 
     rootScreen = Modo.init(savedInstanceState, rootScreen) { rootStackView }
     dependencies.routerHolder.setRouter(rootScreen!!)
@@ -61,13 +63,19 @@ class MainActivity : ComponentActivity() {
 }
 
 @Parcelize
-class RootStackView(private val stackNavModel: StackNavModel) : StackScreen(stackNavModel) {
+class RootStackView(private val stackNavModel: StackNavModel, private val onFinish: () -> Unit) :
+  StackScreen(stackNavModel) {
 
-  constructor(rootScreen: Screen) : this(StackNavModel(rootScreen))
+  constructor(rootScreen: Screen, onFinish: () -> Unit) : this(StackNavModel(rootScreen), onFinish)
 
   @OptIn(ExperimentalAnimationApi::class)
   @Composable
   override fun Content() {
+    LaunchedEffect(stackNavModel.navigationState.stack.isEmpty()) {
+      if (stackNavModel.navigationState.stack.isEmpty()) {
+        onFinish.invoke()
+      }
+    }
     TopScreenContent { ScreenTransition() }
   }
 }
