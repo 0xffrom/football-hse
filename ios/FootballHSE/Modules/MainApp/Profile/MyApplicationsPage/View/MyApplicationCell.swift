@@ -13,6 +13,7 @@ class MyApplicationCell: UITableViewCell {
 
     @IBOutlet weak var rolesCollectionView: UICollectionView!
     @IBOutlet weak var tournaments: UILabel!
+    @IBOutlet weak var deleteButton: UIButton!
 
     private var roles: [PlayerPosition] = [] {
         didSet {
@@ -33,6 +34,8 @@ class MyApplicationCell: UITableViewCell {
         rolesCollectionView.dataSource = self
         rolesCollectionView.delegate = self
         rolesCollectionView.showsHorizontalScrollIndicator = false
+
+        deleteButton.setTitle("", for: .normal)
     }
 
     func configure(tournaments: String, roles: [PlayerPosition]) {

@@ -32,7 +32,7 @@
                                                 <rect key="frame" x="16" y="309" width="382" height="76"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d5V-Pq-Nk6" customClass="HSESmartTextFieldView" customModule="FootballHSE" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d5V-Pq-Nk6" customClass="HSETextView" customModule="FootballHSE" customModuleProvider="target">
                                                 <rect key="frame" x="16" y="401" width="382" height="76"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>

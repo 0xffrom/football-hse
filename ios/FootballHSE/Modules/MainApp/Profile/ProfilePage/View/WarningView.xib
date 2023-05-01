@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -16,7 +16,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="CB4-o5-viL">
-                    <rect key="frame" x="341" y="14.5" width="23" height="21"/>
+                    <rect key="frame" x="341" y="19.666666666666668" width="23" height="21.000000000000004"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="Gwz-vE-LQK"/>
                         <constraint firstAttribute="width" constant="23" id="HnS-KO-vA3"/>
@@ -29,10 +29,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RyU-Ck-S2i">
-                    <rect key="frame" x="4" y="28" width="90.5" height="31"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="90.5" id="LhB-gZ-WcK"/>
-                    </constraints>
+                    <rect key="frame" x="4" y="28" width="90.333333333333329" height="31"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" title="Добавить">
                         <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="14"/>
@@ -43,7 +40,6 @@
             <viewLayoutGuide key="safeArea" id="gU3-jP-zq0"/>
             <color key="backgroundColor" red="0.99215686319999996" green="0.95686274770000002" blue="0.9098039269" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
-                <constraint firstItem="RyU-Ck-S2i" firstAttribute="top" secondItem="x8u-Qk-v2h" secondAttribute="bottom" constant="3" id="03m-3y-hp3"/>
                 <constraint firstItem="CB4-o5-viL" firstAttribute="leading" secondItem="x8u-Qk-v2h" secondAttribute="trailing" constant="2" id="3fE-Bz-jwz"/>
                 <constraint firstAttribute="bottom" secondItem="RyU-Ck-S2i" secondAttribute="bottom" constant="3" id="9XI-VI-9wA"/>
                 <constraint firstItem="x8u-Qk-v2h" firstAttribute="leading" secondItem="RSi-Fs-Fho" secondAttribute="leading" constant="16" id="Ape-Vw-5QN"/>

@@ -32,7 +32,7 @@ final class EditProfilePageViewController: UIViewController {
     @IBOutlet weak var nameTextField: HSESmartTextFieldView!
     @IBOutlet weak var footballExperienceTextField: HSETextView!
     @IBOutlet weak var tournamentExperienceTextField: HSETextView!
-    @IBOutlet weak var contactTextField: HSESmartTextFieldView!
+    @IBOutlet weak var contactTextField: HSETextView!
     @IBOutlet weak var aboutTextField: HSETextView!
 
     @IBOutlet weak var saveButton: HSEMainButton!
@@ -147,16 +147,11 @@ final class EditProfilePageViewController: UIViewController {
     }
 
     private func setupContactTextField() {
-        contactTextField.text = CurrentUserConfig.shared.contact
-        contactTextField.cornerRadius = 12
-        contactTextField.horizontalInset = 16
-        contactTextField.verticalInset = 12
-        contactTextField.hightOfTextField = 48
-        contactTextField.descriptionLabelText = "КОНТАКТНАЯ ИНФОРМАЦИЯ"
-        contactTextField.placeholder = "Телефон, Telegram..."
-        contactTextField.configureRestrictions(
-            minLength: 2,
-            maxLength: 40
+        contactTextField.configure(
+            label: "КОНТАКТНАЯ ИНФОРМАЦИЯ",
+            hintText: "Телефон, Telegram...",
+            text: CurrentUserConfig.shared.contact,
+            maxNamberOfCharacters: 40
         )
     }
 
