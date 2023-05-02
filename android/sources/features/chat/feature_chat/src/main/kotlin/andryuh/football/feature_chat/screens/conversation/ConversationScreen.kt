@@ -114,6 +114,7 @@ internal class ConversationScreen(
               eventReceiver.invoke(ConversationEvent.Ui.Action.OnMessageTextFieldChange(value))
             },
             placeholder = "Сообщение",
+            maxLines = 3,
           )
           IconButton(
             modifier = Modifier.size(24.dp),

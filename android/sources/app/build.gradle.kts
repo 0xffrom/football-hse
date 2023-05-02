@@ -4,8 +4,8 @@ android {
   namespace = "andryuh.football.app"
 
   defaultConfig {
-    versionName = "1.0.2"
-    versionCode = 6
+    versionName = "1.0.4"
+    versionCode = 8
   }
   buildTypes {
     debug {

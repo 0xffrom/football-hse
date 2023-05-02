@@ -118,9 +118,9 @@ constructor(
     cache: MutableStateFlow<List<Message>?>,
     receiverPhoneNumber: String
   ) {
-    val userPhoneNumber = phoneNumberStorage.getPhoneRequired()
-
-    cache.emit(chatApi.getMessages(userPhoneNumber, receiverPhoneNumber))
+    phoneNumberStorage.getPhone()?.takeIf(String::isNotBlank)?.let { userPhoneNumber ->
+      cache.emit(chatApi.getMessages(userPhoneNumber, receiverPhoneNumber))
+    }
   }
 
   private suspend fun updateConversations() {
