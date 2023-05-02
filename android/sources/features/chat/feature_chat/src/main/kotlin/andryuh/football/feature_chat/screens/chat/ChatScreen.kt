@@ -24,15 +24,19 @@ import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import andryuh.football.core_elmslie.rememberEventReceiver
 import andryuh.football.core_elmslie.rememberStore
 import andryuh.football.core_kotlin.Resource
+import andryuh.football.core_navigation.LocalRouter
 import andryuh.football.feature_chat.R
+import andryuh.football.feature_chat.screens.chat.presentation.ChatEffect
 import andryuh.football.feature_chat.screens.chat.presentation.ChatEvent
 import andryuh.football.feature_chat.screens.chat.presentation.ChatStoreFactory
 import andryuh.football.feature_chat.screens.chat.ui.ConversationCard
 import andryuh.football.feature_chat.screens.chat.ui.ConversationCardShimmer
+import andryuh.football.feature_chat.screens.conversation.ConversationScreen
 import andryuh.football.ui_kit.BaseScreen
 import andryuh.football.ui_kit.theme.FootballColors
 import andryuh.football.ui_kit.theme.Style16400
 import andryuh.football.ui_kit.toolbar.Toolbar
+import com.github.terrakok.modo.stack.forward
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -50,10 +54,13 @@ internal class ChatScreen : BaseScreen() {
     val eventReceiver = store.rememberEventReceiver()
     val state by store.states().collectAsState(store.currentState)
 
+    val router = LocalRouter.current
     LaunchedEffect(key1 = store) {
       store.effects().collect { effect ->
         when (effect) {
-          else -> Unit
+          is ChatEffect.OpenConversation -> {
+            router.forward(ConversationScreen(conversation = effect.conversation))
+          }
         }
       }
     }

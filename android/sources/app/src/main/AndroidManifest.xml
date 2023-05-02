@@ -7,7 +7,7 @@
 
     <application
         android:name=".FootballApplication"
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -17,6 +17,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HSEFootball"
         tools:targetApi="31">
+
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            tools:node="remove" />
+
         <activity
             android:name="andryuh.football.MainActivity"
             android:exported="true"

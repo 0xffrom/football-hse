@@ -6,6 +6,7 @@ import andryuh.football.domain_chat.ChatApi
 import andryuh.football.domain_chat.ChatFeatureApi
 import andryuh.football.feature_chat.feature_api.ChatFeatureApiImpl
 import andryuh.football.feature_chat.screens.chat.presentation.ChatStoreFactory
+import andryuh.football.feature_chat.screens.conversation.presentation.ConversationStoreFactory
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -22,6 +23,11 @@ abstract class ChatFeatureModule {
   @IntoMap
   @StoreFactoryKey(ChatStoreFactory::class)
   internal abstract fun ChatStoreFactory.bindChatStoreFactory(): StoreFactory
+
+  @Binds
+  @IntoMap
+  @StoreFactoryKey(ConversationStoreFactory::class)
+  internal abstract fun ConversationStoreFactory.bindConversationStoreFactory(): StoreFactory
 }
 
 @Module

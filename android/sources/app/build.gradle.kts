@@ -4,22 +4,23 @@ android {
   namespace = "andryuh.football.app"
 
   defaultConfig {
-    versionName = "1.0.0"
-    versionCode = 4
+    versionName = "1.0.2"
+    versionCode = 6
   }
   buildTypes {
     debug {
       isDebuggable = true
       isMinifyEnabled = false
       isShrinkResources = false
+      applicationIdSuffix = ".debug"
 
       signingConfig = (signingConfigs.getByName("debug"))
     }
 
     release {
       isDebuggable = false
-      isMinifyEnabled = false
-      isShrinkResources = false
+      isMinifyEnabled = true
+      isShrinkResources = true
       proguardFiles(
         getDefaultProguardFile("proguard-android-optimize.txt"),
         "proguard-rules.pro",
@@ -31,17 +32,21 @@ android {
 }
 
 dependencies {
+  implementation(libs.android.startup)
   implementation(libs.bundles.compose)
   implementation(libs.bundles.elmslie)
   implementation(libs.coil)
   implementation(libs.compose.activity)
   implementation(libs.coroutines)
   implementation(libs.dagger)
+  implementation(libs.datastore)
   implementation(libs.datastore.security)
   implementation(libs.datastore.security.preferences)
   implementation(libs.datastore.core)
   implementation(libs.datastore.preferences)
   implementation(libs.kotlin.immutable)
+  implementation(libs.kotlin.date)
+  implementation(libs.kotlin.serializer)
   implementation(libs.lifecycle.compiler)
   implementation(libs.lifecycle.viewmodel)
   implementation(libs.lifecycle.viewmodel.compose)
@@ -49,6 +54,7 @@ dependencies {
   implementation(libs.okhttp)
   implementation(libs.retrofit)
   implementation(libs.timber)
+  implementation(libs.tink)
 
   kapt(libs.dagger.compiler)
 

@@ -79,10 +79,14 @@ internal fun ConversationCard(
       Column(
         modifier = Modifier.fillMaxHeight(),
       ) {
-        val time = lastMessage.sendTime.time
+        val time = lastMessage.sendTime?.time
         val timeFormat =
           remember(time) {
-            LocalTime.of(time.hour, time.minute).format(DateTimeFormatter.ofPattern("hh:mm"))
+            time
+              ?.let {
+                LocalTime.of(time.hour, time.minute).format(DateTimeFormatter.ofPattern("hh:mm"))
+              }
+              .orEmpty()
           }
 
         Text(

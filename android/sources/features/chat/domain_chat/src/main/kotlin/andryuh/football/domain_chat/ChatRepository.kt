@@ -17,6 +17,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
+import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.toKotlinLocalDateTime
 import timber.log.Timber
 
 @Singleton
@@ -33,14 +35,11 @@ constructor(
 
   fun observeConversations(): Flow<List<Conversation>> {
     CoroutineScope(Dispatchers.IO).launch {
-      flow {
-          while (true) {
-            delay(3000L)
-            emit(Unit)
-          }
-        }
-        .collect { updateConversations() }
+      delay(500L)
+      updateConversations()
     }
+
+    polling { updateConversations() }
 
     return conversationsCache.filterNotNull()
   }
@@ -86,15 +85,17 @@ constructor(
     updateConversations()
   }
 
-  suspend fun observeMessages(conversation: Conversation): Flow<List<Message>> {
+  fun observeMessages(conversation: Conversation): Flow<List<Message>> {
     val cache = messagesCacheMap.getOrPut(key = conversation.phoneNumber) { MutableStateFlow(null) }
 
     CoroutineScope(Dispatchers.IO).launch { updateMessages(cache, conversation.phoneNumber) }
 
+    polling { updateMessages(cache, conversation.phoneNumber) }
+
     return cache.filterNotNull()
   }
 
-  suspend fun sendMessage(conversation: Conversation, messageContent: String) {
+  suspend fun sendMessage(conversation: Conversation, messageContent: String): List<Message> {
     val userPhoneNumber = phoneNumberStorage.getPhoneRequired()
 
     val cache = messagesCacheMap.getOrPut(key = conversation.phoneNumber) { MutableStateFlow(null) }
@@ -104,10 +105,13 @@ constructor(
         senderPhoneNumber = userPhoneNumber,
         receiverPhoneNumber = conversation.phoneNumber,
         content = messageContent,
+        sendTime = java.time.LocalDateTime.now().toKotlinLocalDateTime(),
       )
     )
 
     updateMessages(cache, conversation.phoneNumber)
+
+    return cache.value.orEmpty()
   }
 
   private suspend fun updateMessages(
@@ -149,6 +153,21 @@ constructor(
           .distinctBy(Conversation::phoneNumber)
           .filter { conversation -> conversation.name.isNotBlank() }
       )
+    }
+  }
+
+  private fun polling(
+    delay: Long = 3000L,
+    onPoll: suspend () -> Unit,
+  ) {
+    CoroutineScope(Dispatchers.IO).launch {
+      flow {
+          while (true) {
+            delay(3000L)
+            emit(Unit)
+          }
+        }
+        .collect { onPoll.invoke() }
     }
   }
 }

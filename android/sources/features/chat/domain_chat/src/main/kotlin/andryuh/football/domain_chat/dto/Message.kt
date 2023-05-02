@@ -11,7 +11,7 @@ import kotlinx.serialization.Serializable
 @Parcelize
 data class Message(
   val id: String,
-  val sendTime: @RawValue LocalDateTime,
+  val sendTime: @RawValue LocalDateTime?,
   @SerialName("text") val content: String,
   val isRead: Boolean,
   @SerialName("sender") val senderPhoneNumber: String,
@@ -23,4 +23,5 @@ data class SendMessageRequestBody(
   @SerialName("sender") val senderPhoneNumber: String,
   @SerialName("receiver") val receiverPhoneNumber: String,
   @SerialName("text") val content: String,
+  val sendTime: @RawValue LocalDateTime,
 )

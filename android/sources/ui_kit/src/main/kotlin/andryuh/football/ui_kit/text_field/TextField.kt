@@ -42,6 +42,7 @@ fun FTextField(
   keyboardActions: KeyboardActions = KeyboardActions.Default,
   isError: Boolean = false,
   singleLine: Boolean = false,
+  maxLines: Int = if (singleLine) 1 else Int.MAX_VALUE,
 ) {
   var isFocused by remember { mutableStateOf(false) }
   val borderModifier =
@@ -102,7 +103,7 @@ fun FTextField(
     keyboardActions = keyboardActions,
     interactionSource = interactionSource,
     singleLine = singleLine,
-    maxLines = if (singleLine) 1 else Int.MAX_VALUE,
+    maxLines = maxLines,
     minLines = 1,
     decorationBox =
       @Composable { innerTextField ->
