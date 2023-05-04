@@ -7,6 +7,7 @@ import { AdministrationApi } from '../../../shared/api';
 import { TeamRequest } from '../../../shared/lib/Requests.types';
 import { Description } from '../../../shared/ui/Description';
 import { DetailedCard } from '../../../shared/ui/DetailedCard';
+import { TEAM_APPLICATION, deserialize } from '../../../shared/lib/deserialize.utils';
 
 import cn from './PlayerSearchDetail.module.scss';
 
@@ -43,11 +44,11 @@ export const PlayerSearchDetail = () => {
           <CardLogo src={teamData.logo} alt={teamData.name} />
           <Description
             title="Позиции"
-            description={teamData.playerPosition}
+            description={deserialize(teamData.playerPosition, TEAM_APPLICATION.playerPosition)}
           />
           <Description
             title="Турнир"
-            description={teamData.tournaments}
+            description={deserialize(teamData.tournaments, TEAM_APPLICATION.tournaments)}
           />
           {
             teamData.contact && (

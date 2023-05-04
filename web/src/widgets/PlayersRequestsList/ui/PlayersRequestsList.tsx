@@ -4,6 +4,7 @@ import { RequestCardList } from '../../../features/RequestCardList';
 import { RequestCardProps } from '../../../shared/ui/RequestCard';
 import { AppRoutes } from '../../../shared/routes';
 import { TeamRequest } from '../../../shared/lib/Requests.types';
+import { deserialize, TEAM_APPLICATION } from '../../../shared/lib/deserialize.utils';
 
 import cn from './PlayersRequestsList.module.scss';
 
@@ -20,8 +21,8 @@ export const PlayersRequestsList = () => {
     return requests.map((request) => ({
       header: request.name ?? '',
       content: {
-        title: request.playerPosition,
-        description: request.tournaments,
+        title: deserialize(request.playerPosition, TEAM_APPLICATION.playerPosition),
+        description: deserialize(request.tournaments, TEAM_APPLICATION.tournaments),
         attention: request.attention,
       },
       redirectTo: `${AppRoutes.PlayersSearch}/${request.id}`,

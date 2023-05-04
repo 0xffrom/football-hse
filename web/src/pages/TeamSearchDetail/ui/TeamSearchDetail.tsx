@@ -7,6 +7,7 @@ import { PlayerRequest } from '../../../shared/lib/Requests.types';
 import { AppRoutes } from '../../../shared/routes';
 import { Description } from '../../../shared/ui/Description';
 import { DetailedCard } from '../../../shared/ui/DetailedCard';
+import { PLAYER_APPLICATION, deserialize } from '../../../shared/lib/deserialize.utils';
 
 import cn from './TeamSearchDetail.module.scss';
 
@@ -43,7 +44,7 @@ export const TeamSearchDetail = () => {
           <CardLogo src={fullPlayerData.photo} alt={fullPlayerData.name} />
           <Description
             title="Амплуа"
-            description={fullPlayerData.footballPosition}
+            description={deserialize(fullPlayerData.footballPosition, PLAYER_APPLICATION.footballPosition)}
           />
           {fullPlayerData.faculty && (
           <Description
@@ -54,7 +55,7 @@ export const TeamSearchDetail = () => {
 
           <Description
             title="Предпочтительные турниры"
-            description={fullPlayerData.preferredTournaments}
+            description={deserialize(fullPlayerData.preferredTournaments, PLAYER_APPLICATION.preferredTournaments)}
           />
 
           {

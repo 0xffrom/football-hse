@@ -4,6 +4,7 @@ import { RequestCardList } from '../../../features/RequestCardList';
 import { RequestCardProps } from '../../../shared/ui/RequestCard';
 import { AppRoutes } from '../../../shared/routes';
 import { PlayerRequest } from '../../../shared/lib/Requests.types';
+import { deserialize, PLAYER_APPLICATION } from '../../../shared/lib/deserialize.utils';
 
 import cn from './TeamsRequestsList.module.scss';
 
@@ -20,7 +21,7 @@ export const TeamsRequestsList = () => {
     return requests.map((request) => ({
       header: request.name ?? '',
       content: {
-        title: request.footballPosition,
+        title: deserialize(request.footballPosition, PLAYER_APPLICATION.footballPosition),
         description: request.footballExperience ?? '',
         attention: request.attention,
       },
