@@ -8,10 +8,12 @@
 import Foundation
 
 public protocol ProfilePageModuleInput: AnyObject {
-    
+    func updateProfileInfo()
+    func updateTeamInfo()
 }
 
 public protocol ProfilePageModuleOutput: AnyObject {
+    func moduleDidLoad(_ module: ProfilePageModuleInput)
     func openEditProfile()
     func exit()
     func registerTeam()

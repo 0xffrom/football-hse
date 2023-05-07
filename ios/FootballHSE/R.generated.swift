@@ -90,9 +90,6 @@ struct _R {
     /// Image `EditIcon`.
     var editIcon: RswiftResources.ImageResource { .init(name: "EditIcon", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
-    /// Image `Ellipse 8`.
-    var ellipse8: RswiftResources.ImageResource { .init(name: "Ellipse 8", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
     /// Image `EmptyStateInProfile`.
     var emptyStateInProfile: RswiftResources.ImageResource { .init(name: "EmptyStateInProfile", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
@@ -101,6 +98,9 @@ struct _R {
 
     /// Image `Image`.
     var image: RswiftResources.ImageResource { .init(name: "Image", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `addPhotoImage`.
+    var addPhotoImage: RswiftResources.ImageResource { .init(name: "addPhotoImage", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
     /// Image `chatIcon`.
     var chatIcon: RswiftResources.ImageResource { .init(name: "chatIcon", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
@@ -169,7 +169,7 @@ struct _R {
     }
   }
 
-  /// This `_R.nib` struct is generated, and contains static references to 7 nibs.
+  /// This `_R.nib` struct is generated, and contains static references to 12 nibs.
   struct nib {
     let bundle: Foundation.Bundle
 
@@ -188,8 +188,23 @@ struct _R {
     /// Nib `MyApplicationCell`.
     var myApplicationCell: RswiftResources.NibReference<MyApplicationCell> { .init(name: "MyApplicationCell", bundle: bundle) }
 
+    /// Nib `RegisterTeamView`.
+    var registerTeamView: RswiftResources.NibReference<RegisterTeamView> { .init(name: "RegisterTeamView", bundle: bundle) }
+
     /// Nib `SearchTeamsCell`.
     var searchTeamsCell: RswiftResources.NibReference<SearchTeamsCell> { .init(name: "SearchTeamsCell", bundle: bundle) }
+
+    /// Nib `TeamErrorStateView`.
+    var teamErrorStateView: RswiftResources.NibReference<TeamErrorStateView> { .init(name: "TeamErrorStateView", bundle: bundle) }
+
+    /// Nib `TeamInfoIsLoadingView`.
+    var teamInfoIsLoadingView: RswiftResources.NibReference<TeamInfoIsLoadingView> { .init(name: "TeamInfoIsLoadingView", bundle: bundle) }
+
+    /// Nib `TeamIsRegisteredView`.
+    var teamIsRegisteredView: RswiftResources.NibReference<TeamIsRegisteredView> { .init(name: "TeamIsRegisteredView", bundle: bundle) }
+
+    /// Nib `TeamRegistrationInProgressView`.
+    var teamRegistrationInProgressView: RswiftResources.NibReference<TeamRegistrationInProgressView> { .init(name: "TeamRegistrationInProgressView", bundle: bundle) }
 
     /// Nib `WarningView`.
     var warningView: RswiftResources.NibReference<WarningView> { .init(name: "WarningView", bundle: bundle) }
@@ -206,11 +221,23 @@ struct _R {
       if UIKit.UIColor(named: "BaseSurface1", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'BaseSurface1' is used in nib 'InfoView', but couldn't be loaded.") }
       if UIKit.UIColor(named: "TextAndIconsSecondary", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'TextAndIconsSecondary' is used in nib 'InfoView', but couldn't be loaded.") }
       if #available(iOS 13.0, *) { if UIKit.UIImage(systemName: "trash.circle.fill") == nil { throw RswiftResources.ValidationError("[R.swift] System image named 'trash.circle.fill' is used in nib 'MyApplicationCell', but couldn't be loaded.") } }
-      if UIKit.UIColor(named: "AccentRed", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'AccentRed' is used in nib 'MyApplicationCell', but couldn't be loaded.") }
+      if UIKit.UIColor(named: "BasePrimary", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'BasePrimary' is used in nib 'MyApplicationCell', but couldn't be loaded.") }
       if UIKit.UIColor(named: "BaseSurface1", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'BaseSurface1' is used in nib 'MyApplicationCell', but couldn't be loaded.") }
       if UIKit.UIColor(named: "TextAndIconsPrimary", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'TextAndIconsPrimary' is used in nib 'MyApplicationCell', but couldn't be loaded.") }
+      if UIKit.UIImage(named: "ArrowIcon", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'ArrowIcon' is used in nib 'RegisterTeamView', but couldn't be loaded.") }
+      if UIKit.UIImage(named: "documentIcon", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'documentIcon' is used in nib 'RegisterTeamView', but couldn't be loaded.") }
+      if UIKit.UIColor(named: "BaseSurface1", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'BaseSurface1' is used in nib 'RegisterTeamView', but couldn't be loaded.") }
       if UIKit.UIColor(named: "BaseSurface1", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'BaseSurface1' is used in nib 'SearchTeamsCell', but couldn't be loaded.") }
       if UIKit.UIColor(named: "TextAndIconsSecondary", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'TextAndIconsSecondary' is used in nib 'SearchTeamsCell', but couldn't be loaded.") }
+      if UIKit.UIColor(named: "BasePrimary", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'BasePrimary' is used in nib 'TeamErrorStateView', but couldn't be loaded.") }
+      if UIKit.UIColor(named: "BaseSurface1", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'BaseSurface1' is used in nib 'TeamErrorStateView', but couldn't be loaded.") }
+      if UIKit.UIColor(named: "BaseSurface1", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'BaseSurface1' is used in nib 'TeamInfoIsLoadingView', but couldn't be loaded.") }
+      if UIKit.UIImage(named: "ArrowIcon", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'ArrowIcon' is used in nib 'TeamIsRegisteredView', but couldn't be loaded.") }
+      if UIKit.UIColor(named: "BaseSurface1", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'BaseSurface1' is used in nib 'TeamIsRegisteredView', but couldn't be loaded.") }
+      if UIKit.UIColor(named: "TextAndIconsSecondary", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'TextAndIconsSecondary' is used in nib 'TeamIsRegisteredView', but couldn't be loaded.") }
+      if UIKit.UIImage(named: "ArrowIcon", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'ArrowIcon' is used in nib 'TeamRegistrationInProgressView', but couldn't be loaded.") }
+      if UIKit.UIColor(named: "AccentOrange", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'AccentOrange' is used in nib 'TeamRegistrationInProgressView', but couldn't be loaded.") }
+      if UIKit.UIColor(named: "BaseSurface1", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'BaseSurface1' is used in nib 'TeamRegistrationInProgressView', but couldn't be loaded.") }
       if UIKit.UIImage(named: "Image", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'Image' is used in nib 'WarningView', but couldn't be loaded.") }
       if UIKit.UIColor(named: "AccentOrange", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'AccentOrange' is used in nib 'WarningView', but couldn't be loaded.") }
       if UIKit.UIColor(named: "TextAndIconsSecondary", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'TextAndIconsSecondary' is used in nib 'WarningView', but couldn't be loaded.") }
@@ -327,7 +354,7 @@ struct _R {
       var editProfilePageViewController: RswiftResources.StoryboardViewControllerIdentifier<EditProfilePageViewController> { .init(identifier: "EditProfilePageViewController", storyboard: name, bundle: bundle) }
 
       func validate() throws {
-        if UIKit.UIImage(named: "Ellipse 8", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'Ellipse 8' is used in storyboard 'EditProfilePage', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "addPhotoImage", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'addPhotoImage' is used in storyboard 'EditProfilePage', but couldn't be loaded.") }
         if UIKit.UIColor(named: "BasePrimary", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'BasePrimary' is used in storyboard 'EditProfilePage', but couldn't be loaded.") }
         if UIKit.UIColor(named: "TextIconsWhite", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'TextIconsWhite' is used in storyboard 'EditProfilePage', but couldn't be loaded.") }
         if editProfilePageViewController() == nil { throw RswiftResources.ValidationError("[R.swift] ViewController with identifier 'editProfilePageViewController' could not be loaded from storyboard 'EditProfilePage' as 'EditProfilePageViewController'.") }
@@ -410,7 +437,7 @@ struct _R {
       var registerTeamPageViewController: RswiftResources.StoryboardViewControllerIdentifier<RegisterTeamPageViewController> { .init(identifier: "RegisterTeamPageViewController", storyboard: name, bundle: bundle) }
 
       func validate() throws {
-        if UIKit.UIImage(named: "Ellipse 8", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'Ellipse 8' is used in storyboard 'RegisterTeamPage', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "addPhotoImage", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'addPhotoImage' is used in storyboard 'RegisterTeamPage', but couldn't be loaded.") }
         if UIKit.UIColor(named: "BasePrimary", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'BasePrimary' is used in storyboard 'RegisterTeamPage', but couldn't be loaded.") }
         if UIKit.UIColor(named: "TextIconsWhite", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'TextIconsWhite' is used in storyboard 'RegisterTeamPage', but couldn't be loaded.") }
         if registerTeamPageViewController() == nil { throw RswiftResources.ValidationError("[R.swift] ViewController with identifier 'registerTeamPageViewController' could not be loaded from storyboard 'RegisterTeamPage' as 'RegisterTeamPageViewController'.") }

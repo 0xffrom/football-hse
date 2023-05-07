@@ -28,7 +28,7 @@ public final class EditProfilePageModuleBuilder {
     // MARK: Public Methods
 
     public func build() -> UIViewController {
-        let interactor = EditProfilePageInteractor()
+        let interactor = EditProfilePageInteractor(networkService: networkService)
         let presenter = EditProfilePagePresenter(interactor: interactor)
 
         let storyboard = UIStoryboard(name: "EditProfilePage", bundle: nil)

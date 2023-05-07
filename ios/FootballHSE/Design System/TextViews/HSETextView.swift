@@ -10,14 +10,22 @@ import SnapKit
 
 class HSETextView: UIView {
 
-    private var maxNamberOfCharacters: Int?
-    private var label: String?
-    private var hintText: String?
-    private var text: String?
+    var text: String? {
+        get {
+            textView.text
+        }
+        set {
+            textView.text = newValue
+        }
+    }
 
     private lazy var labelView = UILabel()
     private lazy var wrapperView = UIView()
     private lazy var textView = UITextView()
+
+    private var maxNamberOfCharacters: Int?
+    private var label: String?
+    private var hintText: String?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -41,8 +49,11 @@ class HSETextView: UIView {
             textView.textColor = UIColor.lightGray
             return
         }
-        textView.text = text
         textView.textColor = UIColor.black
+    }
+
+    func isEmpty() -> Bool {
+        return textView.textColor == UIColor.lightGray
     }
 
     private func setupView() {
@@ -91,6 +102,9 @@ extension HSETextView: UITextViewDelegate {
             textView.text = nil
             textView.textColor = UIColor.black
         }
+
+        textView.superview?.layer.borderColor = UIColor(named: "BasePrimary")?.cgColor
+        textView.superview?.layer.borderWidth = 1
     }
 
     func textViewDidEndEditing(_ textView: UITextView) {
@@ -98,5 +112,8 @@ extension HSETextView: UITextViewDelegate {
             textView.text = hintText
             textView.textColor = UIColor.lightGray
         }
+
+        textView.superview?.layer.borderWidth = 0
+        textView.superview?.layer.borderColor = nil
     }
 }

@@ -19,6 +19,8 @@ final class ProfilePageViewController: UIViewController {
 
     // MARK: Outlets
 
+    @IBOutlet weak var stackView: UIStackView!
+    
     @IBOutlet weak var profileWrapperView: UIView!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -26,10 +28,36 @@ final class ProfilePageViewController: UIViewController {
 
     @IBOutlet weak var exitButtton: UIButton!
 
-    @IBOutlet weak var registerTeamView: UIView!
     @IBOutlet weak var myApplicationsView: UIView!
 
     @IBOutlet weak var profileInfoStackView: UIStackView!
+
+    // MARK: Private Properties
+
+    private lazy var registerTeamView: RegisterTeamView! = {
+        let view = R.nib.registerTeamView(withOwner: self)!
+        return view
+    }()
+
+    private lazy var teamRegistrationInProgressView: TeamRegistrationInProgressView! = {
+        let view = R.nib.teamRegistrationInProgressView(withOwner: self)!
+        return view
+    }()
+
+    private lazy var teamIsRegisteredView: TeamIsRegisteredView! = {
+        let view = R.nib.teamIsRegisteredView(withOwner: self)!
+        return view
+    }()
+
+    private lazy var errorWhileLoadingTeamView: TeamErrorStateView! = {
+        let view = R.nib.teamErrorStateView(withOwner: self)!
+        return view
+    }()
+
+    private lazy var teamInfoIsLoadingView: TeamInfoIsLoadingView! = {
+        let view = R.nib.teamInfoIsLoadingView(withOwner: self)!
+        return view
+    }()
 
     // MARK: Public Properties
 
@@ -40,6 +68,7 @@ final class ProfilePageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        output?.viewDidLoad()
         setupView()
     }
 
@@ -60,6 +89,7 @@ final class ProfilePageViewController: UIViewController {
         setupProfileView()
         setupMyApplicationsView()
         setupRegisterTeamView()
+        setupRegisterTeamView()
     }
 
     private func setupExitButton() {
@@ -67,6 +97,8 @@ final class ProfilePageViewController: UIViewController {
     }
 
     private func setupProfileView() {
+        profileInfoStackView.removeAllArrangedSubviews()
+
         setupProfileWrapperView()
         setupEditButtton()
         setupProfileImage()
@@ -163,10 +195,12 @@ final class ProfilePageViewController: UIViewController {
         myApplicationsView.layer.cornerRadius = Constants.wrapperViewsCornerRadius
     }
 
-    private func setupRegisterTeamView() {
-        registerTeamView.layer.cornerRadius = Constants.wrapperViewsCornerRadius
-        let registerTeamTap = UITapGestureRecognizer(target: self, action: #selector(self.registerTeam(_:)))
-        registerTeamView.addGestureRecognizer(registerTeamTap)
+    private func removeAllTeamViews() {
+        stackView.remove(view: registerTeamView)
+        stackView.remove(view: teamRegistrationInProgressView)
+        stackView.remove(view: teamIsRegisteredView)
+        stackView.remove(view: errorWhileLoadingTeamView)
+        stackView.remove(view: teamInfoIsLoadingView)
     }
 
     // MARK: Actions
@@ -179,10 +213,6 @@ final class ProfilePageViewController: UIViewController {
         output?.exit()
     }
 
-    @objc func registerTeam(_ sender: UITapGestureRecognizer? = nil) {
-        output?.registerTeam()
-    }
-
     @objc func openMyApplications(_ sender: UITapGestureRecognizer? = nil) {
         output?.openMyApplications()
     }
@@ -193,4 +223,63 @@ final class ProfilePageViewController: UIViewController {
 
 extension ProfilePageViewController: ProfilePageViewInput {
 
+    func updateInfo() {
+        setupProfileView()
+    }
+
+    func setupLoadingState() {
+        removeAllTeamViews()
+        stackView.addArrangedSubview(teamInfoIsLoadingView)
+        stackView.sizeToFit()
+        stackView.layoutIfNeeded()
+    }
+
+    func setupRegisterTeamView() {
+        registerTeamView?.configureAction { [weak self] in
+            guard let self else { return }
+            self.output?.registerTeam()
+        }
+
+        removeAllTeamViews()
+        stackView.addArrangedSubview(registerTeamView)
+        stackView.sizeToFit()
+        stackView.layoutIfNeeded()
+    }
+
+    func setupTeamRegistrationInProgressView() {
+        removeAllTeamViews()
+        stackView.addArrangedSubview(teamRegistrationInProgressView)
+        stackView.sizeToFit()
+        stackView.layoutIfNeeded()
+    }
+
+    func setupTeamIsRegisteredView(nameOfTeam: String?) {
+        teamIsRegisteredView.configureName(nameOfTeam)
+
+        removeAllTeamViews()
+        stackView.addArrangedSubview(teamIsRegisteredView)
+        stackView.sizeToFit()
+        stackView.layoutIfNeeded()
+    }
+
+    func setupErrorWhileLoadingTeamView() {
+        errorWhileLoadingTeamView?.configureAction { [weak self] in
+            guard let self else { return }
+            self.output?.viewWantToRefreshTeamInfo()
+        }
+
+        removeAllTeamViews()
+        stackView.addArrangedSubview(errorWhileLoadingTeamView)
+        stackView.sizeToFit()
+        stackView.layoutIfNeeded()
+    }
+
+    func showTeamDeclineAlert() {
+        let alert = UIAlertController(title: "Заявка отклонена", message: "Ваша заявка на создание команды была отклонена модератором. Для получения подробной информации Вы можете обратиться в чат поддержки. ", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+            guard let self else { return }
+            self.output?.deleteDeclinedTeam()
+        })
+        self.present(alert, animated: true, completion: nil)
+    }
 }

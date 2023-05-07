@@ -20,7 +20,6 @@ final class MyApplicationsPageInteractor {
     
     weak var output: MyApplicationsPageInteractorOutput?
     
-    
     // MARK: Private Properties
 
     private let networkService: INetworkService

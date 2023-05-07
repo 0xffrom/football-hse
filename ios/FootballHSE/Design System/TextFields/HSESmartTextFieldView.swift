@@ -13,6 +13,19 @@ final class HSESmartTextFieldView: UIView {
 
     // MARK: Public Properties
 
+    var firstResponder: Bool {
+        get {
+            return textField.isFirstResponder
+        }
+        set {
+            if newValue {
+                textField.becomeFirstResponder()
+            } else {
+                textField.resignFirstResponder()
+            }
+        }
+    }
+
     var descriptionLabelText: String? {
         get {
             return descriptionLabel.text
@@ -171,6 +184,8 @@ final class HSESmartTextFieldView: UIView {
     private var predicteFormat: String?
     private var didFillMandatoryCharacters: Bool?
 
+    private var didFillMandatoryCharactersAction: (() -> Void)?
+
     // MARK: Lifecycle
 
     override func awakeFromNib() {
@@ -226,6 +241,10 @@ final class HSESmartTextFieldView: UIView {
         }
 
         return valid
+    }
+
+    func setDidFillMandatoryCharactersAction(_ action: (() -> Void)?) {
+        didFillMandatoryCharactersAction = action
     }
 
     // MARK: Private
@@ -354,5 +373,9 @@ extension HSESmartTextFieldView: MaskedTextFieldDelegateListener {
     ) {
         inputValue = value
         didFillMandatoryCharacters = complete
+
+        if complete {
+            didFillMandatoryCharactersAction?()
+        }
     }
 }

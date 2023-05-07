@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1wF-Sr-mcE" customClass="TeamErrorStateView" customModule="FootballHSE" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="436" height="72"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Не удалось загрузить информацию о комнаде" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lp9-q7-sqV">
+                    <rect key="frame" x="12" y="12" width="412" height="24"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cmw-NL-Sei">
+                    <rect key="frame" x="172.66666666666666" y="45" width="90.999999999999972" height="15"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="15" id="1IT-zs-3fC"/>
+                    </constraints>
+                    <color key="tintColor" name="BasePrimary"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Обновить">
+                        <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="14"/>
+                    </buttonConfiguration>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="oZ7-Dn-ugp"/>
+            <color key="backgroundColor" name="BaseSurface1"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="cmw-NL-Sei" secondAttribute="bottom" constant="12" id="GqN-e9-Aa1"/>
+                <constraint firstItem="lp9-q7-sqV" firstAttribute="leading" secondItem="1wF-Sr-mcE" secondAttribute="leading" constant="12" id="e5S-lP-Ovd"/>
+                <constraint firstItem="cmw-NL-Sei" firstAttribute="top" secondItem="lp9-q7-sqV" secondAttribute="bottom" constant="9" id="gQj-GM-yVf"/>
+                <constraint firstAttribute="trailing" secondItem="lp9-q7-sqV" secondAttribute="trailing" constant="12" id="khi-Ss-bey"/>
+                <constraint firstItem="lp9-q7-sqV" firstAttribute="top" secondItem="1wF-Sr-mcE" secondAttribute="top" constant="12" id="pLV-Za-hgS"/>
+                <constraint firstAttribute="height" constant="68" id="xXm-nm-zyG"/>
+                <constraint firstItem="cmw-NL-Sei" firstAttribute="centerX" secondItem="oZ7-Dn-ugp" secondAttribute="centerX" id="zG9-zx-1Ui"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="refreshButtton" destination="cmw-NL-Sei" id="sYy-si-hPK"/>
+            </connections>
+            <point key="canvasLocation" x="-152.67175572519082" y="-17.605633802816904"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="BasePrimary">
+            <color red="0.24699999392032623" green="0.37599998712539673" blue="0.9570000171661377" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="BaseSurface1">
+            <color red="0.9649999737739563" green="0.97600001096725464" blue="0.99599999189376831" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+    </resources>
+</document>

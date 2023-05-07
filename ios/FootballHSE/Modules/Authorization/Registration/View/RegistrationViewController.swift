@@ -78,8 +78,8 @@ final class RegistrationViewController: UIViewController {
 
         nameTextField.configureRestrictions(
             minLength: 2,
-            maxLength: 41,
-            predicteFormat: "[А-Яа-яЁёa-zA-Z]+$" // TODO: поменять
+            maxLength: 40,
+            predicteFormat: "[А-Яа-яЁёa-zA-Z ]+$"
         )
     }
 

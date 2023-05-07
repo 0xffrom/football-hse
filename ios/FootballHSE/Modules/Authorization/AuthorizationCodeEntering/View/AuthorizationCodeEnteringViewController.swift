@@ -85,6 +85,21 @@ final class AuthorizationCodeEnteringViewController: UIViewController {
             field.font = .systemFont(ofSize: 30, weight: .medium)
             field.configureRestrictions(mask: "[0]")
         }
+
+        codeTextField1.setDidFillMandatoryCharactersAction { [weak self] in
+            guard let self else { return }
+            self.codeTextField2.firstResponder = true
+        }
+
+        codeTextField2.setDidFillMandatoryCharactersAction { [weak self] in
+            guard let self else { return }
+            self.codeTextField3.firstResponder = true
+        }
+
+        codeTextField3.setDidFillMandatoryCharactersAction { [weak self] in
+            guard let self else { return }
+            self.codeTextField4.firstResponder = true
+        }
     }
 
     private func setupErrorLabel() {

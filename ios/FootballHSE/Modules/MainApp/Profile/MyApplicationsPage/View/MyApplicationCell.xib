@@ -44,7 +44,7 @@
                         </constraints>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" image="trash.circle.fill" catalog="system">
-                            <color key="baseForegroundColor" name="AccentRed"/>
+                            <color key="baseForegroundColor" name="BasePrimary"/>
                         </buttonConfiguration>
                     </button>
                 </subviews>
@@ -71,8 +71,8 @@
     </objects>
     <resources>
         <image name="trash.circle.fill" catalog="system" width="128" height="123"/>
-        <namedColor name="AccentRed">
-            <color red="0.92500001192092896" green="0.3529999852180481" blue="0.3880000114440918" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        <namedColor name="BasePrimary">
+            <color red="0.24699999392032623" green="0.37599998712539673" blue="0.9570000171661377" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="BaseSurface1">
             <color red="0.9649999737739563" green="0.97600001096725464" blue="0.99599999189376831" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

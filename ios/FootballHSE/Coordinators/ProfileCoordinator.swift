@@ -22,6 +22,8 @@ final class ProfileCoordinator {
 
     private let networkService: INetworkService
 
+    private weak var input: ProfilePageModuleInput?
+
     // MARK: Lifecycle
 
     init(
@@ -40,7 +42,7 @@ final class ProfileCoordinator {
 extension ProfileCoordinator: Coordinatable {
 
     func start(animated: Bool) {
-        let builder = ProfilePageModuleBuilder(output: self)
+        let builder = ProfilePageModuleBuilder(output: self, networkService: networkService)
         let viewController = builder.build()
 
         let navigationController = UINavigationController(rootViewController: viewController)
@@ -59,6 +61,10 @@ extension ProfileCoordinator: Coordinatable {
 }
 
 extension ProfileCoordinator: ProfilePageModuleOutput {
+
+    func moduleDidLoad(_ module: ProfilePageModuleInput) {
+        input = module
+    }
 
     func registerTeam() {
         let builder = RegisterTeamPageModuleBuilder(
@@ -103,10 +109,17 @@ extension ProfileCoordinator: ProfilePageModuleOutput {
 extension ProfileCoordinator: EditProfilePageModuleOutput {
 
     func back() {
+        input?.updateProfileInfo()
         parentNavigationController?.popViewController(animated: true)
     }
 }
 
-extension ProfileCoordinator: RegisterTeamPageModuleOutput {}
+extension ProfileCoordinator: RegisterTeamPageModuleOutput {
+
+    func backWithTeamRegistered() {
+        input?.updateTeamInfo()
+        parentNavigationController?.popViewController(animated: true)
+    }
+}
 
 extension ProfileCoordinator: MyApplicationsPageModuleOutput {}

@@ -10,19 +10,11 @@ import SnapKit
 
 final class EditProfilePageViewController: UIViewController {
 
-    struct DisplayData {
-        let photo: String?
-        let name: String?
-        let footballExperience: String?
-        let tournamentExperience: String?
-        let contact: String?
-        let about: String?
-    }
-
     // MARK: Private data structures
 
     private enum Constants {
         static let profileImageCornerRadius: CGFloat = 16
+        static let initialImage = R.image.addPhotoImage()
     }
 
     // MARK: Outlets
@@ -43,7 +35,7 @@ final class EditProfilePageViewController: UIViewController {
 
     // MARK: Private Properties
 
-    private var data: DisplayData? {
+    private var data: EditProfileModel? {
         didSet {
             setupView()
         }
@@ -69,12 +61,6 @@ final class EditProfilePageViewController: UIViewController {
         super.viewDidDisappear(animated)
 
         removeObservers()
-    }
-
-    // MARK: Public
-
-    func setupData(_ data: DisplayData) {
-        self.data = data
     }
 
     // MARK: Private
@@ -124,7 +110,7 @@ final class EditProfilePageViewController: UIViewController {
         nameTextField.configureRestrictions(
             minLength: 2,
             maxLength: 40,
-            predicteFormat: "[А-Яа-яЁёa-zA-Z]+$"
+            predicteFormat: "[А-Яа-яЁёa-zA-Z ]+$"
         )
     }
 
@@ -175,6 +161,7 @@ final class EditProfilePageViewController: UIViewController {
         ImagePickerControllerService.shared.imagePickedBlock = { [weak self] image in
             guard let self else { return }
             self.profileImage.image = image
+            self.output?.profilePhotoChanged()
         }
     }
 }
@@ -208,15 +195,15 @@ extension EditProfilePageViewController {
     // MARK: Actions
 
     @objc private func keyboardWillShow(notification: NSNotification) {
-        // output?.viewDidStartEditiong()
+        output?.viewDidStartEditiong()
     }
 
     @objc private func keyboardWillHide(notification: NSNotification) {
-        // output?.viewDidEndEditing()
+        output?.viewDidEndEditing()
     }
 
     @objc private func save(sender: UIButton) {
-        output?.save()
+        output?.save(withPhoto: profileImage.image)
     }
 }
 
@@ -224,11 +211,44 @@ extension EditProfilePageViewController {
 
 extension EditProfilePageViewController: EditProfilePageViewInput {
 
+    func setupData(_ data: EditProfileModel) {
+        self.data = data
+    }
+
     func setLoadingState() {
         saveButton.isLoading = true
     }
 
     func removeLoadingState() {
         saveButton.isLoading = false
+    }
+
+    func getData() -> EditProfileModel {
+        return EditProfileModel(
+            photo: CurrentUserConfig.shared.photo,
+            name: nameTextField.text,
+            footballExperience: footballExperienceTextField.isEmpty() ? nil : footballExperienceTextField.text,
+            tournamentExperience: tournamentExperienceTextField.isEmpty() ? nil : tournamentExperienceTextField.text,
+            contact: contactTextField.isEmpty() ? nil : contactTextField.text,
+            about: aboutTextField.isEmpty() ? nil : aboutTextField.text
+        )
+    }
+
+    func validate() -> Bool {
+        nameTextField.validate()
+    }
+
+    func showAlert() {
+        let alert = UIAlertController(title: "Ошибка сети", message: "Проверьте подключение и повторите попытку", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    func setNameNormalState() {
+        nameTextField.validationState = .normal
+    }
+
+    func setNameErrorState() {
+        nameTextField.validationState = .error
     }
 }

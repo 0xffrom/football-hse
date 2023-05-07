@@ -28,7 +28,7 @@ public final class RegisterTeamPageModuleBuilder {
     // MARK: Public Methods
 
     public func build() -> UIViewController {
-        let interactor = RegisterTeamPageInteractor()
+        let interactor = RegisterTeamPageInteractor(networkService: networkService)
         let presenter = RegisterTeamPagePresenter(interactor: interactor)
 
         let storyboard = UIStoryboard(name: "RegisterTeamPage", bundle: nil)
