@@ -20,6 +20,8 @@ final class ProfileCoordinator {
     private weak var parentTabBarController: UITabBarController?
     private weak var parentNavigationController: UINavigationController?
 
+    private var resignCapitanStatusAction: (() -> Void)?
+
     private let networkService: INetworkService
 
     private weak var input: ProfilePageModuleInput?
@@ -29,11 +31,13 @@ final class ProfileCoordinator {
     init(
         parentTabBarController: UITabBarController,
         networkService: INetworkService,
-        window: UIWindow
+        window: UIWindow,
+        resignCapitanStatusAction: (() -> Void)?
     ) {
         self.parentTabBarController = parentTabBarController
         self.networkService = networkService
         self.window = window
+        self.resignCapitanStatusAction = resignCapitanStatusAction
     }
 }
 
@@ -87,6 +91,16 @@ extension ProfileCoordinator: ProfilePageModuleOutput {
     func openMyApplications() {
         let builder = MyApplicationsPageModuleBuilder(
             output: self,
+            networkService: networkService,
+            type: .user
+        )
+        let viewController = builder.build()
+        parentNavigationController?.pushViewController(viewController, animated: true)
+    }
+
+    func openTeamInfo() {
+        let builder = TeamPageModuleBuilder(
+            output: self,
             networkService: networkService
         )
         let viewController = builder.build()
@@ -95,6 +109,7 @@ extension ProfileCoordinator: ProfilePageModuleOutput {
 
     func exit() {
         CurrentUserConfig.clear()
+        CurrentTeamConfig.clear()
 
         let rootCoordinator = RootCoordinator(
             parentNavigationController: UINavigationController(),
@@ -117,9 +132,28 @@ extension ProfileCoordinator: EditProfilePageModuleOutput {
 extension ProfileCoordinator: RegisterTeamPageModuleOutput {
 
     func backWithTeamRegistered() {
-        input?.updateTeamInfo()
+        input?.setupTeamRegistrationInProgressView()
         parentNavigationController?.popViewController(animated: true)
     }
 }
 
 extension ProfileCoordinator: MyApplicationsPageModuleOutput {}
+
+extension ProfileCoordinator: TeamPageModuleOutput {
+
+    func backWithTeamDeleted() {
+        input?.setupRegisterTeamView()
+        resignCapitanStatusAction?()
+        parentNavigationController?.popViewController(animated: true)
+    }
+
+    func openTeamApplications() {
+        let builder = MyApplicationsPageModuleBuilder(
+            output: self,
+            networkService: networkService,
+            type: .team
+        )
+        let viewController = builder.build()
+        parentNavigationController?.pushViewController(viewController, animated: true)
+    }
+}

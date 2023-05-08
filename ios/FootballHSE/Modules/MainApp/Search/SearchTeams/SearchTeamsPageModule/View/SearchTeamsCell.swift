@@ -47,11 +47,11 @@ class SearchTeamsCell: UITableViewCell {
         teamImage.image = nil
     }
 
-    func configure(teamName: String, tournaments: String, image: UIImage?, roles: [PlayerPosition]) {
+    func configure(teamName: String, tournaments: String?, image: UIImage?, roles: [PlayerPosition]) {
         self.teamName.text = teamName
         self.tournaments.text = tournaments
         self.roles = roles
-        self.teamImage.image = image ?? UIImage(named: "defaultTeamImage")!
+        self.teamImage.image = image ?? R.image.teamIcon()!
     }
 }
 

@@ -13,7 +13,7 @@ struct TeamApplicationResponseModel: Codable {
     let name: String
     let logo: String?
     let contact: String?
-    let playerPosition: Int
-    let tournaments: Int
-    let description: String
+    let playerPosition: Int?
+    let tournaments: Int?
+    let description: String?
 }

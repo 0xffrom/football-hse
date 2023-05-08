@@ -29,8 +29,9 @@ final class MyApplicationsPageViewController: UIViewController {
     // MARK: Public Properties
 
     var output: MyApplicationsPageViewOutput?
+    var type: TypeOfApplications?
 
-    var data: [ProfilePlayerApplicationDisplayModel] = [] {
+    var data: [ProfileApplicationDisplayModel] = [] {
         didSet {
             tableView.reloadData()
         }
@@ -50,7 +51,11 @@ final class MyApplicationsPageViewController: UIViewController {
     private func setupView() {
         setupTableView()
         setupRefreshButton()
-        navigationItem.title = "Мои заявки"
+        if type == .team {
+            navigationItem.title = "Зявки команды"
+        } else {
+            navigationItem.title = "Мои заявки"
+        }
     }
 
     private func setupRefreshButton() {
@@ -71,6 +76,16 @@ final class MyApplicationsPageViewController: UIViewController {
         tableView.showsVerticalScrollIndicator = false
     }
 
+    private func deleteApplication(with id: Int) {
+        let alert = UIAlertController(title: "Уверены, что хотите удалить заявку?", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Удалить", style: .default) { [weak self] _ in
+            guard let self else { return }
+            self.output?.deleteApplication(with: id)
+        })
+        alert.addAction(UIAlertAction(title: "Отмена", style: .default))
+        self.present(alert, animated: true, completion: nil)
+    }
+
     // MARK: Actions
 
     @objc private func refresh(_ sender: AnyObject) {
@@ -82,7 +97,6 @@ final class MyApplicationsPageViewController: UIViewController {
 // MARK: - MyApplicationsPageViewInput
 
 extension MyApplicationsPageViewController: MyApplicationsPageViewInput {
-
     func setupLoadingState() {
         if !refreshControl.isRefreshing {
             refreshControl.beginRefreshing()
@@ -93,7 +107,7 @@ extension MyApplicationsPageViewController: MyApplicationsPageViewInput {
         refreshButton.isHidden = true
     }
 
-    func setupDataState(with data: [ProfilePlayerApplicationDisplayModel]) {
+    func setupDataState(with data: [ProfileApplicationDisplayModel]) {
         if refreshControl.isRefreshing {
             refreshControl.endRefreshing()
         }
@@ -131,6 +145,12 @@ extension MyApplicationsPageViewController: MyApplicationsPageViewInput {
         messageLabel.text = Constants.noApplicationsString
         messageImageView.image = UIImage(named: "EmptyStateInProfile")
     }
+
+    func setupErrorWhileDeletingState() {
+        let alert = UIAlertController(title: "Ошибка сети", message: "Проверьте подключение и повторите попытку", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
 }
 
 // MARK: - UITableViewDelegate
@@ -165,7 +185,9 @@ extension MyApplicationsPageViewController: UITableViewDataSource {
         searchCell.configure(
             tournaments: application.tournaments,
             roles: application.playerPosition
-        )
+        ) { [weak self] in
+            self?.deleteApplication(with: application.id)
+        }
         return searchCell
     }
 

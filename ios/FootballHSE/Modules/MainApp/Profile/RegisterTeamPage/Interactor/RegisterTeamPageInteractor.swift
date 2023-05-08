@@ -57,8 +57,11 @@ extension RegisterTeamPageInteractor: RegisterTeamPageInteractorInput {
             guard let self else { return }
             switch result {
             case .success(let team):
-                CurrentTeamConfig.shared.name = teamInfo.name
-                CurrentTeamConfig.shared.about = teamInfo.about
+                CurrentTeamConfig.shared.name = team.name
+                CurrentTeamConfig.shared.about = team.about
+                CurrentTeamConfig.shared.photoUrl = team.logo
+                CurrentTeamConfig.shared.status = team.status
+                CurrentTeamConfig.shared.id = team.id
                 self.editPhoto(image, team.id, completion)
             case let .failure(error):
                 completion(.failure(error))

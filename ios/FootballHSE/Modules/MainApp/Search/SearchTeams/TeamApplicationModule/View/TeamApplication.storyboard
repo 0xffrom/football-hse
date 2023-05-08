@@ -22,17 +22,17 @@
                                 <rect key="frame" x="0.0" y="47" width="390" height="763"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wNM-mD-NNU">
-                                        <rect key="frame" x="0.0" y="0.0" width="390" height="649.33333333333337"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="657.33333333333337"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultTeamImage" translatesAutoresizingMaskIntoConstraints="NO" id="8PH-TD-MS7">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="teamIcon" translatesAutoresizingMaskIntoConstraints="NO" id="8PH-TD-MS7">
                                                 <rect key="frame" x="166" y="20" width="58" height="58"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="58" id="R8q-Xr-z3p"/>
                                                     <constraint firstAttribute="height" constant="58" id="TFA-eH-4wz"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jHy-Zs-Ioj">
-                                                <rect key="frame" x="171" y="98" width="48.333333333333343" height="23"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jHy-Zs-Ioj">
+                                                <rect key="frame" x="16" y="98" width="358" height="23"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -79,7 +79,7 @@
                                                         <color key="textColor" name="TextAndIconsSecondary"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="16" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dmw-gv-puf">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dmw-gv-puf">
                                                         <rect key="frame" x="20" y="44.333333333333314" width="318" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
@@ -97,7 +97,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SAy-mK-ZWU">
-                                                <rect key="frame" x="16" y="438" width="358" height="81.333333333333371"/>
+                                                <rect key="frame" x="16" y="446" width="358" height="81.333333333333371"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Дополнительная информация" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kqj-py-k43">
                                                         <rect key="frame" x="20" y="20" width="180.66666666666666" height="14.333333333333336"/>
@@ -131,7 +131,7 @@
                                                         <color key="textColor" name="TextAndIconsSecondary"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="16" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sYj-ZA-os3">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sYj-ZA-os3">
                                                         <rect key="frame" x="20" y="44.333333333333371" width="318" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
@@ -149,7 +149,7 @@
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zia-Ah-fTP" customClass="HSEMainButton" customModule="FootballHSE" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="539.33333333333337" width="358" height="60"/>
+                                                <rect key="frame" x="16" y="547.33333333333337" width="358" height="60"/>
                                                 <color key="backgroundColor" name="BasePrimary"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="60" id="Sq3-my-TEq"/>
@@ -161,8 +161,10 @@
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
+                                            <constraint firstItem="jHy-Zs-Ioj" firstAttribute="leading" secondItem="wNM-mD-NNU" secondAttribute="leading" constant="16" id="7TF-Pn-m4g"/>
                                             <constraint firstItem="8PH-TD-MS7" firstAttribute="top" secondItem="wNM-mD-NNU" secondAttribute="top" constant="20" id="7dD-RM-zZq"/>
                                             <constraint firstItem="7oz-Ae-iwr" firstAttribute="top" secondItem="09h-Vs-Ztn" secondAttribute="bottom" constant="20" id="AqW-H6-z5Y"/>
+                                            <constraint firstAttribute="trailing" secondItem="jHy-Zs-Ioj" secondAttribute="trailing" constant="16" id="CzX-Zc-cpZ"/>
                                             <constraint firstItem="09h-Vs-Ztn" firstAttribute="top" secondItem="jHy-Zs-Ioj" secondAttribute="bottom" constant="20" id="G65-Sy-c7i"/>
                                             <constraint firstItem="7oz-Ae-iwr" firstAttribute="leading" secondItem="09h-Vs-Ztn" secondAttribute="leading" id="Ge9-RC-M3N"/>
                                             <constraint firstItem="jHy-Zs-Ioj" firstAttribute="centerX" secondItem="wNM-mD-NNU" secondAttribute="centerX" id="KGz-dm-GXD"/>
@@ -178,7 +180,7 @@
                                             <constraint firstItem="09h-Vs-Ztn" firstAttribute="leading" secondItem="wNM-mD-NNU" secondAttribute="leading" constant="16" id="ezh-3J-cKz"/>
                                             <constraint firstItem="7oz-Ae-iwr" firstAttribute="trailing" secondItem="09h-Vs-Ztn" secondAttribute="trailing" id="htH-6W-vaH"/>
                                             <constraint firstItem="jHy-Zs-Ioj" firstAttribute="top" secondItem="8PH-TD-MS7" secondAttribute="bottom" constant="20" id="l67-Fu-N2H"/>
-                                            <constraint firstItem="SAy-mK-ZWU" firstAttribute="top" secondItem="Cep-Bw-W5H" secondAttribute="bottom" constant="12" id="nLe-gw-SpB"/>
+                                            <constraint firstItem="SAy-mK-ZWU" firstAttribute="top" secondItem="Cep-Bw-W5H" secondAttribute="bottom" constant="20" id="nLe-gw-SpB"/>
                                             <constraint firstItem="SAy-mK-ZWU" firstAttribute="trailing" secondItem="Cep-Bw-W5H" secondAttribute="trailing" id="qF8-GD-UDn"/>
                                             <constraint firstAttribute="trailing" secondItem="zia-Ah-fTP" secondAttribute="trailing" constant="16" id="wHG-os-njs"/>
                                         </constraints>
@@ -205,6 +207,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="chatButton" destination="zia-Ah-fTP" id="fpH-6t-HTT"/>
                         <outlet property="contactLabel" destination="dmw-gv-puf" id="KhM-rk-DTf"/>
                         <outlet property="contactView" destination="Cep-Bw-W5H" id="bJi-VV-KBa"/>
                         <outlet property="iamge" destination="8PH-TD-MS7" id="xhh-NP-ZAm"/>
@@ -213,7 +216,6 @@
                         <outlet property="name" destination="jHy-Zs-Ioj" id="Uvi-Fh-qPK"/>
                         <outlet property="rolesCollection" destination="n1H-lk-1ll" id="aJx-iX-Kqv"/>
                         <outlet property="rolesView" destination="09h-Vs-Ztn" id="EgQ-zQ-VVQ"/>
-                        <outlet property="saveButton" destination="zia-Ah-fTP" id="fpH-6t-HTT"/>
                         <outlet property="tournamentsLabel" destination="sYj-ZA-os3" id="ZK6-7q-shs"/>
                         <outlet property="tournamentsView" destination="7oz-Ae-iwr" id="RC8-YM-p6s"/>
                     </connections>
@@ -224,7 +226,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="defaultTeamImage" width="156" height="156"/>
+        <image name="teamIcon" width="240" height="240"/>
         <namedColor name="BasePrimary">
             <color red="0.24699999392032623" green="0.37599998712539673" blue="0.9570000171661377" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>

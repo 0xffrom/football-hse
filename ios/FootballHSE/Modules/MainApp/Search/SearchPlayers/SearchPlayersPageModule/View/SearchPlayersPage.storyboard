@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Search Players Page View Controller-->
+        <scene sceneID="L8Y-qT-UXd">
+            <objects>
+                <viewController storyboardIdentifier="SearchPlayersPageViewController" extendedLayoutIncludesOpaqueBars="YES" id="rmA-wI-mRy" customClass="SearchPlayersPageViewController" customModule="FootballHSE" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Zmw-b3-tOR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Поиск по названию" translatesAutoresizingMaskIntoConstraints="NO" id="ZW4-av-Es9">
+                                <rect key="frame" x="8" y="47" width="311" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="rmA-wI-mRy" id="ftE-7j-I1g"/>
+                                </connections>
+                            </searchBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d6C-oN-lZt">
+                                <rect key="frame" x="337" y="65" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="nTS-xr-X1S"/>
+                                    <constraint firstAttribute="height" constant="20" id="yx9-OP-i97"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="filterIcon"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uHG-LP-Vsw" customClass="HSECreateApplicationButton" customModule="FootballHSE" customModuleProvider="target">
+                                <rect key="frame" x="16" y="119" width="343" height="62"/>
+                                <color key="backgroundColor" name="RoleCellBackground"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="62" id="Ui1-Tw-Vj3"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title=" "/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Заявки игроков" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rsW-QP-Y5I">
+                                <rect key="frame" x="16" y="205" width="144.66666666666666" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="hRq-06-Kis"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                <color key="textColor" name="TextAndIconsPrimary"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="137" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="H9k-9h-N6y">
+                                <rect key="frame" x="16" y="234" width="343" height="495"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptySearchState" translatesAutoresizingMaskIntoConstraints="NO" id="FIb-0P-NXc">
+                                <rect key="frame" x="60" y="242" width="255" height="204"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="FIb-0P-NXc" secondAttribute="height" multiplier="10:8" id="CSa-NL-Zkt"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Заявок пока нет" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XqO-Xz-Bj3">
+                                <rect key="frame" x="126.66666666666669" y="456" width="122" height="19.666666666666686"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" name="TextIconsTertiary"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zgk-59-UrG">
+                                <rect key="frame" x="136.66666666666666" y="491.66666666666669" width="101.66666666666666" height="35.000000000000057"/>
+                                <color key="tintColor" name="BasePrimary"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Обновить"/>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="YhN-Fp-CTc"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="d6C-oN-lZt" firstAttribute="centerY" secondItem="ZW4-av-Es9" secondAttribute="centerY" id="1fa-ze-hvF"/>
+                            <constraint firstItem="FIb-0P-NXc" firstAttribute="centerX" secondItem="YhN-Fp-CTc" secondAttribute="centerX" id="2W8-kh-EtU"/>
+                            <constraint firstItem="XqO-Xz-Bj3" firstAttribute="centerX" secondItem="YhN-Fp-CTc" secondAttribute="centerX" id="3gZ-JR-zs0"/>
+                            <constraint firstItem="Zgk-59-UrG" firstAttribute="centerX" secondItem="YhN-Fp-CTc" secondAttribute="centerX" id="BQ9-q1-fpO"/>
+                            <constraint firstItem="YhN-Fp-CTc" firstAttribute="trailing" secondItem="FIb-0P-NXc" secondAttribute="trailing" constant="60" id="CVX-sa-9A5"/>
+                            <constraint firstItem="FIb-0P-NXc" firstAttribute="top" secondItem="rsW-QP-Y5I" secondAttribute="bottom" constant="12" id="Dml-Id-vJ4"/>
+                            <constraint firstAttribute="trailing" secondItem="d6C-oN-lZt" secondAttribute="trailing" constant="18" id="GY0-51-Zt6"/>
+                            <constraint firstItem="FIb-0P-NXc" firstAttribute="leading" secondItem="YhN-Fp-CTc" secondAttribute="leading" constant="60" id="JEG-ek-a61"/>
+                            <constraint firstItem="rsW-QP-Y5I" firstAttribute="top" secondItem="uHG-LP-Vsw" secondAttribute="bottom" constant="24" id="KB6-4A-h5Q"/>
+                            <constraint firstItem="YhN-Fp-CTc" firstAttribute="bottom" secondItem="H9k-9h-N6y" secondAttribute="bottom" id="Mdo-Oq-Q3y"/>
+                            <constraint firstItem="Zgk-59-UrG" firstAttribute="top" secondItem="XqO-Xz-Bj3" secondAttribute="bottom" constant="16" id="WtA-qC-UfB"/>
+                            <constraint firstItem="d6C-oN-lZt" firstAttribute="leading" secondItem="ZW4-av-Es9" secondAttribute="trailing" constant="18" id="XCF-nw-vsm"/>
+                            <constraint firstItem="ZW4-av-Es9" firstAttribute="top" secondItem="YhN-Fp-CTc" secondAttribute="top" id="dGU-Xl-kJy"/>
+                            <constraint firstItem="YhN-Fp-CTc" firstAttribute="trailing" secondItem="uHG-LP-Vsw" secondAttribute="trailing" constant="16" id="fGt-Hh-B6d"/>
+                            <constraint firstItem="YhN-Fp-CTc" firstAttribute="trailing" secondItem="H9k-9h-N6y" secondAttribute="trailing" constant="16" id="ftA-Sq-iMN"/>
+                            <constraint firstItem="ZW4-av-Es9" firstAttribute="leading" secondItem="YhN-Fp-CTc" secondAttribute="leading" constant="8" id="gQP-Bk-mJq"/>
+                            <constraint firstItem="H9k-9h-N6y" firstAttribute="leading" secondItem="YhN-Fp-CTc" secondAttribute="leading" constant="16" id="gnj-sm-pBR"/>
+                            <constraint firstItem="XqO-Xz-Bj3" firstAttribute="top" secondItem="FIb-0P-NXc" secondAttribute="bottom" constant="10" id="lbu-bH-RMX"/>
+                            <constraint firstItem="uHG-LP-Vsw" firstAttribute="leading" secondItem="YhN-Fp-CTc" secondAttribute="leading" constant="16" id="szN-4P-h5o"/>
+                            <constraint firstItem="H9k-9h-N6y" firstAttribute="top" secondItem="rsW-QP-Y5I" secondAttribute="bottom" constant="4" id="v00-Fx-suv"/>
+                            <constraint firstItem="uHG-LP-Vsw" firstAttribute="top" secondItem="ZW4-av-Es9" secondAttribute="bottom" constant="16" id="waC-7E-96H"/>
+                            <constraint firstItem="rsW-QP-Y5I" firstAttribute="leading" secondItem="YhN-Fp-CTc" secondAttribute="leading" constant="16" id="ysz-2b-gYF"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="searchPlayerIcon" selectedImage="searchPlayerIcon" id="Fdc-gk-A8b">
+                        <color key="badgeColor" name="TextAndIconsPrimary"/>
+                    </tabBarItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="createApplicationButton" destination="uHG-LP-Vsw" id="vMi-Sx-8ZG"/>
+                        <outlet property="filterButton" destination="d6C-oN-lZt" id="oF3-qO-Itq"/>
+                        <outlet property="messageImageView" destination="FIb-0P-NXc" id="2RK-VW-tT1"/>
+                        <outlet property="messageLabel" destination="XqO-Xz-Bj3" id="KkD-vD-lcX"/>
+                        <outlet property="refreshButton" destination="Zgk-59-UrG" id="52n-su-pDF"/>
+                        <outlet property="searchBar" destination="ZW4-av-Es9" id="Obp-XU-tiz"/>
+                        <outlet property="tableView" destination="H9k-9h-N6y" id="Myo-ZL-KVw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b7Q-fr-XRV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="544.79999999999995" y="77.58620689655173"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="emptySearchState" width="1000" height="800"/>
+        <image name="filterIcon" width="20" height="20"/>
+        <image name="searchPlayerIcon" width="24" height="24"/>
+        <namedColor name="BasePrimary">
+            <color red="0.24699999392032623" green="0.37599998712539673" blue="0.9570000171661377" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="RoleCellBackground">
+            <color red="0.25882352941176473" green="0.34509803921568627" blue="0.99607843137254903" alpha="0.10000000149011612" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TextAndIconsPrimary">
+            <color red="0.14900000393390656" green="0.14900000393390656" blue="0.14900000393390656" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="TextIconsTertiary">
+            <color red="0.49799999594688416" green="0.54100000858306885" blue="0.62000000476837158" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

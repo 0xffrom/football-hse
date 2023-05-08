@@ -37,6 +37,14 @@ final class ProfilePageInteractor {
                 team.captainPhoneNumber == CurrentUserConfig.shared.phoneNumber
             }
 
+            if team != nil {
+                CurrentTeamConfig.shared.name = team?.name
+                CurrentTeamConfig.shared.about = team?.about
+                CurrentTeamConfig.shared.photoUrl = team?.logo
+                CurrentTeamConfig.shared.status = team?.status
+                CurrentTeamConfig.shared.id = team?.id
+            }
+
             completion(.success(team))
         }
     }

@@ -23,7 +23,9 @@ enum PlayerPosition: Int, Codable, CaseIterable {
 
 extension PlayerPosition {
 
-    static func convertIntToPositions(num: Int) -> [PlayerPosition] {
+    static func convertIntToPositions(num: Int?) -> [PlayerPosition] {
+        guard let num else { return [] }
+
         let binaryStr = String(num, radix: 2)
 
         var powers: [Int] = []

@@ -9,10 +9,10 @@ import Foundation
 
 final class TeamParser: ParserProtocol {
 
-    typealias Model = TeamResponseModel
+    typealias Model = TeamModel
 
-    func parse(data: Data) -> TeamResponseModel? {
-        guard let model = try? JSONDecoder().decode(TeamResponseModel.self, from: data) else {
+    func parse(data: Data) -> TeamModel? {
+        guard let model = try? JSONDecoder().decode(TeamModel.self, from: data) else {
             return nil
         }
         return model

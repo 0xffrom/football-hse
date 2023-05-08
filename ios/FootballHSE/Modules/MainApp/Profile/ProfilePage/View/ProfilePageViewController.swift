@@ -59,6 +59,11 @@ final class ProfilePageViewController: UIViewController {
         return view
     }()
 
+    private lazy var capitanStatusView: CapitanStatusView! = {
+        let view = R.nib.capitanStatusView(withOwner: self)!
+        return view
+    }()
+
     // MARK: Public Properties
 
     var output: ProfilePageViewOutput?
@@ -133,8 +138,6 @@ final class ProfilePageViewController: UIViewController {
 
     private func setupCapitanStatus() {
         guard (CurrentUserConfig.shared.isCaptain ?? false) else { return }
-        let capitanStatusView = R.nib.capitanStatusView(withOwner: self)!
-
         addNewViewToStack(capitanStatusView)
     }
 
@@ -234,6 +237,10 @@ extension ProfilePageViewController: ProfilePageViewInput {
         stackView.layoutIfNeeded()
     }
 
+    func removeCaptanStatusView() {
+        stackView.remove(view: capitanStatusView)
+    }
+
     func setupRegisterTeamView() {
         registerTeamView?.configureAction { [weak self] in
             guard let self else { return }
@@ -247,6 +254,11 @@ extension ProfilePageViewController: ProfilePageViewInput {
     }
 
     func setupTeamRegistrationInProgressView() {
+        teamRegistrationInProgressView?.configureAction { [weak self] in
+            guard let self else { return }
+            self.output?.openTeamInfo()
+        }
+
         removeAllTeamViews()
         stackView.addArrangedSubview(teamRegistrationInProgressView)
         stackView.sizeToFit()
@@ -255,6 +267,10 @@ extension ProfilePageViewController: ProfilePageViewInput {
 
     func setupTeamIsRegisteredView(nameOfTeam: String?) {
         teamIsRegisteredView.configureName(nameOfTeam)
+        teamIsRegisteredView?.configureAction { [weak self] in
+            guard let self else { return }
+            self.output?.openTeamInfo()
+        }
 
         removeAllTeamViews()
         stackView.addArrangedSubview(teamIsRegisteredView)

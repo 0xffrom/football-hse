@@ -25,7 +25,7 @@ final class TeamApplicationViewController: UIViewController {
     @IBOutlet weak var contactView: UIView!
     @IBOutlet weak var infoView: UIView!
 
-    @IBOutlet weak var saveButton: HSEMainButton!
+    @IBOutlet weak var chatButton: HSEMainButton!
 
     // MARK: Public Properties
 
@@ -71,7 +71,13 @@ final class TeamApplicationViewController: UIViewController {
         contactLabel.text = data?.contact ?? "Не указана"
         infoLabel.text = data?.description ?? "Не указана"
         tournamentsLabel.text = data?.tournaments
-        iamge.image = data?.logo ?? UIImage(named: "defaultTeamImage")!
+        iamge.image = data?.logo ?? R.image.teamIcon()!
+
+        if data?.contact == CurrentUserConfig.shared.phoneNumber {
+            chatButton.isHidden = true
+        } else {
+            chatButton.isHidden = false
+        }
     }
 }
 

@@ -26,7 +26,9 @@ extension Tournament {
         return Tournament.allCases.count
     }
 
-    static func convertIntToTournaments(num: Int) -> [Tournament] {
+    static func convertIntToTournaments(num: Int?) -> [Tournament] {
+        guard let num else { return [] }
+
         let binaryStr = String(num, radix: 2)
 
         var powers: [Int] = []

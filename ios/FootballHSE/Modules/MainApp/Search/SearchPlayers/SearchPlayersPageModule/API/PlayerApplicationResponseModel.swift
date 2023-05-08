@@ -10,8 +10,8 @@ import Foundation
 struct PlayerApplicationResponseModel: Codable {
     let id: Int
     let playerPhoneNumber: String
-    let footballPosition: Int
-    let preferredTournaments: Int
+    let footballPosition: Int?
+    let preferredTournaments: Int?
     let footballExperience: String?
     let tournamentExperience: String?
     let contact: String?

@@ -217,7 +217,6 @@ class NetworkService: INetworkService {
                 }
             }
 
-            let a = response.statusCode
             competionHandler(.success(data))
         }
         task.resume()

@@ -21,6 +21,8 @@ class MyApplicationCell: UITableViewCell {
         }
     }
 
+    private var deleteAction: (() -> Void)?
+
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -36,11 +38,19 @@ class MyApplicationCell: UITableViewCell {
         rolesCollectionView.showsHorizontalScrollIndicator = false
 
         deleteButton.setTitle("", for: .normal)
+        deleteButton.addTarget(self, action: #selector(deleteApplication), for: .touchUpInside)
     }
 
-    func configure(tournaments: String, roles: [PlayerPosition]) {
+    func configure(tournaments: String, roles: [PlayerPosition], deleteAction: (() -> Void)?) {
         self.tournaments.text = tournaments
         self.roles = roles
+        self.deleteAction = deleteAction
+    }
+
+    // MARK: Actions
+
+    @objc private func deleteApplication(_ sender: AnyObject) {
+        deleteAction?()
     }
 }
 

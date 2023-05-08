@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wiU-oI-n6z" customClass="TeamsApplicationsView" customModule="FootballHSE" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="392" height="76"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="documentIcon" translatesAutoresizingMaskIntoConstraints="NO" id="pbZ-tQ-pKV">
+                    <rect key="frame" x="12" y="12" width="44" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="5My-nB-8K1"/>
+                        <constraint firstAttribute="width" constant="44" id="mLN-p7-tcV"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Заявки команды" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PaO-bA-2FX">
+                    <rect key="frame" x="68" y="28.333333333333336" width="290" height="19.333333333333336"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ArrowIcon" translatesAutoresizingMaskIntoConstraints="NO" id="X02-zh-MXi">
+                    <rect key="frame" x="363" y="32" width="8" height="12"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="8" id="cSH-uF-DT1"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vZG-yy-kxa"/>
+            <color key="backgroundColor" name="BaseSurface1"/>
+            <constraints>
+                <constraint firstItem="X02-zh-MXi" firstAttribute="leading" secondItem="PaO-bA-2FX" secondAttribute="trailing" constant="5" id="67f-xp-frF"/>
+                <constraint firstAttribute="height" constant="68" id="NWN-VQ-UDO"/>
+                <constraint firstItem="pbZ-tQ-pKV" firstAttribute="leading" secondItem="wiU-oI-n6z" secondAttribute="leading" constant="12" id="R7x-3l-F9V"/>
+                <constraint firstItem="PaO-bA-2FX" firstAttribute="leading" secondItem="pbZ-tQ-pKV" secondAttribute="trailing" constant="12" id="bKv-Mz-KfT"/>
+                <constraint firstItem="X02-zh-MXi" firstAttribute="centerY" secondItem="wiU-oI-n6z" secondAttribute="centerY" id="gS7-Rg-owz"/>
+                <constraint firstAttribute="bottom" secondItem="pbZ-tQ-pKV" secondAttribute="bottom" constant="12" id="hDp-J8-RQ2"/>
+                <constraint firstItem="PaO-bA-2FX" firstAttribute="centerY" secondItem="wiU-oI-n6z" secondAttribute="centerY" id="jLO-aC-axk"/>
+                <constraint firstAttribute="trailing" secondItem="X02-zh-MXi" secondAttribute="trailing" constant="21" id="qm7-yh-Quk"/>
+                <constraint firstItem="pbZ-tQ-pKV" firstAttribute="top" secondItem="wiU-oI-n6z" secondAttribute="top" constant="12" id="ywE-hW-KQx"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-1538.9312977099237" y="-346.47887323943661"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ArrowIcon" width="8" height="12"/>
+        <image name="documentIcon" width="176" height="176"/>
+        <namedColor name="BaseSurface1">
+            <color red="0.9649999737739563" green="0.97600001096725464" blue="0.99599999189376831" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+    </resources>
+</document>

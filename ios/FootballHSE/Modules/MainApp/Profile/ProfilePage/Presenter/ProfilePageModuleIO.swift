@@ -9,7 +9,8 @@ import Foundation
 
 public protocol ProfilePageModuleInput: AnyObject {
     func updateProfileInfo()
-    func updateTeamInfo()
+    func setupTeamRegistrationInProgressView()
+    func setupRegisterTeamView() 
 }
 
 public protocol ProfilePageModuleOutput: AnyObject {
@@ -18,4 +19,5 @@ public protocol ProfilePageModuleOutput: AnyObject {
     func exit()
     func registerTeam()
     func openMyApplications()
+    func openTeamInfo()
 }

@@ -67,8 +67,13 @@ extension ProfilePagePresenter: ProfilePageModuleInput {
         view?.updateInfo()
     }
 
-    func updateTeamInfo() {
+    func setupTeamRegistrationInProgressView() {
         view?.setupTeamRegistrationInProgressView()
+    }
+
+    func setupRegisterTeamView() {
+        view?.setupRegisterTeamView()
+        view?.removeCaptanStatusView()
     }
 }
 
@@ -89,6 +94,10 @@ extension ProfilePagePresenter: ProfilePageViewOutput {
     func viewWantToRefreshTeamInfo() {
         view?.setupLoadingState()
         getTeamInfo()
+    }
+
+    func openTeamInfo() {
+        moduleOutput?.openTeamInfo()
     }
 
     func openMyApplications() {

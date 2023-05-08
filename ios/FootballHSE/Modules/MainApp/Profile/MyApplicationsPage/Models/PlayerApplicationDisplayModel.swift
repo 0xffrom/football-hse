@@ -7,7 +7,8 @@
 
 import Foundation
 
-public struct ProfilePlayerApplicationDisplayModel {
+public struct ProfileApplicationDisplayModel {
     let playerPosition: [PlayerPosition]
     let tournaments: String
+    let id: Int
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TeamModel: Codable {
+public struct TeamModel: Codable {
     let id: Int
     let name: String
     let captainPhoneNumber: String

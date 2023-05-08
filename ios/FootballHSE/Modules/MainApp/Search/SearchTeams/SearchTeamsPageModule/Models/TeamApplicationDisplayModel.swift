@@ -14,6 +14,6 @@ public struct TeamApplicationDisplayModel {
     let logo: UIImage?
     let contact: String?
     let playerPosition: [PlayerPosition]
-    let tournaments: String
-    let description: String
+    let tournaments: String?
+    let description: String?
 }

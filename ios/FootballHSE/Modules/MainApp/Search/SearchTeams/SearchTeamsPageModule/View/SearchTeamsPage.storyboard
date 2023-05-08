@@ -102,7 +102,7 @@
                             <constraint firstItem="rsW-QP-Y5I" firstAttribute="leading" secondItem="YhN-Fp-CTc" secondAttribute="leading" constant="16" id="ysz-2b-gYF"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="searchIcon" selectedImage="searchIcon" id="Fdc-gk-A8b">
+                    <tabBarItem key="tabBarItem" title="" image="searchTeamIcon" selectedImage="searchTeamIcon" id="Fdc-gk-A8b">
                         <color key="badgeColor" name="TextAndIconsPrimary"/>
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -124,7 +124,7 @@
     <resources>
         <image name="emptySearchState" width="1000" height="800"/>
         <image name="filterIcon" width="20" height="20"/>
-        <image name="searchIcon" width="20" height="20"/>
+        <image name="searchTeamIcon" width="24" height="24"/>
         <namedColor name="BasePrimary">
             <color red="0.24699999392032623" green="0.37599998712539673" blue="0.9570000171661377" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>

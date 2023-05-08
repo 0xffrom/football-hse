@@ -18,6 +18,7 @@ final class MyApplicationsPagePresenter {
     // MARK: Private Properties
 
     private let interactor: MyApplicationsPageInteractorInput
+    private var data: [ProfileApplicationDisplayModel]?
 
     // MARK: Lifecycle
 
@@ -27,11 +28,12 @@ final class MyApplicationsPagePresenter {
 
     // MARK: Private
 
-    private func handleAplicationsRequest(_ result: Result<[ProfilePlayerApplicationDisplayModel], Error>) {
+    private func handleAplicationsRequest(_ result: Result<[ProfileApplicationDisplayModel], Error>) {
         switch result {
         case .success(let data):
             DispatchQueue.main.async { [weak self] in
                 guard let self = self, let view = self.view else { return }
+                self.data = data
                 if data.isEmpty {
                     view.setupEmptyState()
                 } else {
@@ -41,6 +43,7 @@ final class MyApplicationsPagePresenter {
         case .failure(_):
             DispatchQueue.main.async { [weak self] in
                 guard let self = self, let view = self.view else { return }
+                self.data = nil
                 view.setupErrorState()
             }
         }
@@ -64,6 +67,31 @@ extension MyApplicationsPagePresenter: MyApplicationsPageInteractorOutput {}
 // MARK: - MyApplicationsPageViewOutput
 
 extension MyApplicationsPagePresenter: MyApplicationsPageViewOutput {
+    func deleteApplication(with id: Int) {
+        interactor.deleteApplication(with: id) { [weak self] result in
+            switch result {
+            case .success(_):
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self, let view = self.view else { return }
+                    guard let data = self.data else { return }
+                    let filteredData = data.filter { el in
+                        return el.id != id
+                    }
+                    if filteredData.isEmpty {
+                        view.setupEmptyState()
+                    } else {
+                        view.setupDataState(with: filteredData)
+                    }
+                    self.data = filteredData
+                }
+            case .failure(_):
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self, let view = self.view else { return }
+                    view.setupErrorWhileDeletingState()
+                }
+            }
+        }
+    }
 
     func viewDidLoad() {
         view?.setupLoadingState()
