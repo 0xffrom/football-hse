@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="50" id="Qsf-YP-BVa" customClass="ConversationCell" customModule="FootballHSE" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="450" height="62"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Qsf-YP-BVa" id="y7H-Ds-4JX">
+                <rect key="frame" x="0.0" y="0.0" width="450" height="62"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Pad-kV-Rc0">
+                        <rect key="frame" x="16" y="11" width="42" height="42"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="42" id="FFl-9Z-A1J"/>
+                            <constraint firstAttribute="height" constant="42" id="TrF-Nj-Vcp"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Артём Артёмов" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G6e-eH-M1X">
+                        <rect key="frame" x="65" y="15" width="345" height="17"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Артём, привет! Хочу в вашу команду" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2N9-Ua-aWF">
+                        <rect key="frame" x="65" y="34" width="249" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" name="TextAndIconsSecondary"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newUnreadMessageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="MJ6-Sw-ZVJ">
+                        <rect key="frame" x="418" y="12" width="16" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="16" id="V1U-f7-2iu"/>
+                            <constraint firstAttribute="height" constant="16" id="wwS-ua-iSD"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="7 март. 2023 г." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mlq-bM-PPJ">
+                        <rect key="frame" x="334" y="41" width="100" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="Nu2-Vx-hsc"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" name="TextIconsTertiary"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkIcon" translatesAutoresizingMaskIntoConstraints="NO" id="RUL-ao-hRC">
+                        <rect key="frame" x="318" y="40" width="16" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="CjB-nj-SAY"/>
+                            <constraint firstAttribute="width" constant="16" id="Kjv-kW-Pfr"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="MJ6-Sw-ZVJ" secondAttribute="trailing" constant="16" id="42u-0L-APs"/>
+                    <constraint firstItem="mlq-bM-PPJ" firstAttribute="top" secondItem="G6e-eH-M1X" secondAttribute="bottom" constant="9" id="9QA-SI-D8o"/>
+                    <constraint firstItem="Pad-kV-Rc0" firstAttribute="leading" secondItem="y7H-Ds-4JX" secondAttribute="leading" constant="16" id="Ee4-96-tVs"/>
+                    <constraint firstItem="G6e-eH-M1X" firstAttribute="leading" secondItem="Pad-kV-Rc0" secondAttribute="trailing" constant="7" id="LZb-KD-TpU"/>
+                    <constraint firstItem="2N9-Ua-aWF" firstAttribute="leading" secondItem="G6e-eH-M1X" secondAttribute="leading" id="NgK-SY-7Vq"/>
+                    <constraint firstItem="mlq-bM-PPJ" firstAttribute="leading" secondItem="RUL-ao-hRC" secondAttribute="trailing" id="STw-xD-eW1"/>
+                    <constraint firstItem="MJ6-Sw-ZVJ" firstAttribute="leading" secondItem="G6e-eH-M1X" secondAttribute="trailing" constant="8" id="Uv1-ju-U17"/>
+                    <constraint firstItem="Pad-kV-Rc0" firstAttribute="top" secondItem="y7H-Ds-4JX" secondAttribute="top" constant="11" id="a6o-nT-zWd"/>
+                    <constraint firstItem="RUL-ao-hRC" firstAttribute="bottom" secondItem="mlq-bM-PPJ" secondAttribute="bottom" id="bhz-fI-D7F"/>
+                    <constraint firstItem="G6e-eH-M1X" firstAttribute="top" secondItem="y7H-Ds-4JX" secondAttribute="top" constant="15" id="mBd-ol-Gma"/>
+                    <constraint firstItem="MJ6-Sw-ZVJ" firstAttribute="top" secondItem="y7H-Ds-4JX" secondAttribute="top" constant="12" id="oRd-Oa-Sb9"/>
+                    <constraint firstAttribute="trailing" secondItem="mlq-bM-PPJ" secondAttribute="trailing" constant="16" id="pfv-Bg-7Wc"/>
+                    <constraint firstAttribute="bottom" secondItem="Pad-kV-Rc0" secondAttribute="bottom" constant="11" id="vTf-tW-zfR"/>
+                    <constraint firstItem="2N9-Ua-aWF" firstAttribute="top" secondItem="G6e-eH-M1X" secondAttribute="bottom" constant="2" id="vss-jP-6lP"/>
+                    <constraint firstItem="RUL-ao-hRC" firstAttribute="leading" secondItem="2N9-Ua-aWF" secondAttribute="trailing" constant="4" id="x0U-1b-ujV"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="checkSignImageView" destination="RUL-ao-hRC" id="ziP-nW-xrk"/>
+                <outlet property="lastMessageLabel" destination="2N9-Ua-aWF" id="hz6-3Y-hh8"/>
+                <outlet property="nameLabel" destination="G6e-eH-M1X" id="aXS-K0-mYr"/>
+                <outlet property="photoImageView" destination="Pad-kV-Rc0" id="FCd-vk-ASo"/>
+                <outlet property="timeLabel" destination="mlq-bM-PPJ" id="Zrp-OF-brG"/>
+                <outlet property="unreadSignImageView" destination="MJ6-Sw-ZVJ" id="74I-Fr-Mqy"/>
+            </connections>
+            <point key="canvasLocation" x="96.18320610687023" y="3.5211267605633805"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="checkIcon" width="65" height="64"/>
+        <image name="newUnreadMessageIcon" width="64" height="64"/>
+        <image name="userIcon" width="56" height="56"/>
+        <namedColor name="TextAndIconsSecondary">
+            <color red="0.38400000333786011" green="0.40400001406669617" blue="0.48199999332427979" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="TextIconsTertiary">
+            <color red="0.49799999594688416" green="0.54100000858306885" blue="0.62000000476837158" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+    </resources>
+</document>

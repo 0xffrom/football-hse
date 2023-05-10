@@ -14,6 +14,7 @@ protocol SearchTeamsPageInteractorInput: AnyObject {
                                      completion: @escaping (Result<[TeamApplicationDisplayModel], Error>) -> Void)
     func createNewApplication(position: Int, tournaments: Int,
                                      completion: @escaping (Result<Void, Error>) -> Void)
+    func getImageURLForTeam(with id: Int) -> String?
 }
 
 protocol SearchTeamsPageInteractorOutput: AnyObject {

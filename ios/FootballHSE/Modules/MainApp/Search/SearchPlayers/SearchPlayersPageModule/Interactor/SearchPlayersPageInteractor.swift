@@ -85,7 +85,8 @@ extension SearchPlayersPageInteractor: SearchPlayersPageInteractorInput {
     func getSearchResults(completion: @escaping (Result<[PlayersApplicationDisplayModel], Error>) -> Void) {
         let config = RequestConfigWithParser(request: SearchPlayersTarget(), parser: PlayerApplicationsParser())
 
-        networkService.sendGetRequest(config: config) { result in
+        networkService.sendGetRequest(config: config) { [weak self] result in
+            guard let self else { return }
             switch result {
             case let .success(data):
                 self.convertResponseToDisplayModel(data, completion: completion)

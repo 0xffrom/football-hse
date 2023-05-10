@@ -16,6 +16,6 @@ public protocol SearchTeamsPageModuleOutput: AnyObject {
     func moduleDidLoad(_ module: SearchTeamsPageModuleInput)
     func openCreateApplictaionScreen()
     func openFilters()
-    func openTeamApplication(team: TeamApplicationDisplayModel)
+    func openTeamApplication(team: TeamApplicationDisplayModel, teamImageURL: String?)
 }
 

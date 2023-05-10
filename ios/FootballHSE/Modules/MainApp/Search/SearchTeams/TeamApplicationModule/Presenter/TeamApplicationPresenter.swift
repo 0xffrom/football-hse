@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 final class TeamApplicationPresenter {
 
@@ -18,10 +19,21 @@ final class TeamApplicationPresenter {
 
     private let interactor: TeamApplicationInteractorInput
 
+    private let phoneNumber: String?
+    private let name: String?
+    private let image: UIImage?
+
     // MARK: Lifecycle
 
-    init(interactor: TeamApplicationInteractorInput) {
+    init(interactor: TeamApplicationInteractorInput,
+         phoneNumber: String?,
+         name: String?,
+         image: UIImage?
+    ) {
         self.interactor = interactor
+        self.phoneNumber = phoneNumber
+        self.name = name
+        self.image = image
     }
 
     // MARK: Private
@@ -37,4 +49,30 @@ extension TeamApplicationPresenter: TeamApplicationInteractorOutput {}
 
 // MARK: - TeamApplicationViewOutput
 
-extension TeamApplicationPresenter: TeamApplicationViewOutput {}
+extension TeamApplicationPresenter: TeamApplicationViewOutput {
+
+    func openChat() {
+        view?.setLoadingState()
+        interactor.getChat { [weak self] result in
+            guard let self = self, let view = self.view else { return }
+            switch result {
+            case .success(_):
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+                    guard let self = self else { return }
+                    view.removeLoadingState()
+                    self.moduleOutput?.wantsToOpenConversation(
+                        phoneNumber: self.phoneNumber,
+                        name: self.name,
+                        image: self.image
+                    )
+                }
+            case .failure(_):
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self, let view = self.view else { return }
+                    view.removeLoadingState()
+                    view.showAlert()
+                }
+            }
+        }
+    }
+}

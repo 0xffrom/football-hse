@@ -8,9 +8,11 @@
 import Foundation
 
 protocol TeamApplicationViewInput: AnyObject {
-
+    func setLoadingState()
+    func removeLoadingState()
+    func showAlert()
 }
 
 protocol TeamApplicationViewOutput: AnyObject {
-
+    func openChat()
 }

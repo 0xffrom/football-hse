@@ -18,6 +18,8 @@ final class SearchTeamsPageInteractor {
 
     private let networkService: INetworkService
 
+    private var teams: [TeamApplicationResponseModel] = []
+
     // MARK: Lifecycle
 
     init(networkService: INetworkService) {
@@ -31,6 +33,7 @@ final class SearchTeamsPageInteractor {
             guard let self else { return }
 
             Task {
+                self.teams = response
                 var displayModel: [TeamApplicationDisplayModel] = []
 
                 for responseItem in response {
@@ -130,5 +133,16 @@ extension SearchTeamsPageInteractor: SearchTeamsPageInteractorInput {
                 completion(.failure(error))
             }
         }
+    }
+
+    func getImageURLForTeam(with id: Int) -> String? {
+        var team: TeamApplicationResponseModel?
+        // DispatchQueue.global().async { [weak self] in
+           // guard let self = self else { return }
+            team = self.teams.first(where: {
+                $0.id == id
+            })
+        // }
+        return team?.logo
     }
 }

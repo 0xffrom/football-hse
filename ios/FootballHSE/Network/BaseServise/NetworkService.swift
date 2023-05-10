@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftSignalRClient
 
 public protocol INetworkService {
     func sendGetRequest<Parser>(config: RequestConfigWithParser<Parser>, competionHandler: @escaping (Result<Parser.Model, Error>) -> Void)
@@ -16,11 +17,16 @@ public protocol INetworkService {
                       competionHandler: @escaping (Result<Data?, Error>) -> Void)
     func downlandImage(url: String?) async -> UIImage?
     func uploadImage(image: UIImage?, urlRequest: URLRequest?, competionHandler: @escaping (Result<Data?, Error>) -> Void)
+    func startMessaging()
+    func stopMessaging()
+    func setHandleMessageAction(_ action: ((MessageModel) -> Void)?)
 }
 
 class NetworkService: INetworkService {
 
-   let session = URLSession.shared
+    let session = URLSession.shared
+    var connection: HubConnection!
+    var handleMessage: ((MessageModel) -> Void)?
 
     func downlandImage(url: String?) async -> UIImage? {
         guard let stringUrl = url, let url = URL(string: stringUrl) else {

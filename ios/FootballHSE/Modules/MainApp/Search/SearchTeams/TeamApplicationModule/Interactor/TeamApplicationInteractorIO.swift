@@ -9,6 +9,7 @@ import Foundation
 
 
 protocol TeamApplicationInteractorInput: AnyObject {
+    func getChat(completion: @escaping (Result<ConversationResponseMosel, Error>) -> Void)
 }
 
 protocol TeamApplicationInteractorOutput: AnyObject {

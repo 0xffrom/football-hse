@@ -41,7 +41,7 @@ final class ChatCoordinator {
 extension ChatCoordinator: Coordinatable {
 
     func start(animated: Bool) {
-        let builder = SearchTeamsPageModuleBuilder(
+        let builder = ConversationsModuleBuilder(
             output: self,
             networkService: networkService
         )
@@ -61,3 +61,20 @@ extension ChatCoordinator: Coordinatable {
         completion.map { finishHandlers.append($0) }
     }
 }
+
+extension ChatCoordinator: ConversationsModuleOutput {
+
+    func wantsToOpenConversation(phoneNumber: String, name: String?, image: UIImage?) {
+        let builder = ConversationModuleBuilder(
+            output: self,
+            networkService: networkService,
+            interlocutorsPhoneNamber: phoneNumber,
+            interlocutorsName: name,
+            image: image
+        )
+        let viewController = builder.build()
+        parentNavigationController?.pushViewController(viewController, animated: true)
+    }
+}
+
+extension ChatCoordinator: ConversationModuleOutput{}

@@ -16,26 +16,37 @@ public final class TeamApplicationModuleBuilder {
     private let networkService: INetworkService
 
     private let team: TeamApplicationDisplayModel
+    private let teamImageURL: String?
 
     // MARK: Lifecycle
 
     public init(
         output: TeamApplicationModuleOutput?,
         networkService: INetworkService,
-        team: TeamApplicationDisplayModel
+        team: TeamApplicationDisplayModel,
+        teamImageURL: String?
     ) {
         self.output = output
         self.networkService = networkService
         self.team = team
+        self.teamImageURL = teamImageURL
     }
 
     // MARK: Public Methods
 
     public func build() -> UIViewController {
         let interactor = TeamApplicationInteractor(
-            networkService: networkService
+            networkService: networkService,
+            phoneNumber: team.contact,
+            name: team.name,
+            image: teamImageURL
         )
-        let presenter = TeamApplicationPresenter(interactor: interactor)
+        let presenter = TeamApplicationPresenter(
+            interactor: interactor,
+            phoneNumber: team.contact,
+            name: team.name,
+            image: team.logo
+        )
 
         let viewController = R.storyboard.teamApplication.teamApplicationViewController()!
 

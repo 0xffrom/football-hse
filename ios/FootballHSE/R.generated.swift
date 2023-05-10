@@ -86,7 +86,7 @@ struct _R {
     var textIconsWhite: RswiftResources.ColorResource { .init(name: "TextIconsWhite", path: [], bundle: bundle) }
   }
 
-  /// This `_R.image` struct is generated, and contains static references to 25 images.
+  /// This `_R.image` struct is generated, and contains static references to 30 images.
   struct image {
     let bundle: Foundation.Bundle
 
@@ -110,6 +110,12 @@ struct _R {
 
     /// Image `chatIcon`.
     var chatIcon: RswiftResources.ImageResource { .init(name: "chatIcon", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `checkAllIcon`.
+    var checkAllIcon: RswiftResources.ImageResource { .init(name: "checkAllIcon", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `checkIcon`.
+    var checkIcon: RswiftResources.ImageResource { .init(name: "checkIcon", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
     /// Image `checkboxChecked`.
     var checkboxChecked: RswiftResources.ImageResource { .init(name: "checkboxChecked", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
@@ -144,6 +150,12 @@ struct _R {
     /// Image `newMessageIcon`.
     var newMessageIcon: RswiftResources.ImageResource { .init(name: "newMessageIcon", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
+    /// Image `newUnreadMessageIcon`.
+    var newUnreadMessageIcon: RswiftResources.ImageResource { .init(name: "newUnreadMessageIcon", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `noMessagesImage`.
+    var noMessagesImage: RswiftResources.ImageResource { .init(name: "noMessagesImage", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
     /// Image `noResultsSearchState`.
     var noResultsSearchState: RswiftResources.ImageResource { .init(name: "noResultsSearchState", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
@@ -158,6 +170,9 @@ struct _R {
 
     /// Image `searchTeamIcon`.
     var searchTeamIcon: RswiftResources.ImageResource { .init(name: "searchTeamIcon", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `supportIcon`.
+    var supportIcon: RswiftResources.ImageResource { .init(name: "supportIcon", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
     /// Image `teamIcon`.
     var teamIcon: RswiftResources.ImageResource { .init(name: "teamIcon", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
@@ -184,7 +199,7 @@ struct _R {
     }
   }
 
-  /// This `_R.nib` struct is generated, and contains static references to 14 nibs.
+  /// This `_R.nib` struct is generated, and contains static references to 17 nibs.
   struct nib {
     let bundle: Foundation.Bundle
 
@@ -193,6 +208,12 @@ struct _R {
 
     /// Nib `CapitanStatusView`.
     var capitanStatusView: RswiftResources.NibReference<CapitanStatusView> { .init(name: "CapitanStatusView", bundle: bundle) }
+
+    /// Nib `ConversationCell`.
+    var conversationCell: RswiftResources.NibReference<ConversationCell> { .init(name: "ConversationCell", bundle: bundle) }
+
+    /// Nib `EntryMessageView`.
+    var entryMessageView: RswiftResources.NibReference<EntryMessageView> { .init(name: "EntryMessageView", bundle: bundle) }
 
     /// Nib `FilterCell`.
     var filterCell: RswiftResources.NibReference<FilterCell> { .init(name: "FilterCell", bundle: bundle) }
@@ -211,6 +232,9 @@ struct _R {
 
     /// Nib `SearchTeamsCell`.
     var searchTeamsCell: RswiftResources.NibReference<SearchTeamsCell> { .init(name: "SearchTeamsCell", bundle: bundle) }
+
+    /// Nib `SupportCell`.
+    var supportCell: RswiftResources.NibReference<SupportCell> { .init(name: "SupportCell", bundle: bundle) }
 
     /// Nib `TeamErrorStateView`.
     var teamErrorStateView: RswiftResources.NibReference<TeamErrorStateView> { .init(name: "TeamErrorStateView", bundle: bundle) }
@@ -236,6 +260,12 @@ struct _R {
       if UIKit.UIColor(named: "BasePrimary", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'BasePrimary' is used in nib 'CapitanStatusView', but couldn't be loaded.") }
       if UIKit.UIColor(named: "BaseSurface1", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'BaseSurface1' is used in nib 'CapitanStatusView', but couldn't be loaded.") }
       if UIKit.UIColor(named: "RoleCellBackground", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'RoleCellBackground' is used in nib 'CapitanStatusView', but couldn't be loaded.") }
+      if UIKit.UIImage(named: "checkIcon", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'checkIcon' is used in nib 'ConversationCell', but couldn't be loaded.") }
+      if UIKit.UIImage(named: "newUnreadMessageIcon", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'newUnreadMessageIcon' is used in nib 'ConversationCell', but couldn't be loaded.") }
+      if UIKit.UIImage(named: "userIcon", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'userIcon' is used in nib 'ConversationCell', but couldn't be loaded.") }
+      if UIKit.UIColor(named: "TextAndIconsSecondary", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'TextAndIconsSecondary' is used in nib 'ConversationCell', but couldn't be loaded.") }
+      if UIKit.UIColor(named: "TextIconsTertiary", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'TextIconsTertiary' is used in nib 'ConversationCell', but couldn't be loaded.") }
+      if #available(iOS 13.0, *) { if UIKit.UIImage(systemName: "arrow.up.circle.fill") == nil { throw RswiftResources.ValidationError("[R.swift] System image named 'arrow.up.circle.fill' is used in nib 'EntryMessageView', but couldn't be loaded.") } }
       if UIKit.UIImage(named: "checkboxUnchecked", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'checkboxUnchecked' is used in nib 'FilterCell', but couldn't be loaded.") }
       if UIKit.UIColor(named: "BaseSurface1", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'BaseSurface1' is used in nib 'FilterCell', but couldn't be loaded.") }
       if UIKit.UIColor(named: "TextAndIconsPrimary", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'TextAndIconsPrimary' is used in nib 'FilterCell', but couldn't be loaded.") }
@@ -252,6 +282,12 @@ struct _R {
       if UIKit.UIColor(named: "TextAndIconsSecondary", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'TextAndIconsSecondary' is used in nib 'SearchPlayersCell', but couldn't be loaded.") }
       if UIKit.UIColor(named: "BaseSurface1", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'BaseSurface1' is used in nib 'SearchTeamsCell', but couldn't be loaded.") }
       if UIKit.UIColor(named: "TextAndIconsSecondary", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'TextAndIconsSecondary' is used in nib 'SearchTeamsCell', but couldn't be loaded.") }
+      if UIKit.UIImage(named: "checkIcon", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'checkIcon' is used in nib 'SupportCell', but couldn't be loaded.") }
+      if UIKit.UIImage(named: "newUnreadMessageIcon", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'newUnreadMessageIcon' is used in nib 'SupportCell', but couldn't be loaded.") }
+      if UIKit.UIImage(named: "supportIcon", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'supportIcon' is used in nib 'SupportCell', but couldn't be loaded.") }
+      if UIKit.UIColor(named: "BaseSurface1", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'BaseSurface1' is used in nib 'SupportCell', but couldn't be loaded.") }
+      if UIKit.UIColor(named: "TextAndIconsSecondary", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'TextAndIconsSecondary' is used in nib 'SupportCell', but couldn't be loaded.") }
+      if UIKit.UIColor(named: "TextIconsTertiary", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'TextIconsTertiary' is used in nib 'SupportCell', but couldn't be loaded.") }
       if UIKit.UIColor(named: "BasePrimary", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'BasePrimary' is used in nib 'TeamErrorStateView', but couldn't be loaded.") }
       if UIKit.UIColor(named: "BaseSurface1", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'BaseSurface1' is used in nib 'TeamErrorStateView', but couldn't be loaded.") }
       if UIKit.UIColor(named: "BaseSurface1", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'BaseSurface1' is used in nib 'TeamInfoIsLoadingView', but couldn't be loaded.") }
@@ -270,11 +306,12 @@ struct _R {
     }
   }
 
-  /// This `_R.storyboard` struct is generated, and contains static references to 15 storyboards.
+  /// This `_R.storyboard` struct is generated, and contains static references to 16 storyboards.
   struct storyboard {
     let bundle: Foundation.Bundle
     var authorizationCodeEntering: authorizationCodeEntering { .init(bundle: bundle) }
     var authorizationPhoneEntering: authorizationPhoneEntering { .init(bundle: bundle) }
+    var conversations: conversations { .init(bundle: bundle) }
     var editProfilePage: editProfilePage { .init(bundle: bundle) }
     var launchScreen: launchScreen { .init(bundle: bundle) }
     var main: main { .init(bundle: bundle) }
@@ -293,6 +330,9 @@ struct _R {
       .init(bundle: bundle)
     }
     func authorizationPhoneEntering(bundle: Foundation.Bundle) -> authorizationPhoneEntering {
+      .init(bundle: bundle)
+    }
+    func conversations(bundle: Foundation.Bundle) -> conversations {
       .init(bundle: bundle)
     }
     func editProfilePage(bundle: Foundation.Bundle) -> editProfilePage {
@@ -337,6 +377,7 @@ struct _R {
     func validate() throws {
       try self.authorizationCodeEntering.validate()
       try self.authorizationPhoneEntering.validate()
+      try self.conversations.validate()
       try self.editProfilePage.validate()
       try self.launchScreen.validate()
       try self.main.validate()
@@ -383,6 +424,24 @@ struct _R {
         if UIKit.UIColor(named: "BasePrimary", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'BasePrimary' is used in storyboard 'AuthorizationPhoneEntering', but couldn't be loaded.") }
         if UIKit.UIColor(named: "TextAndIconsSecondary", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'TextAndIconsSecondary' is used in storyboard 'AuthorizationPhoneEntering', but couldn't be loaded.") }
         if authorizationPhoneEnteringViewController() == nil { throw RswiftResources.ValidationError("[R.swift] ViewController with identifier 'authorizationPhoneEnteringViewController' could not be loaded from storyboard 'AuthorizationPhoneEntering' as 'AuthorizationPhoneEnteringViewController'.") }
+      }
+    }
+
+    /// Storyboard `Conversations`.
+    struct conversations: RswiftResources.StoryboardReference {
+      let bundle: Foundation.Bundle
+
+      let name = "Conversations"
+
+      var conversationsViewController: RswiftResources.StoryboardViewControllerIdentifier<ConversationsViewController> { .init(identifier: "ConversationsViewController", storyboard: name, bundle: bundle) }
+
+      func validate() throws {
+        if UIKit.UIImage(named: "chatIcon", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'chatIcon' is used in storyboard 'Conversations', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "noMessagesImage", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'noMessagesImage' is used in storyboard 'Conversations', but couldn't be loaded.") }
+        if UIKit.UIColor(named: "BasePrimary", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'BasePrimary' is used in storyboard 'Conversations', but couldn't be loaded.") }
+        if UIKit.UIColor(named: "TextAndIconsPrimary", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'TextAndIconsPrimary' is used in storyboard 'Conversations', but couldn't be loaded.") }
+        if UIKit.UIColor(named: "TextIconsTertiary", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'TextIconsTertiary' is used in storyboard 'Conversations', but couldn't be loaded.") }
+        if conversationsViewController() == nil { throw RswiftResources.ValidationError("[R.swift] ViewController with identifier 'conversationsViewController' could not be loaded from storyboard 'Conversations' as 'ConversationsViewController'.") }
       }
     }
 

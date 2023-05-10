@@ -78,6 +78,12 @@ final class TeamApplicationViewController: UIViewController {
         } else {
             chatButton.isHidden = false
         }
+
+        chatButton.addTarget(self, action: #selector(openChat), for: .touchUpInside)
+    }
+
+    @objc func openChat() {
+        output?.openChat()
     }
 }
 
@@ -112,4 +118,17 @@ extension TeamApplicationViewController: UICollectionViewDataSource {
 
 extension TeamApplicationViewController: TeamApplicationViewInput {
 
+    func setLoadingState() {
+        chatButton.isLoading = true
+    }
+
+    func removeLoadingState() {
+        chatButton.isLoading = false
+    }
+
+    func showAlert() {
+        let alert = UIAlertController(title: "Ошибка сети", message: "Проверьте подключение и повторите попытку", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
 }

@@ -36,6 +36,10 @@ final class MainCoordinator {
         self.networkService = networkService
     }
 
+    deinit {
+        networkService.stopMessaging()
+    }
+
     private func configureTabsForPlayer() {
         addSearchTeamsTab()
         addChatTab()
@@ -119,8 +123,8 @@ final class MainCoordinator {
         if let coordinator = searchPlayersCoordinator as? SearchPlayersCoordinator {
             coordinator.finish(animated: true)
         }
-        if let vcs = rootTabBarController?.viewControllers, vcs.count == 3 {
-            rootTabBarController?.viewControllers?.remove(at: 1)
+        if let vcs = rootTabBarController?.viewControllers, vcs.count == 4 {
+            rootTabBarController?.viewControllers?.remove(at: 2)
         }
     }
 }

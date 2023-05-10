@@ -100,11 +100,12 @@ extension SearchTeamsCoordinator: SearchTeamsPageModuleOutput {
         parentNavigationController?.pushViewController(viewController, animated: true)
     }
 
-    func openTeamApplication(team: TeamApplicationDisplayModel) {
+    func openTeamApplication(team: TeamApplicationDisplayModel, teamImageURL: String?) {
         let builder = TeamApplicationModuleBuilder(
             output: self,
             networkService: networkService,
-            team: team
+            team: team,
+            teamImageURL: teamImageURL
         )
         let viewController = builder.build()
         parentNavigationController?.pushViewController(viewController, animated: true)
@@ -128,6 +129,18 @@ extension SearchTeamsCoordinator: TeamApplicationModuleOutput {
 
     func back() {
         parentNavigationController?.popViewController(animated: true)
+    }
+
+    func wantsToOpenConversation(phoneNumber: String?, name: String?, image: UIImage?) {
+        let builder = ConversationModuleBuilder(
+            output: self,
+            networkService: networkService,
+            interlocutorsPhoneNamber: phoneNumber ?? "",
+            interlocutorsName: name,
+            image: image
+        )
+        let viewController = builder.build()
+        parentNavigationController?.pushViewController(viewController, animated: true)
     }
 }
 
@@ -165,3 +178,5 @@ extension SearchTeamsCoordinator: SearchTeamsPlayerRoleFilterModuleOutput {
         parentNavigationController?.pushViewController(viewController, animated: true)
     }
 }
+
+extension SearchTeamsCoordinator: ConversationModuleOutput {}

@@ -128,6 +128,7 @@ extension SearchTeamsPagePresenter: SearchTeamsPageViewOutput {
     }
 
     func wantsToOpenTeamApplication(team: TeamApplicationDisplayModel) {
-        moduleOutput?.openTeamApplication(team: team)
+        let teamImageURL = self.interactor.getImageURLForTeam(with: team.id)
+        self.moduleOutput?.openTeamApplication(team: team, teamImageURL: teamImageURL)
     }
 }
