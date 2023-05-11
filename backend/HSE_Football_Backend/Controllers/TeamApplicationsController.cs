@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using HSE_Football_Backend.Data;
 using HSE_Football_Backend.Models;
 using HSE_Football_Backend.Other;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HSE_Football_Backend.Controllers
 {
@@ -11,6 +12,7 @@ namespace HSE_Football_Backend.Controllers
 	/// </summary>
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class TeamApplicationsController : ControllerBase
     {
         /// <summary>

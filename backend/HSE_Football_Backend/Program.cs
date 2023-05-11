@@ -9,7 +9,15 @@ using HSE_Football_Backend.Other;
 var builder = WebApplication.CreateBuilder(args);
 
 // Подключение CORS
-builder.Services.AddCors();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("all", builder =>
+    {
+        builder.AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader();
+    });
+});
 
 // Подключение SignalR для чата
 builder.Services.AddSignalR();
@@ -67,7 +75,7 @@ builder.Services.AddSingleton<IJWTManager, JWTManager>();
 
 var app = builder.Build();
 
-app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+app.UseCors("all");
 
 if (app.Environment.IsDevelopment())
 {
@@ -76,13 +84,17 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseRouting();
 
 app.UseStaticFiles();
 
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllers();
-app.MapHub<ChatHub>("/chat");
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapHub<ChatHub>("/chat");
+    endpoints.MapControllers();
+});
 
 app.Run();

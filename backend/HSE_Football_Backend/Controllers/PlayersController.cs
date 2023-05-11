@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using HSE_Football_Backend.Data;
 using HSE_Football_Backend.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HSE_Football_Backend.Controllers
 {
@@ -10,7 +11,8 @@ namespace HSE_Football_Backend.Controllers
 	/// </summary>
 	[Route("api/[controller]")]
 	[ApiController]
-	public class PlayersController : ControllerBase
+    [Authorize]
+    public class PlayersController : ControllerBase
 	{
 		/// <summary>
 		/// Контекст базы данных
@@ -86,6 +88,22 @@ namespace HSE_Football_Backend.Controllers
 			if (phone != player.PhoneNumber)
 			{
 				return BadRequest();
+			}
+			var chats = _context.Chats.Where(c => c.PhoneNumber1 == phone || c.PhoneNumber2 == phone).ToList();
+			foreach (var c in chats)
+			{
+				if (c.PhoneNumber1 == phone)
+				{
+					c.Name1 = player.Name;
+					_context.Entry(c).State = EntityState.Modified;
+                    await _context.SaveChangesAsync();
+                }
+				else
+				{
+                    c.Name2 = player.Name;
+                    _context.Entry(c).State = EntityState.Modified;
+                    await _context.SaveChangesAsync();
+                }
 			}
 			_context.Entry(player).State = EntityState.Modified;
 			try
