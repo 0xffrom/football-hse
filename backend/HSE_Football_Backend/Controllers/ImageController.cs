@@ -1,4 +1,5 @@
 ﻿using HSE_Football_Backend.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,7 +10,8 @@ namespace HSE_Football_Backend.Controllers
     /// </summary>
 	[Route("api/[controller]")]
 	[ApiController]
-	public class ImageController : ControllerBase
+    [Authorize]
+    public class ImageController : ControllerBase
 	{
         /// <summary>
         /// Окружение
@@ -63,6 +65,22 @@ namespace HSE_Football_Backend.Controllers
 				}
 			}
 			player.Photo = "http://hse-football.ru/Images/" + image.FileName;
+            var chats = _context.Chats.Where(c => c.PhoneNumber1 == phone || c.PhoneNumber2 == phone).ToList();
+            foreach (var c in chats)
+            {
+                if (c.PhoneNumber1 == phone)
+                {
+                    c.Photo1 = player.Photo;
+                    _context.Entry(c).State = EntityState.Modified;
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    c.Photo2 = player.Photo;
+                    _context.Entry(c).State = EntityState.Modified;
+                    await _context.SaveChangesAsync();
+                }
+            }
             _context.Entry(player).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return Ok();

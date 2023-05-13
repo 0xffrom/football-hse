@@ -17,7 +17,7 @@ constructor(
     val response = chain.proceed(request)
 
     if (response.code == 401) {
-      runBlocking { sessionUpdater.updateSession() }
+      runCatching { runBlocking { sessionUpdater.updateSession() } }.getOrNull()
 
       val newRequest = chain.request()
       return chain.proceed(newRequest)

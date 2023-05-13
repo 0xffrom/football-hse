@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using HSE_Football_Backend.Data;
 using HSE_Football_Backend.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HSE_Football_Backend.Controllers
 {
@@ -10,6 +11,7 @@ namespace HSE_Football_Backend.Controllers
 	/// </summary>
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class TeamsController : ControllerBase
     {
         /// <summary>
@@ -150,7 +152,10 @@ namespace HSE_Football_Backend.Controllers
             {
                 return NotFound();
             }
+            var captain = await _context.Players.FindAsync(team.CaptainPhoneNumber);
+            captain.IsCaptain = false;
             _context.Teams.Remove(team);
+            _context.Entry(captain).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return NoContent();
         }
