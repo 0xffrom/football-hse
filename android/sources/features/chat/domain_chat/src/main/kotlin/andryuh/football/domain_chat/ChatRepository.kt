@@ -130,6 +130,9 @@ constructor(
       conversationsCache.emit(
         chatApi
           .getConversations(userPhoneNumber)
+          .filter { body ->
+            body.senderPhoneNumber != "88888888888" && body.receiverPhoneNumber != "88888888888"
+          }
           .map { response ->
             val (name, phoneNumber, photoUrl) =
               if (userPhoneNumber == response.receiverPhoneNumber) {
