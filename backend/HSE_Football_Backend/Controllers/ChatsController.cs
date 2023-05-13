@@ -1,5 +1,6 @@
 ﻿using HSE_Football_Backend.Data;
 using HSE_Football_Backend.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,6 +11,7 @@ namespace HSE_Football_Backend.Controllers
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ChatsController : ControllerBase
     {
         /// <summary>
@@ -136,11 +138,14 @@ namespace HSE_Football_Backend.Controllers
             var c = await _context.Chats.FindAsync(chat.Id);
             if (c != null)
                 return BadRequest();
-            // Находим собеседников
-            var user1 = await _context.Players.FindAsync(chat.PhoneNumber1);
-            var user2 = await _context.Players.FindAsync(chat.PhoneNumber2);
-            if (user1 == null || user2 == null || user1 == user2)
-                return BadRequest();
+            if (!(chat.PhoneNumber1 == "88888888888" || chat.PhoneNumber2 == "88888888888"))
+            { 
+                // Находим собеседников
+                var user1 = await _context.Players.FindAsync(chat.PhoneNumber1);
+                var user2 = await _context.Players.FindAsync(chat.PhoneNumber2);
+                if (user1 == null || user2 == null || user1 == user2)
+                    return BadRequest();
+            }
             // Добавляем переписку
             _context.Chats.Add(chat);
             // Сохраняем изменения

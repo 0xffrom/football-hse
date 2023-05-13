@@ -54,12 +54,12 @@ namespace HSE_Football_Backend.Other
             }
             else
             {
-                //// Отправка смс уведомления
-                //if (phone != "88888888888")
-                //{
-                //    SmsAero smsc = new SmsAero("ckd001@mail.ru", "foR-O2fmlGrCjzzD-dF-x3cBLIbNmqAF");
-                //    await smsc.SmsSend($"У вас новое сообщение в футболе ВШЭ.", phone);
-                //}
+                // Отправка смс уведомления
+                if (phone != "88888888888")
+                {
+                    SmsAero smsc = new SmsAero("ckd001@mail.ru", "foR-O2fmlGrCjzzD-dF-x3cBLIbNmqAF");
+                    await smsc.SmsSend($"У вас новое сообщение в футболе ВШЭ.", phone);
+                }
                 await Clients.Caller.SendAsync("Receive", message);
             }
         }

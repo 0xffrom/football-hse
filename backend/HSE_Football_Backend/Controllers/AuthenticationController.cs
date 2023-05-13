@@ -118,16 +118,17 @@ namespace HSE_Football_Backend.Controllers
             {
                 playerData = new Player() { PhoneNumber = number };
                 _context.Players.Add(playerData);
+                var support = new Chat() { PhoneNumber1 = "88888888888", Name1 = "Поддержка", PhoneNumber2 = number };
+                _context.Chats.Add(support);
             }
 
             // Генерация кода подтверждения
-            //playerData.Code = rnd.Next(1000, 10000).ToString();
+            playerData.Code = rnd.Next(1000, 10000).ToString();
+            //playerData.Code = "1111";
 
-            //// Отправка смс с кодом
-            //SmsAero smsc = new SmsAero("ckd001@mail.ru", "foR-O2fmlGrCjzzD-dF-x3cBLIbNmqAF");
-            //await smsc.SmsSend($"Ваш код подтверждения для футбола ВШЭ: {playerData.Code}", number);
-
-            playerData.Code = "1111";
+            // Отправка смс с кодом
+            SmsAero smsc = new SmsAero("ckd001@mail.ru", "foR-O2fmlGrCjzzD-dF-x3cBLIbNmqAF");
+            await smsc.SmsSend($"Ваш код подтверждения для футбола ВШЭ: {playerData.Code}", number);
 
             // Генерация добавки для хеширования кода
             GenerateSalt(ref playerData);

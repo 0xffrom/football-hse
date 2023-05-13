@@ -41,7 +41,7 @@ namespace HSE_Football_Backend.Models
         /// <summary>
         /// Контактная информация
         /// </summary>
-        [StringLength(41, MinimumLength = 2, ErrorMessage = "Контактная информация должна быть от 2 до 40 символов")]
+        [StringLength(41, ErrorMessage = "Контактная информация должна быть до 40 символов")]
         public string? Contact { get; set; }
 
         /// <summary>

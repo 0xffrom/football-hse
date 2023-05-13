@@ -1,5 +1,6 @@
 ﻿using HSE_Football_Backend.Data;
 using HSE_Football_Backend.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,6 +11,7 @@ namespace HSE_Football_Backend.Controllers
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class MessagesController : ControllerBase
     {
         /// <summary>
