@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="50" id="APB-r9-R0Q" customClass="SupportCell" customModule="FootballHSE" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="450" height="62"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="APB-r9-R0Q" id="HA2-h6-NHp">
+                <rect key="frame" x="0.0" y="0.0" width="450" height="62"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="supportIcon" translatesAutoresizingMaskIntoConstraints="NO" id="hOn-9g-ute">
+                        <rect key="frame" x="16" y="11" width="42" height="42"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="42" id="GiS-ML-TT5"/>
+                            <constraint firstAttribute="width" constant="42" id="UU5-34-IN7"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Поддержка" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IOP-iz-hpC">
+                        <rect key="frame" x="65" y="15" width="377" height="17"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Артём, привет! Хочу в вашу команду" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YH5-aP-pzj">
+                        <rect key="frame" x="65" y="34" width="249" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" name="TextAndIconsSecondary"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newUnreadMessageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="l1a-Hr-awg">
+                        <rect key="frame" x="418" y="12" width="16" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="O1u-wb-E2w"/>
+                            <constraint firstAttribute="width" constant="16" id="jNz-sM-rRg"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="7 март. 2023 г." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ZY-aW-cQj">
+                        <rect key="frame" x="334" y="41" width="100" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="ZFj-Rs-KQI"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" name="TextIconsTertiary"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Jrq-Iz-r4L">
+                        <rect key="frame" x="318" y="40" width="16" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="16" id="Ejt-ZG-xjG"/>
+                            <constraint firstAttribute="height" constant="16" id="FQG-WF-7Sn"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="IOP-iz-hpC" secondAttribute="trailing" constant="8" id="1N6-NN-kOq"/>
+                    <constraint firstAttribute="bottom" secondItem="hOn-9g-ute" secondAttribute="bottom" constant="11" id="2Bh-vF-NZ2"/>
+                    <constraint firstItem="Jrq-Iz-r4L" firstAttribute="leading" secondItem="YH5-aP-pzj" secondAttribute="trailing" constant="4" id="BPw-wg-mz8"/>
+                    <constraint firstItem="4ZY-aW-cQj" firstAttribute="leading" secondItem="Jrq-Iz-r4L" secondAttribute="trailing" id="BiM-i0-bTN"/>
+                    <constraint firstItem="IOP-iz-hpC" firstAttribute="top" secondItem="HA2-h6-NHp" secondAttribute="top" constant="15" id="EDt-pi-OH5"/>
+                    <constraint firstItem="hOn-9g-ute" firstAttribute="leading" secondItem="HA2-h6-NHp" secondAttribute="leading" constant="16" id="HgV-lX-rVt"/>
+                    <constraint firstAttribute="trailing" secondItem="4ZY-aW-cQj" secondAttribute="trailing" constant="16" id="KQu-Rf-URa"/>
+                    <constraint firstItem="YH5-aP-pzj" firstAttribute="leading" secondItem="IOP-iz-hpC" secondAttribute="leading" id="RCG-hP-NRe"/>
+                    <constraint firstItem="YH5-aP-pzj" firstAttribute="top" secondItem="IOP-iz-hpC" secondAttribute="bottom" constant="2" id="TJo-Cm-1dW"/>
+                    <constraint firstItem="4ZY-aW-cQj" firstAttribute="top" secondItem="IOP-iz-hpC" secondAttribute="bottom" constant="9" id="XFs-fF-0Tw"/>
+                    <constraint firstItem="IOP-iz-hpC" firstAttribute="leading" secondItem="hOn-9g-ute" secondAttribute="trailing" constant="7" id="Xeh-nh-Gkw"/>
+                    <constraint firstItem="hOn-9g-ute" firstAttribute="top" secondItem="HA2-h6-NHp" secondAttribute="top" constant="11" id="cTu-fE-A68"/>
+                    <constraint firstItem="Jrq-Iz-r4L" firstAttribute="bottom" secondItem="4ZY-aW-cQj" secondAttribute="bottom" id="j9J-R5-QDW"/>
+                    <constraint firstAttribute="trailing" secondItem="l1a-Hr-awg" secondAttribute="trailing" constant="16" id="oD1-k1-6YH"/>
+                    <constraint firstItem="l1a-Hr-awg" firstAttribute="top" secondItem="HA2-h6-NHp" secondAttribute="top" constant="12" id="pP3-rS-Ulk"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" name="BaseSurface1"/>
+            <connections>
+                <outlet property="checkSignImageView" destination="Jrq-Iz-r4L" id="xjf-Jh-0dd"/>
+                <outlet property="lastMessageLabel" destination="YH5-aP-pzj" id="yxu-7t-UmS"/>
+                <outlet property="timeLabel" destination="4ZY-aW-cQj" id="smM-zX-S9n"/>
+                <outlet property="unreadSignImageView" destination="l1a-Hr-awg" id="Chs-uk-raM"/>
+            </connections>
+            <point key="canvasLocation" x="96.18320610687023" y="3.5211267605633805"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="checkIcon" width="65" height="64"/>
+        <image name="newUnreadMessageIcon" width="64" height="64"/>
+        <image name="supportIcon" width="160" height="160"/>
+        <namedColor name="BaseSurface1">
+            <color red="0.9649999737739563" green="0.97600001096725464" blue="0.99599999189376831" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="TextAndIconsSecondary">
+            <color red="0.38400000333786011" green="0.40400001406669617" blue="0.48199999332427979" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="TextIconsTertiary">
+            <color red="0.49799999594688416" green="0.54100000858306885" blue="0.62000000476837158" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+    </resources>
+</document>

@@ -10,6 +10,11 @@ import UIKit
 
 final class SearchTeamsCoordinator {
 
+    enum ChildPage {
+        case filters
+        case creationOfApplication
+    }
+
     // MARK: Private Properties
 
     private var childCoordinators: [Coordinatable] = []
@@ -20,7 +25,22 @@ final class SearchTeamsCoordinator {
     private weak var parentTabBarController: UITabBarController?
     private weak var parentNavigationController: UINavigationController?
 
+    private weak var input: SearchTeamsPageModuleInput?
+
     private let networkService: INetworkService
+
+    private let searchByFiltersService = SearchByFiltersService(
+        numberOfFilters: 2,
+        fltersNames: ["Позиции", "Турниры"],
+        mustChooseAllFilters: false
+    )
+    private let createApplicationFiltersService = SearchByFiltersService(
+        numberOfFilters: 2,
+        fltersNames: ["Позиции", "Турниры"],
+        mustChooseAllFilters: true
+    )
+    private var title: String?
+    private var childPageType: ChildPage?
 
     // MARK: Lifecycle
 
@@ -63,33 +83,103 @@ extension SearchTeamsCoordinator: Coordinatable {
 
 extension SearchTeamsCoordinator: SearchTeamsPageModuleOutput {
 
+    func moduleDidLoad(_ module: SearchTeamsPageModuleInput) {
+        input = module
+    }
+
     func openCreateApplictaionScreen() {
-        let builder = CreateTeamSearchApplicationModuleBuilder(
+        title = "Создание заявки"
+        childPageType = .creationOfApplication
+
+        let builder = SearchTeamsPlayerRoleFilterModuleBuilder<PlayerPosition>(
             output: self,
-            networkService: networkService
+            networkService: networkService,
+            searchByFiltersService: createApplicationFiltersService
         )
-        let viewController = builder.build()
+        let viewController = builder.build(withTitle: title ?? "")
         parentNavigationController?.pushViewController(viewController, animated: true)
     }
 
-    func openTeamApplication(team: TeamApplicationDisplayModel) {
+    func openTeamApplication(team: TeamApplicationDisplayModel, teamImageURL: String?) {
         let builder = TeamApplicationModuleBuilder(
             output: self,
             networkService: networkService,
-            team: team
+            team: team,
+            teamImageURL: teamImageURL
         )
         let viewController = builder.build()
         parentNavigationController?.pushViewController(viewController, animated: true)
     }
-}
 
-extension SearchTeamsCoordinator: CreateTeamSearchApplicationModuleOutput {
+    func openFilters() {
+        title = "Выбор фильтров"
+        childPageType = .filters
 
-    func back() {
-        parentNavigationController?.popViewController(animated: true)
+        let builder = SearchTeamsPlayerRoleFilterModuleBuilder<PlayerPosition>(
+            output: self,
+            networkService: networkService,
+            searchByFiltersService: searchByFiltersService
+        )
+        let viewController = builder.build(withTitle: title ?? "")
+        parentNavigationController?.pushViewController(viewController, animated: true)
     }
 }
 
 extension SearchTeamsCoordinator: TeamApplicationModuleOutput {
 
+    func back() {
+        parentNavigationController?.popViewController(animated: true)
+    }
+
+    func wantsToOpenConversation(phoneNumber: String?, name: String?, image: UIImage?, interlocutorsImageURL: String?, conversationID: Int, lastMessage: MessageModel?) {
+        let builder = ConversationModuleBuilder(
+            output: self,
+            networkService: networkService,
+            interlocutorsPhoneNamber: phoneNumber ?? "",
+            interlocutorsName: name,
+            interlocutorsImageURL: interlocutorsImageURL,
+            conversationID: conversationID,
+            image: image,
+            lastMessage: lastMessage
+        )
+        let viewController = builder.build()
+        parentNavigationController?.pushViewController(viewController, animated: true)
+    }
 }
+
+extension SearchTeamsCoordinator: SearchTeamsPlayerRoleFilterModuleOutput {
+
+    func showResults(filters: [Int]) {
+        guard let childPageType else { return }
+        switch childPageType {
+        case .filters:
+            input?.applyFilters(position: filters[0], tournaments: filters[1])
+        case .creationOfApplication:
+            input?.createApplication(position: filters[0], tournaments: filters[1])
+        }
+
+        parentNavigationController?.popToRootViewController(animated: true)
+    }
+
+    func openNextFilter() {
+        var service: SearchByFiltersService?
+
+        guard let childPageType else { return }
+        switch childPageType {
+        case .filters:
+            service = self.searchByFiltersService
+        case .creationOfApplication:
+            service = self.createApplicationFiltersService
+        }
+
+        let builder = SearchTeamsPlayerRoleFilterModuleBuilder<Tournament>(
+            output: self,
+            networkService: networkService,
+            searchByFiltersService: service!
+        )
+        let viewController = builder.build(withTitle: title ?? "")
+        parentNavigationController?.pushViewController(viewController, animated: true)
+    }
+}
+
+extension SearchTeamsCoordinator: ConversationModuleOutput {}

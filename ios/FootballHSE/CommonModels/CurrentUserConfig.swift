@@ -24,8 +24,6 @@ public class CurrentUserConfig {
     var hseRole: Int?
     var applicationId: Int?
 
-    init() {}
-
     static func clear() {
         shared.phoneNumber = nil
         shared.name = nil
@@ -39,5 +37,11 @@ public class CurrentUserConfig {
         shared.photo = nil
         shared.hseRole = nil
         shared.applicationId = nil
+    }
+
+    static func isAllInformationProvided() -> Bool {
+        shared.name != nil && shared.about != nil &&
+        shared.contact != nil && shared.footballExperience != nil &&
+        shared.tournamentExperience != nil && shared.photo != nil
     }
 }

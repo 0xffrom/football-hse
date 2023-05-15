@@ -12,5 +12,5 @@ public protocol RegisterTeamPageModuleInput: AnyObject {
 }
 
 public protocol RegisterTeamPageModuleOutput: AnyObject {
-    func back()
+    func backWithTeamRegistered()
 }

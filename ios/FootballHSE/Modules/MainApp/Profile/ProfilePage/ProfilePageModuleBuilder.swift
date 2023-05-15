@@ -13,16 +13,21 @@ public final class ProfilePageModuleBuilder {
 
     private weak var output: ProfilePageModuleOutput?
 
+    private let networkService: INetworkService
+
     // MARK: Lifecycle
 
-    public init(output: ProfilePageModuleOutput?) {
+    public init(output: ProfilePageModuleOutput?,
+                networkService: INetworkService
+    ) {
         self.output = output
+        self.networkService = networkService
     }
 
     // MARK: Public Methods
 
     public func build() -> UIViewController {
-        let interactor = ProfilePageInteractor()
+        let interactor = ProfilePageInteractor(networkService: networkService)
         let presenter = ProfilePagePresenter(interactor: interactor)
 
         let storyboard = UIStoryboard(name: "ProfilePage", bundle: nil)

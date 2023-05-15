@@ -20,18 +20,24 @@ final class ProfileCoordinator {
     private weak var parentTabBarController: UITabBarController?
     private weak var parentNavigationController: UINavigationController?
 
+    private var resignCapitanStatusAction: (() -> Void)?
+
     private let networkService: INetworkService
+
+    private weak var input: ProfilePageModuleInput?
 
     // MARK: Lifecycle
 
     init(
         parentTabBarController: UITabBarController,
         networkService: INetworkService,
-        window: UIWindow
+        window: UIWindow,
+        resignCapitanStatusAction: (() -> Void)?
     ) {
         self.parentTabBarController = parentTabBarController
         self.networkService = networkService
         self.window = window
+        self.resignCapitanStatusAction = resignCapitanStatusAction
     }
 }
 
@@ -40,7 +46,7 @@ final class ProfileCoordinator {
 extension ProfileCoordinator: Coordinatable {
 
     func start(animated: Bool) {
-        let builder = ProfilePageModuleBuilder(output: self)
+        let builder = ProfilePageModuleBuilder(output: self, networkService: networkService)
         let viewController = builder.build()
 
         let navigationController = UINavigationController(rootViewController: viewController)
@@ -60,6 +66,10 @@ extension ProfileCoordinator: Coordinatable {
 
 extension ProfileCoordinator: ProfilePageModuleOutput {
 
+    func moduleDidLoad(_ module: ProfilePageModuleInput) {
+        input = module
+    }
+
     func registerTeam() {
         let builder = RegisterTeamPageModuleBuilder(
             output: self,
@@ -78,8 +88,28 @@ extension ProfileCoordinator: ProfilePageModuleOutput {
         parentNavigationController?.pushViewController(viewController, animated: true)
     }
 
+    func openMyApplications() {
+        let builder = MyApplicationsPageModuleBuilder(
+            output: self,
+            networkService: networkService,
+            type: .user
+        )
+        let viewController = builder.build()
+        parentNavigationController?.pushViewController(viewController, animated: true)
+    }
+
+    func openTeamInfo() {
+        let builder = TeamPageModuleBuilder(
+            output: self,
+            networkService: networkService
+        )
+        let viewController = builder.build()
+        parentNavigationController?.pushViewController(viewController, animated: true)
+    }
+
     func exit() {
         CurrentUserConfig.clear()
+        CurrentTeamConfig.clear()
 
         let rootCoordinator = RootCoordinator(
             parentNavigationController: UINavigationController(),
@@ -94,8 +124,36 @@ extension ProfileCoordinator: ProfilePageModuleOutput {
 extension ProfileCoordinator: EditProfilePageModuleOutput {
 
     func back() {
+        input?.updateProfileInfo()
         parentNavigationController?.popViewController(animated: true)
     }
 }
 
-extension ProfileCoordinator: RegisterTeamPageModuleOutput {}
+extension ProfileCoordinator: RegisterTeamPageModuleOutput {
+
+    func backWithTeamRegistered() {
+        input?.setupTeamRegistrationInProgressView()
+        parentNavigationController?.popViewController(animated: true)
+    }
+}
+
+extension ProfileCoordinator: MyApplicationsPageModuleOutput {}
+
+extension ProfileCoordinator: TeamPageModuleOutput {
+
+    func backWithTeamDeleted() {
+        input?.setupRegisterTeamView()
+        resignCapitanStatusAction?()
+        parentNavigationController?.popViewController(animated: true)
+    }
+
+    func openTeamApplications() {
+        let builder = MyApplicationsPageModuleBuilder(
+            output: self,
+            networkService: networkService,
+            type: .team
+        )
+        let viewController = builder.build()
+        parentNavigationController?.pushViewController(viewController, animated: true)
+    }
+}

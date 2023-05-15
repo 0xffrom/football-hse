@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--My Applications Page View Controller-->
+        <scene sceneID="bHm-FJ-ygy">
+            <objects>
+                <viewController storyboardIdentifier="MyApplicationsPageViewController" extendedLayoutIncludesOpaqueBars="YES" id="5Lw-XL-ac5" customClass="MyApplicationsPageViewController" customModule="FootballHSE" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0Tg-cE-sPu">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="137" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="58f-D4-dBr">
+                                <rect key="frame" x="16" y="48" width="382" height="765"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EmptyStateInProfile" translatesAutoresizingMaskIntoConstraints="NO" id="pQY-3l-psC">
+                                <rect key="frame" x="60" y="317.5" width="294" height="140"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="140" id="ZGe-1L-rZ3"/>
+                                    <constraint firstAttribute="width" constant="294" id="zet-3L-kz4"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="У вас пока нет активных заявок" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nco-Eg-fOQ">
+                                <rect key="frame" x="8" y="457.5" width="398" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="TextIconsTertiary"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uis-2B-t7z">
+                                <rect key="frame" x="156" y="494.5" width="102" height="35"/>
+                                <color key="tintColor" name="BasePrimary"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Обновить"/>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Sn8-iF-UZ8"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Sn8-iF-UZ8" firstAttribute="trailing" secondItem="Nco-Eg-fOQ" secondAttribute="trailing" constant="8" id="250-XD-Asm"/>
+                            <constraint firstItem="Sn8-iF-UZ8" firstAttribute="bottom" secondItem="58f-D4-dBr" secondAttribute="bottom" id="3bH-I1-qb1"/>
+                            <constraint firstItem="Nco-Eg-fOQ" firstAttribute="leading" secondItem="Sn8-iF-UZ8" secondAttribute="leading" constant="8" id="8me-Ww-vpO"/>
+                            <constraint firstItem="58f-D4-dBr" firstAttribute="leading" secondItem="Sn8-iF-UZ8" secondAttribute="leading" constant="16" id="GRj-9G-wb8"/>
+                            <constraint firstItem="Uis-2B-t7z" firstAttribute="top" secondItem="Nco-Eg-fOQ" secondAttribute="bottom" constant="16" id="Mwh-Bw-9Yw"/>
+                            <constraint firstItem="Nco-Eg-fOQ" firstAttribute="top" secondItem="pQY-3l-psC" secondAttribute="bottom" id="STr-vg-3AC"/>
+                            <constraint firstItem="pQY-3l-psC" firstAttribute="centerY" secondItem="Sn8-iF-UZ8" secondAttribute="centerY" multiplier="0.9" id="XIM-Ll-qLM"/>
+                            <constraint firstItem="Uis-2B-t7z" firstAttribute="centerX" secondItem="Sn8-iF-UZ8" secondAttribute="centerX" id="aZf-t9-S2s"/>
+                            <constraint firstItem="58f-D4-dBr" firstAttribute="top" secondItem="Sn8-iF-UZ8" secondAttribute="top" id="gq7-T5-v6D"/>
+                            <constraint firstItem="Sn8-iF-UZ8" firstAttribute="trailing" secondItem="58f-D4-dBr" secondAttribute="trailing" constant="16" id="med-yy-Llc"/>
+                            <constraint firstItem="Nco-Eg-fOQ" firstAttribute="centerX" secondItem="Sn8-iF-UZ8" secondAttribute="centerX" id="qoZ-bd-y01"/>
+                            <constraint firstAttribute="trailing" secondItem="pQY-3l-psC" secondAttribute="trailing" constant="60" id="tEh-YM-dur"/>
+                            <constraint firstItem="pQY-3l-psC" firstAttribute="leading" secondItem="0Tg-cE-sPu" secondAttribute="leading" constant="60" id="zNO-QY-vsr"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="searchIcon" selectedImage="searchIcon" id="3Bj-Mo-HjB">
+                        <color key="badgeColor" name="TextAndIconsPrimary"/>
+                    </tabBarItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="messageImageView" destination="pQY-3l-psC" id="fpM-vw-UrI"/>
+                        <outlet property="messageLabel" destination="Nco-Eg-fOQ" id="blJ-9e-o2E"/>
+                        <outlet property="refreshButton" destination="Uis-2B-t7z" id="nCz-Vc-9x3"/>
+                        <outlet property="tableView" destination="58f-D4-dBr" id="PjZ-d2-ETw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DWR-FO-7up" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="609" y="38"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="EmptyStateInProfile" width="864" height="342"/>
+        <image name="searchIcon" width="20" height="20"/>
+        <namedColor name="BasePrimary">
+            <color red="0.24699999392032623" green="0.37599998712539673" blue="0.9570000171661377" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="TextAndIconsPrimary">
+            <color red="0.14900000393390656" green="0.14900000393390656" blue="0.14900000393390656" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="TextIconsTertiary">
+            <color red="0.49799999594688416" green="0.54100000858306885" blue="0.62000000476837158" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

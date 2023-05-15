@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Conversations View Controller-->
+        <scene sceneID="L8Y-qT-UXd">
+            <objects>
+                <viewController storyboardIdentifier="ConversationsViewController" extendedLayoutIncludesOpaqueBars="YES" id="rmA-wI-mRy" customClass="ConversationsViewController" customModule="FootballHSE" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Zmw-b3-tOR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="137" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="H9k-9h-N6y">
+                                <rect key="frame" x="0.0" y="79" width="414" height="734"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noMessagesImage" translatesAutoresizingMaskIntoConstraints="NO" id="FIb-0P-NXc">
+                                <rect key="frame" x="60" y="270" width="294" height="235"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="FIb-0P-NXc" secondAttribute="height" multiplier="10:8" id="CSa-NL-Zkt"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="У вас пока нет активных чатов" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XqO-Xz-Bj3">
+                                <rect key="frame" x="16" y="485" width="382" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" name="TextIconsTertiary"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zgk-59-UrG">
+                                <rect key="frame" x="156" y="521" width="102" height="35"/>
+                                <color key="tintColor" name="BasePrimary"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Обновить"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Чат" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mdh-KZ-0Zc">
+                                <rect key="frame" x="193" y="48" width="28" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="mjK-ts-VTQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="YhN-Fp-CTc"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="FIb-0P-NXc" firstAttribute="centerX" secondItem="YhN-Fp-CTc" secondAttribute="centerX" id="2W8-kh-EtU"/>
+                            <constraint firstItem="XqO-Xz-Bj3" firstAttribute="centerX" secondItem="YhN-Fp-CTc" secondAttribute="centerX" id="3gZ-JR-zs0"/>
+                            <constraint firstItem="Zgk-59-UrG" firstAttribute="centerX" secondItem="YhN-Fp-CTc" secondAttribute="centerX" id="BQ9-q1-fpO"/>
+                            <constraint firstItem="YhN-Fp-CTc" firstAttribute="trailing" secondItem="FIb-0P-NXc" secondAttribute="trailing" constant="60" id="CVX-sa-9A5"/>
+                            <constraint firstItem="XqO-Xz-Bj3" firstAttribute="leading" secondItem="YhN-Fp-CTc" secondAttribute="leading" constant="16" id="CxL-sL-ZyC"/>
+                            <constraint firstItem="mdh-KZ-0Zc" firstAttribute="top" secondItem="YhN-Fp-CTc" secondAttribute="top" id="Fvi-M2-hva"/>
+                            <constraint firstItem="FIb-0P-NXc" firstAttribute="centerY" secondItem="YhN-Fp-CTc" secondAttribute="centerY" multiplier="0.9" id="G1A-hR-Jsm"/>
+                            <constraint firstItem="FIb-0P-NXc" firstAttribute="leading" secondItem="YhN-Fp-CTc" secondAttribute="leading" constant="60" id="JEG-ek-a61"/>
+                            <constraint firstItem="H9k-9h-N6y" firstAttribute="top" secondItem="mdh-KZ-0Zc" secondAttribute="bottom" constant="11" id="MZo-JV-aRA"/>
+                            <constraint firstItem="YhN-Fp-CTc" firstAttribute="bottom" secondItem="H9k-9h-N6y" secondAttribute="bottom" id="Mdo-Oq-Q3y"/>
+                            <constraint firstItem="Zgk-59-UrG" firstAttribute="top" secondItem="XqO-Xz-Bj3" secondAttribute="bottom" constant="16" id="WtA-qC-UfB"/>
+                            <constraint firstItem="YhN-Fp-CTc" firstAttribute="trailing" secondItem="XqO-Xz-Bj3" secondAttribute="trailing" constant="16" id="dkX-YO-4sv"/>
+                            <constraint firstItem="YhN-Fp-CTc" firstAttribute="trailing" secondItem="H9k-9h-N6y" secondAttribute="trailing" id="ftA-Sq-iMN"/>
+                            <constraint firstItem="H9k-9h-N6y" firstAttribute="leading" secondItem="YhN-Fp-CTc" secondAttribute="leading" id="gnj-sm-pBR"/>
+                            <constraint firstItem="XqO-Xz-Bj3" firstAttribute="top" secondItem="FIb-0P-NXc" secondAttribute="bottom" constant="-20" id="lbu-bH-RMX"/>
+                            <constraint firstItem="mdh-KZ-0Zc" firstAttribute="centerX" secondItem="YhN-Fp-CTc" secondAttribute="centerX" id="rHZ-IO-ew2"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="chatIcon" selectedImage="chatIcon" id="Fdc-gk-A8b">
+                        <color key="badgeColor" name="TextAndIconsPrimary"/>
+                    </tabBarItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="messageImageView" destination="FIb-0P-NXc" id="2RK-VW-tT1"/>
+                        <outlet property="messageLabel" destination="XqO-Xz-Bj3" id="KkD-vD-lcX"/>
+                        <outlet property="refreshButton" destination="Zgk-59-UrG" id="52n-su-pDF"/>
+                        <outlet property="tableView" destination="H9k-9h-N6y" id="Myo-ZL-KVw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b7Q-fr-XRV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="544.79999999999995" y="77.58620689655173"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="chatIcon" width="20" height="16"/>
+        <image name="noMessagesImage" width="1000" height="800"/>
+        <namedColor name="BasePrimary">
+            <color red="0.24699999392032623" green="0.37599998712539673" blue="0.9570000171661377" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="TextAndIconsPrimary">
+            <color red="0.14900000393390656" green="0.14900000393390656" blue="0.14900000393390656" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="TextIconsTertiary">
+            <color red="0.49799999594688416" green="0.54100000858306885" blue="0.62000000476837158" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -1,28 +1,28 @@
 PODS:
   - InputMask (6.1.0)
+  - R.swift (7.3.0)
   - SnapKit (5.6.0)
-  - SwiftGen (6.6.2)
-  - Swinject (2.8.2)
+  - SwiftSignalRClient (0.9.3)
 
 DEPENDENCIES:
   - InputMask
+  - R.swift
   - SnapKit (~> 5.6.0)
-  - SwiftGen
-  - Swinject
+  - SwiftSignalRClient
 
 SPEC REPOS:
   trunk:
     - InputMask
+    - R.swift
     - SnapKit
-    - SwiftGen
-    - Swinject
+    - SwiftSignalRClient
 
 SPEC CHECKSUMS:
   InputMask: 71d291dc54d2deaeac6512afb6ec2304228c0bb7
+  R.swift: cef1c530541cb49412752721797f10dae6b32d11
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
-  SwiftGen: 1366a7f71aeef49954ca5a63ba4bef6b0f24138c
-  Swinject: b4a11b31992e8668308dc594ba1cb9b3164a37ab
+  SwiftSignalRClient: 317eb0d1a3bd74248def7b8c8b0639724c32694c
 
-PODFILE CHECKSUM: 95d99741f04a3287920dd9c3c83842c3e117bdba
+PODFILE CHECKSUM: 4ebb5d65c6689aef33fb9c7bde5e9edd4f5d38f0
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.1

@@ -7,34 +7,33 @@
 
 import Foundation
 
-enum PlayerPosition: Int, Codable {
-    case CFRV = 0
-    case LFRV
-    case PFRV
-    case CAP
-    case COP
-    case LP
-    case PP
-    case TS
-    case LS
-    case PS
-    case VRT
+enum PlayerPosition: Int, Codable, CaseIterable {
+    case сentralForward
+    case leftForward
+    case rightForward
+    case centralAttackingMidfielder
+    case defensiveMidfielder
+    case leftMidfielder
+    case rightMidfielder
+    case centralDefender
+    case leftDefender
+    case rightDefender
+    case goalkeeper
 }
 
 extension PlayerPosition {
 
-    static func convertIntToPositions(num: Int) -> [PlayerPosition] {
+    static func convertIntToPositions(num: Int?) -> [PlayerPosition] {
+        guard let num else { return [] }
+
         let binaryStr = String(num, radix: 2)
 
         var powers: [Int] = []
 
-        if num % 2 == 1 {
-            powers.append(0)
-        }
-
-        for index in 1..<binaryStr.count {
-            let strIdx = binaryStr.index(binaryStr.startIndex, offsetBy: index)
-            if binaryStr[strIdx] == "1" {
+        let reversedBinaryStr = binaryStr.reversed
+        for index in 0..<reversedBinaryStr.count {
+            let idx = binaryStr.index(reversedBinaryStr.startIndex, offsetBy: index)
+            if reversedBinaryStr[idx] == "1" {
                 powers.append(index)
             }
         }
@@ -44,31 +43,68 @@ extension PlayerPosition {
         }
         return positions
     }
+}
 
-    func getNameOfRole() -> String {
+extension PlayerPosition: Filterabale {
+
+    static func getValueWithIndex(_ index: Int) -> PlayerPosition {
+        PlayerPosition.allCases[index]
+    }
+
+    static func getIndexOfValue(_ item: PlayerPosition) -> Int? {
+        PlayerPosition.allCases.firstIndex(of: item)
+    }
+
+    static func getNumber(items: [PlayerPosition]) -> Int {
+        if items.isEmpty { return -1 }
+        var num = 0
+        items.forEach { item in
+            guard let idx = getIndexOfValue(item) else { return }
+            num += Int.pow(2, idx)
+        }
+        return num
+    }
+
+    static func getListOfAllValues() -> [PlayerPosition] {
+        var arr: [PlayerPosition] = []
+        for value in PlayerPosition.allCases {
+            arr.append(value)
+        }
+        return arr
+    }
+
+    static func getListOfAllValuesInStringFormat() -> [String] {
+        var arr: [String] = []
+        for value in PlayerPosition.allCases {
+            arr.append(value.getStringValue())
+        }
+        return arr
+    }
+
+    func getStringValue() -> String {
         switch self {
-        case .CFRV:
-            return "ЦФРВ"
-        case .LFRV:
-            return "ЛФРВ"
-        case .PFRV:
-            return "ПФРВ"
-        case .CAP:
-            return "ЦАП"
-        case .COP:
-            return "ЦОП"
-        case .LP:
-            return "ЛП"
-        case .PP:
-            return "ПП"
-        case .TS:
-            return "ЦЗ"
-        case .LS:
-            return "ЛЗ"
-        case .PS:
-            return "ПЗ"
-        case .VRT:
-            return "ВРТ"
+        case .сentralForward:
+            return "Центральный форвард"
+        case .leftForward:
+            return "Левый форвард"
+        case .rightForward:
+            return "Правый форвард"
+        case .centralAttackingMidfielder:
+            return "Центральный атакующий полузащитник"
+        case .defensiveMidfielder:
+            return "Опорный полузащитник"
+        case .leftMidfielder:
+            return "Левый полузащитник"
+        case .rightMidfielder:
+            return "Правый полузащиник"
+        case .centralDefender:
+            return "Центральный защитник"
+        case .leftDefender:
+            return "Левый защитник"
+        case .rightDefender:
+            return "Правый защитник"
+        case .goalkeeper:
+            return "Голкипер"
         }
     }
 }

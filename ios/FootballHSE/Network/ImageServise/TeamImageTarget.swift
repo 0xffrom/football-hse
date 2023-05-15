@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TeamImageTarget: IRequest {
+struct TeamImageTarget: RequestProtocol {
     let path = "api/Image/Team/"
 
     var urlRequest: URLRequest?

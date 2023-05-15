@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Authorization Code Entering View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="AuthorizationCodeEnteringViewController" id="Y6W-OH-hqX" customClass="AuthorizationCodeEnteringViewController" customModule="FootballHSE" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Введите код" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nzq-B7-y7b">
+                                <rect key="frame" x="87" y="296.5" width="146.5" height="29"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <color key="textColor" name="BasePrimary"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P7g-h1-Wsm">
+                                <rect key="frame" x="16" y="341.5" width="288" height="33.5"/>
+                                <string key="text">Мы отправили SMS с кодом на Ваш
+мобильный телефон</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" name="TextAndIconsSecondary"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="newMessageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="LPN-DX-fxQ">
+                                <rect key="frame" x="115" y="169.5" width="90" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="N9Z-wP-cze"/>
+                                    <constraint firstAttribute="width" constant="90" id="rT9-xm-H0B"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KCz-ir-zo6" customClass="HSEMainButton" customModule="FootballHSE" customModuleProvider="target">
+                                <rect key="frame" x="16" y="569" width="288" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="A9c-RK-IA7"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Продолжить"/>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="QCj-DV-kN5">
+                                <rect key="frame" x="24" y="415" width="272" height="84"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pnd-2Z-ctv" customClass="HSESmartTextFieldView" customModule="FootballHSE" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="56" height="84"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="56" id="1KS-LK-5hg"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="listener" destination="f8v-G9-w9H" id="iMu-Wv-dsC"/>
+                                        </connections>
+                                    </view>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QTZ-QR-Y1d" customClass="HSESmartTextFieldView" customModule="FootballHSE" customModuleProvider="target">
+                                        <rect key="frame" x="72" y="0.0" width="56" height="84"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="56" id="97c-zl-r1W"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="listener" destination="kNq-uD-2Y5" id="ked-za-z4V"/>
+                                        </connections>
+                                    </view>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vq7-CV-FZr" customClass="HSESmartTextFieldView" customModule="FootballHSE" customModuleProvider="target">
+                                        <rect key="frame" x="144" y="0.0" width="56" height="84"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="56" id="iPk-He-I89"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="listener" destination="Lsu-hn-3k8" id="tdy-hJ-Wo4"/>
+                                        </connections>
+                                    </view>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tKR-w2-PXY" customClass="HSESmartTextFieldView" customModule="FootballHSE" customModuleProvider="target">
+                                        <rect key="frame" x="216" y="0.0" width="56" height="84"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="56" id="z4N-A2-S5k"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="listener" destination="L8e-Se-QJh" id="qDL-bS-3NZ"/>
+                                        </connections>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nJz-ae-NzR">
+                                <rect key="frame" x="16" y="546" width="288" height="29"/>
+                                <string key="text">Неверный код подтверждения
+Отправили повторно</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" name="AccentRed"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="P7g-h1-Wsm" secondAttribute="trailing" constant="16" id="1LJ-Eh-FMg"/>
+                            <constraint firstItem="P7g-h1-Wsm" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="5Tp-2B-y9N"/>
+                            <constraint firstItem="Nzq-B7-y7b" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="C76-IP-VhN"/>
+                            <constraint firstItem="nJz-ae-NzR" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="OhV-xa-Shl"/>
+                            <constraint firstItem="Nzq-B7-y7b" firstAttribute="top" secondItem="LPN-DX-fxQ" secondAttribute="bottom" constant="37" id="Opz-HI-0ns"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="nJz-ae-NzR" secondAttribute="trailing" constant="16" id="U8E-gT-M9Y"/>
+                            <constraint firstItem="P7g-h1-Wsm" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="XdV-5o-Zmn"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="KCz-ir-zo6" secondAttribute="trailing" constant="16" id="ZJd-S9-EEr"/>
+                            <constraint firstItem="QCj-DV-kN5" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="eC0-2L-h89"/>
+                            <constraint firstItem="P7g-h1-Wsm" firstAttribute="top" secondItem="Nzq-B7-y7b" secondAttribute="bottom" constant="16" id="moe-RV-mn7"/>
+                            <constraint firstItem="KCz-ir-zo6" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="rGz-eO-6nf"/>
+                            <constraint firstItem="LPN-DX-fxQ" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="sgH-IQ-DvJ"/>
+                            <constraint firstItem="QCj-DV-kN5" firstAttribute="top" secondItem="P7g-h1-Wsm" secondAttribute="bottom" constant="36" id="tI5-M3-HeG"/>
+                            <constraint firstItem="KCz-ir-zo6" firstAttribute="top" secondItem="nJz-ae-NzR" secondAttribute="bottom" constant="36" id="yN9-xH-OZ3"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="codeStackView" destination="QCj-DV-kN5" id="w7z-2u-MwD"/>
+                        <outlet property="codeTextField1" destination="pnd-2Z-ctv" id="LEx-lR-0kb"/>
+                        <outlet property="codeTextField2" destination="QTZ-QR-Y1d" id="sgZ-he-sPC"/>
+                        <outlet property="codeTextField3" destination="vq7-CV-FZr" id="3QR-bM-t81"/>
+                        <outlet property="codeTextField4" destination="tKR-w2-PXY" id="Fsa-sw-HUQ"/>
+                        <outlet property="errorLabel" destination="nJz-ae-NzR" id="JRe-Y6-7DR"/>
+                        <outlet property="nextButton" destination="KCz-ir-zo6" id="jR8-uH-HMe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <customObject id="f8v-G9-w9H" customClass="MaskedTextFieldDelegate" customModule="InputMask">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="primaryMaskFormat" value="[0]"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="delegate" destination="pnd-2Z-ctv" id="Q9L-6K-1jT"/>
+                    </connections>
+                </customObject>
+                <customObject id="kNq-uD-2Y5" customClass="MaskedTextFieldDelegate" customModule="InputMask">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="primaryMaskFormat" value="[0]"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="delegate" destination="QTZ-QR-Y1d" id="U5i-9h-A8o"/>
+                    </connections>
+                </customObject>
+                <customObject id="Lsu-hn-3k8" customClass="MaskedTextFieldDelegate" customModule="InputMask">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="primaryMaskFormat" value="[0]"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="delegate" destination="vq7-CV-FZr" id="JVo-uw-nJh"/>
+                    </connections>
+                </customObject>
+                <customObject id="L8e-Se-QJh" customClass="MaskedTextFieldDelegate" customModule="InputMask">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="primaryMaskFormat" value="[0]"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="delegate" destination="tKR-w2-PXY" id="O8f-a4-4EP"/>
+                    </connections>
+                </customObject>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="128.57142857142856"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="newMessageIcon" width="360" height="360"/>
+        <namedColor name="AccentRed">
+            <color red="0.92500001192092896" green="0.3529999852180481" blue="0.3880000114440918" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="BasePrimary">
+            <color red="0.24699999392032623" green="0.37599998712539673" blue="0.9570000171661377" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="TextAndIconsSecondary">
+            <color red="0.38400000333786011" green="0.40400001406669617" blue="0.48199999332427979" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

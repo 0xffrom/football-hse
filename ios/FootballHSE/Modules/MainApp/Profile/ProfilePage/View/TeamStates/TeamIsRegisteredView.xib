@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L3N-hK-Rkd" customClass="TeamIsRegisteredView" customModule="FootballHSE" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="70"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Моя команда" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DFi-cf-Vl1">
+                    <rect key="frame" x="12" y="12" width="347" height="19.333333333333329"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ArrowIcon" translatesAutoresizingMaskIntoConstraints="NO" id="6co-bD-2Tv">
+                    <rect key="frame" x="364" y="29" width="8" height="12"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="8" id="y1T-Ur-1JJ"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="ФК Неизвестные" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R8Z-bv-VuU">
+                    <rect key="frame" x="12" y="41" width="347" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" name="TextAndIconsSecondary"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="cva-SO-t4f"/>
+            <color key="backgroundColor" name="BaseSurface1"/>
+            <constraints>
+                <constraint firstItem="R8Z-bv-VuU" firstAttribute="trailing" secondItem="DFi-cf-Vl1" secondAttribute="trailing" id="0vL-TF-cF5"/>
+                <constraint firstItem="6co-bD-2Tv" firstAttribute="centerY" secondItem="L3N-hK-Rkd" secondAttribute="centerY" id="B0E-yq-mg1"/>
+                <constraint firstItem="DFi-cf-Vl1" firstAttribute="leading" secondItem="L3N-hK-Rkd" secondAttribute="leading" constant="12" id="I1F-OS-fTN"/>
+                <constraint firstAttribute="trailing" secondItem="6co-bD-2Tv" secondAttribute="trailing" constant="21" id="VPu-Yy-3pl"/>
+                <constraint firstItem="DFi-cf-Vl1" firstAttribute="top" secondItem="L3N-hK-Rkd" secondAttribute="top" constant="12" id="jYJ-eK-h3q"/>
+                <constraint firstItem="6co-bD-2Tv" firstAttribute="leading" secondItem="DFi-cf-Vl1" secondAttribute="trailing" constant="5" id="jow-fn-g8c"/>
+                <constraint firstItem="R8Z-bv-VuU" firstAttribute="leading" secondItem="DFi-cf-Vl1" secondAttribute="leading" id="ju6-hV-Eaj"/>
+                <constraint firstAttribute="height" constant="68" id="oP8-66-9RE"/>
+                <constraint firstItem="cva-SO-t4f" firstAttribute="bottom" secondItem="R8Z-bv-VuU" secondAttribute="bottom" constant="12" id="u2Y-x1-kEY"/>
+                <constraint firstItem="R8Z-bv-VuU" firstAttribute="top" secondItem="DFi-cf-Vl1" secondAttribute="bottom" constant="9.6699999999999999" id="wxY-rF-ROW"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="nameLabel" destination="R8Z-bv-VuU" id="VTg-C9-b7I"/>
+            </connections>
+            <point key="canvasLocation" x="-185" y="-30"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ArrowIcon" width="8" height="12"/>
+        <namedColor name="BaseSurface1">
+            <color red="0.9649999737739563" green="0.97600001096725464" blue="0.99599999189376831" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="TextAndIconsSecondary">
+            <color red="0.38400000333786011" green="0.40400001406669617" blue="0.48199999332427979" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+    </resources>
+</document>

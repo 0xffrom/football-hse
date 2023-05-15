@@ -13,6 +13,7 @@ class HSEMainButton: UIButton {
 
     var isLoading = false {
         didSet {
+            self.isUserInteractionEnabled = !isLoading
             updateView()
         }
     }

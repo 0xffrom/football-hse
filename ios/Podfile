@@ -7,10 +7,10 @@ target 'FootballHSE' do
 
   # Pods for FootballHSE
 
-  pod 'Swinject'
-  pod 'SwiftGen'
   pod 'InputMask'
-  pod 'SnapKit', '~> 5.6.0'
+  pod 'SnapKit',  '~> 5.6.0'
+  pod 'R.swift'
+  pod 'SwiftSignalRClient'
 
   target 'FootballHSETests' do
     inherit! :search_paths

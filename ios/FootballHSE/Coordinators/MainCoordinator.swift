@@ -36,6 +36,10 @@ final class MainCoordinator {
         self.networkService = networkService
     }
 
+    deinit {
+        networkService.stopMessaging()
+    }
+
     private func configureTabsForPlayer() {
         addSearchTeamsTab()
         addChatTab()
@@ -65,9 +69,33 @@ final class MainCoordinator {
     }
 
     private func addSearchPlayersTab() {
+        guard let rootTabBarController = rootTabBarController else {
+            return
+        }
+
+        let searchTeamsCoordinator = SearchPlayersCoordinator(
+            parentTabBarController: rootTabBarController,
+            window: window,
+            networkService: networkService
+        )
+        childCoordinators.append(searchTeamsCoordinator)
+
+        searchTeamsCoordinator.start(animated: false)
     }
 
     private func addChatTab() {
+        guard let rootTabBarController = rootTabBarController else {
+            return
+        }
+
+        let chatCoordinator = ChatCoordinator(
+            parentTabBarController: rootTabBarController,
+            window: window,
+            networkService: networkService
+        )
+        childCoordinators.append(chatCoordinator)
+
+        chatCoordinator.start(animated: false)
     }
 
     private func addProfileTab() {
@@ -78,11 +106,26 @@ final class MainCoordinator {
         let profileCoordinator = ProfileCoordinator(
             parentTabBarController: rootTabBarController,
             networkService: networkService,
-            window: window
+            window: window,
+            resignCapitanStatusAction: { [weak self] in
+                self?.removeSearchPlayersTab()
+            }
         )
         childCoordinators.append(profileCoordinator)
 
         profileCoordinator.start(animated: false)
+    }
+
+    private func removeSearchPlayersTab() {
+        let searchPlayersCoordinator = childCoordinators.first {
+            $0 as? SearchPlayersCoordinator != nil
+        }
+        if let coordinator = searchPlayersCoordinator as? SearchPlayersCoordinator {
+            coordinator.finish(animated: true)
+        }
+        if let vcs = rootTabBarController?.viewControllers, vcs.count == 4 {
+            rootTabBarController?.viewControllers?.remove(at: 2)
+        }
     }
 }
 
@@ -96,7 +139,11 @@ extension MainCoordinator: Coordinatable {
             self?.rootTabBarController?.setViewControllers([], animated: false)
         }
 
-        configureTabsForPlayer()
+        if CurrentUserConfig.shared.isCaptain ?? false {
+            configureTabsForCaptain()
+        } else {
+            configureTabsForPlayer()
+        }
 
         switchViewController(rootTabBarController, in: window)
     }

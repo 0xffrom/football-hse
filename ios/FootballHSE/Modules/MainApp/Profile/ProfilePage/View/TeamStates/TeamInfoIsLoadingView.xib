@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BLH-GB-cfT" customClass="TeamInfoIsLoadingView" customModule="FootballHSE" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="70"/>
+            <subviews>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="n2h-1a-Ij5">
+                    <rect key="frame" x="186" y="25" width="20" height="20"/>
+                </activityIndicatorView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="eMR-Ow-jnv"/>
+            <color key="backgroundColor" name="BaseSurface1"/>
+            <constraints>
+                <constraint firstItem="n2h-1a-Ij5" firstAttribute="centerY" secondItem="eMR-Ow-jnv" secondAttribute="centerY" id="LDv-6I-Ch9"/>
+                <constraint firstAttribute="height" constant="68" id="bwR-kM-Gac"/>
+                <constraint firstItem="n2h-1a-Ij5" firstAttribute="centerX" secondItem="eMR-Ow-jnv" secondAttribute="centerX" id="ojR-0M-7QJ"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="activityIndicatorView" destination="n2h-1a-Ij5" id="oUm-cl-eZ7"/>
+            </connections>
+            <point key="canvasLocation" x="-256" y="8"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="BaseSurface1">
+            <color red="0.9649999737739563" green="0.97600001096725464" blue="0.99599999189376831" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+    </resources>
+</document>
