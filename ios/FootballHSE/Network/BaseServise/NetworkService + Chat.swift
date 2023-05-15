@@ -45,6 +45,7 @@ extension NetworkService: HubConnectionDelegate {
             print(message.text as Any)
             self.handleMessage?(message)
         })
+
         connection.on(method: "Send", callback: { () in
             print(#function)
         })
@@ -55,13 +56,13 @@ extension NetworkService: HubConnectionDelegate {
         initSignalRService()
     }
 
-    func sendMessage(phoneNumber: String, message: MessageModel, complitionSeccess: ((MessageModel) -> Void)?, complitionFail: (() -> Void)?) {
+    func sendMessage(phoneNumber: String, message: MessageModel, completion: @escaping (Result<MessageModel, Error>) -> Void) {
         connection.invoke(method: "Send", arguments: [phoneNumber, message]) { error in
             if  error != nil {
                 self.startMessaging()
-                complitionFail?()
+                completion(.failure(CommonError()))
             } else {
-               complitionSeccess?(message)
+                completion(.success(message))
             }
         }
     }

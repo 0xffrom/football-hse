@@ -64,13 +64,16 @@ extension ChatCoordinator: Coordinatable {
 
 extension ChatCoordinator: ConversationsModuleOutput {
 
-    func wantsToOpenConversation(phoneNumber: String, name: String?, image: UIImage?) {
+    func wantsToOpenConversation(phoneNumber: String, name: String?, image: UIImage?, interlocutorsImageURL: String?, conversationID: Int, lastMessage: MessageModel?) {
         let builder = ConversationModuleBuilder(
             output: self,
             networkService: networkService,
             interlocutorsPhoneNamber: phoneNumber,
             interlocutorsName: name,
-            image: image
+            interlocutorsImageURL: interlocutorsImageURL,
+            conversationID: conversationID,
+            image: image,
+            lastMessage: lastMessage
         )
         let viewController = builder.build()
         parentNavigationController?.pushViewController(viewController, animated: true)

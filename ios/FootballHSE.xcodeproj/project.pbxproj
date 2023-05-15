@@ -260,6 +260,10 @@
 		00C493D429C643AF0071849D /* TeamImageTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C493D329C643AF0071849D /* TeamImageTarget.swift */; };
 		00C493D629C645450071849D /* UIImageView + Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C493D529C645450071849D /* UIImageView + Networking.swift */; };
 		00D7997C29D84AB10070FD4A /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D7997B29D84AB10070FD4A /* R.generated.swift */; };
+		00F50C8A2A12321600BB2FEF /* Formatter + iso8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F50C892A12321600BB2FEF /* Formatter + iso8601.swift */; };
+		00F50C8C2A1245EF00BB2FEF /* CreateMessageTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F50C8B2A1245EF00BB2FEF /* CreateMessageTarget.swift */; };
+		00F50C8E2A12513800BB2FEF /* UpdateConversationTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F50C8D2A12513800BB2FEF /* UpdateConversationTarget.swift */; };
+		00F50C902A125A2F00BB2FEF /* UpdateMessageTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F50C8F2A125A2F00BB2FEF /* UpdateMessageTarget.swift */; };
 		34B6BF29296F3D3B006E9882 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B6BF28296F3D3B006E9882 /* AppDelegate.swift */; };
 		34B6BF35296F3D3D006E9882 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34B6BF33296F3D3D006E9882 /* LaunchScreen.storyboard */; };
 		34B6BF40296F3D3E006E9882 /* FootballHSETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B6BF3F296F3D3E006E9882 /* FootballHSETests.swift */; };
@@ -541,6 +545,10 @@
 		00C493D329C643AF0071849D /* TeamImageTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamImageTarget.swift; sourceTree = "<group>"; };
 		00C493D529C645450071849D /* UIImageView + Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + Networking.swift"; sourceTree = "<group>"; };
 		00D7997B29D84AB10070FD4A /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = FootballHSE/R.generated.swift; sourceTree = SOURCE_ROOT; };
+		00F50C892A12321600BB2FEF /* Formatter + iso8601.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Formatter + iso8601.swift"; sourceTree = "<group>"; };
+		00F50C8B2A1245EF00BB2FEF /* CreateMessageTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMessageTarget.swift; sourceTree = "<group>"; };
+		00F50C8D2A12513800BB2FEF /* UpdateConversationTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateConversationTarget.swift; sourceTree = "<group>"; };
+		00F50C8F2A125A2F00BB2FEF /* UpdateMessageTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMessageTarget.swift; sourceTree = "<group>"; };
 		11EB685CC5DC4026965F7B30 /* Pods-FootballHSETests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FootballHSETests.release.xcconfig"; path = "Target Support Files/Pods-FootballHSETests/Pods-FootballHSETests.release.xcconfig"; sourceTree = "<group>"; };
 		1E0880FA34599A032DCC2D84 /* Pods-FootballHSE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FootballHSE.release.xcconfig"; path = "Target Support Files/Pods-FootballHSE/Pods-FootballHSE.release.xcconfig"; sourceTree = "<group>"; };
 		3394C19D580923A364EF2213 /* Pods_FootballHSE_FootballHSEUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FootballHSE_FootballHSEUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -635,7 +643,7 @@
 			path = Modules;
 			sourceTree = "<group>";
 		};
-		0013E6F82984204100BD93EF /* AuthorizationPhoneEntering */ = {
+		0013E6F82984204100BD93EF /* PhoneEnteringPage */ = {
 			isa = PBXGroup;
 			children = (
 				006B06C8298FD35400A2C8A2 /* AuthorizationPhoneEnteringModuleBuilder.swift */,
@@ -644,7 +652,7 @@
 				006B06CF298FD35400A2C8A2 /* View */,
 				00C493A029C45C890071849D /* API */,
 			);
-			path = AuthorizationPhoneEntering;
+			path = PhoneEnteringPage;
 			sourceTree = "<group>";
 		};
 		001A7A4E29B92E9600152098 /* CommonModels */ = {
@@ -704,13 +712,13 @@
 		001A7A6C29BDD4E600152098 /* SearchTeams */ = {
 			isa = PBXGroup;
 			children = (
-				001A7A6D29BDD4E600152098 /* SearchTeamsPageModule */,
-				00444B2E29D25A1500DBFF4B /* TeamApplicationModule */,
+				001A7A6D29BDD4E600152098 /* SearchTeamsPage */,
+				00444B2E29D25A1500DBFF4B /* TeamApplicationPage */,
 			);
 			path = SearchTeams;
 			sourceTree = "<group>";
 		};
-		001A7A6D29BDD4E600152098 /* SearchTeamsPageModule */ = {
+		001A7A6D29BDD4E600152098 /* SearchTeamsPage */ = {
 			isa = PBXGroup;
 			children = (
 				001A7A6E29BDD4E600152098 /* SearchTeamsPageModuleBuilder.swift */,
@@ -720,7 +728,7 @@
 				00C493C229C5A1080071849D /* Models */,
 				00C493BF29C5914F0071849D /* API */,
 			);
-			path = SearchTeamsPageModule;
+			path = SearchTeamsPage;
 			sourceTree = "<group>";
 		};
 		001A7A6F29BDD4E600152098 /* Presenter */ = {
@@ -756,9 +764,9 @@
 		001A7A8529BDE0FC00152098 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				001A7A8629BDE0FC00152098 /* ProfilePage */,
 				0054DF372A07E59B003D96B0 /* TeamPage */,
 				00332B5329F2DA9A00AD748B /* MyApplicationsPage */,
-				001A7A8629BDE0FC00152098 /* ProfilePage */,
 				0038C18329D06DB80079EB9D /* EditProfilePage */,
 				0038C19929D0B3C40079EB9D /* RegisterTeamPage */,
 			);
@@ -957,7 +965,7 @@
 			path = FootballHSE/Modules/MainApp/Profile/RegisterTeamPage/Interactor;
 			sourceTree = SOURCE_ROOT;
 		};
-		00444B2E29D25A1500DBFF4B /* TeamApplicationModule */ = {
+		00444B2E29D25A1500DBFF4B /* TeamApplicationPage */ = {
 			isa = PBXGroup;
 			children = (
 				00444B3229D25A1500DBFF4B /* TeamApplicationModuleBuilder.swift */,
@@ -966,7 +974,7 @@
 				00444B3929D25A1500DBFF4B /* Interactor */,
 				00444B3729D25A1500DBFF4B /* API */,
 			);
-			path = TeamApplicationModule;
+			path = TeamApplicationPage;
 			sourceTree = "<group>";
 		};
 		00444B2F29D25A1500DBFF4B /* Presenter */ = {
@@ -1047,20 +1055,20 @@
 		00478F2829EDA1F400470745 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				00478F2A29EDA21600470745 /* Filters */,
+				00478F2A29EDA21600470745 /* FiltersPage */,
 				001A7A6C29BDD4E600152098 /* SearchTeams */,
 				00478F3529F0390100470745 /* SearchPlayers */,
 			);
 			path = Search;
 			sourceTree = "<group>";
 		};
-		00478F2A29EDA21600470745 /* Filters */ = {
+		00478F2A29EDA21600470745 /* FiltersPage */ = {
 			isa = PBXGroup;
 			children = (
 				00478F4A29F03D0800470745 /* SearchByFiltersService.swift */,
 				00478F0A29ED6B7D00470745 /* SearchTeamsPlayerRoleFilterModule */,
 			);
-			path = Filters;
+			path = FiltersPage;
 			sourceTree = "<group>";
 		};
 		00478F2D29EDA28B00470745 /* Cells */ = {
@@ -1084,8 +1092,8 @@
 		00478F3529F0390100470745 /* SearchPlayers */ = {
 			isa = PBXGroup;
 			children = (
-				0054DF662A08D874003D96B0 /* SearchPlayersPageModule */,
-				0054DF582A08D874003D96B0 /* PlayersApplicationModule */,
+				0054DF662A08D874003D96B0 /* SearchPlayersPage */,
+				0054DF582A08D874003D96B0 /* PlayersApplicationPage */,
 			);
 			path = SearchPlayers;
 			sourceTree = "<group>";
@@ -1093,8 +1101,8 @@
 		00478F4E29F07EC100470745 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				0054DF992A09528F003D96B0 /* ConversationsPageModule */,
-				0054DFC52A0A74E3003D96B0 /* ConversationModule */,
+				0054DF992A09528F003D96B0 /* ConversationsPage */,
+				0054DFC52A0A74E3003D96B0 /* ConversationPage */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -1169,7 +1177,7 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
-		0054DF582A08D874003D96B0 /* PlayersApplicationModule */ = {
+		0054DF582A08D874003D96B0 /* PlayersApplicationPage */ = {
 			isa = PBXGroup;
 			children = (
 				0054DF592A08D874003D96B0 /* PlayersApplicationModuleBuilder.swift */,
@@ -1177,7 +1185,7 @@
 				0054DF632A08D874003D96B0 /* Interactor */,
 				0054DF5D2A08D874003D96B0 /* View */,
 			);
-			path = PlayersApplicationModule;
+			path = PlayersApplicationPage;
 			sourceTree = "<group>";
 		};
 		0054DF5A2A08D874003D96B0 /* Presenter */ = {
@@ -1208,7 +1216,7 @@
 			path = Interactor;
 			sourceTree = "<group>";
 		};
-		0054DF662A08D874003D96B0 /* SearchPlayersPageModule */ = {
+		0054DF662A08D874003D96B0 /* SearchPlayersPage */ = {
 			isa = PBXGroup;
 			children = (
 				0054DF782A08D874003D96B0 /* SearchPlayersPageModuleBuilder.swift */,
@@ -1218,7 +1226,7 @@
 				0054DF6A2A08D874003D96B0 /* Models */,
 				0054DF722A08D874003D96B0 /* API */,
 			);
-			path = SearchPlayersPageModule;
+			path = SearchPlayersPage;
 			sourceTree = "<group>";
 		};
 		0054DF672A08D874003D96B0 /* Presenter */ = {
@@ -1271,7 +1279,7 @@
 			path = Interactor;
 			sourceTree = "<group>";
 		};
-		0054DF992A09528F003D96B0 /* ConversationsPageModule */ = {
+		0054DF992A09528F003D96B0 /* ConversationsPage */ = {
 			isa = PBXGroup;
 			children = (
 				0054DF9A2A09528F003D96B0 /* ConversationsModuleBuilder.swift */,
@@ -1281,7 +1289,7 @@
 				0054DF9E2A09528F003D96B0 /* Models */,
 				0054DFA62A09528F003D96B0 /* API */,
 			);
-			path = ConversationsPageModule;
+			path = ConversationsPage;
 			sourceTree = "<group>";
 		};
 		0054DF9B2A09528F003D96B0 /* Presenter */ = {
@@ -1335,7 +1343,7 @@
 			path = Interactor;
 			sourceTree = "<group>";
 		};
-		0054DFC52A0A74E3003D96B0 /* ConversationModule */ = {
+		0054DFC52A0A74E3003D96B0 /* ConversationPage */ = {
 			isa = PBXGroup;
 			children = (
 				0054DFC92A0A74E3003D96B0 /* ConversationModuleBuilder.swift */,
@@ -1345,7 +1353,7 @@
 				0054DFCA2A0A74E3003D96B0 /* Models */,
 				0054DFD02A0A74E3003D96B0 /* API */,
 			);
-			path = ConversationModule;
+			path = ConversationPage;
 			sourceTree = "<group>";
 		};
 		0054DFC62A0A74E3003D96B0 /* Presenter */ = {
@@ -1382,6 +1390,9 @@
 			children = (
 				0054DFD12A0A74E3003D96B0 /* MessagesTarget.swift */,
 				0054DFD32A0A74E3003D96B0 /* MessagesParser.swift */,
+				00F50C8B2A1245EF00BB2FEF /* CreateMessageTarget.swift */,
+				00F50C8D2A12513800BB2FEF /* UpdateConversationTarget.swift */,
+				00F50C8F2A125A2F00BB2FEF /* UpdateMessageTarget.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1516,6 +1527,7 @@
 				0054DFC32A0A59F3003D96B0 /* String + Date Parsing.swift */,
 				0054DFE92A0AA00F003D96B0 /* KeyboardInfo.swift */,
 				0054DFEB2A0AB73A003D96B0 /* UIImage + resized.swift */,
+				00F50C892A12321600BB2FEF /* Formatter + iso8601.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1543,14 +1555,14 @@
 		00C4736429B5E24C00EFFB6C /* Authorization */ = {
 			isa = PBXGroup;
 			children = (
-				0013E6F82984204100BD93EF /* AuthorizationPhoneEntering */,
-				00C4736529B5E26600EFFB6C /* AuthorizationCodeEntering */,
-				00C4737B29B89BCB00EFFB6C /* Registration */,
+				0013E6F82984204100BD93EF /* PhoneEnteringPage */,
+				00C4736529B5E26600EFFB6C /* CodeEnteringPage */,
+				00C4737B29B89BCB00EFFB6C /* RegistrationPage */,
 			);
 			path = Authorization;
 			sourceTree = "<group>";
 		};
-		00C4736529B5E26600EFFB6C /* AuthorizationCodeEntering */ = {
+		00C4736529B5E26600EFFB6C /* CodeEnteringPage */ = {
 			isa = PBXGroup;
 			children = (
 				00C4737029B5E2BF00EFFB6C /* AuthorizationCodeEnteringModuleBuilder.swift */,
@@ -1559,7 +1571,7 @@
 				00C4736C29B5E2BF00EFFB6C /* View */,
 				00C493B229C495CD0071849D /* API */,
 			);
-			path = AuthorizationCodeEntering;
+			path = CodeEnteringPage;
 			sourceTree = "<group>";
 		};
 		00C4736629B5E2BF00EFFB6C /* Interactor */ = {
@@ -1590,7 +1602,7 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		00C4737B29B89BCB00EFFB6C /* Registration */ = {
+		00C4737B29B89BCB00EFFB6C /* RegistrationPage */ = {
 			isa = PBXGroup;
 			children = (
 				00C4738629B89C0C00EFFB6C /* RegistrationModuleBuilder.swift */,
@@ -1599,7 +1611,7 @@
 				00C4737F29B89C0B00EFFB6C /* View */,
 				00C493BC29C525190071849D /* API */,
 			);
-			path = Registration;
+			path = RegistrationPage;
 			sourceTree = "<group>";
 		};
 		00C4737C29B89C0B00EFFB6C /* Interactor */ = {
@@ -1744,15 +1756,15 @@
 		34B6BF27296F3D3B006E9882 /* FootballHSE */ = {
 			isa = PBXGroup;
 			children = (
+				0013E6F72984203400BD93EF /* Modules */,
+				006B06D9298FD70600A2C8A2 /* Coordinators */,
 				00C493A129C45D590071849D /* Network */,
 				001A7A4E29B92E9600152098 /* CommonModels */,
-				006B06D9298FD70600A2C8A2 /* Coordinators */,
-				0013E6F72984203400BD93EF /* Modules */,
-				0013E6F629841C7F00BD93EF /* AppDelegate */,
-				0013E6F529841C4A00BD93EF /* Supporting Files */,
-				0013E6F4298406A100BD93EF /* Design System */,
-				0013E6F32984066A00BD93EF /* UI Resources */,
 				00C4735729B4898F00EFFB6C /* Utils */,
+				0013E6F629841C7F00BD93EF /* AppDelegate */,
+				0013E6F4298406A100BD93EF /* Design System */,
+				0013E6F529841C4A00BD93EF /* Supporting Files */,
+				0013E6F32984066A00BD93EF /* UI Resources */,
 			);
 			path = FootballHSE;
 			sourceTree = "<group>";
@@ -2141,8 +2153,10 @@
 				00C493A929C45E230071849D /* ParserProtocol.swift in Sources */,
 				00478F2529ED702500470745 /* SearchTeamsPlayerRoleFilterModuleBuilder.swift in Sources */,
 				00C4738B29B89C0C00EFFB6C /* RegistrationViewIO.swift in Sources */,
+				00F50C8A2A12321600BB2FEF /* Formatter + iso8601.swift in Sources */,
 				00C4736329B4EAF900EFFB6C /* HSEMainButton.swift in Sources */,
 				0054DFB72A09528F003D96B0 /* GetConversationsTarget.swift in Sources */,
+				00F50C902A125A2F00BB2FEF /* UpdateMessageTarget.swift in Sources */,
 				007E9A8B29FD65BB005F5AC7 /* CapitanStatusView.swift in Sources */,
 				001A7A8029BDD4E600152098 /* SearchTeamsPageInteractor.swift in Sources */,
 				00444B4329D25A1500DBFF4B /* TeamApplicationInteractor.swift in Sources */,
@@ -2227,6 +2241,7 @@
 				0054DFEA2A0AA00F003D96B0 /* KeyboardInfo.swift in Sources */,
 				00C4738729B89C0C00EFFB6C /* RegistrationInteractor.swift in Sources */,
 				00C4737A29B5EE3B00EFFB6C /* UIViewController + NavigationItem Extension.swift in Sources */,
+				00F50C8C2A1245EF00BB2FEF /* CreateMessageTarget.swift in Sources */,
 				001A7A6729BD1F7700152098 /* MainViewIO.swift in Sources */,
 				00C493B629C4A27D0071849D /* CurrentUserConfig.swift in Sources */,
 				00444B3E29D25A1500DBFF4B /* TeamApplicationModuleBuilder.swift in Sources */,
@@ -2276,6 +2291,7 @@
 				0054DFB12A09528F003D96B0 /* ConversationDisplayModel.swift in Sources */,
 				0054DFDB2A0A74E3003D96B0 /* ConversationViewIO.swift in Sources */,
 				00478F2C29EDA27A00470745 /* FilterCell.swift in Sources */,
+				00F50C8E2A12513800BB2FEF /* UpdateConversationTarget.swift in Sources */,
 				00C4738A29B89C0C00EFFB6C /* RegistrationViewController.swift in Sources */,
 				00C493C129C5917D0071849D /* SearchTeamsTarget.swift in Sources */,
 				001A7A7C29BDD4E600152098 /* SearchTeamsPageViewController.swift in Sources */,

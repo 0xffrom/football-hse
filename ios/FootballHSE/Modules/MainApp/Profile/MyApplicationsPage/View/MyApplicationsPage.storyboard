@@ -29,8 +29,8 @@
                                     <constraint firstAttribute="width" constant="294" id="zet-3L-kz4"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="У вас пока нет активных заявок" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nco-Eg-fOQ">
-                                <rect key="frame" x="81" y="457.5" width="252" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="У вас пока нет активных заявок" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nco-Eg-fOQ">
+                                <rect key="frame" x="8" y="457.5" width="398" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" name="TextIconsTertiary"/>
                                 <nil key="highlightedColor"/>
@@ -45,7 +45,9 @@
                         <viewLayoutGuide key="safeArea" id="Sn8-iF-UZ8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Sn8-iF-UZ8" firstAttribute="trailing" secondItem="Nco-Eg-fOQ" secondAttribute="trailing" constant="8" id="250-XD-Asm"/>
                             <constraint firstItem="Sn8-iF-UZ8" firstAttribute="bottom" secondItem="58f-D4-dBr" secondAttribute="bottom" id="3bH-I1-qb1"/>
+                            <constraint firstItem="Nco-Eg-fOQ" firstAttribute="leading" secondItem="Sn8-iF-UZ8" secondAttribute="leading" constant="8" id="8me-Ww-vpO"/>
                             <constraint firstItem="58f-D4-dBr" firstAttribute="leading" secondItem="Sn8-iF-UZ8" secondAttribute="leading" constant="16" id="GRj-9G-wb8"/>
                             <constraint firstItem="Uis-2B-t7z" firstAttribute="top" secondItem="Nco-Eg-fOQ" secondAttribute="bottom" constant="16" id="Mwh-Bw-9Yw"/>
                             <constraint firstItem="Nco-Eg-fOQ" firstAttribute="top" secondItem="pQY-3l-psC" secondAttribute="bottom" id="STr-vg-3AC"/>

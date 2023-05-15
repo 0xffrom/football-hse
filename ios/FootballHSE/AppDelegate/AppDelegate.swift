@@ -31,11 +31,6 @@ extension AppDelegate: UIApplicationDelegate {
         window?.rootViewController = rootNavigationController
         window?.makeKeyAndVisible()
 
-//        rootCoordinator = MainCoordinator(
-//            window: window!,
-//            networkService: NetworkService()
-//        )
-// uncommet this to skip authorization
         rootCoordinator?.start(animated: true)
 
         return true

@@ -10,7 +10,8 @@ import SwiftSignalRClient
 
 public protocol INetworkService {
     func sendGetRequest<Parser>(config: RequestConfigWithParser<Parser>, competionHandler: @escaping (Result<Parser.Model, Error>) -> Void)
-    func sendPostRequest(config: RequestConfig, competionHandler: @escaping (Result<Data?, Error>) -> Void)
+    func sendPostRequest(config: RequestConfig,
+                      competionHandler: ((Result<Data?, Error>) -> Void)?)
     func sendPostRequestWithParser<Parser>(config: RequestConfigWithParser<Parser>,
                                            competionHandler: @escaping (Result<Parser.Model, Error>) -> Void)
     func sendDeleteRequest(config: RequestConfig,
@@ -20,13 +21,21 @@ public protocol INetworkService {
     func startMessaging()
     func stopMessaging()
     func setHandleMessageAction(_ action: ((MessageModel) -> Void)?)
+    func sendMessage(phoneNumber: String, message: MessageModel, completion: @escaping (Result<MessageModel, Error>) -> Void)
 }
 
 class NetworkService: INetworkService {
 
-    let session = URLSession.shared
+    let session: URLSession
     var connection: HubConnection!
     var handleMessage: ((MessageModel) -> Void)?
+
+
+    init() {
+        let sessionConfig = URLSessionConfiguration.default
+        sessionConfig.timeoutIntervalForRequest = 30.0
+        session = URLSession(configuration: sessionConfig)
+    }
 
     func downlandImage(url: String?) async -> UIImage? {
         guard let stringUrl = url, let url = URL(string: stringUrl) else {
@@ -142,9 +151,9 @@ class NetworkService: INetworkService {
     }
 
     func sendPostRequest(config: RequestConfig,
-                      competionHandler: @escaping (Result<Data?, Error>) -> Void) {
+                      competionHandler: ((Result<Data?, Error>) -> Void)?) {
         guard var urlRequest = config.request.urlRequest else {
-            competionHandler(.failure(NetworkError.badURL))
+            competionHandler?(.failure(NetworkError.badURL))
             return
         }
 
@@ -157,13 +166,13 @@ class NetworkService: INetworkService {
         let task = session.dataTask(with: urlRequest) { (data: Data?, response: URLResponse?, error: Error?) in
             if let error = error {
                 print(response.debugDescription)
-                competionHandler(.failure(error))
+                competionHandler?(.failure(error))
                 return
             }
 
             guard let response = response as? HTTPURLResponse else {
                 print(response.debugDescription)
-                competionHandler(.failure(NetworkError.parsingError))
+                competionHandler?(.failure(NetworkError.parsingError))
                 return
             }
 
@@ -172,16 +181,15 @@ class NetworkService: INetworkService {
                 print(response.description)
                 print(response.debugDescription)
                 if response.statusCode == 401 {
-                    competionHandler(.failure(NetworkError.tokensError))
+                    competionHandler?(.failure(NetworkError.tokensError))
                     return
                 } else {
-                    competionHandler(.failure(NetworkError.wrongParams))
+                    competionHandler?(.failure(NetworkError.wrongParams))
                     return
                 }
             }
 
-            let a = response.statusCode
-            competionHandler(.success(data))
+            competionHandler?(.success(data))
         }
         task.resume()
     }

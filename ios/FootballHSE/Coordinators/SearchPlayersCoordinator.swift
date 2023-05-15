@@ -100,11 +100,12 @@ extension SearchPlayersCoordinator: SearchPlayersPageModuleOutput {
         parentNavigationController?.pushViewController(viewController, animated: true)
     }
 
-    func openPlayersApplication(player: PlayersApplicationDisplayModel) {
+    func openPlayersApplication(player: PlayersApplicationDisplayModel, playerImageURL: String?) {
         let builder = PlayersApplicationModuleBuilder(
             output: self,
             networkService: networkService,
-            player: player
+            player: player,
+            playerImageURL: playerImageURL
         )
         let viewController = builder.build()
         parentNavigationController?.pushViewController(viewController, animated: true)
@@ -129,7 +130,24 @@ extension SearchPlayersCoordinator: PlayersApplicationModuleOutput {
     func back() {
         parentNavigationController?.popViewController(animated: true)
     }
+
+    func wantsToOpenConversation(phoneNumber: String?, name: String?, image: UIImage?, interlocutorsImageURL: String?, conversationID: Int, lastMessage: MessageModel?) {
+        let builder = ConversationModuleBuilder(
+            output: self,
+            networkService: networkService,
+            interlocutorsPhoneNamber: phoneNumber ?? "",
+            interlocutorsName: name,
+            interlocutorsImageURL: interlocutorsImageURL,
+            conversationID: conversationID,
+            image: image,
+            lastMessage: lastMessage
+        )
+        let viewController = builder.build()
+        parentNavigationController?.pushViewController(viewController, animated: true)
+    }
 }
+
+extension SearchPlayersCoordinator: ConversationModuleOutput {}
 
 extension SearchPlayersCoordinator: SearchTeamsPlayerRoleFilterModuleOutput {
 

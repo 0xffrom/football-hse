@@ -109,7 +109,7 @@ final class EditProfilePageViewController: UIViewController {
         nameTextField.errorMessage = "Некорректное ФИО"
         nameTextField.configureRestrictions(
             minLength: 2,
-            maxLength: 40,
+            maxLength: 60,
             predicteFormat: "[А-Яа-яЁёa-zA-Z ]+$"
         )
     }

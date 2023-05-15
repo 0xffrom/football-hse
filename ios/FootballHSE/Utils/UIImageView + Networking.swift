@@ -10,7 +10,11 @@ import UIKit
 extension UIImageView {
 
     func downloaded(from url: URL, contentMode mode: ContentMode = .scaleAspectFill) {
-        URLSession.shared.dataTask(with: url) { data, response, error in
+        let sessionConfig = URLSessionConfiguration.default
+        sessionConfig.timeoutIntervalForRequest = 30.0
+        let session = URLSession(configuration: sessionConfig)
+
+        session.dataTask(with: url) { data, response, error in
             guard
                 let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
                 let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
