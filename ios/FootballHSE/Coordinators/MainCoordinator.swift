@@ -124,7 +124,7 @@ final class MainCoordinator {
             coordinator.finish(animated: true)
         }
         if let vcs = rootTabBarController?.viewControllers, vcs.count == 4 {
-            rootTabBarController?.viewControllers?.remove(at: 2)
+            rootTabBarController?.viewControllers?.remove(at: 1)
         }
     }
 }

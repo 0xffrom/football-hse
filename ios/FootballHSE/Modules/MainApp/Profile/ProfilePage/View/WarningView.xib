@@ -28,29 +28,27 @@
                     <color key="textColor" name="TextAndIconsSecondary"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RyU-Ck-S2i">
-                    <rect key="frame" x="4" y="28" width="90.333333333333329" height="31"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="Добавить">
-                        <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="14"/>
-                        <color key="baseForegroundColor" name="AccentOrange"/>
-                    </buttonConfiguration>
-                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Добавить" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FmJ-Ia-LM1">
+                    <rect key="frame" x="16" y="34.666666666666664" width="74.666666666666671" height="19.333333333333336"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                    <color key="textColor" name="AccentOrange"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="gU3-jP-zq0"/>
             <color key="backgroundColor" red="0.99215686319999996" green="0.95686274770000002" blue="0.9098039269" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
                 <constraint firstItem="CB4-o5-viL" firstAttribute="leading" secondItem="x8u-Qk-v2h" secondAttribute="trailing" constant="2" id="3fE-Bz-jwz"/>
-                <constraint firstAttribute="bottom" secondItem="RyU-Ck-S2i" secondAttribute="bottom" constant="3" id="9XI-VI-9wA"/>
                 <constraint firstItem="x8u-Qk-v2h" firstAttribute="leading" secondItem="RSi-Fs-Fho" secondAttribute="leading" constant="16" id="Ape-Vw-5QN"/>
+                <constraint firstAttribute="bottom" secondItem="FmJ-Ia-LM1" secondAttribute="bottom" constant="8" id="NUO-FE-rZc"/>
                 <constraint firstItem="x8u-Qk-v2h" firstAttribute="top" secondItem="RSi-Fs-Fho" secondAttribute="top" constant="8" id="XBC-Yc-6F4"/>
-                <constraint firstItem="RyU-Ck-S2i" firstAttribute="leading" secondItem="gU3-jP-zq0" secondAttribute="leading" constant="4" id="bvE-IF-RBJ"/>
+                <constraint firstItem="FmJ-Ia-LM1" firstAttribute="leading" secondItem="x8u-Qk-v2h" secondAttribute="leading" id="YBl-RU-cJm"/>
                 <constraint firstItem="CB4-o5-viL" firstAttribute="centerY" secondItem="gU3-jP-zq0" secondAttribute="centerY" multiplier="0.8" id="ejA-g5-lJK"/>
                 <constraint firstItem="gU3-jP-zq0" firstAttribute="trailing" secondItem="CB4-o5-viL" secondAttribute="trailing" constant="18" id="nYc-eZ-D71"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="addInformationButton" destination="RyU-Ck-S2i" id="Llr-Ym-Xme"/>
+                <outlet property="addInformationButton" destination="FmJ-Ia-LM1" id="lE3-IP-zx0"/>
             </connections>
             <point key="canvasLocation" x="464" y="-551.97044334975374"/>
         </view>

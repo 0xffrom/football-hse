@@ -67,7 +67,7 @@ extension AuthorizationCodeEnteringInteractor: AuthorizationCodeEnteringInteract
         guard let phoneNumber = CurrentUserConfig.shared.phoneNumber else { return }
         let config = RequestConfigWithParser(request: UserTarget(phoneNumber: phoneNumber), parser: UserParser())
 
-        networkService.sendGetRequest(config: config, competionHandler: { result in
+        networkService.sendGetRequest(config: config, competionHandler: { [weak self] result in
             switch result {
             case let .success(data):
                 CurrentUserConfig.shared.name = data.name
@@ -80,10 +80,37 @@ extension AuthorizationCodeEnteringInteractor: AuthorizationCodeEnteringInteract
                 CurrentUserConfig.shared.photo = data.photo
                 CurrentUserConfig.shared.hseRole = data.hseRole
                 CurrentUserConfig.shared.applicationId = data.applicationId
-                completion(.success(data))
+                self?.getTeamInfo(data, completion: completion)
             case let .failure(error):
                 completion(.failure(error))
             }
         })
+    }
+
+    func getTeamInfo(_ user: User, completion: @escaping (Result<User, Error>) -> Void) {
+        let config = RequestConfigWithParser(request: TeamsTarget(), parser: TeamsParser())
+
+        networkService.sendGetRequest(config: config) { result in
+            switch result {
+            case let .success(data):
+                DispatchQueue.global().async {
+                    let team = data.first { team in
+                        team.captainPhoneNumber == CurrentUserConfig.shared.phoneNumber
+                    }
+
+                    if team != nil {
+                        CurrentTeamConfig.shared.name = team?.name
+                        CurrentTeamConfig.shared.about = team?.about
+                        CurrentTeamConfig.shared.photoUrl = team?.logo
+                        CurrentTeamConfig.shared.status = team?.status
+                        CurrentTeamConfig.shared.id = team?.id
+                    }
+
+                    completion(.success(user))
+                }
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
     }
 }

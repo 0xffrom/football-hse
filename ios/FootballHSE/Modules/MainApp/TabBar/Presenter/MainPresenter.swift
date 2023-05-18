@@ -15,13 +15,8 @@ final class MainPresenter {
 
 // MARK: - MainModuleInput
 
-extension MainPresenter: MainModuleInput {
-
-}
-
+extension MainPresenter: MainModuleInput {}
 
 // MARK: - MainViewOutput
 
-extension MainPresenter: MainViewOutput {
-
-}
+extension MainPresenter: MainViewOutput {}

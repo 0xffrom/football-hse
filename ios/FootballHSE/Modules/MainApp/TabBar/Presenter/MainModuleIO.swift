@@ -7,10 +7,6 @@
 
 import Foundation
 
-public protocol MainModuleInput: AnyObject {
+public protocol MainModuleInput: AnyObject {}
 
-}
-
-public protocol MainModuleOutput: AnyObject {
-
-}
+public protocol MainModuleOutput: AnyObject {}

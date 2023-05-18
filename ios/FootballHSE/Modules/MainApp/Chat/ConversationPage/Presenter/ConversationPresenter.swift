@@ -80,17 +80,20 @@ extension ConversationPresenter: ConversationViewOutput {
     }
 
     func sendMessage(_ message: String) {
+        view?.disableSendMessageButton()
         interactor.sendMessage(message) { result in
             switch result {
             case .success(let message):
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self, let view = self.view else { return }
                     view.displaySentMessage(message: message)
+                    view.enableSendMessageButton()
                 }
             case .failure(_):
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self, let view = self.view else { return }
                     view.setupErrorState()
+                    view.enableSendMessageButton()
                 }
             }
         }

@@ -22,6 +22,25 @@ final class RegistrationInteractor {
     init( networkService: INetworkService) {
         self.networkService = networkService
     }
+
+    private func createConversation(_ data: Data?, _ completion: @escaping (Result<Data?, Error>) -> Void) {
+        networkService.sendPostRequestWithParser(
+            config: RequestConfigWithParser(
+                request: CreateConversationTarget(
+                    phoneNumber: "88888888888",
+                    name: nil,
+                    image: nil
+                ),
+                parser: ConversationParser()
+            )) { result in
+                switch result {
+                case .success(_):
+                    completion(.success(data))
+                case let .failure(error):
+                    completion(.failure(error))
+                }
+            }
+    }
 }
 
 // MARK: - RegistrationInteractorInput
@@ -35,12 +54,12 @@ extension RegistrationInteractor: RegistrationInteractorInput {
         let target = RegistrationTarget(phoneNumber: phoneNumber, name: name, roleId: roleId)
         let config = RequestConfig(request: target)
 
-        networkService.sendPostRequest(config: config, competionHandler: { result in
+        networkService.sendPostRequest(config: config, competionHandler: { [weak self] result in
             switch result {
             case let .success(data):
                 CurrentUserConfig.shared.name = name
                 CurrentUserConfig.shared.hseRole = roleId
-                completion(.success(data))
+                self?.createConversation(data, completion)
             case let .failure(error):
                 completion(.failure(error))
             }

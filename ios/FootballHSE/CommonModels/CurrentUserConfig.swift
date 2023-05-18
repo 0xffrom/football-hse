@@ -24,6 +24,8 @@ public class CurrentUserConfig {
     var hseRole: Int?
     var applicationId: Int?
 
+    private init() { }
+
     static func clear() {
         shared.phoneNumber = nil
         shared.name = nil

@@ -18,6 +18,8 @@ public class CurrentTeamConfig {
     var about: String?
     var status: Int?
 
+    private init() { }
+
     static func clear() {
         shared.id = nil
         shared.photo = nil

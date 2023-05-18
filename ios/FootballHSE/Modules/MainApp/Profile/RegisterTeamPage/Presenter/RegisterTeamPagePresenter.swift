@@ -44,11 +44,12 @@ extension RegisterTeamPagePresenter: RegisterTeamPageInteractorOutput {}
 extension RegisterTeamPagePresenter: RegisterTeamPageViewOutput {
 
     func save(withPhoto photo: UIImage?) {
-        guard let data = view?.getData() else {
-            return
-        }
+        guard let view = view else { return }
+        nameIsValid = view.validate()
+
+        let data = view.getData()
         guard data.name != nil, nameIsValid else {
-            view?.setNameErrorState()
+            view.setNameErrorState()
             return
         }
 
@@ -83,12 +84,12 @@ extension RegisterTeamPagePresenter: RegisterTeamPageViewOutput {
     }
 
     func viewDidStartEditiong() {
-        guard let view = view else { return } // TODO: Log error
+        guard let view = view else { return }
         view.setNameNormalState()
     }
 
     func viewDidEndEditing() {
-        guard let view = view else { return } // TODO: Log error
+        guard let view = view else { return }
         nameIsValid = view.validate()
     }
 }
