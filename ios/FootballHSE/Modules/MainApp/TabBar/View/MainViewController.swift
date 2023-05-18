@@ -17,6 +17,4 @@ final class MainViewController: UITabBarController {
 
 // MARK: - MainViewInput
 
-extension MainViewController: MainViewInput {
-
-}
+extension MainViewController: MainViewInput {}

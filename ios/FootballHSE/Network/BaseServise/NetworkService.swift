@@ -30,6 +30,7 @@ class NetworkService: INetworkService {
     var connection: HubConnection!
     var handleMessage: ((MessageModel) -> Void)?
 
+    private let lock = NSLock()
 
     init() {
         let sessionConfig = URLSessionConfiguration.default
@@ -54,7 +55,10 @@ class NetworkService: INetworkService {
             return nil
         }
 
-        ImagesService.shared.cachedImages[url.absoluteString] = image
+        lock.withLock {
+            ImagesService.shared.cachedImages[url.absoluteString] = image
+        }
+
         return image
     }
 

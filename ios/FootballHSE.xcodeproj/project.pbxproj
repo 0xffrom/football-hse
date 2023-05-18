@@ -255,7 +255,6 @@
 		00C493C929C6166B0071849D /* PlayerPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C493C829C6166B0071849D /* PlayerPosition.swift */; };
 		00C493CB29C618540071849D /* TeamApplicationDisplayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C493CA29C618540071849D /* TeamApplicationDisplayModel.swift */; };
 		00C493CD29C641970071849D /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C493CC29C641970071849D /* HttpMethod.swift */; };
-		00C493CF29C641CF0071849D /* ImageServise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C493CE29C641CF0071849D /* ImageServise.swift */; };
 		00C493D229C643540071849D /* PlayerImageTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C493D129C643540071849D /* PlayerImageTarget.swift */; };
 		00C493D429C643AF0071849D /* TeamImageTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C493D329C643AF0071849D /* TeamImageTarget.swift */; };
 		00C493D629C645450071849D /* UIImageView + Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C493D529C645450071849D /* UIImageView + Networking.swift */; };
@@ -540,7 +539,6 @@
 		00C493C829C6166B0071849D /* PlayerPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPosition.swift; sourceTree = "<group>"; };
 		00C493CA29C618540071849D /* TeamApplicationDisplayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamApplicationDisplayModel.swift; sourceTree = "<group>"; };
 		00C493CC29C641970071849D /* HttpMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
-		00C493CE29C641CF0071849D /* ImageServise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageServise.swift; sourceTree = "<group>"; };
 		00C493D129C643540071849D /* PlayerImageTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerImageTarget.swift; sourceTree = "<group>"; };
 		00C493D329C643AF0071849D /* TeamImageTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamImageTarget.swift; sourceTree = "<group>"; };
 		00C493D529C645450071849D /* UIImageView + Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + Networking.swift"; sourceTree = "<group>"; };
@@ -1655,7 +1653,6 @@
 			children = (
 				00D7994429D618B00070FD4A /* Models */,
 				00D7994529D619720070FD4A /* BaseServise */,
-				00C493D029C6430E0071849D /* ImageServise */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1698,14 +1695,13 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		00C493D029C6430E0071849D /* ImageServise */ = {
+		00C493D029C6430E0071849D /* ImagesTargets */ = {
 			isa = PBXGroup;
 			children = (
-				00C493CE29C641CF0071849D /* ImageServise.swift */,
 				00C493D129C643540071849D /* PlayerImageTarget.swift */,
 				00C493D329C643AF0071849D /* TeamImageTarget.swift */,
 			);
-			path = ImageServise;
+			path = ImagesTargets;
 			sourceTree = "<group>";
 		};
 		00D7994429D618B00070FD4A /* Models */ = {
@@ -1714,6 +1710,7 @@
 				00C493CC29C641970071849D /* HttpMethod.swift */,
 				00C493B829C4CB0A0071849D /* TokensModel.swift */,
 				00C493AA29C45E4B0071849D /* NetworkError.swift */,
+				00C493D029C6430E0071849D /* ImagesTargets */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2179,7 +2176,6 @@
 				0054DF872A08D874003D96B0 /* PlayersApplicationDisplayModel.swift in Sources */,
 				0054DF4D2A07E8AB003D96B0 /* TeamPageModuleBuilder.swift in Sources */,
 				001A7A8429BDD82C00152098 /* UITabBarController + Extenstion.swift in Sources */,
-				00C493CF29C641CF0071849D /* ImageServise.swift in Sources */,
 				0054DF922A08D874003D96B0 /* SearchPlayersPageModuleBuilder.swift in Sources */,
 				00C4738C29B89C0C00EFFB6C /* RegistrationPresenter.swift in Sources */,
 				0038C18029D066730079EB9D /* UserParser.swift in Sources */,

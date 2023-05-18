@@ -43,9 +43,6 @@ final class ConversationViewController: UIViewController {
         registerKeyboardNotifications()
         configureTapGestureRecognizer()
         setupView()
-        scrollToBottom(animated: false)
-        scrollToBottom(animated: false)
-        scrollToBottom(animated: false)
         output?.viewDidLoad()
     }
 
@@ -187,7 +184,7 @@ final class ConversationViewController: UIViewController {
     }
 
     private func getBottomOffsetWithoutKeyboard(_ entreMessageBar: EntryMessageView?) -> CGPoint {
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 61, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 95 - view.safeAreaInsets.bottom, right: 0)
         return CGPoint(x: 0, y: tableView.contentSize.height - view.bounds.size.height + (entreMessageBar?.bounds.size.height ?? 0))
     }
 
@@ -251,6 +248,16 @@ extension ConversationViewController: ConversationViewInput {
             refreshControl.endRefreshing()
         }
         self.data = data
+        let indexPath = IndexPath(row: self.data.count-1, section: 0)
+        self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+    }
+
+    func enableSendMessageButton() {
+        entryMessageView.setButtonEnableState()
+    }
+
+    func disableSendMessageButton() {
+        entryMessageView.setButtonDisabledState()
     }
 
     func setupErrorState() {

@@ -14,6 +14,8 @@ protocol ConversationViewInput: AnyObject {
     func setupEmptyState()
     func displaySentMessage(message: MessageModel)
     func displayReceivedMessage(message: MessageModel)
+    func enableSendMessageButton()
+    func disableSendMessageButton()
 }
 
 protocol ConversationViewOutput: AnyObject {

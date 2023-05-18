@@ -10,6 +10,7 @@ import UIKit
 class EntryMessageView: UIView {
 
     private var sendMessageAction: ((String) -> Void)?
+    private var enabled = true
 
     @IBOutlet weak var sendMessageButton: UIButton!
     @IBOutlet weak var textView: UITextView!
@@ -23,7 +24,9 @@ class EntryMessageView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         configureTextView()
-        sendMessageButton.isEnabled = !textView.text.isEmpty
+        if enabled {
+            sendMessageButton.isEnabled = !textView.text.isEmpty
+        }
     }
 
     override func awakeFromNib() {
@@ -45,6 +48,16 @@ class EntryMessageView: UIView {
 
     func setSendMessageAction(_ action: ((String) -> Void)?) {
         sendMessageAction = action
+    }
+
+    func setButtonEnableState() {
+        enabled = true
+        sendMessageButton.isEnabled = !textView.text.isEmpty
+    }
+
+    func setButtonDisabledState() {
+        enabled = false
+        sendMessageButton.isEnabled = false
     }
 
     private func textViewContentSize() -> CGSize {
@@ -71,7 +84,9 @@ class EntryMessageView: UIView {
 extension EntryMessageView: UITextViewDelegate {
 
     func textViewDidChange(_ textView: UITextView) {
-        sendMessageButton.isEnabled = !textView.text.isEmpty
+        if enabled {
+            setButtonEnableState()
+        }
 
         let contentHeight = textViewContentSize().height
         if textViewHightConstraint.constant != contentHeight && contentHeight < Const.textViewMaxHight {

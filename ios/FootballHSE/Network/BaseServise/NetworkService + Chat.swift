@@ -25,13 +25,9 @@ extension NetworkService: HubConnectionDelegate {
     func connectionDidFailToOpen(error: Error) {
         print(#function)
         print(error)
-        // startMessaging()
     }
 
     func connectionDidClose(error: Error?) {
-        if error != nil {
-           // Api.shared.startMessaging()
-        }
         print(#function)
         print(error as Any)
     }

@@ -7,10 +7,6 @@
 
 import Foundation
 
-protocol MainViewInput: AnyObject {
+protocol MainViewInput: AnyObject {}
 
-}
-
-protocol MainViewOutput: AnyObject {
-
-}
+protocol MainViewOutput: AnyObject {}

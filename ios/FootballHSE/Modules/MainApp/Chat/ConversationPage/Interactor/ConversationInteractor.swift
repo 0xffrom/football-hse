@@ -22,7 +22,7 @@ final class ConversationInteractor {
     private let interlocutorsName: String?
     private let interlocutorsPhoto: String?
     private let conversationID: Int
-    private let lastMessage: MessageModel?
+    private var lastMessage: MessageModel?
 
     // MARK: Lifecycle
 
@@ -51,6 +51,7 @@ final class ConversationInteractor {
         networkService.sendPostRequest(config: config){ result in
             switch result {
             case .success(_):
+                self.lastMessage = message
                 completion(.success(message))
             case let .failure(error):
                 completion(.failure(error))
@@ -106,7 +107,10 @@ extension ConversationInteractor: ConversationInteractorInput {
     }
 
     func startMessaging(handleMessageAction: ((MessageModel) -> Void)?) {
-        networkService.setHandleMessageAction(handleMessageAction)
+        networkService.setHandleMessageAction({ [weak self] message in
+            handleMessageAction?(message)
+            self?.lastMessage = message
+        })
         networkService.startMessaging()
     }
 

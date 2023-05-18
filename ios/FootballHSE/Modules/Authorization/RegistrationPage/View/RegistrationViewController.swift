@@ -77,7 +77,7 @@ final class RegistrationViewController: UIViewController {
         nameTextField.errorMessage = "Некорректное ФИО"
 
         nameTextField.configureRestrictions(
-            minLength: 2,
+            minLength: 3,
             maxLength: 60,
             predicteFormat: "[А-Яа-яЁёa-zA-Z ]+$"
         )

@@ -18,7 +18,7 @@ final class WarningView: UIView {
 
     // MARK: Outlets
 
-    @IBOutlet weak var addInformationButton: UIButton!
+    @IBOutlet weak var addInformationButton: UILabel!
 
     // MARK: Public Properties
 
@@ -40,12 +40,14 @@ final class WarningView: UIView {
 
     func configure(addInformationAction: @escaping () -> Void) {
         self.addInformationAction = addInformationAction
-        addInformationButton.addTarget(self, action: #selector(addInformation), for: .touchUpInside)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(addInformation))
+        addInformationButton.isUserInteractionEnabled = true
+        addInformationButton.addGestureRecognizer(tap)
     }
 
     // MARK: Actions
 
-    @objc private func addInformation(sender: UIButton) {
+    @objc private func addInformation(_ sender: UITapGestureRecognizer? = nil) {
         addInformationAction()
     }
 }
